@@ -108,7 +108,7 @@ void remove_last()
     node* temp = head;
 
     int i = 0;
-    while (i <= size - 2)
+    while (i < size - 2)
     {
         temp = (temp) ? temp->next : nullptr;
         i ++;
