@@ -67,15 +67,36 @@ bool isZero(double n)
     return false;
 }
 
-void greedyMaxValueCoeffPermutation(std::vector<double>& coeff)
+void sort(std::vector<double>& coeff)
 {
+    int mid = coeff.size() / 2;
+
     if (isZero(x))
     {
         std::sort(coeff.begin(), coeff.end());
     }
     else
-        std::sort(coeff.rbegin(), coeff.rend());
+    {
+        std::sort(coeff.begin(), coeff.end());
+        if (x > -1 && x < 0)
+        {
+            std::sort(coeff.begin(), coeff.begin() + mid, std::greater<double>());
+            std::sort(coeff.begin() + mid, coeff.end());
 
+            return;
+        }
+
+        std::sort(coeff.begin() + mid, coeff.end(), std::greater<double>());
+    }
+}
+
+void shuffle(std::vector<double>& coeff)
+{
+    
+}
+
+void greedyMaxValueCoeffPermutation(std::vector<double>& coeff)
+{
     if (isZero(x))
     {
         findMax(coeff);
@@ -101,7 +122,6 @@ void greedyMaxValueCoeffPermutation(std::vector<double>& coeff)
 
         findMax(coeff);
     }
-
 }
 
 int main()
