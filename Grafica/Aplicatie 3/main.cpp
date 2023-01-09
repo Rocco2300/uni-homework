@@ -5,8 +5,6 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
-unsigned int shader;
-
 static std::string readShader(const std::string& filePath)
 {
     std::ifstream in(filePath);
@@ -70,7 +68,6 @@ static unsigned int createShader(const std::string& vertexShader, const std::str
 void render()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glUseProgram(shader);
 
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -102,13 +99,15 @@ int main(int argc, char** argv)
     if (GLEW_OK != err)
     {
         std::cerr << "Error " << glewGetErrorString(err) << '\n';
+        return 1;
     }
 
-    float positions[9] =
+    float vertices[18] =
     {
-        -0.5f, -0.5f, 0.0f,
-        0.0f, 0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f
+            // positions                      // colors
+        -0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+        0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+        0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
     };
 
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << '\n';
@@ -117,15 +116,19 @@ int main(int argc, char** argv)
     unsigned int buffer;
     glGenBuffers(1, &buffer);
     glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), &positions, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, 18 * sizeof(float), &vertices, GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), 0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (const void*)(3 * sizeof(float)));
 
     std::string vertexShader = readShader("../shader.vert");
     std::string fragmentShader = readShader("../shader.frag");
 
+    unsigned int shader;
     shader = createShader(vertexShader, fragmentShader);
+    glUseProgram(shader);
 
     glutDisplayFunc(render);
     glutReshapeFunc(reshape);
