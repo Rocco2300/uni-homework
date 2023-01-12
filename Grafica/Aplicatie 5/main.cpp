@@ -161,6 +161,11 @@ int main(int argc, char** argv)
     shader = createShader(vertexShader, fragmentShader);
     glUseProgram(shader);
 
+    std::cout << "W - rotate up\n";
+    std::cout << "A - rotate left\n";
+    std::cout << "S - rotate down\n";
+    std::cout << "D - rotate right\n";
+
     glutKeyboardFunc(handleKeyPress);
     glutKeyboardUpFunc(handleKeyRelease);
     glutDisplayFunc(render);
