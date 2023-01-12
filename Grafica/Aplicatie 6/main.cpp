@@ -14,6 +14,8 @@
 #include "stb/stb_image.h"
 
 bool keys[256];
+bool wireframe;
+bool toggleWireframe;
 
 unsigned int shader;
 
@@ -146,33 +148,54 @@ void handleKeyPress()
 
         model *= rot;
     }
+    if (keys['t'])
+    {
+        if (toggleWireframe)
+            return;
+
+        wireframe = !wireframe;
+
+        if (wireframe)
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        else
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+        int uniformId = glGetUniformLocation(shader, "wireframe");
+        glUniform1i(uniformId, wireframe);
+
+        toggleWireframe = true;
+    }
 }
 
 void handleKeyRelease()
 {
-    if (keys['a'])
+    if (!keys['a'])
     {
         angleY = 0.f;
     }
-    if (keys['d'])
+    if (!keys['d'])
     {
         angleY = 0.f;
     }
-    if (keys['w'])
+    if (!keys['w'])
     {
         angleX = 0.f;
     }
-    if (keys['s'])
+    if (!keys['s'])
     {
         angleX = 0.f;
     }
-    if (keys['q'])
+    if (!keys['q'])
     {
         angleZ = 0.f;
     }
-    if (keys['e'])
+    if (!keys['e'])
     {
         angleZ = 0.f;
+    }
+    if (!keys['t'])
+    {
+        toggleWireframe = false;
     }
 }
 
@@ -250,6 +273,14 @@ int main(int argc, char** argv)
 
     int texUniform = glGetUniformLocation(shader, "tex");
     glUniform1i(texUniform, 0);
+
+    std::cout << "  T - toggle wireframe\n\n";
+    std::cout << "  W - rotate up on x-axis\n";
+    std::cout << "  A - rotate left on y-axis\n";
+    std::cout << "  S - rotate down on x-axis\n";
+    std::cout << "  D - rotate right on y-axis\n";
+    std::cout << "  Q - rotate left on z-axis\n";
+    std::cout << "  E - rotate right on z-axis\n";
 
     glutIgnoreKeyRepeat(true);
     glutKeyboardFunc(registerKeyDown);
