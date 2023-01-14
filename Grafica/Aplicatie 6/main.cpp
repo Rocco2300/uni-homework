@@ -242,15 +242,15 @@ int main(int argc, char** argv)
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, cube.tris.size() * sizeof(triangle), &cube.tris[0], GL_STATIC_DRAW);
 
-    std::string vertexShader = readShader("../shader.vert");
-    std::string fragmentShader = readShader("../shader.frag");
+    std::string vertexShader = readShader("../shaders/shader.vert");
+    std::string fragmentShader = readShader("../shaders/shader.frag");
 
     shader = createShader(vertexShader, fragmentShader);
     glUseProgram(shader);
 
     int width, height, channelNo;
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load("../warped_planks.png", &width, &height, &channelNo, 0);
+    unsigned char* data = stbi_load("../textures/warped_planks.png", &width, &height, &channelNo, 0);
 
     unsigned int texture;
     glGenTextures(1, &texture);
