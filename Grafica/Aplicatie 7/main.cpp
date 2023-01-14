@@ -249,7 +249,7 @@ int main(int argc, char** argv)
 
     int width, height, channelNo;
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load("../warped_planks.png", &width, &height, &channelNo, 0);
+    unsigned char* data = stbi_load("../textures/warped_planks.png", &width, &height, &channelNo, 0);
 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
