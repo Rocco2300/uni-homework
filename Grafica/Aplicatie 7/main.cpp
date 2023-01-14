@@ -13,52 +13,75 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb/stb_image.h"
 
+const unsigned int WIDTH  = 800;
+const unsigned int HEIGHT = 800;
+
 bool keys[256];
 bool wireframe;
 bool toggleWireframe;
 
-unsigned int shader;
+unsigned int shader, texture;
 
-float angleX, angleY, angleZ;
+float angleX, angleY;
 
-glm::mat4 projection, view, model, mvp;
+object cube, plane;
 
-glm::vec3 xAxis = glm::vec3(1.f, 0.f, 0.f);
-glm::vec3 yAxis = glm::vec3(0.f, 1.f, 0.f);
-glm::vec3 zAxis = glm::vec3(0.f, 0.f, 1.f);
+glm::mat4 projection, view, model, model2, mvp;
+
+glm::vec2 mousePos;
+glm::vec2 mouseDelta;
+
+glm::vec3 camUp      = glm::vec3(0.f, 1.f, 0.f);
+glm::vec3 camRight   = glm::vec3(1.f, 0.f, 0.f);
+glm::vec3 camForward = glm::vec3(0.f, 0.f, -1.f);
+
+glm::vec3 camPos = glm::vec3(0.f, 0.f, 3.f);
+
+bool rotated;
 
 void initMatrices()
 {
     projection = glm::perspective(45.0f, 1.f / 1.f, 0.1f, 100.f);
 
-    view = glm::lookAt(
-        glm::vec3(0,0,3),
-        glm::vec3(0,0,0),
-        glm::vec3(0,1,0)
-    );
+    view = glm::lookAt(camPos, camPos + camForward, camUp);
 
     model = glm::mat4(1.0f);
-    model *= glm::translate(model, glm::vec3(0.f, 0.f, -3.f));
+    model2 = glm::mat4(1.f);
+    model2 *= glm::translate(model, glm::vec3(0.f, -1.f, 0.f));
 
     mvp = projection * view * model;
 }
 
 void handleKeyPress();
+void handleMouseMove();
 void handleKeyRelease();
 
 void render()
 {
     handleKeyPress();
+    handleMouseMove();
     handleKeyRelease();
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    view = glm::lookAt(camPos, camPos + camForward, camUp);
     mvp = projection * view * model;
 
     int matrixLocation = glGetUniformLocation(shader, "u_MVP");
-    glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(mvp));
+    int useTextureLocation = glGetUniformLocation(shader, "useTexture");
 
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, nullptr);
+    glUniform1i(useTextureLocation, true);
+    glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(mvp));
+    bindBuffers(cube);
+    glDrawElements(GL_TRIANGLES, cube.tris.size() * 3, GL_UNSIGNED_INT, nullptr);
+    unbindBuffers(cube);
+
+    mvp = projection * view * model2;
+    glUniform1i(useTextureLocation, false);
+    glUniformMatrix4fv(matrixLocation, 1, GL_FALSE, glm::value_ptr(mvp));
+    bindBuffers(plane);
+    glDrawElements(GL_TRIANGLES, plane.tris.size() * 3, GL_UNSIGNED_INT, nullptr);
+    unbindBuffers(plane);
 
     glutSwapBuffers();
 
@@ -75,79 +98,46 @@ void registerKeyDown(unsigned char key, int x, int y)
     keys[key] = true;
 }
 
+void handleMouseMove()
+{
+
+}
+
 void handleKeyPress()
 {
-    if (keys['a'])
+    const float speed = 0.3f;
+
+    if (keys['s'])
     {
-        angleY = -0.1f;
+        glm::mat4 translate  = glm::translate(glm::mat4(1.f), -camForward * speed);
+        glm::vec4 tempCamPos = glm::vec4(camPos, 1.f);
 
-        glm::mat4 rot = glm::mat4(1.f);
-        rot = glm::rotate(rot, angleY, yAxis);
-
-        xAxis = glm::rotate(xAxis, -angleY, yAxis);
-        zAxis = glm::rotate(zAxis, -angleY, yAxis);
-
-        model *= rot;
-    }
-    if (keys['d'])
-    {
-        angleY = 0.1f;
-
-        glm::mat4 rot = glm::mat4(1.f);
-        rot = glm::rotate(rot, angleY, yAxis);
-
-        xAxis = glm::rotate(xAxis, -angleY, yAxis);
-        zAxis = glm::rotate(zAxis, -angleY, yAxis);
-
-        model *= rot;
+        tempCamPos = translate * tempCamPos;
+        camPos = tempCamPos;
     }
     if (keys['w'])
     {
-        angleX = -0.1f;
+        glm::mat4 translate  = glm::translate(glm::mat4(1.f), camForward * speed);
+        glm::vec4 tempCamPos = glm::vec4(camPos, 1.f);
 
-        glm::mat4 rot = glm::mat4(1.f);
-        rot = glm::rotate(rot, angleX, xAxis);
-
-        yAxis = glm::rotate(yAxis, -angleX, xAxis);
-        zAxis = glm::rotate(zAxis, -angleX, xAxis);
-
-        model *= rot;
+        tempCamPos = translate * tempCamPos;
+        camPos = tempCamPos;
     }
-    if (keys['s'])
+    if (keys['a'])
     {
-        angleX = 0.1f;
+        glm::mat4 translate  = glm::translate(glm::mat4(1.f), -camRight * speed);
+        glm::vec4 tempCamPos = glm::vec4(camPos, 1.f);
 
-        glm::mat4 rot = glm::mat4(1.f);
-        rot = glm::rotate(rot, angleX, xAxis);
-
-        yAxis = glm::rotate(yAxis, -angleX, xAxis);
-        zAxis = glm::rotate(zAxis, -angleX, xAxis);
-
-        model *= rot;
+        tempCamPos = translate * tempCamPos;
+        camPos = tempCamPos;
     }
-    if (keys['q'])
+    if (keys['d'])
     {
-        angleZ = 0.1f;
+        glm::mat4 translate  = glm::translate(glm::mat4(1.f), camRight * speed);
+        glm::vec4 tempCamPos = glm::vec4(camPos, 1.f);
 
-        glm::mat4 rot = glm::mat4(1.f);
-        rot = glm::rotate(rot, angleZ, zAxis);
-
-        xAxis = glm::rotate(xAxis, -angleZ, zAxis);
-        yAxis = glm::rotate(yAxis, -angleZ, zAxis);
-
-        model *= rot;
-    }
-    if (keys['e'])
-    {
-        angleZ = -0.1f;
-
-        glm::mat4 rot = glm::mat4(1.f);
-        rot = glm::rotate(rot, angleZ, zAxis);
-
-        xAxis = glm::rotate(xAxis, -angleZ, zAxis);
-        yAxis = glm::rotate(yAxis, -angleZ, zAxis);
-
-        model *= rot;
+        tempCamPos = translate * tempCamPos;
+        camPos = tempCamPos;
     }
     if (keys['t'])
     {
@@ -155,6 +145,11 @@ void handleKeyPress()
             return;
 
         wireframe = !wireframe;
+
+        if (wireframe)
+            glDisable(GL_CULL_FACE);
+        else
+            glEnable(GL_CULL_FACE);
 
         if (wireframe)
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -170,45 +165,64 @@ void handleKeyPress()
 
 void handleKeyRelease()
 {
-    if (!keys['a'])
-    {
-        angleY = 0.f;
-    }
-    if (!keys['d'])
-    {
-        angleY = 0.f;
-    }
-    if (!keys['w'])
-    {
-        angleX = 0.f;
-    }
-    if (!keys['s'])
-    {
-        angleX = 0.f;
-    }
-    if (!keys['q'])
-    {
-        angleZ = 0.f;
-    }
-    if (!keys['e'])
-    {
-        angleZ = 0.f;
-    }
     if (!keys['t'])
     {
         toggleWireframe = false;
     }
 }
 
+void clamp(float& angle, float min, float max)
+{
+    if (angle < min)
+        angle = min;
+    else if (angle > max)
+        angle = max;
+}
+
+void handleMouseMove(int x, int y)
+{
+    mousePos = glm::vec2(x, y);
+    mouseDelta = (mousePos - glm::vec2(WIDTH / 2, HEIGHT / 2));
+
+    glm::vec4 tempCamForward, tempCamRight;
+
+    float sensitivity = 0.004f;
+
+    angleX += -mouseDelta.y * sensitivity;
+    angleY += -mouseDelta.x * sensitivity;
+
+    clamp(angleX, -0.7, 0.7);
+
+    glm::mat4 rotY = glm::mat4(1.f);
+    rotY = glm::rotate(rotY, angleY, camUp);
+
+    tempCamRight = glm::vec4(1.f, 0.f, 0.f, 1.f);
+    tempCamRight = rotY * tempCamRight;
+    camRight = tempCamRight;
+    tempCamForward = glm::vec4(0.f, 0.f, -1.f, 1.f);
+    tempCamForward = rotY * tempCamForward;
+
+    glm::mat4 rotX = glm::mat4(1.f);
+    rotX = glm::rotate(rotX, angleX, camRight);
+
+    tempCamForward = rotX * tempCamForward;
+    camForward = tempCamForward;
+
+    mouseDelta = glm::vec3(0.f);
+
+    glutWarpPointer(WIDTH / 2, HEIGHT / 2);
+}
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitWindowPosition(100, 200);
-    glutInitWindowSize(400, 400);
+    glutInitWindowSize(WIDTH, HEIGHT);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
     glutCreateWindow("Aplicatie 5");
 
     initMatrices();
+    glutSetCursor(GLUT_CURSOR_NONE);
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glEnable(GL_DEPTH_TEST);
@@ -221,30 +235,14 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    object cube = loadObject("../cube.obj");
+    cube  = loadObject("../objects/cube.obj");
+    plane = loadObject("../objects/plane.obj");
 
-    unsigned int vbo;
-    glGenBuffers(1, &vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, cube.vertices.size() * sizeof(vertex), &cube.vertices[0], GL_STATIC_DRAW);
+    bindObjectData(cube);
+    bindObjectData(plane);
 
-    unsigned int vao;
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (const void*)offsetof(vertex, texCoord));
-    glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (const void*)offsetof(vertex, normal));
-
-    unsigned int ibo;
-    glGenBuffers(1, &ibo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, cube.tris.size() * sizeof(triangle), &cube.tris[0], GL_STATIC_DRAW);
-
-    std::string vertexShader = readShader("../shader.vert");
-    std::string fragmentShader = readShader("../shader.frag");
+    std::string vertexShader = readShader("../shaders/shader.vert");
+    std::string fragmentShader = readShader("../shaders/shader.frag");
 
     shader = createShader(vertexShader, fragmentShader);
     glUseProgram(shader);
@@ -253,7 +251,6 @@ int main(int argc, char** argv)
     stbi_set_flip_vertically_on_load(true);
     unsigned char* data = stbi_load("../warped_planks.png", &width, &height, &channelNo, 0);
 
-    unsigned int texture;
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -271,17 +268,12 @@ int main(int argc, char** argv)
     {
         std::cerr << "Error loading image!\n";
     }
+    stbi_image_free(data);
 
     int texUniform = glGetUniformLocation(shader, "tex");
     glUniform1i(texUniform, 0);
 
     std::cout << "  T - toggle wireframe\n\n";
-    std::cout << "  W - rotate up on x-axis\n";
-    std::cout << "  A - rotate left on y-axis\n";
-    std::cout << "  S - rotate down on x-axis\n";
-    std::cout << "  D - rotate right on y-axis\n";
-    std::cout << "  Q - rotate left on z-axis\n";
-    std::cout << "  E - rotate right on z-axis\n";
 
     glutIgnoreKeyRepeat(true);
     glutKeyboardFunc(registerKeyDown);
@@ -289,9 +281,8 @@ int main(int argc, char** argv)
 
     glutDisplayFunc(render);
     glutIdleFunc(render);
+    glutPassiveMotionFunc(handleMouseMove);
 
     glutMainLoop();
-
-    stbi_image_free(data);
     return 0;
 }

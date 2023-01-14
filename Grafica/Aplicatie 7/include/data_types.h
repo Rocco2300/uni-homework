@@ -40,4 +40,6 @@ struct object
 {
     std::vector<vertex> vertices;
     std::vector<triangle> tris;
+
+    unsigned int vbo, vao, ebo;
 };

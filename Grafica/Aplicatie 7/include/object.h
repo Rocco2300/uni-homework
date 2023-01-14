@@ -112,5 +112,45 @@ object loadObject(const std::string& filePath)
         }
     }
 
+    std::cout << obj.tris.size() << '\n';
+
     return obj;
+}
+
+void bindObjectData(object& obj)
+{
+    glGenBuffers(1, &obj.vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, obj.vbo);
+    glBufferData(GL_ARRAY_BUFFER, obj.vertices.size() * sizeof(vertex), &obj.vertices[0], GL_STATIC_DRAW);
+
+    glGenVertexArrays(1, &obj.vao);
+    glBindVertexArray(obj.vao);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (const void*)offsetof(vertex, texCoord));
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), (const void*)offsetof(vertex, normal));
+
+    glGenBuffers(1, &obj.ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj.ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, obj.tris.size() * sizeof(triangle), &obj.tris[0], GL_STATIC_DRAW);
+
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+void bindBuffers(object& obj)
+{
+    glBindVertexArray(obj.vao);
+//    glBindBuffer(GL_ARRAY_BUFFER, obj.vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, obj.ebo);
+}
+
+void unbindBuffers(object& obj)
+{
+    glBindVertexArray(0);
+//    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
