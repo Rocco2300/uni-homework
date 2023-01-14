@@ -273,7 +273,9 @@ int main(int argc, char** argv)
     int texUniform = glGetUniformLocation(shader, "tex");
     glUniform1i(texUniform, 0);
 
-    std::cout << "  T - toggle wireframe\n\n";
+    std::cout << "  W A S D to move\n";
+    std::cout << "  Mouse to rotate\n";
+    std::cout << "  T - toggle wireframe\n";
 
     glutIgnoreKeyRepeat(true);
     glutKeyboardFunc(registerKeyDown);

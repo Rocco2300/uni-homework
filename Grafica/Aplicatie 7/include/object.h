@@ -112,8 +112,6 @@ object loadObject(const std::string& filePath)
         }
     }
 
-    std::cout << obj.tris.size() << '\n';
-
     return obj;
 }
 
