@@ -1,5 +1,3 @@
-#include <vector>
-
 #include "shader.h"
 #include "object.h"
 
