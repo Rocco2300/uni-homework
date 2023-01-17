@@ -1,4 +1,4 @@
-#include <GL/freeglut.h>
+#include "GL/freeglut.h"
 
 void render()
 {
@@ -39,14 +39,6 @@ void render()
     glEnd();
 
     glFlush();
-}
-
-void reshape(int w, int h)
-{
-    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluOrtho2D(0.0, (GLdouble)w, 0.0, (GLdouble)h);
 }
 
 int main(int argc, char** argv)
