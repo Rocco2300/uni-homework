@@ -2,8 +2,8 @@
 #include <sstream>
 #include <fstream>
 
-#include <GL/glew.h>
-#include <GL/freeglut.h>
+#include "GL/glew.h"
+#include "GL/freeglut.h"
 
 static std::string readShader(const std::string& filePath)
 {
