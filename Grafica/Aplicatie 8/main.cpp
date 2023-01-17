@@ -3,13 +3,13 @@
 #include <sstream>
 #include <string>
 
-#include <GL/glew.h>
-#include <GL/freeglut.h>
+#include "GL/glew.h"
+#include "GL/freeglut.h"
 
-#include <glm/glm.hpp>
-#include <glm/matrix.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "glm/glm.hpp"
+#include "glm/matrix.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 #include "Object.h"
 #include "ObjectData.h"
@@ -17,7 +17,6 @@
 Object cube, plane;
 
 unsigned int lightPosLoc;
-unsigned int shadowMap, shadowMapFBO;
 
 glm::vec3 lightPos, cameraPos;
 
