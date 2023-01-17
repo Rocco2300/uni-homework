@@ -1,4 +1,4 @@
-#include <GL/freeglut.h>
+#include "GL/freeglut.h"
 
 float angleX = 0.0f;
 float angleY = 0.0f;
