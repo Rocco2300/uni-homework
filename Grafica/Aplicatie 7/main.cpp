@@ -37,8 +37,6 @@ glm::vec3 camForward = glm::vec3(0.f, 0.f, -1.f);
 
 glm::vec3 camPos = glm::vec3(0.f, 0.f, 3.f);
 
-bool rotated;
-
 void initMatrices()
 {
     projection = glm::perspective(45.0f, 1.f / 1.f, 0.1f, 100.f);
