@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 #include <functional>
@@ -8,18 +7,16 @@
 
 int main()
 {
+    std::unordered_map<int, int> a;
     HashTable<std::string, int> table;
 
-    table.insert({"ficat", 2});
-    table.insert({"free", 3});
+    table["ficat"] = 2;
+    table["free"] = 3;
     std::cout << table.at("ficat") << std::endl;
     std::cout << table.at("free") << std::endl;
 
-    table.insert({"free", 12});
-    std::cout << table.at("free") << std::endl;
-
-    table.insert({"free", 10});
-    std::cout << table.at("free") << std::endl;
+    table["free"] = 12;
+    std::cout << table["free"] << std::endl;
 
     return 0;
 }

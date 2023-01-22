@@ -47,6 +47,11 @@ public:
         m_table = new Bucket[m_capacity];
     }
 
+    bool empty()
+    {
+        return (m_size == 0);
+    }
+
     size_t size()
     {
         return m_size;
@@ -55,6 +60,23 @@ public:
     size_t capacity()
     {
         return m_capacity;
+    }
+
+    Value& operator[](const Key& key)
+    {
+        auto hash    = hashFunc(key);
+        auto index   = hash % m_capacity;
+        auto& bucket = m_table[index];
+
+        if (bucket.find(key))
+        {
+            std::cout << "Modified" << std::endl;
+            auto pair = bucket.get(key);
+            return pair->second;
+        }
+
+        bucket.insert({key, Value()});
+        return bucket.get(key)->second;
     }
 
     void insert(Pair pair)
