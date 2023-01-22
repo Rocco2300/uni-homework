@@ -150,17 +150,13 @@ public:
 
     bool contains(const Key& key)
     {
-        for (int i = 0; i < m_capacity; i++)
-        {
-            auto& bucket = m_table[i];
-            if (bucket.find(key))
-            {
-                return true;
-            }
-        }
+        auto hash    = hashFunc(key);
+        auto index   = hash % m_capacity;
+        auto& bucket = m_table[index];
+
+        if (bucket.find(key))
+            return true;
 
         return false;
     }
-
-    
 };
