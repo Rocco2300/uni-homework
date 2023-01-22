@@ -79,7 +79,7 @@ public:
         return bucket.get(key)->second;
     }
 
-    void insert(Pair pair)
+    void insert(const Pair& pair)
     {
         auto [key, value] = pair;
 
@@ -99,7 +99,7 @@ public:
         m_size++;
     }
 
-    Value& at(Key key)
+    Value& at(const Key& key)
     {
         auto hash  = hashFunc(key);
         auto index = hash % m_capacity;
@@ -117,7 +117,7 @@ public:
         return pair->second;
     }
 
-    const Value& at(Key key) const
+    const Value& at(const Key& key) const
     {
         auto hash  = hashFunc(key);
         auto index = hash % m_capacity;
@@ -135,7 +135,7 @@ public:
         return pair->second;
     }
 
-    void remove(Key key)
+    void remove(const Key& key)
     {
         auto hash    = hashFunc(key);
         auto index   = hash % m_capacity;
@@ -147,4 +147,20 @@ public:
             m_size--;
         }
     }
+
+    bool contains(const Key& key)
+    {
+        for (int i = 0; i < m_capacity; i++)
+        {
+            auto& bucket = m_table[i];
+            if (bucket.find(key))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    
 };

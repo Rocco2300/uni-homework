@@ -10,13 +10,17 @@ int main()
     std::unordered_map<int, int> a;
     HashTable<std::string, int> table;
 
-    table["ficat"] = 2;
     table["free"] = 3;
-    std::cout << table.at("ficat") << std::endl;
+    table["ficat"] = 2;
     std::cout << table.at("free") << std::endl;
+    std::cout << table.at("ficat") << std::endl;
 
     table["free"] = 12;
     std::cout << table["free"] << std::endl;
+
+    std::cout << table.contains("free") << std::endl;
+    std::cout << table.contains("ficat") << std::endl;
+    std::cout << table.contains("omenomatopee") << std::endl;
 
     return 0;
 }
