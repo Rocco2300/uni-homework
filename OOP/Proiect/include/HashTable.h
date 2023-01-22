@@ -64,9 +64,7 @@ public:
 
     Value& operator[](const Key& key)
     {
-        auto hash    = hashFunc(key);
-        auto index   = hash % m_capacity;
-        auto& bucket = m_table[index];
+        auto& bucket = getBucket(key);
 
         if (bucket.find(key))
         {
@@ -82,10 +80,7 @@ public:
     void insert(const Pair& pair)
     {
         auto [key, value] = pair;
-
-        auto hash    = hashFunc(key);
-        auto index   = hash % m_capacity;
-        auto& bucket = m_table[index];
+        auto& bucket = getBucket(key);
 
         if (bucket.find(key))
         {
@@ -101,10 +96,8 @@ public:
 
     Value& at(const Key& key)
     {
-        auto hash  = hashFunc(key);
-        auto index = hash % m_capacity;
-
-        auto pair  = m_table[index].get(key);
+        auto& bucket = getBucket(key);
+        auto pair    = bucket.get(key);
 
         if (!pair)
         {
@@ -119,10 +112,8 @@ public:
 
     const Value& at(const Key& key) const
     {
-        auto hash  = hashFunc(key);
-        auto index = hash % m_capacity;
-
-        auto pair  = m_table[index].get(key);
+        auto& bucket = getBucket(key);
+        auto pair    = bucket.get(key);
 
         if (!pair)
         {
@@ -137,9 +128,7 @@ public:
 
     void remove(const Key& key)
     {
-        auto hash    = hashFunc(key);
-        auto index   = hash % m_capacity;
-        auto& bucket = m_table[index];
+        auto& bucket = getBucket(key);
 
         if (bucket.find(key))
         {
@@ -150,13 +139,20 @@ public:
 
     bool contains(const Key& key)
     {
-        auto hash    = hashFunc(key);
-        auto index   = hash % m_capacity;
-        auto& bucket = m_table[index];
+        auto& bucket = getBucket(key);
 
         if (bucket.find(key))
             return true;
 
         return false;
+    }
+
+private:
+    Bucket& getBucket(const Key& key)
+    {
+        auto hash    = hashFunc(key);
+        auto index   = hash % m_capacity;
+
+        return m_table[index];
     }
 };
