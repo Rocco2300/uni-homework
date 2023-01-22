@@ -47,6 +47,11 @@ public:
         table = new Bucket[capacity];
     }
 
+    size_t size()
+    {
+        return size;
+    }
+
     void insert(Pair pair)
     {
         auto [key, value] = pair;
@@ -64,6 +69,7 @@ public:
         }
 
         bucket.insert({key, value});
+        size++;
     }
 
     Value& at(Key key)
@@ -111,6 +117,7 @@ public:
         if (bucket.find(key))
         {
             bucket.remove(key);
+            size--;
         }
     }
 };
