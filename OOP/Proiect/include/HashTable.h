@@ -35,21 +35,26 @@ private:
     using Bucket = Bucket<Key, Value>;
 
 private:
-    Bucket* table{};
-    size_t capacity{};
-    size_t size{};
+    Bucket* m_table{};
+    size_t m_capacity{};
+    size_t m_size{};
 
     HashFunc hashFunc;
 
 public:
-    HashTable() : capacity{100}, size{0}
+    HashTable() : m_capacity{100}, m_size{0}
     {
-        table = new Bucket[capacity];
+        m_table = new Bucket[m_capacity];
     }
 
     size_t size()
     {
-        return size;
+        return m_size;
+    }
+
+    size_t capacity()
+    {
+        return m_capacity;
     }
 
     void insert(Pair pair)
@@ -57,8 +62,8 @@ public:
         auto [key, value] = pair;
 
         auto hash    = hashFunc(key);
-        auto index   = hash % capacity;
-        auto& bucket = table[index];
+        auto index   = hash % m_capacity;
+        auto& bucket = m_table[index];
 
         if (bucket.find(key))
         {
@@ -69,15 +74,15 @@ public:
         }
 
         bucket.insert({key, value});
-        size++;
+        m_size++;
     }
 
     Value& at(Key key)
     {
         auto hash  = hashFunc(key);
-        auto index = hash % capacity;
+        auto index = hash % m_capacity;
 
-        auto pair  = table[index].get(key);
+        auto pair  = m_table[index].get(key);
 
         if (!pair)
         {
@@ -93,9 +98,9 @@ public:
     const Value& at(Key key) const
     {
         auto hash  = hashFunc(key);
-        auto index = hash % capacity;
+        auto index = hash % m_capacity;
 
-        auto pair  = table[index].get(key);
+        auto pair  = m_table[index].get(key);
 
         if (!pair)
         {
@@ -111,13 +116,13 @@ public:
     void remove(Key key)
     {
         auto hash    = hashFunc(key);
-        auto index   = hash % capacity;
-        auto& bucket = table[index];
+        auto index   = hash % m_capacity;
+        auto& bucket = m_table[index];
 
         if (bucket.find(key))
         {
             bucket.remove(key);
-            size--;
+            m_size--;
         }
     }
 };
