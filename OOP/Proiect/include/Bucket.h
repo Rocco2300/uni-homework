@@ -25,16 +25,15 @@ public:
 
     ~Bucket()
     {
-        Node* prev = head;
+        Node* current = head;
+        Node* next;
 
-        while (head->next)
+        while (current != NULL)
         {
-            head = head->next;
-            delete prev;
-            prev = head;
+            next = current->next;
+            delete current;
+            current = next;
         }
-
-        delete prev;
     }
 
     void insert(Pair pair)
