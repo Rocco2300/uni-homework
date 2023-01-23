@@ -66,15 +66,15 @@ public:
     {
         auto& bucket = getBucket(key);
 
-        if (bucket.find(key))
+        if (bucket.contains(key))
         {
             std::cout << "Modified" << std::endl;
-            auto pair = bucket.get(key);
+            auto pair = bucket.at(key);
             return pair->second;
         }
 
         bucket.insert({key, Value()});
-        return bucket.get(key)->second;
+        return bucket.at(key)->second;
     }
 
     void insert(const Pair& pair)
@@ -82,10 +82,10 @@ public:
         auto [key, value] = pair;
         auto& bucket = getBucket(key);
 
-        if (bucket.find(key))
+        if (bucket.contains(key))
         {
             std::cout << "Modified" << std::endl;
-            auto pair = bucket.get(key);
+            auto pair = bucket.at(key);
             pair->second = value;
             return;
         }
@@ -97,7 +97,7 @@ public:
     Value& at(const Key& key)
     {
         auto& bucket = getBucket(key);
-        auto pair    = bucket.get(key);
+        auto pair    = bucket.at(key);
 
         if (!pair)
         {
@@ -113,7 +113,7 @@ public:
     const Value& at(const Key& key) const
     {
         auto& bucket = getBucket(key);
-        auto pair    = bucket.get(key);
+        auto pair    = bucket.at(key);
 
         if (!pair)
         {
@@ -126,13 +126,13 @@ public:
         return pair->second;
     }
 
-    void remove(const Key& key)
+    void erase(const Key& key)
     {
         auto& bucket = getBucket(key);
 
-        if (bucket.find(key))
+        if (bucket.contains(key))
         {
-            bucket.remove(key);
+            bucket.erase(key);
             m_size--;
         }
     }
@@ -141,7 +141,7 @@ public:
     {
         auto& bucket = getBucket(key);
 
-        if (bucket.find(key))
+        if (bucket.contains(key))
             return true;
 
         return false;

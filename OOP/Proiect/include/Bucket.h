@@ -54,7 +54,7 @@ public:
         temp->next = new Node(pair);
     }
 
-    Pair* get(Key key)
+    Pair* at(Key key)
     {
         Node* temp = head;
 
@@ -66,7 +66,19 @@ public:
         return (temp) ? &temp->pair : nullptr;
     }
 
-    bool find(Key key)
+    const Pair* at(Key key) const
+    {
+        Node* temp = head;
+
+        while (temp && temp->pair.first != key)
+        {
+            temp = (temp) ? temp->next : nullptr;
+        }
+
+        return (temp) ? &temp->pair : nullptr;
+    }
+
+    bool contains(Key key)
     {
         Node* temp = head;
 
@@ -78,7 +90,7 @@ public:
         return (temp) ? true : false;
     }
 
-    void remove(Key key)
+    void erase(Key key)
     {
         if (!find(key) || !head)
         {
