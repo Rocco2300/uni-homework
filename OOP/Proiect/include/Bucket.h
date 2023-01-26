@@ -6,26 +6,31 @@ template <typename Key, typename Value>
 class Bucket
 {
 private:
+    using Pair = Pair<Key, Value>;
+
     struct Node
     {
-        Pair<Key, Value> pair{};
+        Pair pair{};
         Node* next{};
 
         Node() = default;
-        Node(Pair<Key, Value> pair) : pair{pair}, next{nullptr} { }
+        Node(Pair pair) : pair{pair}, next{nullptr} { }
     };
 
-    using Pair = Pair<Key, Value>;
+public:
+    class BucketIterator;
+    using Iterator = BucketIterator;
 
 private:
-    Node* head{};
+    Node* m_head{};
+    size_t m_size{};
 
 public:
     Bucket() = default;
 
     ~Bucket()
     {
-        Node* current = head;
+        Node* current = m_head;
         Node* next;
 
         while (current != NULL)
@@ -36,15 +41,26 @@ public:
         }
     }
 
+    bool empty()
+    {
+        return m_size == 0;
+    }
+
+    size_t size()
+    {
+        return m_size;
+    }
+
     void insert(Pair pair)
     {
-        if (head == nullptr)
+        if (m_head == nullptr)
         {
-            head = new Node(pair);
+            m_head = new Node(pair);
+            m_size++;
             return;
         }
 
-        Node* temp = head;
+        Node* temp = m_head;
 
         while (temp->next)
         {
@@ -52,11 +68,12 @@ public:
         }
 
         temp->next = new Node(pair);
+        m_size++;
     }
 
     Pair* at(Key key)
     {
-        Node* temp = head;
+        Node* temp = m_head;
 
         while (temp && temp->pair.first != key)
         {
@@ -68,7 +85,7 @@ public:
 
     const Pair* at(Key key) const
     {
-        Node* temp = head;
+        Node* temp = m_head;
 
         while (temp && temp->pair.first != key)
         {
@@ -80,7 +97,7 @@ public:
 
     bool contains(Key key)
     {
-        Node* temp = head;
+        Node* temp = m_head;
 
         while (temp && temp->pair.first != key)
         {
@@ -92,17 +109,18 @@ public:
 
     void erase(Key key)
     {
-        if (!find(key) || !head)
+        if (!find(key) || !m_head)
         {
             return;
         }
 
-        Node* temp = head;
+        Node* temp = m_head;
 
-        if (head->pair.first == key)
+        if (m_head->pair.first == key)
         {
-            head = temp->next;
+            m_head = temp->next;
             delete temp;
+            m_size--;
             return;
         }
 
@@ -117,5 +135,52 @@ public:
         Node* next = temp->next->next;
         delete temp->next;
         temp->next = next;
+        m_size--;
     }
+
+    Iterator begin()
+    {
+        return Iterator(m_head);
+    }
+
+    Iterator end()
+    {
+        return Iterator(nullptr);
+    }
+
+public:
+    class BucketIterator
+    {
+    private:
+        Node* ptr;
+
+    public:
+        BucketIterator() : ptr{nullptr} { }
+        BucketIterator(Node* ptr) : ptr{ptr} { }
+
+        void operator=(const BucketIterator& other)
+        {
+            this->ptr = other.ptr;
+        }
+
+        Pair& operator*() const { return ptr->pair; }
+        Pair* operator->() { return &ptr->pair; }
+
+        BucketIterator& operator++()
+        {
+            if (ptr)
+                ptr = ptr->next;
+            return *this;
+        }
+
+        BucketIterator operator++(int)
+        {
+            BucketIterator it = *this;
+            ++(*this);
+            return it;
+        }
+
+        friend bool operator== (const BucketIterator& a, const BucketIterator& b) { return a.ptr == b.ptr; };
+        friend bool operator!= (const BucketIterator& a, const BucketIterator& b) { return a.ptr != b.ptr; };
+    };
 };

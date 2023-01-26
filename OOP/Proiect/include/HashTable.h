@@ -34,6 +34,10 @@ private:
     using Pair   = Pair<Key, Value>;
     using Bucket = Bucket<Key, Value>;
 
+public:
+    class HashTableIterator;
+    using Iterator = HashTableIterator;
+
 private:
     Bucket* m_table{};
     size_t m_capacity{};
@@ -74,6 +78,9 @@ public:
         }
 
         bucket.insert({key, Value()});
+//        auto idx = hashFunc(key) % m_capacity;
+//        std::cout << idx << '\n';
+        m_size++;
         return bucket.at(key)->second;
     }
 
@@ -147,6 +154,16 @@ public:
         return false;
     }
 
+    Iterator begin()
+    {
+        return Iterator(m_table, m_capacity);
+    }
+
+    Iterator end()
+    {
+        return Iterator(m_table + m_capacity, m_capacity);
+    }
+
 private:
     Bucket& getBucket(const Key& key)
     {
@@ -155,4 +172,73 @@ private:
 
         return m_table[index];
     }
+
+public:
+    class HashTableIterator
+    {
+    private:
+        Bucket* m_ptr{};
+
+        size_t m_idx{};
+        size_t m_size{};
+
+    public:
+        HashTableIterator(Bucket* ptr, size_t size) : m_ptr{ptr}, m_size{size}, m_idx{0}
+        {
+            if (!ptr->empty())
+            {
+                return;
+            }
+
+            do
+            {
+                m_ptr++;
+                m_idx++;
+            } while (m_idx < size && m_ptr->empty());
+        }
+
+        virtual Pair& operator*() const
+        {
+            if (m_idx < m_size && !m_ptr->empty())
+                return *m_ptr->begin();
+            else
+            {
+                std::stringstream s;
+                s << "Index out of bounds" << m_idx;
+                throw std::out_of_range(s.str());
+            }
+        }
+        virtual Pair* operator->()
+        {
+            if (m_idx < m_size && !m_ptr->empty())
+                return &*m_ptr->begin();
+            else
+            {
+                std::stringstream s;
+                s << "Index out of bounds" << m_idx;
+                throw std::out_of_range(s.str());
+            }
+        }
+
+        HashTableIterator& operator++()
+        {
+            do
+            {
+                m_ptr++;
+                m_idx++;
+            } while (m_idx < m_size && m_ptr->empty());
+
+            return *this;
+        }
+
+        HashTableIterator operator++(int)
+        {
+            HashTableIterator it = *this;
+            ++(*this);
+            return it;
+        }
+
+        friend bool operator== (const HashTableIterator& a, const HashTableIterator& b) { return a.m_ptr == b.m_ptr; };
+        friend bool operator!= (const HashTableIterator& a, const HashTableIterator& b) { return a.m_ptr != b.m_ptr; };
+    };
 };
