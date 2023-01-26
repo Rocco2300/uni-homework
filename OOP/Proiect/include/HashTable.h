@@ -46,7 +46,7 @@ private:
     HashFunc hashFunc;
 
 public:
-    HashTable() : m_capacity{100}, m_size{0}
+    HashTable() : m_capacity{2}, m_size{0}
     {
         m_table = new Bucket[m_capacity];
     }
@@ -72,14 +72,11 @@ public:
 
         if (bucket.contains(key))
         {
-            std::cout << "Modified" << std::endl;
             auto pair = bucket.at(key);
             return pair->second;
         }
 
         bucket.insert({key, Value()});
-//        auto idx = hashFunc(key) % m_capacity;
-//        std::cout << idx << '\n';
         m_size++;
         return bucket.at(key)->second;
     }
@@ -91,7 +88,6 @@ public:
 
         if (bucket.contains(key))
         {
-            std::cout << "Modified" << std::endl;
             auto pair = bucket.at(key);
             pair->second = value;
             return;
@@ -182,11 +178,14 @@ public:
         size_t m_idx{};
         size_t m_size{};
 
+        typename Bucket::Iterator m_it;
+
     public:
         HashTableIterator(Bucket* ptr, size_t size) : m_ptr{ptr}, m_size{size}, m_idx{0}
         {
             if (!ptr->empty())
             {
+                m_it = m_ptr->begin();
                 return;
             }
 
@@ -194,39 +193,51 @@ public:
             {
                 m_ptr++;
                 m_idx++;
+                m_it = m_ptr->begin();
             } while (m_idx < size && m_ptr->empty());
         }
 
         virtual Pair& operator*() const
         {
             if (m_idx < m_size && !m_ptr->empty())
-                return *m_ptr->begin();
+            {
+                return *m_it;
+            }
             else
             {
-                std::stringstream s;
-                s << "Index out of bounds" << m_idx;
-                throw std::out_of_range(s.str());
+                std::stringstream errMsg;
+                errMsg << "Index out of bounds" << m_idx;
+
+                throw std::out_of_range(errMsg.str());
             }
         }
         virtual Pair* operator->()
         {
             if (m_idx < m_size && !m_ptr->empty())
-                return &*m_ptr->begin();
+            {
+                return &*m_it;
+            }
             else
             {
-                std::stringstream s;
-                s << "Index out of bounds" << m_idx;
-                throw std::out_of_range(s.str());
+                std::stringstream errMsg;
+                errMsg << "Index out of bounds" << m_idx;
+                
+                throw std::out_of_range(errMsg.str());
             }
         }
 
         HashTableIterator& operator++()
         {
+            m_it++;
+            if (m_it != m_ptr->end())
+                return *this;
+
             do
             {
                 m_ptr++;
                 m_idx++;
-            } while (m_idx < m_size && m_ptr->empty());
+                m_it = m_ptr->begin();
+            } while (m_idx < m_size && m_it == m_ptr->end());
 
             return *this;
         }
