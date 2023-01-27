@@ -14,22 +14,18 @@ int main()
     table["muie"] = 10;
     table["simaimultamuie"] = 20;
 
-//    std::cout << table.at("free") << std::endl;
-//    std::cout << table.at("ficat") << std::endl;
-
-//    table["free"] = 12;
-//    std::cout << table["free"] << std::endl;
-
-//    std::cout << table.contains("free") << std::endl;
-//    std::cout << table.contains("ficat") << std::endl;
-//    std::cout << table.contains("omenomatopee") << std::endl;
-
-
-    for (const auto& p : table)
+    for (const auto& [key, value] : table)
     {
-        std::cout << p.first << ' ' << p.second << '\n';
+        std::cout << key << ' ' << value << '\n';
     }
 
+//    table.clear();
+//    table.insert({"mere", 2});
+//    table.insert({"banane", 3});
+//    for (auto it = table.begin(); it != table.end(); it++)
+//    {
+//        std::cout << it->first << ' ' << it->second << '\n';
+//    }
 
     return 0;
 }

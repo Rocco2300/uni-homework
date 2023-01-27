@@ -31,24 +31,29 @@ template <typename Key, typename Value, typename HashFunc = BasicHash<Key>>
 class HashTable
 {
 private:
-    using Pair   = Pair<Key, Value>;
-    using Bucket = Bucket<Key, Value>;
+    using IntPair   = Pair<Key, Value>;
+    using IntBucket = Bucket<Key, Value>;
 
 public:
     class HashTableIterator;
     using Iterator = HashTableIterator;
 
 private:
-    Bucket* m_table{};
+    IntBucket* m_table{};
     size_t m_capacity{};
     size_t m_size{};
 
     HashFunc hashFunc;
 
 public:
-    HashTable() : m_capacity{2}, m_size{0}
+    HashTable() : m_capacity{100}, m_size{0}
     {
-        m_table = new Bucket[m_capacity];
+        m_table = new IntBucket[m_capacity];
+    }
+
+    ~HashTable()
+    {
+        delete[] m_table;
     }
 
     bool empty()
@@ -68,32 +73,44 @@ public:
 
     Value& operator[](const Key& key)
     {
-        auto& bucket = getBucket(key);
+        IntBucket* bucket = &getBucket(key);
 
-        if (bucket.contains(key))
+        if (bucket->contains(key))
         {
-            auto pair = bucket.at(key);
+            auto pair = bucket->at(key);
             return pair->second;
         }
 
-        bucket.insert({key, Value()});
+        if (m_size >= m_capacity)
+        {
+            realloc();
+            bucket = &getBucket(key);
+        }
+
+        bucket->insert({key, Value()});
         m_size++;
-        return bucket.at(key)->second;
+        return bucket->at(key)->second;
     }
 
-    void insert(const Pair& pair)
+    void insert(const IntPair& pair)
     {
         auto [key, value] = pair;
-        auto& bucket = getBucket(key);
+        IntBucket* bucket = &getBucket(key);
 
-        if (bucket.contains(key))
+        if (bucket->contains(key))
         {
-            auto pair = bucket.at(key);
+            auto pair = bucket->at(key);
             pair->second = value;
             return;
         }
 
-        bucket.insert({key, value});
+        if (m_size >= m_capacity)
+        {
+            realloc();
+            bucket = &getBucket(key);
+        }
+
+        bucket->insert({key, value});
         m_size++;
     }
 
@@ -150,6 +167,15 @@ public:
         return false;
     }
 
+    void clear()
+    {
+        m_size = 0;
+        m_capacity = 1;
+
+        delete[] m_table;
+        m_table = new IntBucket[m_capacity];
+    }
+
     Iterator begin()
     {
         return Iterator(m_table, m_capacity);
@@ -161,7 +187,7 @@ public:
     }
 
 private:
-    Bucket& getBucket(const Key& key)
+    IntBucket& getBucket(const Key& key)
     {
         auto hash    = hashFunc(key);
         auto index   = hash % m_capacity;
@@ -169,20 +195,54 @@ private:
         return m_table[index];
     }
 
+    std::vector<IntPair> getPairs()
+    {
+        std::vector<IntPair> res;
+
+        std::cout << "here\n";
+        for (const auto& pair : *this)
+        {
+            res.push_back(pair);
+        }
+        std::cout << "here\n";
+
+        return res;
+    }
+
+    void realloc()
+    {
+        auto pairs = getPairs();
+
+        delete[] m_table;
+        m_table = nullptr;
+
+        m_size = 0;
+        m_capacity *= 2;
+        m_table = new IntBucket[m_capacity];
+
+        for (const auto& pair : pairs)
+        {
+            insert(pair);
+        }
+    }
+
 public:
     class HashTableIterator
     {
     private:
-        Bucket* m_ptr{};
+        IntBucket* m_ptr{};
 
         size_t m_idx{};
         size_t m_size{};
 
-        typename Bucket::Iterator m_it;
+        typename IntBucket::Iterator m_it;
 
     public:
-        HashTableIterator(Bucket* ptr, size_t size) : m_ptr{ptr}, m_size{size}, m_idx{0}
+        HashTableIterator(IntBucket* ptr, size_t size) : m_ptr{ptr}, m_size{size}, m_idx{0}
         {
+            std::cout << ptr << ' ' << size << ' ' << m_idx << std::endl;
+            std::cout << ptr + m_size << std::endl;
+
             if (!ptr->empty())
             {
                 m_it = m_ptr->begin();
@@ -197,7 +257,7 @@ public:
             } while (m_idx < size && m_ptr->empty());
         }
 
-        virtual Pair& operator*() const
+        virtual IntPair& operator*() const
         {
             if (m_idx < m_size && !m_ptr->empty())
             {
@@ -206,12 +266,13 @@ public:
             else
             {
                 std::stringstream errMsg;
-                errMsg << "Index out of bounds" << m_idx;
+                errMsg << "Index out of bounds " << m_idx;
 
                 throw std::out_of_range(errMsg.str());
             }
         }
-        virtual Pair* operator->()
+
+        virtual IntPair* operator->()
         {
             if (m_idx < m_size && !m_ptr->empty())
             {
@@ -220,8 +281,8 @@ public:
             else
             {
                 std::stringstream errMsg;
-                errMsg << "Index out of bounds" << m_idx;
-                
+                errMsg << "Index out of bounds " << m_idx;
+
                 throw std::out_of_range(errMsg.str());
             }
         }
@@ -249,7 +310,14 @@ public:
             return it;
         }
 
-        friend bool operator== (const HashTableIterator& a, const HashTableIterator& b) { return a.m_ptr == b.m_ptr; };
-        friend bool operator!= (const HashTableIterator& a, const HashTableIterator& b) { return a.m_ptr != b.m_ptr; };
+        friend bool operator==(const HashTableIterator& a, const HashTableIterator& b)
+        {
+            return a.m_ptr == b.m_ptr;
+        };
+
+        friend bool operator!=(const HashTableIterator& a, const HashTableIterator& b)
+        {
+            return !(a == b);
+        };
     };
 };

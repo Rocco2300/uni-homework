@@ -6,15 +6,15 @@ template <typename Key, typename Value>
 class Bucket
 {
 private:
-    using Pair = Pair<Key, Value>;
+    using IntPair = Pair<Key, Value>;
 
     struct Node
     {
-        Pair pair{};
+        IntPair pair{};
         Node* next{};
 
         Node() = default;
-        Node(Pair pair) : pair{pair}, next{nullptr} { }
+        Node(IntPair pair) : pair{pair}, next{nullptr} { }
     };
 
 public:
@@ -51,7 +51,7 @@ public:
         return m_size;
     }
 
-    void insert(Pair pair)
+    void insert(IntPair pair)
     {
         if (m_head == nullptr)
         {
@@ -71,7 +71,7 @@ public:
         m_size++;
     }
 
-    Pair* at(Key key)
+    IntPair* at(Key key)
     {
         Node* temp = m_head;
 
@@ -83,7 +83,7 @@ public:
         return (temp) ? &temp->pair : nullptr;
     }
 
-    const Pair* at(Key key) const
+    const IntPair* at(Key key) const
     {
         Node* temp = m_head;
 
@@ -138,6 +138,19 @@ public:
         m_size--;
     }
 
+    void clear()
+    {
+        Node* current = m_head;
+        Node* next;
+
+        while (current != NULL)
+        {
+            next = current->next;
+            delete current;
+            current = next;
+        }
+    }
+
     Iterator begin()
     {
         return Iterator(m_head);
@@ -163,8 +176,8 @@ public:
             this->ptr = other.ptr;
         }
 
-        Pair& operator*() const { return ptr->pair; }
-        Pair* operator->() { return &ptr->pair; }
+        IntPair& operator*() const { return ptr->pair; }
+        IntPair* operator->() { return &ptr->pair; }
 
         BucketIterator& operator++()
         {
