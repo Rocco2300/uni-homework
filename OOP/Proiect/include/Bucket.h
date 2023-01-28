@@ -30,15 +30,7 @@ public:
 
     ~Bucket()
     {
-        Node* current = m_head;
-        Node* next;
-
-        while (current != NULL)
-        {
-            next = current->next;
-            delete current;
-            current = next;
-        }
+        clear();
     }
 
     bool empty()
@@ -109,7 +101,7 @@ public:
 
     void erase(Key key)
     {
-        if (!find(key) || !m_head)
+        if (!contains(key) || !m_head)
         {
             return;
         }

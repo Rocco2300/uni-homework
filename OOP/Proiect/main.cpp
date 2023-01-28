@@ -1,31 +1,30 @@
 #include <iostream>
 #include <string>
-#include <functional>
-#include <unordered_map>
 
 #include "HashTable.h"
 
 int main()
 {
-    HashTable<std::string, int> table;
+    HashTable<std::string, int> fructe;
 
-    table["free"] = 3;
-    table["ficat"] = 2;
-    table["muie"] = 10;
-    table["simaimultamuie"] = 20;
+    // inserare
+    fructe.insert({"mere", 2});
+    fructe.insert({"prune", 12});
+    fructe.insert({"banane", 3});
+    fructe.insert({"capsuni", 70});
+    fructe.insert({"cirese", 2 * 40});
 
-    for (const auto& [key, value] : table)
+    // iterare for-each c++ 17 cu
+    // structured bindings
+    for (const auto& [fruct, cantitate] : fructe)
     {
-        std::cout << key << ' ' << value << '\n';
+        std::cout << fruct << ' ' << cantitate << '\n';
     }
 
-//    table.clear();
-//    table.insert({"mere", 2});
-//    table.insert({"banane", 3});
-//    for (auto it = table.begin(); it != table.end(); it++)
-//    {
-//        std::cout << it->first << ' ' << it->second << '\n';
-//    }
+    std::cout << '\n';
+    std::cout << "Empty: " << ((fructe.empty()) ? "yes" : "no") << '\n';
+    std::cout << "Size: " << fructe.size() << '\n';
+    std::cout << "Capacity: " << fructe.capacity() << '\n';
 
     return 0;
 }

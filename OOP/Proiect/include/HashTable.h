@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <sstream>
 #include <iostream>
 #include <stdexcept>
@@ -46,7 +47,7 @@ private:
     HashFunc hashFunc;
 
 public:
-    HashTable() : m_capacity{100}, m_size{0}
+    HashTable() : m_capacity{1}, m_size{0}
     {
         m_table = new IntBucket[m_capacity];
     }
@@ -146,6 +147,31 @@ public:
         return pair->second;
     }
 
+    Iterator find(const Key& key)
+    {
+        Iterator ret;
+        for (ret = this->begin(); ret != this->end(); ret++)
+        {
+            const auto& [itKey, itValue] = *ret;
+            if (itKey == key)
+            {
+                return ret;
+            }
+        }
+
+        return ret;
+    }
+
+    bool contains(const Key& key)
+    {
+        auto& bucket = getBucket(key);
+
+        if (bucket.contains(key))
+            return true;
+
+        return false;
+    }
+
     void erase(const Key& key)
     {
         auto& bucket = getBucket(key);
@@ -157,14 +183,9 @@ public:
         }
     }
 
-    bool contains(const Key& key)
+    void erase(Iterator& it)
     {
-        auto& bucket = getBucket(key);
-
-        if (bucket.contains(key))
-            return true;
-
-        return false;
+        erase(it->first);
     }
 
     void clear()
@@ -178,12 +199,12 @@ public:
 
     Iterator begin()
     {
-        return Iterator(m_table, m_capacity);
+        return Iterator(m_table, 0, m_capacity);
     }
 
     Iterator end()
     {
-        return Iterator(m_table + m_capacity, m_capacity);
+        return Iterator(m_table + m_capacity, m_capacity, m_capacity);
     }
 
 private:
@@ -236,8 +257,12 @@ public:
         typename IntBucket::Iterator m_it;
 
     public:
-        HashTableIterator(IntBucket* ptr, size_t size) : m_ptr{ptr}, m_idx{0}, m_size{size}
+        HashTableIterator() : m_ptr{nullptr}, m_idx{0}, m_size{0} { }
+        HashTableIterator(IntBucket* ptr, size_t idx, size_t size) : m_ptr{ptr}, m_idx{idx}, m_size{size}
         {
+            if (m_idx == m_size)
+                return;
+
             if (!ptr->empty())
             {
                 m_it = m_ptr->begin();
@@ -252,7 +277,28 @@ public:
             } while (m_idx < size && m_ptr->empty());
         }
 
-        virtual IntPair& operator*() const
+        HashTableIterator(const HashTableIterator& other)
+        {
+            m_ptr  = other.m_ptr;
+            m_idx  = other.m_idx;
+            m_size = other.m_size;
+            m_it   = other.m_it;
+        }
+
+        void operator=(const HashTableIterator& other)
+        {
+            m_ptr  = other.m_ptr;
+            m_idx  = other.m_idx;
+            m_size = other.m_size;
+            m_it   = other.m_it;
+        }
+
+        void operator()()
+        {
+            std::cout << m_ptr << '\n';
+        }
+
+        IntPair& operator*() const
         {
             if (m_idx < m_size && !m_ptr->empty())
             {
@@ -267,7 +313,7 @@ public:
             }
         }
 
-        virtual IntPair* operator->()
+        IntPair* operator->()
         {
             if (m_idx < m_size && !m_ptr->empty())
             {
@@ -292,7 +338,9 @@ public:
             {
                 m_ptr++;
                 m_idx++;
-                m_it = m_ptr->begin();
+
+                if (m_idx < m_size)
+                    m_it = m_ptr->begin();
             } while (m_idx < m_size && m_it == m_ptr->end());
 
             return *this;
