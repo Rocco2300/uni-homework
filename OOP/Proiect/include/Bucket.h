@@ -171,6 +171,11 @@ public:
         BucketIterator() : ptr{nullptr} { }
         BucketIterator(Node* ptr) : ptr{ptr} { }
 
+        BucketIterator(const BucketIterator& other)
+        {
+            this->ptr = other.ptr;
+        }
+
         void operator=(const BucketIterator& other)
         {
             this->ptr = other.ptr;

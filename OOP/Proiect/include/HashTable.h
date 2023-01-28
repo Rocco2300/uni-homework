@@ -19,7 +19,7 @@ public:
 
         std::string str = ss.str();
         unsigned long long res = 0;
-        for (int i = 0; i < str.size(); i++)
+        for (size_t i = 0; i < str.size(); i++)
         {
             res += str[i] * (i + 1);
         }
@@ -99,8 +99,8 @@ public:
 
         if (bucket->contains(key))
         {
-            auto pair = bucket->at(key);
-            pair->second = value;
+            auto ret = bucket->at(key);
+            ret->second = value;
             return;
         }
 
@@ -199,12 +199,10 @@ private:
     {
         std::vector<IntPair> res;
 
-        std::cout << "here\n";
         for (const auto& pair : *this)
         {
             res.push_back(pair);
         }
-        std::cout << "here\n";
 
         return res;
     }
@@ -238,11 +236,8 @@ public:
         typename IntBucket::Iterator m_it;
 
     public:
-        HashTableIterator(IntBucket* ptr, size_t size) : m_ptr{ptr}, m_size{size}, m_idx{0}
+        HashTableIterator(IntBucket* ptr, size_t size) : m_ptr{ptr}, m_idx{0}, m_size{size}
         {
-            std::cout << ptr << ' ' << size << ' ' << m_idx << std::endl;
-            std::cout << ptr + m_size << std::endl;
-
             if (!ptr->empty())
             {
                 m_it = m_ptr->begin();
