@@ -293,11 +293,6 @@ public:
             m_it   = other.m_it;
         }
 
-        void operator()()
-        {
-            std::cout << m_ptr << '\n';
-        }
-
         IntPair& operator*() const
         {
             if (m_idx < m_size && !m_ptr->empty())
