@@ -2,7 +2,6 @@
 
 #include <vector>
 #include <sstream>
-#include <iostream>
 #include <stdexcept>
 
 #include "Bucket.h"

@@ -6,4 +6,6 @@ set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(include)
 
-add_executable(Proiect_POO main.cpp)
+file(GLOB HEADERS include/*.h)
+
+add_executable(Proiect_POO main.cpp ${HEADERS})
