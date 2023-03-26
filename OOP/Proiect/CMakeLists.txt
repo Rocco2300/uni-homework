@@ -4,7 +4,7 @@ project(Proiect_POO)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_BUILD_TYPE Debug)
 
-include_directories(include)
+include_directories(Proiect_POO include)
 
 file(GLOB HEADERS include/*.h)
 

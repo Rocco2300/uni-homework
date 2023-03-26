@@ -76,5 +76,7 @@ int main()
     it = fructe.find("capsuni");
     std::cout << "Found capsuni: " << ((it != fructe.end()) ? "yes" : "no") << '\n';
 
+    std::cin.get();
+
     return 0;
 }
