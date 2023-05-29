@@ -1,0 +1,269 @@
+<HTML><HEAD>
+<meta name="description" content="Summary description for {WSF_MULTIPART_FORM_DATA_HANDLER}."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_multipart_form_data_handler Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_multipart_form_data_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_multipart_form_data_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Summary description for {<A HREF="../src/wsf_multipart_form_data_handler.html">WSF_MULTIPART_FORM_DATA_HANDLER</A>}."
+    date: "$Date: 2020-10-02 12:39:52 +0000 (Fri, 02 Oct 2020) $"
+    revision: "$Revision: 104754 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_multipart_form_data_handler.html">WSF_MULTIPART_FORM_DATA_HANDLER</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_mime_handler.html">WSF_MIME_HANDLER</A>
+
+    <A HREF="../src/wsf_mime_handler_helper.html">WSF_MIME_HANDLER_HELPER</A>
+
+<B>create</B> 
+    <A HREF="../src/wsf_multipart_form_data_handler.html#f_make">make</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../src/wsf_multipart_form_data_handler.html#f_make">make</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Instantiate Current</FONT>
+        <B>do</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_valid_content_type"><A HREF="../src/wsf_multipart_form_data_handler.html#f_valid_content_type">valid_content_type</A> (a_content_type: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>Result</B> := a_content_type.<A HREF="../src/http_media_type.html#f_same_simple_type">same_simple_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_multipart_form_data">multipart_form_data</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_handle"><A HREF="../src/wsf_multipart_form_data_handler.html#f_handle">handle</A> (a_content_type: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_vars: <A HREF="../elks/hash_table.html">HASH_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]; a_raw_data: <B>detachable</B> <A HREF="../elks/cell.html">CELL</A> [<B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Handle MIME content from request </FONT><I>req</I><FONT COLOR="red">, eventually fill the </FONT><I>a_vars</I><FONT COLOR="red"> (not yet available from </FONT><I>req</I><FONT COLOR="red">)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and if </FONT><I>a_raw_data</I><FONT COLOR="red"> is attached, store any read data inside </FONT><I>a_raw_data</I>
+        <B>local</B>
+            s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            s := <A HREF="../src/wsf_mime_handler_helper.html#f_full_input_data">full_input_data</A> (req)
+            <B>if</B> a_raw_data /= <B>Void</B> <B>then</B>
+                a_raw_data.<A HREF="../elks/cell.html#f_replace">replace</A> (s)
+            <B>end</B>
+            <A HREF="../src/wsf_multipart_form_data_handler.html#f_analyze_multipart_form">analyze_multipart_form</A> (req, a_content_type, s, a_vars)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation: Form analyzer</FONT>
+
+    <A NAME="f_analyze_multipart_form"><A HREF="../src/wsf_multipart_form_data_handler.html#f_analyze_multipart_form">analyze_multipart_form</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_content_type: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>; s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; vars: <A HREF="../elks/hash_table.html">HASH_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Analyze multipart form content</FONT>
+        <B>require</B>
+            a_content_type_valid: a_content_type /= <B>Void</B> <B>and</B> <B>not</B> a_content_type.<A HREF="../src/http_media_type.html#f_has_error">has_error</A>
+            s_attached: s /= <B>Void</B>
+            same_content_length: req.<A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A> &gt; 0 <B>implies</B> req.<A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A>.<A HREF="../elks/natural_64.html#f_as_integer_32">as_integer_32</A> &lt;= s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            vars_attached: vars /= <B>Void</B>
+        <B>local</B>
+            p, i, next_b: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_boundary_prefix: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_boundary_len: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_boundary: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            m: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            tmp: <A HREF="../elks/string_8.html">STRING_8</A>
+            is_crlf: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            l_boundary := a_content_type.<A HREF="../src/http_media_type.html#f_parameter">parameter</A> ("boundary")
+            <B>if</B> l_boundary /= <B>Void</B> <B>and then</B> <B>not</B> l_boundary.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                p := s.<A HREF="../elks/readable_string_8.html#f_substring_index">substring_index</A> (l_boundary, 1)
+                <B>if</B> p &gt; 1 <B>then</B>
+                    l_boundary_prefix := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, p - 1)
+                    l_boundary := l_boundary_prefix + l_boundary
+                <B>else</B>
+                    l_boundary_prefix := ""
+                <B>end</B>
+                l_boundary_len := l_boundary.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                is_crlf := s [l_boundary_len + 1] = '%R'
+                <B>from</B>
+                    i := 1 + l_boundary_len + 1
+                    <B>if</B> is_crlf <B>then</B>
+                        i := i + 1
+                    <B>end</B>
+                    next_b := i
+                <B>until</B>
+                    i = 0
+                <B>loop</B>
+                    next_b := s.<A HREF="../elks/readable_string_8.html#f_substring_index">substring_index</A> (l_boundary, i)
+                    <B>if</B> next_b &gt; 0 <B>then</B>
+                        <B>if</B> is_crlf <B>then</B>
+                            m := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, next_b - 1 - 2)
+                        <B>else</B>
+                            m := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, next_b - 1 - 1)
+                        <B>end</B>
+                        <A HREF="../src/wsf_multipart_form_data_handler.html#f_analyze_multipart_form_input">analyze_multipart_form_input</A> (req, m, vars)
+                        <B>if</B> s.<A HREF="../elks/readable_string_general.html#f_valid_index">valid_index</A> (next_b + l_boundary_len + 1) <B>then</B>
+                            <B>if</B> is_crlf <B>then</B>
+                                <B>if</B> s [next_b + l_boundary_len] = '%R' <B>and</B> s [next_b + l_boundary_len + 1] = '%N' <B>then</B>
+                                <B>else</B>
+                                    i := 0
+                                <B>end</B>
+                            <B>else</B>
+                                <B>if</B> s [next_b + l_boundary_len + 1] = '%N' <B>then</B>
+                                <B>else</B>
+                                    i := 0
+                                <B>end</B>
+                            <B>end</B>
+                        <B>else</B>
+                            i := 0;
+                            req.<A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "Invalid form data", "Invalid ending for form data from input")
+                        <B>end</B>
+                        <B>if</B> i &gt; 0 <B>then</B>
+                            i := next_b + l_boundary_len + 1
+                            <B>if</B> is_crlf <B>then</B>
+                                i := i + 1
+                            <B>end</B>
+                        <B>end</B>
+                    <B>else</B>
+                        <B>if</B> is_crlf <B>then</B>
+                            i := i + 1
+                        <B>end</B>
+                        tmp := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i - 1, s.<A HREF="../elks/readable_string_8.html#f_count">count</A>).<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>;
+                        tmp.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>
+                        <B>if</B> i &gt;= s.<A HREF="../elks/readable_string_8.html#f_count">count</A> <B>and</B> <B>not</B> l_boundary_prefix.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (tmp) <B>then</B>
+                            req.<A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "Invalid form data", "Invalid ending for form data from input")
+                        <B>end</B>
+                        i := next_b
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_analyze_multipart_form_input"><A HREF="../src/wsf_multipart_form_data_handler.html#f_analyze_multipart_form_input">analyze_multipart_form_input</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; vars: <A HREF="../elks/hash_table.html">HASH_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Analyze multipart entry</FONT>
+        <B>require</B>
+            s_not_empty: s /= <B>Void</B> <B>and then</B> <B>not</B> s.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>local</B>
+            n, i, p, b, e: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_name, l_filename, l_content_type: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_unicode_name: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            l_header: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_content: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_line: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_up_file: <A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A>
+            utf: <A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>
+        <B>do</B>
+            <B>from</B>
+                p := 1
+                n := s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>until</B>
+                p &gt; n <B>or</B> l_header /= <B>Void</B>
+            <B>loop</B>
+                <B>inspect</B> s [p]
+                <B>when</B> '%R' <B>then</B>
+                    <B>if</B> n &gt;= p + 3 <B>and then</B> s [p + 1] = '%N' <B>and then</B> s [p + 2] = '%R' <B>and then</B> s [p + 3] = '%N' <B>then</B>
+                        l_header := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, p + 1)
+                        l_content := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p + 4, n)
+                    <B>end</B>
+                <B>when</B> '%N' <B>then</B>
+                    <B>if</B> n &gt;= p + 1 <B>and then</B> s [p + 1] = '%N' <B>then</B>
+                        l_header := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, p)
+                        l_content := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p + 2, n)
+                    <B>end</B>
+                <B>else</B>
+                <B>end</B>
+                p := p + 1
+            <B>end</B>
+            <B>if</B> l_header /= <B>Void</B> <B>and</B> l_content /= <B>Void</B> <B>then</B>
+                <B>from</B>
+                    i := 1
+                    n := l_header.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                <B>until</B>
+                    i = 0 <B>or</B> i &gt; n
+                <B>loop</B>
+                    l_line := <B>Void</B>
+                    b := i
+                    p := l_header.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('%N', b)
+                    <B>if</B> p &gt; 0 <B>then</B>
+                        <B>if</B> l_header [p - 1] = '%R' <B>then</B>
+                            p := p - 1
+                            i := p + 2
+                        <B>else</B>
+                            i := p + 1
+                        <B>end</B>
+                    <B>end</B>
+                    <B>if</B> p &gt; 0 <B>then</B>
+                        l_line := l_header.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (b, p - 1)
+                        <B>if</B> l_line.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> ("Content-Disposition: form-data") <B>then</B>
+                            p := l_line.<A HREF="../elks/readable_string_8.html#f_substring_index">substring_index</A> ("name=", 1)
+                            <B>if</B> p &gt; 0 <B>then</B>
+                                p := p + 4
+                                <B>if</B> l_line.<A HREF="../elks/readable_string_general.html#f_valid_index">valid_index</A> (p + 1) <B>and then</B> l_line [p + 1] = '"' <B>then</B>
+                                    p := p + 1
+                                    e := l_line.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('"', p + 1)
+                                <B>else</B>
+                                    e := l_line.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> (';', p + 1)
+                                    <B>if</B> e = 0 <B>then</B>
+                                        e := l_line.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                                    <B>end</B>
+                                <B>end</B>
+                                l_name := l_header.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p + 1, e - 1)
+                            <B>end</B>
+                            p := l_line.<A HREF="../elks/readable_string_8.html#f_substring_index">substring_index</A> ("filename=", 1)
+                            <B>if</B> p &gt; 0 <B>then</B>
+                                p := p + 8
+                                <B>if</B> l_line.<A HREF="../elks/readable_string_general.html#f_valid_index">valid_index</A> (p + 1) <B>and then</B> l_line [p + 1] = '"' <B>then</B>
+                                    p := p + 1
+                                    e := l_line.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('"', p + 1)
+                                <B>else</B>
+                                    e := l_line.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> (';', p + 1)
+                                    <B>if</B> e = 0 <B>then</B>
+                                        e := l_line.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                                    <B>end</B>
+                                <B>end</B>
+                                l_filename := l_header.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p + 1, e - 1)
+                            <B>end</B>
+                        <B>elseif</B> l_line.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> ("Content-Type: ") <B>then</B>
+                            l_content_type := l_line.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (15, l_line.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                        <B>end</B>
+                    <B>else</B>
+                        i := 0
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> l_name /= <B>Void</B> <B>then</B>
+                    <B>if</B> l_filename /= <B>Void</B> <B>and then</B> <B>not</B> l_filename.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                        <B>if</B> l_content_type = <B>Void</B> <B>then</B>
+                            l_content_type := <A HREF="../src/wsf_multipart_form_data_handler.html#f_default_content_type">Default_content_type</A>
+                        <B>end</B>
+                        l_unicode_name := utf.<A HREF="../elks/utf_converter.html#f_utf_8_string_8_to_string_32">utf_8_string_8_to_string_32</A> (l_name)
+                        <B>create</B> l_up_file.<A HREF="../src/wsf_uploaded_file.html#f_make">make</A> (l_unicode_name, utf.<A HREF="../elks/utf_converter.html#f_utf_8_string_8_to_escaped_string_32">utf_8_string_8_to_escaped_string_32</A> (l_filename), l_content_type, l_content.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                        <A HREF="../src/wsf_value_utilities.html#f_add_value_to_table">add_value_to_table</A> (l_unicode_name, l_up_file, vars);
+                        req.<A HREF="../src/wsf_request.html#f_save_uploaded_file">save_uploaded_file</A> (l_up_file, l_content)
+                    <B>else</B>
+                        <A HREF="../src/wsf_value_utilities.html#f_add_utf_8_string_value_to_table">add_utf_8_string_value_to_table</A> (l_name, l_content, vars)
+                    <B>end</B>
+                <B>else</B>
+                    req.<A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "unamed multipart entry", <B>Void</B>)
+                <B>end</B>
+            <B>else</B>
+                req.<A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "missformed multipart entry", <B>Void</B>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_default_content_type"><A HREF="../src/wsf_multipart_form_data_handler.html#f_default_content_type">Default_content_type</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "text/plain"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Default content type		</FONT>
+    
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_multipart_form_data_handler.html">WSF_MULTIPART_FORM_DATA_HANDLER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_multipart_form_data_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_multipart_form_data_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,133 @@
+<HTML><HEAD>
+<meta name="description" content="External iteration cursor on {READABLE_STRING_GENERAL} based on {CHARACTER_32} item."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2016, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>string_iteration_cursor Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="string_iteration_cursor_chart.html">Chart</A></TD><TD><A HREF="string_iteration_cursor_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "External iteration cursor on {<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>} based on {<A HREF="../elks/character_32.html">CHARACTER_32</A>} item."
+    date: "$Date: 2016-04-16 10:44:12 +0000 (Sat, 16 Apr 2016) $"
+    revision: "$Revision: 98623 $"
+
+<B>class</B> 
+    <A HREF="../elks/string_iteration_cursor.html">STRING_ITERATION_CURSOR</A>
+
+<B>inherit</B>
+    <A HREF="../elks/iteration_cursor.html">ITERATION_CURSOR</A> [<A HREF="../elks/character_32.html">CHARACTER_32</A>]
+
+    <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/character_32.html">CHARACTER_32</A>]
+
+<B>create</B> 
+    <A HREF="../elks/string_iteration_cursor.html#f_make">make</A>,
+    <A HREF="../elks/string_iteration_cursor.html#f_make_from_substring">make_from_substring</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../elks/string_iteration_cursor.html#f_make">make</A> (t: <B>like</B> <A HREF="../elks/string_iteration_cursor.html#f_target">target</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize cursor for target </FONT><I>t</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            t_attached: t /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../elks/string_iteration_cursor.html#f_make_from_substring">make_from_substring</A> (t, 1, t.<A HREF="../elks/readable_string_general.html#f_count">count</A>)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_substring"><A HREF="../elks/string_iteration_cursor.html#f_make_from_substring">make_from_substring</A> (t: <B>like</B> <A HREF="../elks/string_iteration_cursor.html#f_target">target</A>; start_pos, end_pos: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize cursor for target </FONT><I>t</I><FONT COLOR="red">, with a substring containing all characters at indices</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> between </FONT><I>start_pos</I><FONT COLOR="red"> and </FONT><I>end_pos</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            t_attached: t /= <B>Void</B>
+            start_position_big_enough: start_pos &gt;= 1
+            end_position_big_enough: start_pos &lt;= end_pos + 1
+        <B>do</B>
+            <A HREF="../elks/string_iteration_cursor.html#f_target">target</A> := t
+            <A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A> := start_pos
+            <A HREF="../elks/string_iteration_cursor.html#f_end_index">end_index</A> := end_pos
+            <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> := <A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A>
+        <B>ensure</B>
+            target_set: <A HREF="../elks/string_iteration_cursor.html#f_target">target</A> = t
+            starting_index_set: <A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A> = start_pos
+            target_index_set: <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> = <A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A>
+            end_index_set: <A HREF="../elks/string_iteration_cursor.html#f_end_index">end_index</A> = end_pos
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_item"><A HREF="../elks/string_iteration_cursor.html#f_item">item</A>: <A HREF="../elks/character_32.html">CHARACTER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Item at current cursor position.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../elks/string_iteration_cursor.html#f_target">target</A> [<A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A>]
+        <B>end</B></A>
+
+    <A NAME="f_target_index"><A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Index position of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/string_iteration_cursor.html#f_target">target</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> for current iteration.</FONT>
+
+    <A NAME="f_new_cursor"><A HREF="../elks/string_iteration_cursor.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/string_iteration_cursor.html">STRING_ITERATION_CURSOR</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Restarted copy of Current.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../elks/any.html#f_twin">twin</A>;
+            <B>Result</B>.<A HREF="../elks/string_iteration_cursor.html#f_start">start</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status Report</FONT>
+
+    <A NAME="f_after"><A HREF="../elks/string_iteration_cursor.html#f_after">after</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Are there no more items to iterate over?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> &gt; <A HREF="../elks/string_iteration_cursor.html#f_end_index">end_index</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cursor movement</FONT>
+
+    <A NAME="f_start"><A HREF="../elks/string_iteration_cursor.html#f_start">start</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Move to first position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> := <A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A>
+        <B>ensure</B>
+            target_index_set_to_one: <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> = <A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A>
+        <B>end</B></A>
+
+    <A NAME="f_forth"><A HREF="../elks/string_iteration_cursor.html#f_forth">forth</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Move to next position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> := <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> + 1
+        <B>ensure then</B>
+            target_index_advanced: <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> = <B>old</B> <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> + 1
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../elks/iterable.html">ITERABLE</A>, <A HREF="../elks/iteration_cursor.html">ITERATION_CURSOR</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_target"><A HREF="../elks/string_iteration_cursor.html#f_target">target</A>: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated structure used for iteration.</FONT>
+
+    <A NAME="f_start_index"><A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> First position.</FONT>
+
+    <A NAME="f_end_index"><A HREF="../elks/string_iteration_cursor.html#f_end_index">end_index</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Last position.</FONT>
+    
+<B>invariant</B>
+    target_attached: <A HREF="../elks/string_iteration_cursor.html#f_target">target</A> /= <B>Void</B>
+    target_index_big_enough: <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> &gt;= <A HREF="../elks/string_iteration_cursor.html#f_start_index">start_index</A>
+    target_index_small_enough: <A HREF="../elks/string_iteration_cursor.html#f_target_index">target_index</A> &lt;= <A HREF="../elks/string_iteration_cursor.html#f_end_index">end_index</A> + 1
+
+<B>note</B>
+    copyright: "Copyright (c) 1984-2016, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../elks/string_iteration_cursor.html">STRING_ITERATION_CURSOR</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="string_iteration_cursor_chart.html">Chart</A></TD><TD><A HREF="string_iteration_cursor_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

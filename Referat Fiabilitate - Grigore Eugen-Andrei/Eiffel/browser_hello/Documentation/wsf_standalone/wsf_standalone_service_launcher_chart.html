@@ -1,0 +1,83 @@
+<HTML><HEAD>
+<meta name="description" content="TTTComponent to launch the service using the default connector  TTTTEiffelWeb httpd for this class  TTTThe httpd default connector support options: TTTTverbose: to display verbose output TTTTport: numeric such as 8099 (or equivalent string as 8099) TTTTbase: base_url (very specific to standalone server) TTTT TTTTmax_concurrent_connections: set to 1, for single threaded behavior TTTTmax_tcp_clients: max number of open tcp connection TTTT TTTTsocket_timeout_ns: connection timeout in nanoseconds TTTTsocket_recv_timeout_ns: read data timeout in nanoseconds  TTTTkeep_alive_timeout_ns: amount of nanoseconds the server will wait for subsequent TTTTTTTTTrequests on a persistent connection, TTTTmax_keep_alive_requests: number of requests allowed on a persistent connection,  TTTTssl_enabled: set to True for https support. TTTTssl_ca_crt: path to the certificat crt file (relevant when ssl_enabled is True) TTTTssl_ca_key: path to the certificat key file (relevant when ssl_enabled is True)   TTTcheck WSF_SERVICE_LAUNCHER for more documentation"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_standalone_service_launcher Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_standalone_service_launcher_links.html">Relations</A></TD><TD><A HREF="wsf_standalone_service_launcher.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher_chart.html">WSF_STANDALONE_SERVICE_LAUNCHER</A> [G -&gt; <A HREF="../src/wsf_execution_chart.html">WSF_EXECUTION</A> <B>create</B> <A HREF="../src/wsf_execution.html#f_make">make</A> <B>end</B>]
+
+<B>General</B>
+    cluster: <A HREF="../wsf_standalone/index.html">wsf_standalone</A>
+    description: 
+        "Component to launch the service using the default connector
+        
+        EiffelWeb httpd for this class
+        
+        The httpd default connector support options:
+        verbose: to display verbose output
+        port: numeric such as 8099 (or equivalent string as %"8099%")
+        base: base_url (very specific to standalone server)
+        
+        max_concurrent_connections: set to 1, for single threaded behavior
+        max_tcp_clients: max number of open tcp connection
+        
+        socket_timeout_ns: connection timeout in nanoseconds
+        socket_recv_timeout_ns: read data timeout in nanoseconds
+        
+        keep_alive_timeout_ns: amount of nanoseconds the server will wait for subsequent
+        requests on a persistent connection,
+        max_keep_alive_requests: number of requests allowed on a persistent connection,
+        
+        ssl_enabled: set to True for https support.
+        ssl_ca_crt: path to the certificat crt file (relevant when ssl_enabled is True)
+        ssl_ca_key: path to the certificat key file (relevant when ssl_enabled is True)
+        
+        
+        check WSF_SERVICE_LAUNCHER for more documentation"
+    create: <A HREF="../src/wsf_service_launcher.html#f_make">make</A>, <A HREF="../src/wsf_service_launcher.html#f_make_and_launch">make_and_launch</A>
+
+<B>Ancestors</B>
+    WGI_STANDALONE_HTTPD_LOGGER_CONSTANTS
+    <A HREF="../src/wsf_service_launcher_chart.html">WSF_SERVICE_LAUNCHER</A>* [G -&gt; <A HREF="../src/wsf_execution_chart.html">WSF_EXECUTION</A> <B>create</B> <A HREF="../src/wsf_execution.html#f_make">make</A> <B>end</B>]
+    <A HREF="../src/wsf_timeout_utilities_chart.html">WSF_TIMEOUT_UTILITIES</A>
+
+<B>Action sequences</B>
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_launched_actions">on_launched_actions</A>: <A HREF="../ise/action_sequence_chart.html">ACTION_SEQUENCE</A> [[<B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>] WGI_STANDALONE_CONNECTOR [G]]
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_stopped_actions">on_stopped_actions</A>: <A HREF="../ise/action_sequence_chart.html">ACTION_SEQUENCE</A> [[<B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>] WGI_STANDALONE_CONNECTOR [G]]
+
+<B>Queries</B>
+    Alert_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>: WGI_STANDALONE_CONNECTOR [G]
+    <A HREF="../src/wsf_service_launcher.html#f_connector_name">connector_name</A>: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A><FONT COLOR="red"> -- (from WSF_SERVICE_LAUNCHER)</FONT>
+    Critical_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+    Debug_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+    Error_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+    Information_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_is_valid_timeout_ns">is_valid_timeout_ns</A> (ns: <A HREF="../elks/natural_64_chart.html">NATURAL_64</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_launchable">launchable</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    logger_level_representation (a_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>): <A HREF="../elks/string_8_chart.html">STRING_8</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_max_timeout_ns_value">Max_timeout_ns_value</A>: <A HREF="../elks/natural_64_chart.html">NATURAL_64</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_microseconds_to_nanoseconds">microseconds_to_nanoseconds</A> (us: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>): <A HREF="../elks/natural_64_chart.html">NATURAL_64</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_milliseconds_to_nanoseconds">milliseconds_to_nanoseconds</A> (ms: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>): <A HREF="../elks/natural_64_chart.html">NATURAL_64</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_nanoseconds_to_seconds">nanoseconds_to_seconds</A> (ns: <A HREF="../elks/natural_64_chart.html">NATURAL_64</A>): <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    Notice_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_one_microsecond_in_nanoseconds">One_microsecond_in_nanoseconds</A>: <A HREF="../elks/natural_64_chart.html">NATURAL_64</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_one_millisecond_in_nanoseconds">One_millisecond_in_nanoseconds</A>: <A HREF="../elks/natural_64_chart.html">NATURAL_64</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_one_second_in_nanoseconds">One_second_in_nanoseconds</A>: <A HREF="../elks/natural_64_chart.html">NATURAL_64</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    <A HREF="../src/wsf_timeout_utilities.html#f_seconds_to_nanoseconds">seconds_to_nanoseconds</A> (s: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>): <A HREF="../elks/natural_64_chart.html">NATURAL_64</A><FONT COLOR="red"> -- (from WSF_TIMEOUT_UTILITIES)</FONT>
+    Warning_level: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A><FONT COLOR="red"> -- (from HTTPD_LOGGER_CONSTANTS)</FONT>
+
+<B>Commands</B>
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_launch">launch</A>
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_update_configuration">update_configuration</A> (cfg: [<B>like</B> {[<B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>] WGI_STANDALONE_CONNECTOR [G]}.configuration] <B>separate</B> HTTPD_CONFIGURATION)
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_standalone_service_launcher_links.html">Relations</A></TD><TD><A HREF="wsf_standalone_service_launcher.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

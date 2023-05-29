@@ -1,0 +1,276 @@
+<HTML><HEAD>
+<meta name="description" content="{WSF_UPLOADED_FILE} represents an uploaded file from form parameters."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_uploaded_file Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_uploaded_file_chart.html">Chart</A></TD><TD><A HREF="wsf_uploaded_file_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        {<A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A>} represents an uploaded file from form parameters.
+    ]"
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+        <B>redefine</B>
+            <A HREF="../src/wsf_uploaded_file.html#f_debug_output">debug_output</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../src/wsf_uploaded_file.html#f_make">make</A>,
+    <A HREF="../src/wsf_uploaded_file.html#f_make_with_percent_encoded_values">make_with_percent_encoded_values</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization	</FONT>
+
+    <A NAME="f_make"><A HREF="../src/wsf_uploaded_file.html#f_make">make</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_content_type: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_content_type">content_type</A>; a_size: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_size">size</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_uploaded_file.html#f_name">name</A> := a_name.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+            <A HREF="../src/wsf_uploaded_file.html#f_url_encoded_name">url_encoded_name</A> := <A HREF="../src/wsf_value.html#f_url_encoded_string">url_encoded_string</A> (a_name)
+            <A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A> := a_filename.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+            <A HREF="../src/wsf_uploaded_file.html#f_content_type">content_type</A> := a_content_type
+            <A HREF="../src/wsf_uploaded_file.html#f_size">size</A> := a_size
+        <B>end</B></A>
+
+    <A NAME="f_make_with_percent_encoded_values"><A HREF="../src/wsf_uploaded_file.html#f_make_with_percent_encoded_values">make_with_percent_encoded_values</A> (a_encoded_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_content_type: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_content_type">content_type</A>; a_size: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_size">size</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_uploaded_file.html#f_name">name</A> := <A HREF="../src/wsf_value.html#f_url_decoded_string">url_decoded_string</A> (a_encoded_name)
+            <A HREF="../src/wsf_uploaded_file.html#f_url_encoded_name">url_encoded_name</A> := a_encoded_name
+            <A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A> := a_filename.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+            <A HREF="../src/wsf_uploaded_file.html#f_content_type">content_type</A> := a_content_type
+            <A HREF="../src/wsf_uploaded_file.html#f_size">size</A> := a_size
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_name"><A HREF="../src/wsf_uploaded_file.html#f_name">name</A>: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Parameter name</FONT>
+
+    <A NAME="f_url_encoded_name"><A HREF="../src/wsf_uploaded_file.html#f_url_encoded_name">url_encoded_name</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> URL encoded string of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_uploaded_file.html#f_name">name</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_debug_output"><A HREF="../src/wsf_uploaded_file.html#f_debug_output">debug_output</A>: <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String that should be displayed in debugger to represent </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>Precursor</B>
+            <B>if</B> <A HREF="../src/wsf_uploaded_file.html#f_exists">exists</A> <B>and then</B> <B>attached</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A> <B>as</B> p <B>then</B>
+                <B>Result</B>.<A HREF="../elks/string_32.html#f_append_character">append_character</A> (' '.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                <B>Result</B>.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('"'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> (p.<A HREF="../elks/path.html#f_name">name</A>);
+                <B>Result</B>.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('"'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+            <B>end</B>;
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> (" filename=%"".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> (<A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> ("%"".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> (" content-type=%"".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append_string_general">append_string_general</A> (<A HREF="../src/wsf_uploaded_file.html#f_content_type">content_type</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> ("%"".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> (" size=%"".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append_integer">append_integer</A> (<A HREF="../src/wsf_uploaded_file.html#f_size">size</A>);
+            <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> ("%"".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_change_name"><A HREF="../src/wsf_uploaded_file.html#f_change_name">change_name</A> (a_name: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_name">name</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Change parameter </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_uploaded_file.html#f_name">name</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_uploaded_file.html#f_name">name</A> := a_name
+            <A HREF="../src/wsf_uploaded_file.html#f_url_encoded_name">url_encoded_name</A> := <A HREF="../src/wsf_value.html#f_url_encoded_string">url_encoded_string</A> (a_name)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_string"><A HREF="../src/wsf_uploaded_file.html#f_is_string">Is_string</A>: <A HREF="../elks/boolean.html">BOOLEAN</A> = <B>False</B></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current as a WSF_STRING representation?	</FONT>
+
+    <A NAME="f_is_empty"><A HREF="../src/wsf_uploaded_file.html#f_is_empty">is_empty</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current empty?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_uploaded_file.html#f_size">size</A> = 0
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion</FONT>
+
+    <A NAME="f_string_representation"><A HREF="../src/wsf_uploaded_file.html#f_string_representation">string_representation</A>: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of Current</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if possible</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> note: unicode value.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Visitor</FONT>
+
+    <A NAME="f_process"><A HREF="../src/wsf_uploaded_file.html#f_process">process</A> (vis: <A HREF="../src/wsf_value_visitor.html">WSF_VALUE_VISITOR</A>)
+        <B>do</B>
+            vis.<A HREF="../src/wsf_value_visitor.html#f_process_uploaded_file">process_uploaded_file</A> (<B>Current</B>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: Uploaded File</FONT>
+
+    <A NAME="f_filename"><A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A>: <A HREF="../elks/string_32.html">STRING_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> original filename</FONT>
+
+    <A NAME="f_safe_filename"><A HREF="../src/wsf_uploaded_file.html#f_safe_filename">safe_filename</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Safe name version of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> i.e: removing whitespace, accent, unicode characters ...</FONT>
+        <B>local</B>
+            ut: <A HREF="../src/wsf_file_utilities.html">WSF_FILE_UTILITIES</A> [<A HREF="../elks/raw_file.html">RAW_FILE</A>]
+        <B>do</B>
+            <B>create</B> ut
+            <B>Result</B> := ut.<A HREF="../src/wsf_file_utilities.html#f_safe_filename">safe_filename</A> (<A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A>)
+        <B>end</B></A>
+
+    <A NAME="f_content_type"><A HREF="../src/wsf_uploaded_file.html#f_content_type">content_type</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content type</FONT>
+
+    <A NAME="f_size"><A HREF="../src/wsf_uploaded_file.html#f_size">size</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Size of uploaded file</FONT>
+
+    <A NAME="f_tmp_path"><A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A>: <B>detachable</B> <A HREF="../elks/path.html">PATH</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Filename of tmp file</FONT>
+
+    <A NAME="f_tmp_name"><A HREF="../src/wsf_uploaded_file.html#f_tmp_name">tmp_name</A>: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A> <B>as</B> p <B>then</B>
+                <B>Result</B> := p.<A HREF="../elks/path.html#f_name">name</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_tmp_basename"><A HREF="../src/wsf_uploaded_file.html#f_tmp_basename">tmp_basename</A>: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Basename of tmp file</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion</FONT>
+
+    <A NAME="f_append_content_to_string"><A HREF="../src/wsf_uploaded_file.html#f_append_content_to_string">append_content_to_string</A> (a_target: <A HREF="../elks/string_8.html">STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append the content of the uploaded file to </FONT><I>a_target</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+            done: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            retried: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>if</B> <B>not</B> retried <B>and</B> <B>attached</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_name">tmp_name</A> <B>as</B> fn <B>then</B>
+                <B>create</B> f.<A HREF="../elks/file.html#f_make_with_name">make_with_name</A> (fn)
+                <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>then</B>
+                    f.<A HREF="../elks/file.html#f_open_read">open_read</A>
+                    <B>from</B>
+                    <B>until</B>
+                        done
+                    <B>loop</B>
+                        f.<A HREF="../elks/file.html#f_read_stream_thread_aware">read_stream_thread_aware</A> (1024)
+                        s := f.<A HREF="../elks/io_medium.html#f_last_string">last_string</A>
+                        <B>if</B> s.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                            done := <B>True</B>
+                        <B>else</B>
+                            a_target.<A HREF="../elks/string_8.html#f_append">append</A> (s)
+                            done := f.<A HREF="../elks/linear.html#f_exhausted">exhausted</A> <B>or</B> f.<A HREF="../elks/file.html#f_end_of_file">end_of_file</A>
+                        <B>end</B>
+                    <B>end</B>;
+                    f.<A HREF="../elks/file.html#f_close">close</A>
+                <B>end</B>
+            <B>end</B>
+        <B>rescue</B>
+            retried := <B>True</B>
+            <B>retry</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Basic operation</FONT>
+
+    <A NAME="f_move_to"><A HREF="../src/wsf_uploaded_file.html#f_move_to">move_to</A> (a_destination: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Move current uploaded file to </FONT><I>a_destination</I>
+        <B>require</B>
+            a_destination_not_empty: <B>not</B> a_destination.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+            has_no_error: <B>not</B> <A HREF="../src/wsf_uploaded_file.html#f_has_error">has_error</A>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A> <B>as</B> p <B>then</B>
+                <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (p)
+                <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>then</B>
+                    f.<A HREF="../elks/file.html#f_rename_file">rename_file</A> (a_destination)
+                    <B>Result</B> := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+        <B>ensure</B>
+            removed: <B>not</B> <A HREF="../src/wsf_uploaded_file.html#f_exists">exists</A>
+            moved: <B>old</B> <A HREF="../src/wsf_uploaded_file.html#f_exists">exists</A> <B>end</B> <B>implies</B> (<B>create</B> {<A HREF="../ise/file_utilities.html">FILE_UTILITIES</A>} <B>end</B>).<A HREF="../ise/file_utilities.html#f_file_exists">file_exists</A> (a_destination)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red">  Status</FONT>
+
+    <A NAME="f_has_error"><A HREF="../src/wsf_uploaded_file.html#f_has_error">has_error</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has error during uploading</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_uploaded_file.html#f_error">error</A> /= 0
+        <B>end</B></A>
+
+    <A NAME="f_error"><A HREF="../src/wsf_uploaded_file.html#f_error">error</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Eventual error code</FONT>
+
+    <A NAME="f_exists"><A HREF="../src/wsf_uploaded_file.html#f_exists">exists</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>local</B>
+            f: <A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A> <B>as</B> p <B>then</B>
+                <B>create</B> f.<A HREF="../elks/plain_text_file.html#f_make_with_path">make_with_path</A> (p)
+                <B>Result</B> := f.<A HREF="../elks/file.html#f_exists">exists</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_error"><A HREF="../src/wsf_uploaded_file.html#f_set_error">set_error</A> (e: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_error">error</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_uploaded_file.html#f_error">error</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>e</I>
+        <B>do</B>
+            <A HREF="../src/wsf_uploaded_file.html#f_error">error</A> := e
+        <B>end</B></A>
+
+    <A NAME="f_set_tmp_path"><A HREF="../src/wsf_uploaded_file.html#f_set_tmp_path">set_tmp_path</A> (p: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A> := p
+        <B>end</B></A>
+
+    <A NAME="f_set_tmp_name"><A HREF="../src/wsf_uploaded_file.html#f_set_tmp_name">set_tmp_name</A> (n: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_name">tmp_name</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_uploaded_file.html#f_tmp_name">tmp_name</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>n</I>
+        <B>do</B>
+            <B>if</B> n /= <B>Void</B> <B>then</B>
+                <A HREF="../src/wsf_uploaded_file.html#f_set_tmp_path">set_tmp_path</A> (<B>create</B> {<A HREF="../elks/path.html">PATH</A>}.<A HREF="../elks/path.html#f_make_from_string">make_from_string</A> (n) <B>end</B>)
+            <B>else</B>
+                <A HREF="../src/wsf_uploaded_file.html#f_set_tmp_path">set_tmp_path</A> (<B>Void</B>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_tmp_basename"><A HREF="../src/wsf_uploaded_file.html#f_set_tmp_basename">set_tmp_basename</A> (n: <B>like</B> <A HREF="../src/wsf_uploaded_file.html#f_tmp_basename">tmp_basename</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_uploaded_file.html#f_tmp_basename">tmp_basename</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>n</I>
+        <B>do</B>
+            <A HREF="../src/wsf_uploaded_file.html#f_tmp_basename">tmp_basename</A> := n
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_uploaded_file_chart.html">Chart</A></TD><TD><A HREF="wsf_uploaded_file_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,339 @@
+<HTML><HEAD>
+<meta name="description" content="Response message to send a self documentation of the WSF_ROUTER This is using in addition WSF_SELF_DOCUMENTED_ROUTER_MAPPING and WSF_SELF_DOCUMENTED_HANDLER"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_router_self_documentation_message Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_self_documentation_message_chart.html">Chart</A></TD><TD><A HREF="wsf_router_self_documentation_message_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Response message to send a self documentation of the WSF_ROUTER
+        This is using in addition WSF_SELF_DOCUMENTED_ROUTER_MAPPING and WSF_SELF_DOCUMENTED_HANDLER
+    ]"
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+
+<B>class</B> 
+    <A HREF="../router/wsf_router_self_documentation_message.html">WSF_ROUTER_SELF_DOCUMENTATION_MESSAGE</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_response_message.html">WSF_RESPONSE_MESSAGE</A>
+
+<B>create</B> 
+    <A HREF="../router/wsf_router_self_documentation_message.html#f_make">make</A>,
+    <A HREF="../router/wsf_router_self_documentation_message.html#f_make_with_resource">make_with_resource</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../router/wsf_router_self_documentation_message.html#f_make">make</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Make Current for request </FONT><I>req</I><FONT COLOR="red"> and router </FONT><I>a_router</I>
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_status_code">status_code</A> := {<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A> := req
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_router">router</A> := a_router
+        <B>end</B></A>
+
+    <A NAME="f_make_with_resource"><A HREF="../router/wsf_router_self_documentation_message.html#f_make_with_resource">make_with_resource</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>; a_resource: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Make Current for request </FONT><I>req</I><FONT COLOR="red"> and router </FONT><I>a_router</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and use </FONT><I>a_resource</I><FONT COLOR="red"> to also generate links to this documentation via </FONT><I>a_resource</I>
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_make">make</A> (req, a_router)
+            <B>if</B> a_resource /= <B>Void</B> <B>then</B>
+                <B>if</B> <B>attached</B> a_router.<A HREF="../router/wsf_router.html#f_base_url">base_url</A> <B>as</B> l_base_url <B>then</B>
+                    <A HREF="../router/wsf_router_self_documentation_message.html#f_resource">resource</A> := l_base_url + a_resource
+                <B>else</B>
+                    <A HREF="../router/wsf_router_self_documentation_message.html#f_resource">resource</A> := a_resource
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access		</FONT>
+
+    <A NAME="f_status_code"><A HREF="../router/wsf_router_self_documentation_message.html#f_status_code">status_code</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated status code</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Default is Ok</FONT>
+
+    <A NAME="f_request"><A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>: <A HREF="../src/wsf_request.html">WSF_REQUEST</A></A>
+
+    <A NAME="f_router"><A HREF="../router/wsf_router_self_documentation_message.html#f_router">router</A>: <A HREF="../router/wsf_router.html">WSF_ROUTER</A></A>
+
+    <A NAME="f_resource"><A HREF="../router/wsf_router_self_documentation_message.html#f_resource">resource</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Properties</FONT>
+
+    <A NAME="f_header"><A HREF="../router/wsf_router_self_documentation_message.html#f_header">header</A>: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header's content for the output HTML.</FONT>
+
+    <A NAME="f_footer"><A HREF="../router/wsf_router_self_documentation_message.html#f_footer">footer</A>: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Footer's content for the output HTML.</FONT>
+
+    <A NAME="f_custom_style_url"><A HREF="../router/wsf_router_self_documentation_message.html#f_custom_style_url">custom_style_url</A>: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> URL for a custom style css document.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Change</FONT>
+
+    <A NAME="f_set_status_code"><A HREF="../router/wsf_router_self_documentation_message.html#f_set_status_code">set_status_code</A> (c: <B>like</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_status_code">status_code</A>)
+        <B>require</B>
+            c_positive_or_zero: c &gt;= 0
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_status_code">status_code</A> := c
+        <B>end</B></A>
+
+    <A NAME="f_set_header"><A HREF="../router/wsf_router_self_documentation_message.html#f_set_header">set_header</A> (v: <B>like</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_header">header</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_header">header</A> := v
+        <B>end</B></A>
+
+    <A NAME="f_set_footer"><A HREF="../router/wsf_router_self_documentation_message.html#f_set_footer">set_footer</A> (v: <B>like</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_footer">footer</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_footer">footer</A> := v
+        <B>end</B></A>
+
+    <A NAME="f_set_custom_style_url"><A HREF="../router/wsf_router_self_documentation_message.html#f_set_custom_style_url">set_custom_style_url</A> (v: <B>like</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_custom_style_url">custom_style_url</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_message.html#f_custom_style_url">custom_style_url</A> := v
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>}{<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output</FONT>
+
+    <A NAME="f_send_to"><A HREF="../router/wsf_router_self_documentation_message.html#f_send_to">send_to</A> (res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send Current message to </FONT><I>res</I>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This feature should be called via </FONT><I>{WSF_RESPONSE}.send (obj)</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> where </FONT><I>obj</I><FONT COLOR="red"> is the current object</FONT>
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            l_description: <A HREF="../elks/string_8.html">STRING_8</A>
+            l_base_url: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_api_resource: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>create</B> h.<A HREF="../src/http_header.html#f_make">make</A>;
+            h.<A HREF="../src/http_header_modifier.html#f_put_content_type_text_html">put_content_type_text_html</A>
+            <B>create</B> l_description.<A HREF="../elks/readable_string_8.html#f_make">make</A> (1024);
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;html&gt;");
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;head&gt;");
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;title&gt;Documentation&lt;/title&gt;")
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_custom_style_url">custom_style_url</A> <B>as</B> l_custom_style_url <B>then</B>
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;link rel=%"stylesheet%" type=%"text/css%" href=%"" + l_custom_style_url + "%"/&gt;%N")
+            <B>else</B>
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("[
+                        &lt;style type="text/css"&gt;
+                        	.mappingresource { color: #00f; }
+                        	.mappingdoc { color: #900; float: right}
+                        	.handlerdoc { white-space: pre; }
+                        	ul.mapping { margin: 0; padding: 5px; list-style-type: none; }
+                        	ul.mapping&gt;li { margin-bottom: 5px; padding-left: 5px; border-left: solid 3px #ccc; border-top: dotted 1px #ccc; }
+                        	div#footer { padding: 10px; width: 100%; margin-top: 20px;  border-top: 1px dotted #999; color: #999; text-align: center; }
+                        &lt;/style&gt;
+                    ]")
+            <B>end</B>;
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/head&gt;&lt;body&gt;")
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_header">header</A> <B>as</B> l_header <B>then</B>
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> (l_header)
+            <B>end</B>;
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;h1&gt;Documentation&lt;/h1&gt;%N")
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_base_url">base_url</A> <B>as</B> u <B>then</B>
+                l_base_url := u
+            <B>else</B>
+                <B>create</B> {<A HREF="../elks/string_8.html">STRING_8</A>} l_base_url.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+            <B>end</B>
+            <B>debug</B>
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;h2&gt;Meta Information&lt;/h2&gt;&lt;ul&gt;");
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;PATH_INFO=" + <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A> + "&lt;/li&gt;");
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;QUERY_STRING=" + <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_query_string">query_string</A> + "&lt;/li&gt;");
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;REQUEST_URI=" + <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_uri">request_uri</A> + "&lt;/li&gt;");
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;SCRIPT_NAME=" + <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_script_name">script_name</A> + "&lt;/li&gt;")
+                <B>if</B> <B>not</B> l_base_url.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                    l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;Router's Base URL=" + l_base_url + "&lt;/li&gt;")
+                <B>end</B>;
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/ul&gt;")
+            <B>end</B>
+            <B>if</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url_supported">doc_url_supported</A> <B>and then</B> <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_query_parameter">query_parameter</A> ("api") <B>as</B> l_api <B>and then</B> l_api.<A HREF="../src/wsf_string.html#f_value">value</A>.<A HREF="../elks/readable_string_32.html#f_is_valid_as_string_8">is_valid_as_string_8</A> <B>then</B>
+                l_api_resource := l_api.<A HREF="../src/wsf_string.html#f_value">value</A>.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                <B>if</B> l_api_resource.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                    l_api_resource := <B>Void</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> l_api_resource /= <B>Void</B> <B>then</B>
+                <B>if</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url_supported">doc_url_supported</A> <B>then</B>
+                    l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;a href=%"" + <A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url">doc_url</A> ("") + "%"&gt;Index&lt;/a&gt;&lt;br/&gt;")
+                <B>end</B>
+                <B>if</B> <B>attached</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_items_associated_with_resource">items_associated_with_resource</A> (l_api_resource, <B>Void</B>) <B>as</B> l_api_items <B>and then</B> <B>not</B> l_api_items.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                    l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;h2&gt;Information related to &lt;code&gt;" + l_api_resource + "&lt;/code&gt;&lt;/h2&gt;")
+                    <B>across</B>
+                        l_api_items <B>as</B> c
+                    <B>loop</B>
+                        l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;ul class=%"mapping%"&gt;")
+                        <A HREF="../router/wsf_router_self_documentation_message.html#f_append_documentation_to">append_documentation_to</A> (l_description, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>);
+                        l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/ul&gt;")
+                    <B>end</B>
+                <B>end</B>
+            <B>else</B>
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;h2&gt;Router&lt;/h2&gt;&lt;ul class=%"mapping%"&gt;")
+                <B>across</B>
+                    <A HREF="../router/wsf_router_self_documentation_message.html#f_router">router</A> <B>as</B> c
+                <B>loop</B>
+                    <A HREF="../router/wsf_router_self_documentation_message.html#f_append_documentation_to">append_documentation_to</A> (l_description, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>)
+                <B>end</B>;
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/ul&gt;")
+            <B>end</B>;
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"footer%"&gt;")
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_footer">footer</A> <B>as</B> l_footer <B>then</B>
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> (l_footer)
+            <B>else</B>
+                l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("-- Self generated documentation --%N")
+            <B>end</B>;
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/div&gt;%N");
+            l_description.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/body&gt;&lt;/html&gt;");
+            h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (l_description.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+            h.<A HREF="../src/http_header_modifier.html#f_put_current_date">put_current_date</A>;
+            res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (<A HREF="../router/wsf_router_self_documentation_message.html#f_status_code">status_code</A>);
+            res.<A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (h.<A HREF="../src/http_header.html#f_string">string</A>);
+            res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (l_description)
+        <B>end</B></A>
+
+    <A NAME="f_append_documentation_to"><A HREF="../router/wsf_router_self_documentation_message.html#f_append_documentation_to">append_documentation_to</A> (s: <A HREF="../elks/string_8.html">STRING_8</A>; m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>; meths: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>)
+        <B>local</B>
+            l_url: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A>
+            l_base_url: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_doc: <B>detachable</B> <A HREF="../router/wsf_router_mapping_documentation.html">WSF_ROUTER_MAPPING_DOCUMENTATION</A>
+            l_first: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../router/wsf_self_documented_router_mapping.html">WSF_SELF_DOCUMENTED_ROUTER_MAPPING</A>} m <B>as</B> l_doc_mapping <B>then</B>
+                l_doc := l_doc_mapping.<A HREF="../router/wsf_self_documented_router_mapping.html#f_documentation">documentation</A> (meths)
+            <B>end</B>
+            <B>if</B> l_doc = <B>Void</B> <B>or else</B> <B>not</B> l_doc.<A HREF="../router/wsf_router_mapping_documentation.html#f_is_hidden">is_hidden</A> <B>then</B>
+                l_base_url := <A HREF="../router/wsf_router_self_documentation_message.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_base_url">base_url</A>
+                <B>if</B> l_base_url = <B>Void</B> <B>then</B>
+                    l_base_url := ""
+                <B>end</B>
+                l_url := <B>Void</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;")
+                <B>if</B> <B>attached</B> m.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A> <B>as</B> l_associated_resource <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;code&gt;")
+                    <B>if</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url_supported">doc_url_supported</A> <B>then</B>
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;a class=%"mappingresource%" href=%"");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url">doc_url</A> (l_associated_resource));
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("%"&gt;");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (l_associated_resource);
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/a&gt;")
+                    <B>else</B>
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (l_associated_resource)
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/code&gt;")
+                <B>end</B>
+                <B>if</B> meths /= <B>Void</B> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> (" [")
+                    <B>across</B>
+                        meths <B>as</B> rq
+                    <B>loop</B>
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (' ')
+                        <B>if</B> l_url /= <B>Void</B> <B>and then</B> rq.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("GET") <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;a href=%"" + l_base_url + l_url + "%"&gt;" + rq.<A HREF="../elks/iteration_cursor.html#f_item">item</A> + "&lt;/a&gt;")
+                        <B>else</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (rq.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+                        <B>end</B>;
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (',')
+                    <B>end</B>
+                    <B>if</B> s [s.<A HREF="../elks/readable_string_8.html#f_count">count</A>] = ',' <B>then</B>
+                        s.<A HREF="../elks/string_8.html#f_put">put</A> (' ', s.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                    <B>else</B>
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (' ')
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (']')
+                <B>else</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> (" [ * ]")
+                <B>end</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (" &lt;em class=%"mappingdoc%"&gt;" + <A HREF="../router/wsf_router_self_documentation_message.html#f_html_encoder">Html_encoder</A>.encoded_string (m.<A HREF="../router/wsf_router_mapping.html#f_description">description</A>) + "&lt;/em&gt; ")
+                <B>if</B> l_doc /= <B>Void</B> <B>and then</B> <B>not</B> l_doc.<A HREF="../router/wsf_router_mapping_documentation.html#f_is_empty">is_empty</A> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N&lt;ul class=%"handlerdoc%"&gt;")
+                    l_first := <B>True</B>
+                    <B>across</B>
+                        l_doc.<A HREF="../router/wsf_router_mapping_documentation.html#f_descriptions">descriptions</A> <B>as</B> c
+                    <B>loop</B>
+                        <B>if</B> <B>not</B> l_first <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;br/&gt;")
+                        <B>else</B>
+                            l_first := <B>False</B>
+                        <B>end</B>;
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../router/wsf_router_self_documentation_message.html#f_html_encoder">Html_encoder</A>.general_encoded_string (c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>))
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N&lt;/ul&gt;%N")
+                <B>else</B>
+                    <B>debug</B>
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N&lt;ul class=%"handlerdoc%"&gt;");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (m.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>.<A HREF="../elks/any.html#f_generating_type">generating_type</A>.<A HREF="../elks/type.html#f_out">out</A>);
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N&lt;/ul&gt;%N")
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> <B>attached</B> {<A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>} m.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A> <B>as</B> l_routing_hdl <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N&lt;ul&gt;%N")
+                    <B>across</B>
+                        l_routing_hdl.<A HREF="../router/wsf_routing_handler.html#f_router">router</A> <B>as</B> c
+                    <B>loop</B>
+                        <A HREF="../router/wsf_router_self_documentation_message.html#f_append_documentation_to">append_documentation_to</A> (s, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>)
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N&lt;/ul&gt;%N")
+                <B>end</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/li&gt;%N")
+            <B>else</B>
+                <B>debug</B>
+                    <B>if</B> <B>attached</B> m.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A> <B>as</B> l_associated_resource <B>then</B>
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;" + l_associated_resource + " is HIDDEN&lt;/li&gt;%N")
+                    <B>else</B>
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;HIDDEN&lt;/li&gt;%N")
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_doc_url_supported"><A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url_supported">doc_url_supported</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url">doc_url</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> supported?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_router_self_documentation_message.html#f_resource">resource</A> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_doc_url"><A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url">doc_url</A> (a_api: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> URL to show the documentation related to </FONT><I>a_api</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            doc_url_supported: <A HREF="../router/wsf_router_self_documentation_message.html#f_doc_url_supported">doc_url_supported</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_router_self_documentation_message.html#f_resource">resource</A> <B>as</B> s <B>then</B>
+                <B>Result</B> := <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_script_url">script_url</A> (s) + "?api=" + <A HREF="../router/wsf_router_self_documentation_message.html#f_url_encoder">Url_encoder</A>.general_encoded_string (a_api)
+            <B>else</B>
+                <B>Result</B> := <A HREF="../router/wsf_router_self_documentation_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_script_url">script_url</A> ("")
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_html_encoder"><A HREF="../router/wsf_router_self_documentation_message.html#f_html_encoder">Html_encoder</A>: HTML_ENCODER
+        <B>once</B>
+            <B>create</B> <B>Result</B>
+        <B>end</B></A>
+
+    <A NAME="f_url_encoder"><A HREF="../router/wsf_router_self_documentation_message.html#f_url_encoder">Url_encoder</A>: URL_ENCODER
+        <B>once</B>
+            <B>create</B> <B>Result</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_router_self_documentation_message.html">WSF_ROUTER_SELF_DOCUMENTATION_MESSAGE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_self_documentation_message_chart.html">Chart</A></TD><TD><A HREF="wsf_router_self_documentation_message_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

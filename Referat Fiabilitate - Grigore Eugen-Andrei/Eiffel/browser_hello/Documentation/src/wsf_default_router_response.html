@@ -1,0 +1,209 @@
+<HTML><HEAD>
+<meta name="description" content="Summary description for {WSF_DEFAULT_ROUTER_RESPONSE}."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_default_router_response Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_default_router_response_chart.html">Chart</A></TD><TD><A HREF="wsf_default_router_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Summary description for {<A HREF="../src/wsf_default_router_response.html">WSF_DEFAULT_ROUTER_RESPONSE</A>}."
+    date: "$Date: 2017-04-14 10:56:12 +0000 (Fri, 14 Apr 2017) $"
+    revision: "$Revision: 100193 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_default_router_response.html">WSF_DEFAULT_ROUTER_RESPONSE</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_default_response.html">WSF_DEFAULT_RESPONSE</A>
+        <B>redefine</B>
+            <A HREF="../src/wsf_default_router_response.html#f_send_to">send_to</A>,
+            <A HREF="../src/wsf_default_router_response.html#f_not_found_message">not_found_message</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../src/wsf_default_router_response.html#f_make_with_router">make_with_router</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_with_router"><A HREF="../src/wsf_default_router_response.html#f_make_with_router">make_with_router</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_router: <B>like</B> <A HREF="../src/wsf_default_router_response.html#f_router">router</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize Current with request </FONT><I>req</I><FONT COLOR="red"> and router </FONT><I>a_router</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize Current with request </FONT><I>req</I>
+        <B>do</B>
+            <A HREF="../src/wsf_default_router_response.html#f_router">router</A> := a_router
+            <A HREF="../src/wsf_default_response.html#f_make">make</A> (req)
+            <A HREF="../src/wsf_default_router_response.html#f_set_suggestion_only_method">set_suggestion_only_method</A> (<B>True</B>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_router"><A HREF="../src/wsf_default_router_response.html#f_router">router</A>: <A HREF="../router/wsf_router.html">WSF_ROUTER</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated router.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Settings</FONT>
+
+    <A NAME="f_documentation_included"><A HREF="../src/wsf_default_router_response.html#f_documentation_included">documentation_included</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Include self-documentation from </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_default_router_response.html#f_router">router</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> in the response?</FONT>
+
+    <A NAME="f_suggestion_only_method"><A HREF="../src/wsf_default_router_response.html#f_suggestion_only_method">suggestion_only_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Display only suggestion for </FONT><I>req</I><FONT COLOR="red"> method ?</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Change</FONT>
+
+    <A NAME="f_set_documentation_included"><A HREF="../src/wsf_default_router_response.html#f_set_documentation_included">set_documentation_included</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_default_router_response.html#f_documentation_included">documentation_included</A> := b
+        <B>end</B></A>
+
+    <A NAME="f_set_suggestion_only_method"><A HREF="../src/wsf_default_router_response.html#f_set_suggestion_only_method">set_suggestion_only_method</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_default_router_response.html#f_suggestion_only_method">suggestion_only_method</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>b</I>
+        <B>do</B>
+            <A HREF="../src/wsf_default_router_response.html#f_suggestion_only_method">suggestion_only_method</A> := b
+        <B>ensure</B>
+            suggestion_only_method_set: <A HREF="../src/wsf_default_router_response.html#f_suggestion_only_method">suggestion_only_method</A> = b
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>}{<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>}{<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output</FONT>
+
+    <A NAME="f_send_to"><A HREF="../src/wsf_default_router_response.html#f_send_to">send_to</A> (res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send Current message to </FONT><I>res</I>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This feature should be called via </FONT><I>{WSF_RESPONSE}.send (obj)</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> where </FONT><I>obj</I><FONT COLOR="red"> is the current object</FONT>
+        <B>local</B>
+            msg: <A HREF="../src/wsf_response_message.html">WSF_RESPONSE_MESSAGE</A>
+            req: <B>like</B> <A HREF="../src/wsf_default_response.html#f_request">request</A>
+        <B>do</B>
+            req := <A HREF="../src/wsf_default_response.html#f_request">request</A>
+            <B>if</B> req.<A HREF="../src/wsf_request.html#f_is_request_method">is_request_method</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_trace">method_trace</A>) <B>then</B>
+                msg := <A HREF="../src/wsf_default_response.html#f_trace_message">trace_message</A> (req)
+            <B>elseif</B> <B>attached</B> <A HREF="../src/wsf_default_router_response.html#f_method_not_allowed_message">method_not_allowed_message</A> (req) <B>as</B> not_allowed <B>then</B>
+                msg := not_allowed
+            <B>elseif</B> <B>attached</B> req.<A HREF="../src/wsf_request.html#f_http_if_match">http_if_match</A> <B>as</B> l_match <B>and then</B> l_match.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("*") <B>then</B>
+                msg := <A HREF="../src/wsf_default_router_response.html#f_precondition_failed_message">precondition_failed_message</A> (req)
+            <B>else</B>
+                msg := <A HREF="../src/wsf_default_router_response.html#f_not_found_message">not_found_message</A> (req)
+            <B>end</B>;
+            res.<A HREF="../src/wsf_response.html#f_send">send</A> (msg)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_precondition_failed_message"><A HREF="../src/wsf_default_router_response.html#f_precondition_failed_message">precondition_failed_message</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>): <A HREF="../src/wsf_precondition_failed_message.html">WSF_PRECONDITION_FAILED_MESSAGE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Automatically generated response for 412 Precondition Failed response</FONT>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../src/wsf_precondition_failed_message.html#f_make">make</A> (req)
+        <B>end</B></A>
+
+    <A NAME="f_method_not_allowed_message"><A HREF="../src/wsf_default_router_response.html#f_method_not_allowed_message">method_not_allowed_message</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>): <B>detachable</B> <A HREF="../src/wsf_method_not_allowed_response.html">WSF_METHOD_NOT_ALLOWED_RESPONSE</A>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+        <B>local</B>
+            vis: <A HREF="../router/wsf_router_agent_iterator.html">WSF_ROUTER_AGENT_ITERATOR</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_default_router_response.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_allowed_methods_for_request">allowed_methods_for_request</A> (req) <B>as</B> l_allowed_mtds <B>and then</B> <B>not</B> l_allowed_mtds.<A HREF="../router/wsf_request_methods.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>create</B> <B>Result</B>.<A HREF="../src/wsf_method_not_allowed_response.html#f_make">make</A> (req);
+                <B>Result</B>.<A HREF="../src/wsf_method_not_allowed_response.html#f_set_suggested_methods">set_suggested_methods</A> (l_allowed_mtds)
+                <B>if</B> <A HREF="../src/wsf_default_router_response.html#f_documentation_included">documentation_included</A> <B>then</B>
+                    <B>create</B> vis;
+                    vis.<A HREF="../router/wsf_router_agent_iterator.html#f_on_item_actions">on_item_actions</A>.<A HREF="../ise/interactive_list.html#f_extend">extend</A> (<B>agent</B> (i: <A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>; r: <A HREF="../src/wsf_method_not_allowed_response.html">WSF_METHOD_NOT_ALLOWED_RESPONSE</A>)
+                            <B>local</B>
+                                l_is_hidden: <A HREF="../elks/boolean.html">BOOLEAN</A>
+                                s: <A HREF="../elks/string_32.html">STRING_32</A>
+                            <B>do</B>
+                                <B>if</B> <B>not</B> <B>attached</B> i.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A> <B>as</B> l_methods <B>or else</B> l_methods.<A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/wsf_default_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>) <B>then</B>
+                                    <B>if</B> <B>attached</B> {<A HREF="../router/wsf_self_documented_router_mapping.html">WSF_SELF_DOCUMENTED_ROUTER_MAPPING</A>} i.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A> <B>as</B> l_doc_mapping <B>then</B>
+                                        l_is_hidden := l_doc_mapping.<A HREF="../router/wsf_self_documented_router_mapping.html#f_documentation">documentation</A> (i.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>).<A HREF="../router/wsf_router_mapping_documentation.html#f_is_hidden">is_hidden</A>
+                                    <B>end</B>
+                                    <B>if</B> <B>not</B> l_is_hidden <B>then</B>
+                                        <B>create</B> s.<A HREF="../elks/string_32.html#f_make_from_string_general">make_from_string_general</A> (i.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>)
+                                        <B>if</B> <B>attached</B> i.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A> <B>as</B> mtds <B>then</B>
+                                            s.<A HREF="../elks/string_32.html#f_append">append</A> (" [ ".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                                            <B>across</B>
+                                                mtds <B>as</B> mtds_c
+                                            <B>loop</B>
+                                                s.<A HREF="../elks/string_32.html#f_append_string_general">append_string_general</A> (mtds_c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>);
+                                                s.<A HREF="../elks/string_32.html#f_append_character">append_character</A> (' '.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+                                            <B>end</B>;
+                                            s.<A HREF="../elks/string_32.html#f_append">append</A> ("]".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                                        <B>else</B>
+                                            s.<A HREF="../elks/string_32.html#f_append">append</A> (" [*]".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                                        <B>end</B>;
+                                        r.<A HREF="../src/wsf_method_not_allowed_response.html#f_add_suggested_text">add_suggested_text</A> (s, <B>Void</B>)
+                                    <B>end</B>
+                                <B>end</B>
+                            <B>end</B> (?, <B>Result</B>));
+                    vis.<A HREF="../router/wsf_router_agent_iterator.html#f_process_router">process_router</A> (<A HREF="../src/wsf_default_router_response.html#f_router">router</A>)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_not_found_message"><A HREF="../src/wsf_default_router_response.html#f_not_found_message">not_found_message</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>): <A HREF="../src/wsf_not_found_response.html">WSF_NOT_FOUND_RESPONSE</A>
+        <B>local</B>
+            vis: <A HREF="../router/wsf_router_agent_iterator.html">WSF_ROUTER_AGENT_ITERATOR</A>
+            l_method: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>Result</B> := <B>Precursor</B> (req)
+            <B>if</B> <A HREF="../src/wsf_default_router_response.html#f_documentation_included">documentation_included</A> <B>then</B>
+                <B>create</B> vis
+                <B>if</B> <A HREF="../src/wsf_default_router_response.html#f_suggestion_only_method">suggestion_only_method</A> <B>then</B>
+                    l_method := req.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>
+                <B>end</B>;
+                vis.<A HREF="../router/wsf_router_agent_iterator.html#f_on_item_actions">on_item_actions</A>.<A HREF="../ise/interactive_list.html#f_extend">extend</A> (<B>agent</B> (i: <A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>; r: <A HREF="../src/wsf_not_found_response.html">WSF_NOT_FOUND_RESPONSE</A>; m: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+                        <B>local</B>
+                            l_is_hidden: <A HREF="../elks/boolean.html">BOOLEAN</A>
+                            s: <A HREF="../elks/string_32.html">STRING_32</A>
+                            ok: <A HREF="../elks/boolean.html">BOOLEAN</A>
+                        <B>do</B>
+                            <B>if</B> <B>attached</B> {<A HREF="../router/wsf_self_documented_router_mapping.html">WSF_SELF_DOCUMENTED_ROUTER_MAPPING</A>} i.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A> <B>as</B> l_doc_mapping <B>then</B>
+                                l_is_hidden := l_doc_mapping.<A HREF="../router/wsf_self_documented_router_mapping.html#f_documentation">documentation</A> (i.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>).<A HREF="../router/wsf_router_mapping_documentation.html#f_is_hidden">is_hidden</A>
+                            <B>end</B>
+                            <B>if</B> <B>not</B> l_is_hidden <B>then</B>
+                                ok := <B>True</B>
+                                <B>create</B> s.<A HREF="../elks/string_32.html#f_make_from_string_general">make_from_string_general</A> (i.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>)
+                                <B>if</B> <B>attached</B> i.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A> <B>as</B> mtds <B>then</B>
+                                    ok := <B>False</B>;
+                                    s.<A HREF="../elks/string_32.html#f_append">append</A> (" [ ".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                                    <B>across</B>
+                                        mtds <B>as</B> c
+                                    <B>loop</B>
+                                        <B>if</B> m = <B>Void</B> <B>or else</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>) <B>then</B>
+                                            ok := <B>True</B>
+                                        <B>end</B>;
+                                        s.<A HREF="../elks/string_32.html#f_append_string_general">append_string_general</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>);
+                                        s.<A HREF="../elks/string_32.html#f_append_character">append_character</A> (' '.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+                                    <B>end</B>;
+                                    s.<A HREF="../elks/string_32.html#f_append">append</A> ("]".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                                <B>else</B>
+                                    s.<A HREF="../elks/string_32.html#f_append">append</A> (" [*]".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                                <B>end</B>
+                                <B>if</B> ok <B>then</B>
+                                    r.<A HREF="../src/wsf_not_found_response.html#f_add_suggested_text">add_suggested_text</A> (s, <B>Void</B>)
+                                <B>end</B>
+                            <B>end</B>
+                        <B>end</B> (?, <B>Result</B>, l_method));
+                vis.<A HREF="../router/wsf_router_agent_iterator.html#f_process_router">process_router</A> (<A HREF="../src/wsf_default_router_response.html#f_router">router</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_default_router_response.html">WSF_DEFAULT_ROUTER_RESPONSE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_default_router_response_chart.html">Chart</A></TD><TD><A HREF="wsf_default_router_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,140 @@
+<HTML><HEAD>
+<meta name="description" content="The class represents a HTTP header, and it provides simple routine to build it.  You will also find some helper features to help coding most common usages  Please, have a look at constants classes such as THTTP_MIME_TYPES THTTP_HEADER_NAMES THTTP_STATUS_CODE THTTP_REQUEST_METHODS (or HTTP_CONSTANTS which groups them for convenience)  Note the return status code is not part of the HTTP header"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_header Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="http_header_links.html">Relations</A></TD><TD><A HREF="http_header.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../src/http_header_chart.html">HTTP_HEADER</A>
+
+<B>General</B>
+    cluster: <A HREF="../src/index.html">src</A>
+    description: 
+        "The class represents a HTTP header, and it provides simple routine
+        to build it.
+        
+        You will also find some helper features to help coding most common usages
+        
+        Please, have a look at constants classes such as
+        HTTP_MIME_TYPES
+        HTTP_HEADER_NAMES
+        HTTP_STATUS_CODE
+        HTTP_REQUEST_METHODS
+        (or HTTP_CONSTANTS which groups them for convenience)
+        
+        Note the return status code is not part of the HTTP header"
+    create: <A HREF="../src/http_header.html#f_make">make</A>, <A HREF="../src/http_header.html#f_make_with_count">make_with_count</A>, <A HREF="../src/http_header.html#f_make_from_array">make_from_array</A>, <A HREF="../src/http_header.html#f_make_from_header">make_from_header</A>, <A HREF="../src/http_header.html#f_make_from_raw_header_data">make_from_raw_header_data</A>
+
+<B>Ancestors</B>
+    <A HREF="../src/http_header_modifier_chart.html">HTTP_HEADER_MODIFIER</A>*
+    <A HREF="../elks/iterable_chart.html">ITERABLE</A>* [G]
+
+<B>Queries</B>
+    <A HREF="../src/http_header.html#f_count">count</A>: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>
+    <A HREF="../src/http_header_modifier.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (dt: DATE_TIME): <A HREF="../elks/string_8_chart.html">STRING_8</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_has">has</A> (a_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_has_content_length">has_content_length</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_has_content_type">has_content_type</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> (a_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_has_transfer_encoding_chunked">has_transfer_encoding_chunked</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_headers">headers</A>: <A HREF="../elks/arrayed_list_chart.html">ARRAYED_LIST</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]
+    <A HREF="../src/http_header.html#f_is_empty">is_empty</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/http_header_modifier.html#f_item">item</A> <B>alias</B> "[]" (a_header_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/indexable_iteration_cursor_chart.html">INDEXABLE_ITERATION_CURSOR</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]
+    <A HREF="../src/http_header.html#f_string">string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_header.html#f_to_name_value_iterable">to_name_value_iterable</A>: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]]
+
+<B>Commands</B>
+    <A HREF="../src/http_header_modifier.html#f_add_content_type">add_content_type</A> (a_content_type: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_add_content_type_with_charset">add_content_type_with_charset</A> (a_content_type, a_charset: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_add_content_type_with_name">add_content_type_with_name</A> (a_content_type, a_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_add_content_type_with_parameters">add_content_type_with_parameters</A> (a_content_type: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_params: <B>detachable</B> <A HREF="../elks/array_chart.html">ARRAY</A> [<A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]])<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_add_header">add_header</A> (h: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_header_modifier.html#f_add_header_key_value">add_header_key_value</A> (a_header_name, a_value: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_append_array">append_array</A> (a_headers: <A HREF="../elks/array_chart.html">ARRAY</A> [<A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]])
+    <A HREF="../src/http_header.html#f_append_header_object">append_header_object</A> (h: <A HREF="../src/http_header_chart.html">HTTP_HEADER</A>)
+    <A HREF="../src/http_header.html#f_append_raw_header_data">append_raw_header_data</A> (h: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_header.html#f_append_string_to">append_string_to</A> (a_result: <A HREF="../elks/string_8_chart.html">STRING_8</A>)
+    <A HREF="../src/http_header_modifier.html#f_force">force</A> (a_value: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_header_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_access_control_allow_all_origin">put_access_control_allow_all_origin</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_access_control_allow_credentials">put_access_control_allow_credentials</A> (b: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_access_control_allow_headers">put_access_control_allow_headers</A> (a_headers: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_access_control_allow_iterable_headers">put_access_control_allow_iterable_headers</A> (a_fields: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>])<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_access_control_allow_methods">put_access_control_allow_methods</A> (a_methods: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>])<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_access_control_allow_origin">put_access_control_allow_origin</A> (a_origin: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_allow">put_allow</A> (a_methods: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>])<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_put_array">put_array</A> (a_headers: <A HREF="../elks/array_chart.html">ARRAY</A> [<A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]])
+    <A HREF="../src/http_header_modifier.html#f_put_authorization">put_authorization</A> (a_authorization: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> (a_cache_control: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_connection">put_connection</A> (a_conn: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_connection_close">put_connection_close</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_connection_keep_alive">put_connection_keep_alive</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_disposition">put_content_disposition</A> (a_type: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_params: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_encoding">put_content_encoding</A> (a_encoding: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_language">put_content_language</A> (a_lang: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (a_length: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_transfer_encoding">put_content_transfer_encoding</A> (a_mechanism: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> (a_content_type: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_application_javascript">put_content_type_application_javascript</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_application_json">put_content_type_application_json</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_application_pdf">put_content_type_application_pdf</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_application_x_www_form_encoded">put_content_type_application_x_www_form_encoded</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_application_zip">put_content_type_application_zip</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_image_gif">put_content_type_image_gif</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_image_jpg">put_content_type_image_jpg</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_image_png">put_content_type_image_png</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_image_svg_xml">put_content_type_image_svg_xml</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_message_http">put_content_type_message_http</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_alternative">put_content_type_multipart_alternative</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_encrypted">put_content_type_multipart_encrypted</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_form_data">put_content_type_multipart_form_data</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_mixed">put_content_type_multipart_mixed</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_related">put_content_type_multipart_related</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_signed">put_content_type_multipart_signed</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_text_css">put_content_type_text_css</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_text_csv">put_content_type_text_csv</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_text_html">put_content_type_text_html</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_text_javascript">put_content_type_text_javascript</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_text_json">put_content_type_text_json</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_text_plain">put_content_type_text_plain</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_text_xml">put_content_type_text_xml</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_html">put_content_type_utf_8_text_html</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_with_charset">put_content_type_with_charset</A> (a_content_type, a_charset: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_with_name">put_content_type_with_name</A> (a_content_type, a_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_content_type_with_parameters">put_content_type_with_parameters</A> (a_content_type: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_params: <B>detachable</B> <A HREF="../elks/array_chart.html">ARRAY</A> [<A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]])<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_cookie">put_cookie</A> (key, value: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; expiration, path, domain: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; secure, http_only: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_cookie_with_expiration_date">put_cookie_with_expiration_date</A> (key, value: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; expiration: DATE_TIME; path, domain: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; secure, http_only: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_current_date">put_current_date</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_date">put_date</A> (a_date: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_expires">put_expires</A> (a_seconds: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_expires_date">put_expires_date</A> (a_utc_date: DATE_TIME)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_expires_string">put_expires_string</A> (a_expires: <A HREF="../elks/string_8_chart.html">STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_put_header">put_header</A> (h: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> (a_header_name, a_value: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_header_key_values">put_header_key_values</A> (a_header_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_values: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]; a_separator: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_put_header_object">put_header_object</A> (h: <A HREF="../src/http_header_chart.html">HTTP_HEADER</A>)
+    <A HREF="../src/http_header_modifier.html#f_put_last_modified">put_last_modified</A> (a_utc_date: DATE_TIME)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_location">put_location</A> (a_uri: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_pragma">put_pragma</A> (a_pragma: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_pragma_no_cache">put_pragma_no_cache</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_put_raw_header_data">put_raw_header_data</A> (h: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_header_modifier.html#f_put_refresh">put_refresh</A> (a_uri: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_timeout_in_seconds: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_transfer_encoding">put_transfer_encoding</A> (a_encoding: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_transfer_encoding_binary">put_transfer_encoding_binary</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_transfer_encoding_chunked">put_transfer_encoding_chunked</A><FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header_modifier.html#f_put_utc_date">put_utc_date</A> (a_utc_date: DATE_TIME)<FONT COLOR="red"> -- (from HTTP_HEADER_MODIFIER)</FONT>
+    <A HREF="../src/http_header.html#f_recycle">recycle</A>
+    <A HREF="../src/http_header.html#f_remove_header_named">remove_header_named</A> (a_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_header.html#f_remove_location">remove_location</A>
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="http_header_links.html">Relations</A></TD><TD><A HREF="http_header.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

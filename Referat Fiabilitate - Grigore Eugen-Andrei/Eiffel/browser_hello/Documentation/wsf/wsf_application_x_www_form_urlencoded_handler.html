@@ -1,0 +1,100 @@
+<HTML><HEAD>
+<meta name="description" content="Summary description for {WSF_APPLICATION_X_WWW_FORM_URLENCODED_HANDLER}."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_application_x_www_form_urlencoded_handler Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_application_x_www_form_urlencoded_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_application_x_www_form_urlencoded_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Summary description for {<A HREF="../src/wsf_application_x_www_form_urlencoded_handler.html">WSF_APPLICATION_X_WWW_FORM_URLENCODED_HANDLER</A>}."
+    date: "$Date: 2020-10-02 12:39:52 +0000 (Fri, 02 Oct 2020) $"
+    revision: "$Revision: 104754 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_application_x_www_form_urlencoded_handler.html">WSF_APPLICATION_X_WWW_FORM_URLENCODED_HANDLER</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_mime_handler.html">WSF_MIME_HANDLER</A>
+
+    <A HREF="../src/wsf_mime_handler_helper.html">WSF_MIME_HANDLER_HELPER</A>
+
+    <A HREF="../src/wsf_value_utilities.html">WSF_VALUE_UTILITIES</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_valid_content_type"><A HREF="../src/wsf_application_x_www_form_urlencoded_handler.html#f_valid_content_type">valid_content_type</A> (a_content_type: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>Result</B> := a_content_type.<A HREF="../src/http_media_type.html#f_same_simple_type">same_simple_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_x_www_form_encoded">application_x_www_form_encoded</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_handle"><A HREF="../src/wsf_application_x_www_form_urlencoded_handler.html#f_handle">handle</A> (a_content_type: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_vars: <A HREF="../elks/hash_table.html">HASH_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]; a_raw_data: <B>detachable</B> <A HREF="../elks/cell.html">CELL</A> [<B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Handle MIME content from request </FONT><I>req</I><FONT COLOR="red">, eventually fill the </FONT><I>a_vars</I><FONT COLOR="red"> (not yet available from </FONT><I>req</I><FONT COLOR="red">)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and if </FONT><I>a_raw_data</I><FONT COLOR="red"> is attached, store any read data inside </FONT><I>a_raw_data</I>
+        <B>local</B>
+            l_content: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            n, p, i, j: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_name, l_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            l_content := <A HREF="../src/wsf_mime_handler_helper.html#f_full_input_data">full_input_data</A> (req)
+            <B>if</B> a_raw_data /= <B>Void</B> <B>then</B>
+                a_raw_data.<A HREF="../elks/cell.html#f_replace">replace</A> (l_content)
+            <B>end</B>
+            <B>check</B>
+                content_count_same_as_content_length_if_not_chunked: (<B>not</B> req.<A HREF="../src/wsf_request.html#f_is_chunked_input">is_chunked_input</A>) <B>implies</B> (l_content.<A HREF="../elks/readable_string_8.html#f_count">count</A> = req.<A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A>.<A HREF="../elks/natural_64_ref.html#f_to_integer_32">to_integer_32</A>)
+            <B>end</B>
+            n := l_content.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>if</B> n &gt; 0 <B>then</B>
+                <B>from</B>
+                    p := 1
+                <B>until</B>
+                    p = 0
+                <B>loop</B>
+                    i := l_content.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('&#38;', p)
+                    <B>if</B> i = 0 <B>then</B>
+                        s := l_content.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p, n)
+                        p := 0
+                    <B>else</B>
+                        s := l_content.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p, i - 1)
+                        p := i + 1
+                    <B>end</B>
+                    <B>if</B> <B>not</B> s.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                        j := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('=', 1)
+                        <B>if</B> j &gt; 0 <B>then</B>
+                            l_name := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, j - 1)
+                            l_value := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (j + 1, s.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                            <A HREF="../src/wsf_value_utilities.html#f_add_percent_encoded_string_value_to_table">add_percent_encoded_string_value_to_table</A> (l_name, l_value, a_vars)
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_application_x_www_form_urlencoded_handler.html">WSF_APPLICATION_X_WWW_FORM_URLENCODED_HANDLER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_application_x_www_form_urlencoded_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_application_x_www_form_urlencoded_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

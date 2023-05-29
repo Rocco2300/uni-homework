@@ -1,0 +1,162 @@
+<HTML><HEAD>
+<meta name="description" content="Table representing parameters of the form  q=1.0;note=blabla;foo=bar"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_parameter_table Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_parameter_table_chart.html">Chart</A></TD><TD><A HREF="http_parameter_table_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Table representing parameters of the form  q=1.0;note="blabla";foo=bar
+    ]"
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+
+<B>class</B> 
+    <A HREF="../src/http_parameter_table.html">HTTP_PARAMETER_TABLE</A>
+
+<B>inherit</B>
+    <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+        <B>redefine</B>
+            <A HREF="../src/http_parameter_table.html#f_empty_duplicate">empty_duplicate</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../elks/hash_table.html#f_make">make</A>,
+    <A HREF="../src/http_parameter_table.html#f_make_from_string">make_from_string</A>,
+    <A HREF="../src/http_parameter_table.html#f_make_from_substring">make_from_substring</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_from_string"><A HREF="../src/http_parameter_table.html#f_make_from_string">make_from_string</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Build table of parameters for </FONT><I>s</I>
+        <B>do</B>
+            <A HREF="../src/http_parameter_table.html#f_make_from_substring">make_from_substring</A> (s, 1, s.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_substring"><A HREF="../src/http_parameter_table.html#f_make_from_substring">make_from_substring</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_start_index: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_end_index: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Build table of parameters for </FONT><I>s.substring (a_start_index, a_end_index)</I>
+        <B>local</B>
+            cl: <A HREF="../elks/cell.html">CELL</A> [<A HREF="../elks/integer_32.html">INTEGER_32</A>]
+            i: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <A HREF="../elks/hash_table.html#f_make">make</A> (1)
+            <B>from</B>
+                i := a_start_index
+                <B>create</B> cl.<A HREF="../elks/cell.html#f_put">put</A> (i)
+            <B>until</B>
+                i &gt;= a_end_index
+            <B>loop</B>
+                <A HREF="../src/http_parameter_table.html#f_force_substring">force_substring</A> (s, i, cl)
+                i := cl.<A HREF="../elks/cell.html#f_item">item</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_has_error"><A HREF="../src/http_parameter_table.html#f_has_error">has_error</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Current has error?</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_force_substring"><A HREF="../src/http_parameter_table.html#f_force_substring">force_substring</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; start_index: <A HREF="../elks/integer_32.html">INTEGER_32</A>; out_end_index: <A HREF="../elks/cell.html">CELL</A> [<A HREF="../elks/integer_32.html">INTEGER_32</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add parameter from string   "  attribute=value  "</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and put in </FONT><I>out_end_index</I><FONT COLOR="red"> the index after found parameter.</FONT>
+        <B>local</B>
+            n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            pn: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            pv: <A HREF="../elks/string_8.html">STRING_8</A>
+            i: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            p, q: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            err: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            n := s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>from</B>
+                i := start_index
+            <B>until</B>
+                i &gt; n <B>or</B> <B>not</B> s [i].<A HREF="../elks/character_8_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> s [i] = ';' <B>then</B>
+                out_end_index.<A HREF="../elks/cell.html#f_replace">replace</A> (i + 1)
+            <B>elseif</B> i &lt; n <B>then</B>
+                p := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('=', i)
+                <B>if</B> p &gt; 0 <B>then</B>
+                    pn := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, p - 1)
+                    <B>if</B> p &gt;= n <B>then</B>
+                        pv := "";
+                        out_end_index.<A HREF="../elks/cell.html#f_replace">replace</A> (n + 1)
+                    <B>else</B>
+                        <B>if</B> s [p + 1] = '"' <B>then</B>
+                            q := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('"', p + 2)
+                            <B>if</B> q &gt; 0 <B>then</B>
+                                pv := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p + 2, q - 1).<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                                <B>from</B>
+                                    i := q + 1
+                                <B>until</B>
+                                    i &gt; n <B>or</B> <B>not</B> s [i].<A HREF="../elks/character_8_ref.html#f_is_space">is_space</A>
+                                <B>loop</B>
+                                    i := i + 1
+                                <B>end</B>
+                                <B>if</B> s [i] = ';' <B>then</B>
+                                    i := i + 1
+                                <B>end</B>;
+                                out_end_index.<A HREF="../elks/cell.html#f_replace">replace</A> (i)
+                            <B>else</B>
+                                err := <B>True</B>
+                                pv := ""
+                            <B>end</B>
+                        <B>else</B>
+                            q := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> (';', p + 1)
+                            <B>if</B> q = 0 <B>then</B>
+                                q := n + 1
+                            <B>end</B>
+                            pv := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p + 1, q - 1).<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>;
+                            out_end_index.<A HREF="../elks/cell.html#f_replace">replace</A> (q + 1)
+                        <B>end</B>;
+                        pv.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>
+                        <B>if</B> <B>not</B> err <B>then</B>
+                            <A HREF="../elks/hash_table.html#f_force">force</A> (pv, pn)
+                        <B>end</B>
+                    <B>end</B>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> err <B>then</B>
+                out_end_index.<A HREF="../elks/cell.html#f_replace">replace</A> (n + 1)
+            <B>end</B>
+            <A HREF="../src/http_parameter_table.html#f_has_error">has_error</A> := <A HREF="../src/http_parameter_table.html#f_has_error">has_error</A> <B>or</B> err
+        <B>ensure</B>
+            entry_processed: out_end_index.<A HREF="../elks/cell.html#f_item">item</A> &gt; start_index
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Duplication</FONT>
+
+    <A NAME="f_empty_duplicate"><A HREF="../src/http_parameter_table.html#f_empty_duplicate">empty_duplicate</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <B>like</B> <B>Current</B>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create an empty copy of Current that can accommodate </FONT><I>n</I><FONT COLOR="red"> items</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>Precursor</B> (n)
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_parameter_table.html">HTTP_PARAMETER_TABLE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_parameter_table_chart.html">Chart</A></TD><TD><A HREF="http_parameter_table_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

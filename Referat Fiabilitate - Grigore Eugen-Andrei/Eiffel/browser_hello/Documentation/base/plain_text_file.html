@@ -1,0 +1,724 @@
+<HTML><HEAD>
+<meta name="description" content="Files viewed as persistent sequences of ASCII characters"/>
+<meta name="library" content="Free implementation of ELKS library"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>plain_text_file Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="plain_text_file_chart.html">Chart</A></TD><TD><A HREF="plain_text_file_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Files viewed as persistent sequences of ASCII characters"
+    library: "Free implementation of ELKS library"
+    status: "See notice at end of class."
+    legal: "See notice at end of class."
+    date: "$Date: 2020-05-28 10:29:06 +0000 (Thu, 28 May 2020) $"
+    revision: "$Revision: 104363 $"
+
+<B>class</B> 
+    <A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>
+
+<B>inherit</B>
+    <A HREF="../elks/file.html">FILE</A>
+        <B>rename</B>
+            <A HREF="../elks/linear.html#f_index">index</A> <B>as</B> <A HREF="../elks/file.html#f_position">position</A>
+        <B>redefine</B>
+            <A HREF="../elks/plain_text_file.html#f_make_with_name">make_with_name</A>,
+            <A HREF="../elks/plain_text_file.html#f_make_with_path">make_with_path</A>,
+            <A HREF="../elks/plain_text_file.html#f_is_plain_text">is_plain_text</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../elks/file.html#f_make">make</A>,
+    <A HREF="../elks/plain_text_file.html#f_make_with_name">make_with_name</A>,
+    <A HREF="../elks/plain_text_file.html#f_make_with_path">make_with_path</A>,
+    <A HREF="../elks/file.html#f_make_open_read">make_open_read</A>,
+    <A HREF="../elks/file.html#f_make_open_write">make_open_write</A>,
+    <A HREF="../elks/file.html#f_make_open_append">make_open_append</A>,
+    <A HREF="../elks/file.html#f_make_open_read_write">make_open_read_write</A>,
+    <A HREF="../elks/file.html#f_make_create_read_write">make_create_read_write</A>,
+    <A HREF="../elks/file.html#f_make_open_read_append">make_open_read_append</A>,
+    <A HREF="../elks/file.html#f_make_open_temporary">make_open_temporary</A>,
+    <A HREF="../elks/file.html#f_make_open_temporary_with_prefix">make_open_temporary_with_prefix</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization	</FONT>
+
+    <A NAME="f_make_with_name"><A HREF="../elks/plain_text_file.html#f_make_with_name">make_with_name</A> (fn: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create file object with </FONT><I>fn</I><FONT COLOR="red"> as file name.</FONT>
+        <B>do</B>
+            <B>Precursor</B> (fn)
+            <B>create</B> <A HREF="../elks/plain_text_file.html#f_last_string_32">last_string_32</A>.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_with_path"><A HREF="../elks/plain_text_file.html#f_make_with_path">make_with_path</A> (a_path: <A HREF="../elks/path.html">PATH</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create file object with </FONT><I>a_path</I><FONT COLOR="red"> as path.</FONT>
+        <B>do</B>
+            <B>Precursor</B> (a_path)
+            <B>create</B> <A HREF="../elks/plain_text_file.html#f_last_string_32">last_string_32</A>.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_plain_text"><A HREF="../elks/plain_text_file.html#f_is_plain_text">is_plain_text</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is file reserved for text (character sequences)? (Yes)</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>True</B>
+        <B>end</B></A>
+
+    <A NAME="f_support_storable"><A HREF="../elks/plain_text_file.html#f_support_storable">Support_storable</A>: <A HREF="../elks/boolean.html">BOOLEAN</A> = <B>False</B></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Can medium be used to store an Eiffel structure?</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output</FONT>
+
+    <A NAME="f_put_integer"><A HREF="../elks/plain_text_file.html#f_put_integer">put_integer</A> (i: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_putint">putint</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_integer_32">put_integer_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_putint"><A HREF="../elks/plain_text_file.html#f_putint">putint</A> (i: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_integer">put_integer</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_integer_32">put_integer_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_integer_32"><A HREF="../elks/plain_text_file.html#f_put_integer_32">put_integer_32</A> (i: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_integer">put_integer</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_putint">putint</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_integer_64"><A HREF="../elks/plain_text_file.html#f_put_integer_64">put_integer_64</A> (i: <A HREF="../elks/integer_64.html">INTEGER_64</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/integer_64_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_integer_16"><A HREF="../elks/plain_text_file.html#f_put_integer_16">put_integer_16</A> (i: <A HREF="../elks/integer_16.html">INTEGER_16</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/integer_16_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_integer_8"><A HREF="../elks/plain_text_file.html#f_put_integer_8">put_integer_8</A> (i: <A HREF="../elks/integer_8.html">INTEGER_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/integer_8_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_natural_64"><A HREF="../elks/plain_text_file.html#f_put_natural_64">put_natural_64</A> (i: <A HREF="../elks/natural_64.html">NATURAL_64</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/natural_64_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_natural"><A HREF="../elks/plain_text_file.html#f_put_natural">put_natural</A> (i: <A HREF="../elks/natural_32.html">NATURAL_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_natural_32">put_natural_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/natural_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_natural_32"><A HREF="../elks/plain_text_file.html#f_put_natural_32">put_natural_32</A> (i: <A HREF="../elks/natural_32.html">NATURAL_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_natural">put_natural</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/natural_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_natural_16"><A HREF="../elks/plain_text_file.html#f_put_natural_16">put_natural_16</A> (i: <A HREF="../elks/natural_16.html">NATURAL_16</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/natural_16_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_natural_8"><A HREF="../elks/plain_text_file.html#f_put_natural_8">put_natural_8</A> (i: <A HREF="../elks/natural_8.html">NATURAL_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>i</I><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (i.<A HREF="../elks/natural_8_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_boolean"><A HREF="../elks/plain_text_file.html#f_put_boolean">put_boolean</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>b</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_putbool">putbool</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (<B>if</B> b <B>then</B>
+                    <A HREF="../elks/file.html#f_true_string">True_string</A>
+                <B>else</B>
+                    <A HREF="../elks/file.html#f_false_string">False_string</A>
+                <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_putbool"><A HREF="../elks/plain_text_file.html#f_putbool">putbool</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>b</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_boolean">put_boolean</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (<B>if</B> b <B>then</B>
+                    <A HREF="../elks/file.html#f_true_string">True_string</A>
+                <B>else</B>
+                    <A HREF="../elks/file.html#f_false_string">False_string</A>
+                <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_put_real"><A HREF="../elks/plain_text_file.html#f_put_real">put_real</A> (r: <A HREF="../elks/real_32.html">REAL_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>r</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_putreal">putreal</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_real_32">put_real_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_file_pr">file_pr</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>, r)
+        <B>end</B></A>
+
+    <A NAME="f_putreal"><A HREF="../elks/plain_text_file.html#f_putreal">putreal</A> (r: <A HREF="../elks/real_32.html">REAL_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>r</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_real">put_real</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_real_32">put_real_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_file_pr">file_pr</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>, r)
+        <B>end</B></A>
+
+    <A NAME="f_put_real_32"><A HREF="../elks/plain_text_file.html#f_put_real_32">put_real_32</A> (r: <A HREF="../elks/real_32.html">REAL_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value of </FONT><I>r</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_real">put_real</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_putreal">putreal</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_file_pr">file_pr</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>, r)
+        <B>end</B></A>
+
+    <A NAME="f_put_double"><A HREF="../elks/plain_text_file.html#f_put_double">put_double</A> (d: <A HREF="../elks/real_64.html">REAL_64</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value </FONT><I>d</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_putdouble">putdouble</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_real_64">put_real_64</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_file_pd">file_pd</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>, d)
+        <B>end</B></A>
+
+    <A NAME="f_putdouble"><A HREF="../elks/plain_text_file.html#f_putdouble">putdouble</A> (d: <A HREF="../elks/real_64.html">REAL_64</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value </FONT><I>d</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_double">put_double</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_real_64">put_real_64</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_file_pd">file_pd</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>, d)
+        <B>end</B></A>
+
+    <A NAME="f_put_real_64"><A HREF="../elks/plain_text_file.html#f_put_real_64">put_real_64</A> (d: <A HREF="../elks/real_64.html">REAL_64</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write ASCII value </FONT><I>d</I><FONT COLOR="red"> at current position.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_put_double">put_double</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_putdouble">putdouble</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_file_pd">file_pd</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>, d)
+        <B>end</B></A>
+
+    <A NAME="f_put_string_32"><A HREF="../elks/plain_text_file.html#f_put_string_32">put_string_32</A> (s: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write string </FONT><I>s</I><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (s)
+        <B>end</B></A>
+
+    <A NAME="f_put_string_general"><A HREF="../elks/plain_text_file.html#f_put_string_general">put_string_general</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write string </FONT><I>s</I><FONT COLOR="red"> at current position.</FONT>
+        <B>require</B>
+            extendible: <A HREF="../elks/file.html#f_extendible">extendible</A>
+            non_void: s /= <B>Void</B>
+        <B>local</B>
+            str: <A HREF="../elks/string_8.html">STRING_8</A>
+            utf32, utf8: <A HREF="../elks/encoding/encoding.html">ENCODING</A>
+            l_encoding: <B>like</B> <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>
+        <B>do</B>
+            l_encoding := <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>
+            utf32 := {<A HREF="../elks/encoding/system_encodings.html">SYSTEM_ENCODINGS</A>}.<A HREF="../elks/encoding/system_encodings.html#f_utf32">utf32</A>;
+            utf32.<A HREF="../elks/encoding/encoding.html#f_convert_to">convert_to</A> (l_encoding, s)
+            <B>if</B> utf32.<A HREF="../elks/encoding/encoding.html#f_last_conversion_successful">last_conversion_successful</A> <B>then</B>
+                str := utf32.<A HREF="../elks/encoding/encoding.html#f_last_converted_string_8">last_converted_string_8</A>
+            <B>else</B>
+                utf8 := {<A HREF="../elks/encoding/system_encodings.html">SYSTEM_ENCODINGS</A>}.<A HREF="../elks/encoding/system_encodings.html#f_utf8">utf8</A>;
+                utf32.<A HREF="../elks/encoding/encoding.html#f_convert_to">convert_to</A> (utf8, s)
+                <B>if</B> utf32.<A HREF="../elks/encoding/encoding.html#f_last_conversion_successful">last_conversion_successful</A> <B>then</B>
+                    str := utf32.<A HREF="../elks/encoding/encoding.html#f_last_converted_string_8">last_converted_string_8</A>
+                    <B>if</B> <B>not</B> utf8.<A HREF="../elks/encoding/encoding.html#f_same_as">same_as</A> (l_encoding) <B>then</B>
+                        utf8.<A HREF="../elks/encoding/encoding.html#f_convert_to">convert_to</A> (l_encoding, str)
+                        <B>if</B> utf8.<A HREF="../elks/encoding/encoding.html#f_last_conversion_successful">last_conversion_successful</A> <B>then</B>
+                            str := utf8.<A HREF="../elks/encoding/encoding.html#f_last_converted_string_8">last_converted_string_8</A>
+                        <B>end</B>
+                    <B>end</B>
+                <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_valid_as_string_8">is_valid_as_string_8</A> <B>then</B>
+                    str := s.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                <B>else</B>
+                    str := {<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_string_32_to_utf_8_string_8">string_32_to_utf_8_string_8</A> (s.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                <B>end</B>
+            <B>end</B>
+            <A HREF="../elks/file.html#f_put_string">put_string</A> (str)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Input</FONT>
+
+    <A NAME="f_read_integer_64"><A HREF="../elks/plain_text_file.html#f_read_integer_64">read_integer_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 64-bit integer</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_integer_64">last_integer_64</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_integer_64">last_integer_64</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_integer_64">parsed_integer_64</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_integer"><A HREF="../elks/plain_text_file.html#f_read_integer">read_integer</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 32-bit integer</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_integer">last_integer</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_readint">readint</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_integer_32">read_integer_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_integer">last_integer</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_integer_32">parsed_integer_32</A>
+        <B>end</B></A>
+
+    <A NAME="f_readint"><A HREF="../elks/plain_text_file.html#f_readint">readint</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 32-bit integer</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_integer">last_integer</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_integer">read_integer</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_integer_32">read_integer_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_integer">last_integer</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_integer_32">parsed_integer_32</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_integer_32"><A HREF="../elks/plain_text_file.html#f_read_integer_32">read_integer_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 32-bit integer</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_integer">last_integer</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_integer">read_integer</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_readint">readint</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_integer">last_integer</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_integer_32">parsed_integer_32</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_integer_16"><A HREF="../elks/plain_text_file.html#f_read_integer_16">read_integer_16</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 16-bit integer</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_integer_16">last_integer_16</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_integer_16">last_integer_16</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_integer_16">parsed_integer_16</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_integer_8"><A HREF="../elks/plain_text_file.html#f_read_integer_8">read_integer_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 8-bit integer</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_integer_8">last_integer_8</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_integer_8">last_integer_8</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_integer_8">parsed_integer_8</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_natural_64"><A HREF="../elks/plain_text_file.html#f_read_natural_64">read_natural_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 64-bit natural</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_natural_64">last_natural_64</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_natural_64">last_natural_64</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_natural_64">parsed_natural_64</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_natural"><A HREF="../elks/plain_text_file.html#f_read_natural">read_natural</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 32-bit natural</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_natural">last_natural</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_natural_32">read_natural_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_natural">last_natural</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_natural_32">parsed_natural_32</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_natural_32"><A HREF="../elks/plain_text_file.html#f_read_natural_32">read_natural_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 32-bit natural</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_natural">last_natural</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_natural">read_natural</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_natural">last_natural</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_natural_32">parsed_natural_32</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_natural_16"><A HREF="../elks/plain_text_file.html#f_read_natural_16">read_natural_16</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 16-bit natural</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_natural_16">last_natural_16</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_natural_16">last_natural_16</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_natural_16">parsed_natural_16</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_natural_8"><A HREF="../elks/plain_text_file.html#f_read_natural_8">read_natural_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new 8-bit natural</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_natural_8">last_natural_8</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <A HREF="../elks/io_medium.html#f_last_natural_8">last_natural_8</A> := <A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>.<A HREF="../elks/string_to_integer_convertor.html#f_parsed_natural_8">parsed_natural_8</A>
+        <B>end</B></A>
+
+    <A NAME="f_read_real"><A HREF="../elks/plain_text_file.html#f_read_real">read_real</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new real</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_real">last_real</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_readreal">readreal</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_real_32">read_real_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/io_medium.html#f_last_real">last_real</A> := <A HREF="../elks/plain_text_file.html#f_file_gr">file_gr</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>)
+        <B>end</B></A>
+
+    <A NAME="f_readreal"><A HREF="../elks/plain_text_file.html#f_readreal">readreal</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new real</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_real">last_real</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_real">read_real</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_real_32">read_real_32</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/io_medium.html#f_last_real">last_real</A> := <A HREF="../elks/plain_text_file.html#f_file_gr">file_gr</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>)
+        <B>end</B></A>
+
+    <A NAME="f_read_real_32"><A HREF="../elks/plain_text_file.html#f_read_real_32">read_real_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new real</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_real">last_real</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_real">read_real</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_readreal">readreal</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/io_medium.html#f_last_real">last_real</A> := <A HREF="../elks/plain_text_file.html#f_file_gr">file_gr</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>)
+        <B>end</B></A>
+
+    <A NAME="f_read_double"><A HREF="../elks/plain_text_file.html#f_read_double">read_double</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new double</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_double">last_double</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_readdouble">readdouble</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_real_64">read_real_64</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/io_medium.html#f_last_double">last_double</A> := <A HREF="../elks/plain_text_file.html#f_file_gd">file_gd</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>)
+        <B>end</B></A>
+
+    <A NAME="f_readdouble"><A HREF="../elks/plain_text_file.html#f_readdouble">readdouble</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new double</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_double">last_double</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_double">read_double</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_real_64">read_real_64</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/io_medium.html#f_last_double">last_double</A> := <A HREF="../elks/plain_text_file.html#f_file_gd">file_gd</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>)
+        <B>end</B></A>
+
+    <A NAME="f_read_real_64"><A HREF="../elks/plain_text_file.html#f_read_real_64">read_real_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read the ASCII representation of a new double</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from file. Make result available in </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/io_medium.html#f_last_double">last_double</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_double">read_double</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_readdouble">readdouble</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../elks/io_medium.html#f_last_double">last_double</A> := <A HREF="../elks/plain_text_file.html#f_file_gd">file_gd</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>)
+        <B>end</B></A>
+
+    <A NAME="f_read_to_string"><A HREF="../elks/plain_text_file.html#f_read_to_string">read_to_string</A> (a_string: <A HREF="../elks/string_8.html">STRING_8</A>; pos, nb: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fill </FONT><I>a_string</I><FONT COLOR="red">, starting at position </FONT><I>pos</I><FONT COLOR="red"> with at</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> most </FONT><I>nb</I><FONT COLOR="red"> characters read from current file.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return the number of characters actually read.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../elks/file.html#f_file_gss">file_gss</A> (<A HREF="../elks/file.html#f_file_pointer">file_pointer</A>, a_string.<A HREF="../elks/string_8.html#f_area">area</A>.<A HREF="../elks/special.html#f_item_address">item_address</A> (pos - 1), nb);
+            a_string.<A HREF="../elks/string_general.html#f_reset_hash_codes">reset_hash_codes</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Unicode input</FONT>
+
+    <A NAME="f_last_string_32"><A HREF="../elks/plain_text_file.html#f_last_string_32">last_string_32</A>: <A HREF="../elks/string_32.html">STRING_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Last unicode string read.</FONT>
+
+    <A NAME="f_read_unicode_line"><A HREF="../elks/plain_text_file.html#f_read_unicode_line">read_unicode_line</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read a line as STRING_32.</FONT>
+        <B>local</B>
+            utf32: <A HREF="../elks/encoding/encoding.html">ENCODING</A>
+        <B>do</B>
+            <A HREF="../elks/file.html#f_read_line">read_line</A>
+            utf32 := {<A HREF="../elks/encoding/system_encodings.html">SYSTEM_ENCODINGS</A>}.<A HREF="../elks/encoding/system_encodings.html#f_utf32">utf32</A>;
+            <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>.<A HREF="../elks/encoding/encoding.html#f_convert_to">convert_to</A> (utf32, <A HREF="../elks/io_medium.html#f_last_string">last_string</A>)
+            <B>if</B> <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>.<A HREF="../elks/encoding/encoding.html#f_last_conversion_successful">last_conversion_successful</A> <B>then</B>
+                <A HREF="../elks/plain_text_file.html#f_last_string_32">last_string_32</A>.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>;
+                <A HREF="../elks/plain_text_file.html#f_last_string_32">last_string_32</A>.<A HREF="../elks/string_32.html#f_append">append</A> (<A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>.<A HREF="../elks/encoding/encoding.html#f_last_converted_string_32">last_converted_string_32</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Encoding</FONT>
+
+    <A NAME="f_encoding"><A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>: <A HREF="../elks/encoding/encoding.html">ENCODING</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated encoding.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../elks/plain_text_file.html#f_internal_encoding">internal_encoding</A> <B>as</B> l_encoding <B>then</B>
+                <B>Result</B> := l_encoding
+            <B>else</B>
+                <B>Result</B> := <A HREF="../elks/plain_text_file.html#f_default_encoding">Default_encoding</A>
+                <A HREF="../elks/plain_text_file.html#f_internal_encoding">internal_encoding</A> := <B>Result</B>
+            <B>end</B>
+        <B>ensure</B>
+            encoding_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_default_encoding"><A HREF="../elks/plain_text_file.html#f_default_encoding">Default_encoding</A>: <A HREF="../elks/encoding/encoding.html">ENCODING</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Default value for </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_encoding">encoding</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>once</B>
+            <B>Result</B> := {<A HREF="../elks/encoding/system_encodings.html">SYSTEM_ENCODINGS</A>}.<A HREF="../elks/encoding/system_encodings.html#f_utf8">utf8</A>
+        <B>ensure</B>
+            default_encoding_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_encoding"><A HREF="../elks/plain_text_file.html#f_set_encoding">set_encoding</A> (enc: <B>like</B> <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set associated </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_encoding">encoding</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> with </FONT><I>enc</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            enc_not_void: enc /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_internal_encoding">internal_encoding</A> := enc
+        <B>ensure</B>
+            encoding_set: <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A> = enc
+        <B>end</B></A>
+
+    <A NAME="f_set_utf8_encoding"><A HREF="../elks/plain_text_file.html#f_set_utf8_encoding">set_utf8_encoding</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_encoding">encoding</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to UTF-8.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_set_encoding">set_encoding</A> ({<A HREF="../elks/encoding/system_encodings.html">SYSTEM_ENCODINGS</A>}.<A HREF="../elks/encoding/system_encodings.html#f_utf8">utf8</A>)
+        <B>ensure</B>
+            encoding_set: <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A> = {<A HREF="../elks/encoding/system_encodings.html">SYSTEM_ENCODINGS</A>}.<A HREF="../elks/encoding/system_encodings.html#f_utf8">utf8</A>
+        <B>end</B></A>
+
+    <A NAME="f_detect_encoding"><A HREF="../elks/plain_text_file.html#f_detect_encoding">detect_encoding</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Detect and update </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_encoding">encoding</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> according to BOM detection.</FONT>
+        <B>require</B>
+            <A HREF="../elks/file.html#f_is_open_read">is_open_read</A>
+        <B>local</B>
+            pos: <B>like</B> <A HREF="../elks/file.html#f_position">position</A>
+            c1, c2, c3, c4: <A HREF="../elks/character_8.html">CHARACTER_8</A>
+        <B>do</B>
+            pos := <A HREF="../elks/file.html#f_position">position</A>
+            <A HREF="../elks/file.html#f_start">start</A>
+            <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                <A HREF="../elks/file.html#f_read_character">read_character</A>
+                c1 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                <B>inspect</B> c1
+                <B>when</B> 'ï' <B>then</B>
+                    <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                        <A HREF="../elks/file.html#f_read_character">read_character</A>
+                        c2 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                        <B>if</B> c2 = '»' <B>then</B>
+                            <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                                <A HREF="../elks/file.html#f_read_character">read_character</A>
+                                c3 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                                <B>if</B> c3 = '¿' <B>then</B>
+                                    <A HREF="../elks/plain_text_file.html#f_set_utf8_encoding">set_utf8_encoding</A>
+                                <B>else</B>
+                                    <A HREF="../elks/file.html#f_back">back</A>
+                                <B>end</B>
+                            <B>end</B>
+                        <B>else</B>
+                            <A HREF="../elks/file.html#f_back">back</A>
+                        <B>end</B>
+                    <B>end</B>
+                <B>when</B> 'ÿ' <B>then</B>
+                    <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                        <A HREF="../elks/file.html#f_read_character">read_character</A>
+                        c2 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                        <B>if</B> c2 = 'þ' <B>then</B>
+                            <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                                <A HREF="../elks/file.html#f_read_character">read_character</A>
+                                c3 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                                <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                                    <A HREF="../elks/file.html#f_read_character">read_character</A>
+                                    c4 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                                <B>end</B>
+                                <B>if</B> c3 = '%U' <B>and</B> c4 = '%U' <B>then</B>
+                                    <A HREF="../elks/plain_text_file.html#f_set_encoding">set_encoding</A> (<B>create</B> {<A HREF="../elks/encoding/encoding.html">ENCODING</A>}.<A HREF="../elks/encoding/encoding.html#f_make">make</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>) <B>end</B>)
+                                <B>else</B>
+                                    <A HREF="../elks/plain_text_file.html#f_set_encoding">set_encoding</A> (<B>create</B> {<A HREF="../elks/encoding/encoding.html">ENCODING</A>}.<A HREF="../elks/encoding/encoding.html#f_make">make</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>) <B>end</B>)
+                                    <A HREF="../elks/file.html#f_back">back</A>
+                                    <A HREF="../elks/file.html#f_back">back</A>
+                                <B>end</B>
+                            <B>end</B>
+                        <B>else</B>
+                            <A HREF="../elks/file.html#f_back">back</A>
+                        <B>end</B>
+                    <B>end</B>
+                <B>when</B> 'þ' <B>then</B>
+                    <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                        <A HREF="../elks/file.html#f_read_character">read_character</A>
+                        c2 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                        <B>if</B> c2 = 'ÿ' <B>then</B>
+                            <A HREF="../elks/plain_text_file.html#f_set_encoding">set_encoding</A> (<B>create</B> {<A HREF="../elks/encoding/encoding.html">ENCODING</A>}.<A HREF="../elks/encoding/encoding.html#f_make">make</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>) <B>end</B>)
+                        <B>else</B>
+                            <A HREF="../elks/file.html#f_back">back</A>
+                        <B>end</B>
+                    <B>end</B>
+                <B>when</B> '%U' <B>then</B>
+                    <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                        <A HREF="../elks/file.html#f_read_character">read_character</A>
+                        c2 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                        <B>if</B> c2 = '%U' <B>then</B>
+                            <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                                <A HREF="../elks/file.html#f_read_character">read_character</A>
+                                c3 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                                <B>if</B> c3 = 'þ' <B>then</B>
+                                    <B>if</B> <A HREF="../elks/sequence.html#f_readable">readable</A> <B>then</B>
+                                        <A HREF="../elks/file.html#f_read_character">read_character</A>
+                                        c4 := <A HREF="../elks/io_medium.html#f_last_character">last_character</A>
+                                        <B>if</B> c4 = 'ÿ' <B>then</B>
+                                            <A HREF="../elks/plain_text_file.html#f_set_encoding">set_encoding</A> (<B>create</B> {<A HREF="../elks/encoding/encoding.html">ENCODING</A>}.<A HREF="../elks/encoding/encoding.html#f_make">make</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>) <B>end</B>)
+                                        <B>else</B>
+                                            <A HREF="../elks/file.html#f_back">back</A>
+                                        <B>end</B>
+                                    <B>end</B>
+                                <B>else</B>
+                                    <A HREF="../elks/file.html#f_back">back</A>
+                                <B>end</B>
+                            <B>end</B>
+                        <B>else</B>
+                            <A HREF="../elks/file.html#f_back">back</A>
+                        <B>end</B>
+                    <B>end</B>
+                <B>else</B>
+                    <A HREF="../elks/file.html#f_back">back</A>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> pos /= 0 <B>then</B>
+                <A HREF="../elks/file.html#f_go">go</A> (pos)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_put_encoding_bom"><A HREF="../elks/plain_text_file.html#f_put_encoding_bom">put_encoding_bom</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put Byte Order Mark (BOM) related to </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_encoding">encoding</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            is_open_write: <A HREF="../elks/file.html#f_is_open_write">is_open_write</A>
+            at_beginning: <A HREF="../elks/file.html#f_position">position</A> = 0
+        <B>local</B>
+            cp: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            cp := <A HREF="../elks/plain_text_file.html#f_encoding">encoding</A>.<A HREF="../elks/encoding/encoding.html#f_code_page">code_page</A>
+            <B>if</B> cp.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>) <B>then</B>
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('ï')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('»')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('¿')
+            <B>elseif</B> cp.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>) <B>then</B>
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('ÿ')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('þ')
+            <B>elseif</B> cp.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>) <B>then</B>
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('þ')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('ÿ')
+            <B>elseif</B> cp.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>) <B>then</B>
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('ÿ')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('þ')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('%U')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('%U')
+            <B>elseif</B> cp.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>) <B>then</B>
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('%U')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('%U')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('þ')
+                <A HREF="../elks/file.html#f_put_character">put_character</A> ('ÿ')
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Encoding</FONT>
+
+    <A NAME="f_internal_encoding"><A HREF="../elks/plain_text_file.html#f_internal_encoding">internal_encoding</A>: <B>detachable</B> <A HREF="../elks/encoding/encoding.html">ENCODING</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Internal value for </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_encoding">encoding</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_ctoi_convertor"><A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>: <A HREF="../elks/string_to_integer_convertor.html">STRING_TO_INTEGER_CONVERTOR</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convertor used to parse string to integer or natural</FONT>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/string_to_integer_convertor.html#f_make">make</A>;
+            <B>Result</B>.<A HREF="../elks/string_to_numeric_convertor.html#f_set_leading_separators">set_leading_separators</A> (<A HREF="../elks/plain_text_file.html#f_internal_leading_separators">Internal_leading_separators</A>);
+            <B>Result</B>.<A HREF="../elks/string_to_numeric_convertor.html#f_set_leading_separators_acceptable">set_leading_separators_acceptable</A> (<B>True</B>);
+            <B>Result</B>.<A HREF="../elks/string_to_numeric_convertor.html#f_set_trailing_separators_acceptable">set_trailing_separators_acceptable</A> (<B>False</B>)
+        <B>end</B></A>
+
+    <A NAME="f_internal_leading_separators"><A HREF="../elks/plain_text_file.html#f_internal_leading_separators">Internal_leading_separators</A>: <A HREF="../elks/string_8.html">STRING_8</A> = " %N%R%T"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Characters that are considered as leading separators</FONT>
+
+    <A NAME="f_is_sequence_an_expected_numeric"><A HREF="../elks/plain_text_file.html#f_is_sequence_an_expected_numeric">is_sequence_an_expected_numeric</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is last number sequence read by </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_read_number_sequence">read_number_sequence</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> an expected numeric?</FONT>
+
+    <A NAME="f_read_number_sequence"><A HREF="../elks/plain_text_file.html#f_read_number_sequence">read_number_sequence</A> (convertor: <A HREF="../elks/string_to_numeric_convertor.html">STRING_TO_NUMERIC_CONVERTOR</A>; conversion_type: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read a number sequence from current position and parse this</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> sequence using </FONT><I>convertor</I><FONT COLOR="red"> to see if it is a valid numeric.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/plain_text_file.html#f_is_sequence_an_expected_numeric">is_sequence_an_expected_numeric</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> with True if it is valid.</FONT>
+        <B>do</B>
+            convertor.<A HREF="../elks/string_to_numeric_convertor.html#f_reset">reset</A> (conversion_type)
+            <B>from</B>
+                <A HREF="../elks/plain_text_file.html#f_is_sequence_an_expected_numeric">is_sequence_an_expected_numeric</A> := <B>True</B>
+            <B>until</B>
+                <A HREF="../elks/file.html#f_end_of_file">end_of_file</A> <B>or else</B> <B>not</B> <A HREF="../elks/plain_text_file.html#f_is_sequence_an_expected_numeric">is_sequence_an_expected_numeric</A>
+            <B>loop</B>
+                <A HREF="../elks/file.html#f_read_character">read_character</A>
+                <B>if</B> <B>not</B> <A HREF="../elks/file.html#f_end_of_file">end_of_file</A> <B>then</B>
+                    convertor.<A HREF="../elks/string_to_numeric_convertor.html#f_parse_character">parse_character</A> (<A HREF="../elks/io_medium.html#f_last_character">last_character</A>)
+                    <A HREF="../elks/plain_text_file.html#f_is_sequence_an_expected_numeric">is_sequence_an_expected_numeric</A> := convertor.<A HREF="../elks/string_to_numeric_convertor.html#f_parse_successful">parse_successful</A>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_read_integer_with_no_type"><A HREF="../elks/plain_text_file.html#f_read_integer_with_no_type">read_integer_with_no_type</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read a ASCII representation of number of </FONT><I>type</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> at current position.</FONT>
+        <B>do</B>
+            <A HREF="../elks/plain_text_file.html#f_read_number_sequence">read_number_sequence</A> (<A HREF="../elks/plain_text_file.html#f_ctoi_convertor">Ctoi_convertor</A>, {<A HREF="../elks/numeric_information.html">NUMERIC_INFORMATION</A>}.<A HREF="../elks/numeric_information.html#f_type_no_limitation">type_no_limitation</A>)
+            <B>if</B> <B>not</B> <A HREF="../elks/plain_text_file.html#f_is_sequence_an_expected_numeric">is_sequence_an_expected_numeric</A> <B>then</B>
+                <A HREF="../elks/plain_text_file.html#f_return_characters">return_characters</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_return_characters"><A HREF="../elks/plain_text_file.html#f_return_characters">return_characters</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return character(s)</FONT>
+        <B>do</B>
+            <B>if</B> <A HREF="../elks/io_medium.html#f_last_character">last_character</A> = '%N' <B>and</B> {<A HREF="../elks/platform.html">PLATFORM</A>}.<A HREF="../elks/platform.html#f_is_windows">is_windows</A> <B>then</B>
+                <A HREF="../elks/file.html#f_back">back</A>
+            <B>end</B>
+            <A HREF="../elks/file.html#f_back">back</A>
+        <B>end</B></A>
+
+    <A NAME="f_file_gi"><A HREF="../elks/plain_text_file.html#f_file_gi">file_gi</A> (file: <A HREF="../elks/pointer.html">POINTER</A>): <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Get an integer from </FONT><I>file</I>
+        <B>external</B>
+            "C signature (FILE *): EIF_INTEGER use %"eif_file.h%""
+        <B>alias</B>
+            "eif_file_gi"
+        <B>end</B></A>
+
+    <A NAME="f_file_gr"><A HREF="../elks/plain_text_file.html#f_file_gr">file_gr</A> (file: <A HREF="../elks/pointer.html">POINTER</A>): <A HREF="../elks/real_32.html">REAL_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read a real from </FONT><I>file</I>
+        <B>external</B>
+            "C signature (FILE *): EIF_REAL_32 use %"eif_file.h%""
+        <B>alias</B>
+            "eif_file_gr"
+        <B>end</B></A>
+
+    <A NAME="f_file_gd"><A HREF="../elks/plain_text_file.html#f_file_gd">file_gd</A> (file: <A HREF="../elks/pointer.html">POINTER</A>): <A HREF="../elks/real_64.html">REAL_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read a double from </FONT><I>file</I>
+        <B>external</B>
+            "C signature (FILE *): EIF_REAL_64 use %"eif_file.h%""
+        <B>alias</B>
+            "eif_file_gd"
+        <B>end</B></A>
+
+    <A NAME="f_file_pi"><A HREF="../elks/plain_text_file.html#f_file_pi">file_pi</A> (file: <A HREF="../elks/pointer.html">POINTER</A>; n: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put </FONT><I>n</I><FONT COLOR="red"> to end of </FONT><I>file</I><FONT COLOR="red">.</FONT>
+        <B>external</B>
+            "C signature (FILE *, EIF_INTEGER) use %"eif_file.h%""
+        <B>alias</B>
+            "eif_file_pi"
+        <B>end</B></A>
+
+    <A NAME="f_file_pr"><A HREF="../elks/plain_text_file.html#f_file_pr">file_pr</A> (file: <A HREF="../elks/pointer.html">POINTER</A>; r: <A HREF="../elks/real_32.html">REAL_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put </FONT><I>r</I><FONT COLOR="red"> to end of </FONT><I>file</I><FONT COLOR="red">.</FONT>
+        <B>external</B>
+            "C signature (FILE *, EIF_REAL_32) use %"eif_file.h%""
+        <B>alias</B>
+            "eif_file_pr"
+        <B>end</B></A>
+
+    <A NAME="f_file_pd"><A HREF="../elks/plain_text_file.html#f_file_pd">file_pd</A> (file: <A HREF="../elks/pointer.html">POINTER</A>; d: <A HREF="../elks/real_64.html">REAL_64</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put </FONT><I>d</I><FONT COLOR="red"> to end of </FONT><I>file</I><FONT COLOR="red">.</FONT>
+        <B>external</B>
+            "C signature (FILE *, EIF_REAL_64) use %"eif_file.h%""
+        <B>alias</B>
+            "eif_file_pd"
+        <B>end</B></A>
+    
+<B>invariant</B>
+    plain_text: <A HREF="../elks/plain_text_file.html#f_is_plain_text">is_plain_text</A>
+
+<B>note</B>
+    copyright: "Copyright (c) 1984-2020, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="plain_text_file_chart.html">Chart</A></TD><TD><A HREF="plain_text_file_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

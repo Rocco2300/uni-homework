@@ -1,0 +1,100 @@
+<HTML><HEAD>
+<meta name="description" content="Maintenance filter."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2014, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_maintenance_filter Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_maintenance_filter_chart.html">Chart</A></TD><TD><A HREF="wsf_maintenance_filter_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Maintenance filter."
+    date: "$Date: 2020-11-03 14:05:35 +0000 (Tue, 03 Nov 2020) $"
+    revision: "$Revision: 104855 $"
+
+<B>class</B> 
+    <A HREF="../router/wsf_maintenance_filter.html">WSF_MAINTENANCE_FILTER</A>
+
+<B>inherit</B>
+    <A HREF="../router/wsf_filter.html">WSF_FILTER</A>
+        <B>redefine</B>
+            <A HREF="../router/wsf_maintenance_filter.html#f_default_create">default_create</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../router/wsf_maintenance_filter.html#f_default_create">default_create</A>,
+    <A HREF="../router/wsf_maintenance_filter.html#f_make_with_name">make_with_name</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_default_create"><A HREF="../router/wsf_maintenance_filter.html#f_default_create">default_create</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Process instances of classes with no creation clause.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> (Default: do nothing.)</FONT>
+        <B>do</B>
+            <B>Precursor</B>
+            <A HREF="../router/wsf_maintenance_filter.html#f_make_with_name">make_with_name</A> (".maintenance")
+        <B>end</B></A>
+
+    <A NAME="f_make_with_name"><A HREF="../router/wsf_maintenance_filter.html#f_make_with_name">make_with_name</A> (fn: <B>like</B> <A HREF="../router/wsf_maintenance_filter.html#f_maintenance_fn">maintenance_fn</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_maintenance_filter.html#f_maintenance_fn">maintenance_fn</A> := fn
+        <B>end</B></A>
+
+    <A NAME="f_maintenance_fn"><A HREF="../router/wsf_maintenance_filter.html#f_maintenance_fn">maintenance_fn</A>: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Basic operations</FONT>
+
+    <A NAME="f_execute"><A HREF="../router/wsf_maintenance_filter.html#f_execute">execute</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execute the filter</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            f: <A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>
+        <B>do</B>
+            <B>create</B> f.<A HREF="../elks/plain_text_file.html#f_make_with_name">make_with_name</A> (<A HREF="../router/wsf_maintenance_filter.html#f_maintenance_fn">maintenance_fn</A>)
+            <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>then</B>
+                <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make">make</A> (64)
+                <B>if</B> f.<A HREF="../elks/file.html#f_is_access_readable">is_access_readable</A> <B>then</B>
+                    f.<A HREF="../elks/file.html#f_open_read">open_read</A>
+                    <B>from</B>
+                    <B>until</B>
+                        f.<A HREF="../elks/linear.html#f_exhausted">exhausted</A>
+                    <B>loop</B>
+                        f.<A HREF="../elks/file.html#f_read_line">read_line</A>;
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (f.<A HREF="../elks/io_medium.html#f_last_string">last_string</A>);
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('%N')
+                    <B>end</B>;
+                    f.<A HREF="../elks/file.html#f_close">close</A>
+                <B>end</B>
+                <B>if</B> s.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("In maintenance, please come back later ...")
+                <B>end</B>
+                <B>create</B> h.<A HREF="../src/http_header.html#f_make_with_count">make_with_count</A> (1);
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A>;
+                res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_service_unavailable">service_unavailable</A>);
+                res.<A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (h);
+                res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s)
+            <B>else</B>
+                <A HREF="../router/wsf_filter.html#f_execute_next">execute_next</A> (req, res)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2014, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_maintenance_filter.html">WSF_MAINTENANCE_FILTER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_maintenance_filter_chart.html">Chart</A></TD><TD><A HREF="wsf_maintenance_filter_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

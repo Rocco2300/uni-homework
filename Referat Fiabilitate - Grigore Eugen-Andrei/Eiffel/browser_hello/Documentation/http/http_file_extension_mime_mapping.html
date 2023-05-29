@@ -1,0 +1,252 @@
+<HTML><HEAD>
+<meta name="description" content="Various common MIME types for file extensions  See also for longer list and description http://www.webmaster-toolkit.com/mime-types.shtml  Please suggest missing entries"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2013, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_file_extension_mime_mapping Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_file_extension_mime_mapping_chart.html">Chart</A></TD><TD><A HREF="http_file_extension_mime_mapping_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Various common MIME types for file extensions
+        
+        See also for longer list and description
+        <a href="http://www.webmaster-toolkit.com/mime-types.shtml">http://www.webmaster-toolkit.com/mime-types.shtml</a>
+        
+        Please suggest missing entries
+    ]"
+    date: "$Date: 2022-01-27 09:32:17 +0000 (Thu, 27 Jan 2022) $"
+    revision: "$Revision: 106139 $"
+
+<B>class</B> 
+    <A HREF="../src/http_file_extension_mime_mapping.html">HTTP_FILE_EXTENSION_MIME_MAPPING</A>
+
+<B>inherit</B>
+    <A HREF="../elks/any.html">ANY</A>
+
+    <A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../src/http_file_extension_mime_mapping.html#f_make_empty">make_empty</A>,
+    <A HREF="../src/http_file_extension_mime_mapping.html#f_make_default">make_default</A>,
+    <A HREF="../src/http_file_extension_mime_mapping.html#f_make_from_string">make_from_string</A>,
+    <A HREF="../src/http_file_extension_mime_mapping.html#f_make_from_file">make_from_file</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_empty"><A HREF="../src/http_file_extension_mime_mapping.html#f_make_empty">make_empty</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create with no mapping</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> but one can use </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_file_extension_mime_mapping.html#f_map">map</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to add new mapping</FONT>
+        <B>do</B>
+            <B>create</B> <A HREF="../src/http_file_extension_mime_mapping.html#f_mapping">mapping</A>.<A HREF="../elks/string_table.html#f_make_caseless">make_caseless</A> (n)
+        <B>end</B></A>
+
+    <A NAME="f_make_default"><A HREF="../src/http_file_extension_mime_mapping.html#f_make_default">make_default</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create with default limited mapping</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> One can use </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_file_extension_mime_mapping.html#f_map">map</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to add new mapping</FONT>
+        <B>local</B>
+            m: <B>like</B> <A HREF="../src/http_file_extension_mime_mapping.html#f_mapping">mapping</A>
+        <B>do</B>
+            <B>create</B> m.<A HREF="../elks/string_table.html#f_make_caseless">make_caseless</A> (40)
+            <A HREF="../src/http_file_extension_mime_mapping.html#f_mapping">mapping</A> := m;
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_text_css">Text_css</A>, "css");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_text_html">Text_html</A>, "html");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_text_xml">Text_xml</A>, "xml");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_json">Application_json</A>, "json");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_javascript">Application_javascript</A>, "js");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_rss_xml">Application_rss_xml</A>, "rss");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_atom_xml">Application_atom_xml</A>, "atom");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_image_x_ico">Image_x_ico</A>, "ico");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_image_gif">Image_gif</A>, "gif");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_image_jpeg">Image_jpeg</A>, "jpeg");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_image_jpg">Image_jpg</A>, "jpg");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_image_png">Image_png</A>, "png");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_image_svg_xml">Image_svg_xml</A>, "svg");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_zip">Application_zip</A>, "zip");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_x_bzip">Application_x_bzip</A>, "bz");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_x_bzip2">Application_x_bzip2</A>, "bz2");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_x_gzip">Application_x_gzip</A>, "gz");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_x_gzip">Application_x_gzip</A>, "gzip");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_x_tar">Application_x_tar</A>, "tar");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_x_compressed">Application_x_compressed</A>, "tgz");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_postscript">Application_postscript</A>, "ps");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_pdf">Application_pdf</A>, "pdf");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_application_x_shockwave_flash">Application_x_shockwave_flash</A>, "swf");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_text_plain">Text_plain</A>, "conf");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_text_plain">Text_plain</A>, "log");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_text_plain">Text_plain</A>, "text");
+            m.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/http_mime_types.html#f_text_plain">Text_plain</A>, "txt")
+        <B>end</B></A>
+
+    <A NAME="f_make_from_file"><A HREF="../src/http_file_extension_mime_mapping.html#f_make_from_file">make_from_file</A> (fn: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create with mime.types file</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> One can use </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_file_extension_mime_mapping.html#f_map">map</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to add new mapping</FONT>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_name">make_with_name</A> (fn)
+            <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>and then</B> f.<A HREF="../elks/file.html#f_is_readable">is_readable</A> <B>then</B>
+                <A HREF="../src/http_file_extension_mime_mapping.html#f_make_empty">make_empty</A> (50);
+                f.<A HREF="../elks/file.html#f_open_read">open_read</A>
+                <B>from</B>
+                    f.<A HREF="../elks/file.html#f_read_line">read_line</A>
+                <B>until</B>
+                    f.<A HREF="../elks/linear.html#f_exhausted">exhausted</A> <B>or</B> f.<A HREF="../elks/file.html#f_end_of_file">end_of_file</A>
+                <B>loop</B>
+                    <A HREF="../src/http_file_extension_mime_mapping.html#f_add_mapping_line">add_mapping_line</A> (f.<A HREF="../elks/io_medium.html#f_last_string">last_string</A>);
+                    f.<A HREF="../elks/file.html#f_read_line">read_line</A>
+                <B>end</B>;
+                f.<A HREF="../elks/file.html#f_close">close</A>
+            <B>else</B>
+                <A HREF="../src/http_file_extension_mime_mapping.html#f_make_empty">make_empty</A> (0)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_make_from_string"><A HREF="../src/http_file_extension_mime_mapping.html#f_make_from_string">make_from_string</A> (t: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set mapping from multiline string </FONT><I>t</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> line should be formatted as in </FONT><FONT COLOR="red">http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types</FONT>
+        <B>local</B>
+            i, j, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <A HREF="../src/http_file_extension_mime_mapping.html#f_make_empty">make_empty</A> (10)
+            n := t.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>if</B> n &gt; 0 <B>then</B>
+                <B>from</B>
+                    i := 1
+                <B>until</B>
+                    i = 0 <B>or</B> i &gt; n
+                <B>loop</B>
+                    j := t.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('%N', i)
+                    <B>if</B> j &gt; 0 <B>then</B>
+                        <A HREF="../src/http_file_extension_mime_mapping.html#f_add_mapping_line">add_mapping_line</A> (t.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, j - 1))
+                        i := j + 1
+                    <B>else</B>
+                        <A HREF="../src/http_file_extension_mime_mapping.html#f_add_mapping_line">add_mapping_line</A> (t.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, n))
+                        i := 0
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_mime_type"><A HREF="../src/http_file_extension_mime_mapping.html#f_mime_type">mime_type</A> (ext: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Mime type for extension </FONT><I>ext</I>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_file_extension_mime_mapping.html#f_mapping">mapping</A>.<A HREF="../elks/hash_table.html#f_item">item</A> (ext.<A HREF="../elks/readable_string_general.html#f_as_lower">as_lower</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_map"><A HREF="../src/http_file_extension_mime_mapping.html#f_map">map</A> (e: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; t: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add mapping extension </FONT><I>e</I><FONT COLOR="red"> to mime type </FONT><I>t</I>
+        <B>do</B>
+            <A HREF="../src/http_file_extension_mime_mapping.html#f_mapping">mapping</A>.<A HREF="../elks/hash_table.html#f_force">force</A> (t, e.<A HREF="../elks/readable_string_general.html#f_as_lower">as_lower</A>)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_add_mapping_line"><A HREF="../src/http_file_extension_mime_mapping.html#f_add_mapping_line">add_mapping_line</A> (t: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+        <B>local</B>
+            i, j, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_type, l_ext: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            n := t.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>if</B> n &gt; 0 <B>then</B>
+                i := <A HREF="../src/http_file_extension_mime_mapping.html#f_next_non_blank_position">next_non_blank_position</A> (t, i)
+                <B>if</B> i &gt; 0 <B>then</B>
+                    <B>if</B> t [i] = '#' <B>then</B>
+                    <B>else</B>
+                        j := <A HREF="../src/http_file_extension_mime_mapping.html#f_next_blank_position">next_blank_position</A> (t, i)
+                        <B>if</B> j &gt; i <B>then</B>
+                            l_type := t.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, j - 1)
+                            <B>from</B>
+                            <B>until</B>
+                                i = 0
+                            <B>loop</B>
+                                i := <A HREF="../src/http_file_extension_mime_mapping.html#f_next_non_blank_position">next_non_blank_position</A> (t, j)
+                                <B>if</B> i &gt; 0 <B>then</B>
+                                    j := <A HREF="../src/http_file_extension_mime_mapping.html#f_next_blank_position">next_blank_position</A> (t, i)
+                                    <B>if</B> j = 0 <B>then</B>
+                                        l_ext := t.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, n)
+                                        i := 0
+                                    <B>else</B>
+                                        l_ext := t.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, j - 1)
+                                        i := j
+                                    <B>end</B>
+                                    <A HREF="../src/http_file_extension_mime_mapping.html#f_map">map</A> (l_ext, l_type)
+                                <B>end</B>
+                            <B>end</B>
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_next_blank_position"><A HREF="../src/http_file_extension_mime_mapping.html#f_next_blank_position">next_blank_position</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; p: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>local</B>
+            i, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            n := s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>from</B>
+                i := p + 1
+            <B>until</B>
+                i &gt; n <B>or</B> s [i].<A HREF="../elks/character_8_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> i &lt;= n <B>then</B>
+                <B>Result</B> := i
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_next_non_blank_position"><A HREF="../src/http_file_extension_mime_mapping.html#f_next_non_blank_position">next_non_blank_position</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; p: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>local</B>
+            i, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            n := s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>from</B>
+                i := p + 1
+            <B>until</B>
+                i &gt; n <B>or</B> <B>not</B> s [i].<A HREF="../elks/character_8_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> i &lt;= n <B>then</B>
+                <B>Result</B> := i
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Extension MIME mapping</FONT>
+
+    <A NAME="f_mapping"><A HREF="../src/http_file_extension_mime_mapping.html#f_mapping">mapping</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]</A>
+    
+<B>invariant</B>
+    mapping_keys_are_lowercase: <B>across</B>
+            <A HREF="../src/http_file_extension_mime_mapping.html#f_mapping">mapping</A> <B>as</B> c
+        <B>all</B>
+            c.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>.<A HREF="../elks/readable_string_general.html#f_same_string">same_string</A> (c.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>.<A HREF="../elks/readable_string_general.html#f_as_lower">as_lower</A>)
+        <B>end</B>
+
+<B>note</B>
+    copyright: "2011-2013, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_file_extension_mime_mapping.html">HTTP_FILE_EXTENSION_MIME_MAPPING</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_file_extension_mime_mapping_chart.html">Chart</A></TD><TD><A HREF="http_file_extension_mime_mapping_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

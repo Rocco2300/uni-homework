@@ -1,0 +1,789 @@
+<HTML><HEAD>
+<meta name="description" content="The class provides an easy way to build and modify HTTP header text thanks to add_header (..) and put_header (..)  You will also find some helper features to help coding most common usages  Please, have a look at constants classes such as THTTP_MIME_TYPES THTTP_HEADER_NAMES THTTP_STATUS_CODE THTTP_REQUEST_METHODS (or HTTP_CONSTANTS which groups them for convenience)  Note the return status code is not part of the HTTP header"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_header_modifier Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_header_modifier_chart.html">Chart</A></TD><TD><A HREF="http_header_modifier_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        The class provides an easy way to build and modify HTTP header text
+        thanks to add_header (..) and put_header (..)
+        
+        You will also find some helper features to help coding most common usages
+        
+        Please, have a look at constants classes such as
+        	HTTP_MIME_TYPES
+        	HTTP_HEADER_NAMES
+        	HTTP_STATUS_CODE
+        	HTTP_REQUEST_METHODS
+        (or HTTP_CONSTANTS which groups them for convenience)
+        
+        Note the return status code is not part of the HTTP header
+    ]"
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../src/http_header_modifier.html">HTTP_HEADER_MODIFIER</A>
+
+<B>inherit</B>
+    <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: deferred</FONT>
+
+    <A NAME="f_new_cursor"><A HREF="../src/http_header_modifier.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fresh cursor associated with current structure.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header change: deferred</FONT>
+
+    <A NAME="f_add_header"><A HREF="../src/http_header_modifier.html#f_add_header">add_header</A> (h: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>h</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if it already exists, there will be multiple header with same name</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> which can also be valid</FONT>
+        <B>require</B>
+            h_not_empty: h /= <B>Void</B> <B>and then</B> <B>not</B> h.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_put_header"><A HREF="../src/http_header_modifier.html#f_put_header">put_header</A> (h: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>h</I><FONT COLOR="red"> or replace existing header of same header name</FONT>
+        <B>require</B>
+            h_not_empty: h /= <B>Void</B> <B>and then</B> <B>not</B> h.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>deferred</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_has"><A HREF="../src/http_header_modifier.html#f_has">has</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has header item for </FONT><I>n</I><FONT COLOR="red">?</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../src/http_header_modifier.html">HTTP_HEADER_MODIFIER</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            ic: <B>like</B> <A HREF="../src/http_header_modifier.html#f_new_cursor">new_cursor</A>
+        <B>do</B>
+            <B>from</B>
+                ic := <A HREF="../src/http_header_modifier.html#f_new_cursor">new_cursor</A>
+            <B>until</B>
+                ic.<A HREF="../elks/iteration_cursor.html#f_after">after</A> <B>or</B> <B>Result</B>
+            <B>loop</B>
+                <B>Result</B> := <A HREF="../src/http_header_modifier.html#f_has_same_header_name">has_same_header_name</A> (ic.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, a_name);
+                ic.<A HREF="../elks/indexable_iteration_cursor.html#f_forth">forth</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_has_header_named"><A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has header item for </FONT><I>n</I><FONT COLOR="red">?</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../src/http_header_modifier.html">HTTP_HEADER_MODIFIER</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_header_modifier.html#f_has">has</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            ic: <B>like</B> <A HREF="../src/http_header_modifier.html#f_new_cursor">new_cursor</A>
+        <B>do</B>
+            <B>from</B>
+                ic := <A HREF="../src/http_header_modifier.html#f_new_cursor">new_cursor</A>
+            <B>until</B>
+                ic.<A HREF="../elks/iteration_cursor.html#f_after">after</A> <B>or</B> <B>Result</B>
+            <B>loop</B>
+                <B>Result</B> := <A HREF="../src/http_header_modifier.html#f_has_same_header_name">has_same_header_name</A> (ic.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, a_name);
+                ic.<A HREF="../elks/indexable_iteration_cursor.html#f_forth">forth</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_has_content_length"><A HREF="../src/http_header_modifier.html#f_has_content_length">has_content_length</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has header "Content-Length"</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_length">header_content_length</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_content_type"><A HREF="../src/http_header_modifier.html#f_has_content_type">has_content_type</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has header "Content-Type"</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_type">header_content_type</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_transfer_encoding_chunked"><A HREF="../src/http_header_modifier.html#f_has_transfer_encoding_chunked">has_transfer_encoding_chunked</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has "Transfer-Encoding: chunked" header</FONT>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_transfer_encoding">header_transfer_encoding</A>) <B>then</B>
+                <B>Result</B> := <B>attached</B> <A HREF="../src/http_header_modifier.html#f_item">item</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_transfer_encoding">header_transfer_encoding</A>) <B>as</B> v <B>and then</B> v.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (<A HREF="../src/http_header_modifier.html#f_str_chunked">Str_chunked</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_item"><A HREF="../src/http_header_modifier.html#f_item">item</A> <B>alias</B> "[]" (a_header_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A> <B>assign</B> <A HREF="../src/http_header_modifier.html#f_force">force</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> First header item found for </FONT><I>a_name</I><FONT COLOR="red"> if any</FONT>
+        <B>local</B>
+            res: <A HREF="../elks/string_8.html">STRING_8</A>
+            n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_line: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            ic: <B>like</B> <A HREF="../src/http_header_modifier.html#f_new_cursor">new_cursor</A>
+        <B>do</B>
+            n := a_header_name.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>from</B>
+                ic := <A HREF="../src/http_header_modifier.html#f_new_cursor">new_cursor</A>
+            <B>until</B>
+                ic.<A HREF="../elks/iteration_cursor.html#f_after">after</A> <B>or</B> <B>Result</B> /= <B>Void</B>
+            <B>loop</B>
+                l_line := ic.<A HREF="../elks/iteration_cursor.html#f_item">item</A>
+                <B>if</B> <A HREF="../src/http_header_modifier.html#f_has_same_header_name">has_same_header_name</A> (l_line, a_header_name) <B>then</B>
+                    res := l_line.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (n + 2, l_line.<A HREF="../elks/readable_string_8.html#f_count">count</A>).<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>;
+                    res.<A HREF="../elks/string_8.html#f_left_adjust">left_adjust</A>;
+                    res.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>
+                    <B>Result</B> := res
+                <B>end</B>;
+                ic.<A HREF="../elks/indexable_iteration_cursor.html#f_forth">forth</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_header_named_value"><A HREF="../src/http_header_modifier.html#f_header_named_value">header_named_value</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <B>like</B> <A HREF="../src/http_header_modifier.html#f_item">item</A>
+        <B>obsolete</B> "Use `item' [2017-05-31]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> First header item found for </FONT><I>a_name</I><FONT COLOR="red"> if any	</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_header_modifier.html#f_item">item</A> (a_name)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header change: general</FONT>
+
+    <A NAME="f_force"><A HREF="../src/http_header_modifier.html#f_force">force</A> (a_value: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_header_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put header </FONT><I>a_header_name:a_value</I><FONT COLOR="red"> or replace existing header of name </FONT><I>a_header_name</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>if</B> a_value = <B>Void</B> <B>then</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> (a_header_name, "")
+            <B>else</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> (a_header_name, a_value)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_add_header_key_value"><A HREF="../src/http_header_modifier.html#f_add_header_key_value">add_header_key_value</A> (a_header_name, a_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>a_header_name:a_value</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If it already exists, there will be multiple header with same name</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> which can also be valid</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make">make</A> (a_header_name.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 2 + a_value.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+            s.<A HREF="../elks/string_8.html#f_append">append</A> (a_header_name);
+            s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../src/http_header_modifier.html#f_colon_space">Colon_space</A>);
+            s.<A HREF="../elks/string_8.html#f_append">append</A> (a_value)
+            <A HREF="../src/http_header_modifier.html#f_add_header">add_header</A> (s)
+        <B>ensure</B>
+            added: <A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> (a_header_name)
+        <B>end</B></A>
+
+    <A NAME="f_put_header_key_value"><A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> (a_header_name, a_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>a_header_name:a_value</I><FONT COLOR="red">, or replace existing header of same header name/key</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make">make</A> (a_header_name.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 2 + a_value.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+            s.<A HREF="../elks/string_8.html#f_append">append</A> (a_header_name);
+            s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../src/http_header_modifier.html#f_colon_space">Colon_space</A>);
+            s.<A HREF="../elks/string_8.html#f_append">append</A> (a_value)
+            <A HREF="../src/http_header_modifier.html#f_put_header">put_header</A> (s)
+        <B>ensure</B>
+            added: <A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> (a_header_name)
+        <B>end</B></A>
+
+    <A NAME="f_put_header_key_values"><A HREF="../src/http_header_modifier.html#f_put_header_key_values">put_header_key_values</A> (a_header_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_values: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]; a_separator: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>a_header_name: a_values</I><FONT COLOR="red">, or replace existing header of same header values/key.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Use </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_header_modifier.html#f_comma_space">comma_space</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> as default separator if </FONT><I>a_separator</I><FONT COLOR="red"> is Void or empty.</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+            l_separator: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>if</B> a_separator /= <B>Void</B> <B>and then</B> <B>not</B> a_separator.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                l_separator := a_separator
+            <B>else</B>
+                l_separator := <A HREF="../src/http_header_modifier.html#f_comma_space">Comma_space</A>
+            <B>end</B>
+            <B>create</B> s.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+            <B>across</B>
+                a_values <B>as</B> c
+            <B>loop</B>
+                <B>if</B> <B>not</B> s.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append_string">append_string</A> (l_separator)
+                <B>end</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+            <B>if</B> <B>not</B> s.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> (a_header_name, s)
+            <B>end</B>
+        <B>ensure</B>
+            added: <A HREF="../src/http_header_modifier.html#f_has_header_named">has_header_named</A> (a_header_name)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content related header</FONT>
+
+    <A NAME="f_put_content_type"><A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put header line "Content-Type:" + type </FONT><I>a_content_type</I>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_type">header_content_type</A>, a_content_type)
+        <B>end</B></A>
+
+    <A NAME="f_add_content_type"><A HREF="../src/http_header_modifier.html#f_add_content_type">add_content_type</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> same as </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, but allow multiple definition of "Content-Type"</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_add_header_key_value">add_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_type">header_content_type</A>, a_content_type)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_with_parameters"><A HREF="../src/http_header_modifier.html#f_put_content_type_with_parameters">put_content_type_with_parameters</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_params: <B>detachable</B> <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put header line "Content-Type:" + type </FONT><I>a_content_type</I><FONT COLOR="red"> and extra paramaters </FONT><I>a_params</I>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+            v: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>if</B> a_params /= <B>Void</B> <B>and then</B> <B>not</B> a_params.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (a_content_type)
+                <B>across</B>
+                    a_params <B>as</B> p
+                <B>loop</B>
+                    <B>if</B> <B>attached</B> p.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A> <B>as</B> nv <B>then</B>
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (';');
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (' ');
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (nv.name);
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('=')
+                        v := nv.value
+                        <B>if</B> v.<A HREF="../elks/readable_string_8.html#f_has">has</A> (' ') <B>or</B> v.<A HREF="../elks/readable_string_8.html#f_has">has</A> ('%T') <B>or</B> v.<A HREF="../elks/readable_string_8.html#f_has">has</A> ('=') <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('"');
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (v);
+                            s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('"')
+                        <B>else</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (v)
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_type">header_content_type</A>, s)
+            <B>else</B>
+                <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> (a_content_type)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_add_content_type_with_parameters"><A HREF="../src/http_header_modifier.html#f_add_content_type_with_parameters">add_content_type_with_parameters</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_params: <B>detachable</B> <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header line "Content-Type:" + type </FONT><I>a_content_type</I><FONT COLOR="red"> and extra paramaters </FONT><I>a_params</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>if</B> a_params /= <B>Void</B> <B>and then</B> <B>not</B> a_params.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (a_content_type)
+                <B>across</B>
+                    a_params <B>as</B> p
+                <B>loop</B>
+                    <B>if</B> <B>attached</B> p.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A> <B>as</B> nv <B>then</B>
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (';');
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (' ');
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (nv.name);
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('=');
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('"');
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (nv.value);
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('"')
+                    <B>end</B>
+                <B>end</B>
+                <A HREF="../src/http_header_modifier.html#f_add_header_key_value">add_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_type">header_content_type</A>, s)
+            <B>else</B>
+                <A HREF="../src/http_header_modifier.html#f_add_content_type">add_content_type</A> (a_content_type)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_with_charset"><A HREF="../src/http_header_modifier.html#f_put_content_type_with_charset">put_content_type_with_charset</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_charset: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put content type </FONT><I>a_content_type</I><FONT COLOR="red"> with </FONT><I>a_charset</I><FONT COLOR="red"> as "charset" parameter.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type_with_parameters">put_content_type_with_parameters</A> (a_content_type, <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]] &lt;&lt;["charset", a_charset]&gt;&gt;)
+        <B>end</B></A>
+
+    <A NAME="f_add_content_type_with_charset"><A HREF="../src/http_header_modifier.html#f_add_content_type_with_charset">add_content_type_with_charset</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_charset: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Same as </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_header_modifier.html#f_put_content_type_with_charset">put_content_type_with_charset</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, but allow multiple definition of "Content-Type".</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_add_content_type_with_parameters">add_content_type_with_parameters</A> (a_content_type, <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]] &lt;&lt;["charset", a_charset]&gt;&gt;)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_with_name"><A HREF="../src/http_header_modifier.html#f_put_content_type_with_name">put_content_type_with_name</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put content type </FONT><I>a_content_type</I><FONT COLOR="red"> with </FONT><I>a_name</I><FONT COLOR="red"> as "name" parameter.	</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type_with_parameters">put_content_type_with_parameters</A> (a_content_type, <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]] &lt;&lt;["name", a_name]&gt;&gt;)
+        <B>end</B></A>
+
+    <A NAME="f_add_content_type_with_name"><A HREF="../src/http_header_modifier.html#f_add_content_type_with_name">add_content_type_with_name</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> same as </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_header_modifier.html#f_put_content_type_with_name">put_content_type_with_name</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, but allow multiple definition of "Content-Type"	</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_add_content_type_with_parameters">add_content_type_with_parameters</A> (a_content_type, <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]] &lt;&lt;["name", a_name]&gt;&gt;)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_length"><A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (a_length: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Content-Length:" + length </FONT><I>a_length</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_length">header_content_length</A>, a_length.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_transfer_encoding"><A HREF="../src/http_header_modifier.html#f_put_content_transfer_encoding">put_content_transfer_encoding</A> (a_mechanism: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Content-Transfer-Encoding" header with </FONT><I>a_mechanism</I>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_transfer_encoding">header_content_transfer_encoding</A>, a_mechanism)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_language"><A HREF="../src/http_header_modifier.html#f_put_content_language">put_content_language</A> (a_lang: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Content-Language" header of value </FONT><I>a_lang</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_language">header_content_language</A>, a_lang)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_encoding"><A HREF="../src/http_header_modifier.html#f_put_content_encoding">put_content_encoding</A> (a_encoding: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Content-Encoding" header of value </FONT><I>a_encoding</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_encoding">header_content_encoding</A>, a_encoding)
+        <B>end</B></A>
+
+    <A NAME="f_put_transfer_encoding"><A HREF="../src/http_header_modifier.html#f_put_transfer_encoding">put_transfer_encoding</A> (a_encoding: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Transfer-Encoding" header with </FONT><I>a_encoding</I><FONT COLOR="red"> value.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_transfer_encoding">header_transfer_encoding</A>, a_encoding)
+        <B>end</B></A>
+
+    <A NAME="f_put_transfer_encoding_binary"><A HREF="../src/http_header_modifier.html#f_put_transfer_encoding_binary">put_transfer_encoding_binary</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Transfer-Encoding: binary" header</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_transfer_encoding">put_transfer_encoding</A> (<A HREF="../src/http_header_modifier.html#f_str_binary">Str_binary</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_transfer_encoding_chunked"><A HREF="../src/http_header_modifier.html#f_put_transfer_encoding_chunked">put_transfer_encoding_chunked</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Transfer-Encoding: chunked" header</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_transfer_encoding">put_transfer_encoding</A> (<A HREF="../src/http_header_modifier.html#f_str_chunked">Str_chunked</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_disposition"><A HREF="../src/http_header_modifier.html#f_put_content_disposition">put_content_disposition</A> (a_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_params: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Content-Disposition" header</FONT>
+        <B>do</B>
+            <B>if</B> a_params /= <B>Void</B> <B>then</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_disposition">header_content_disposition</A>, a_type + <A HREF="../src/http_header_modifier.html#f_semi_colon_space">Semi_colon_space</A> + a_params)
+            <B>else</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_disposition">header_content_disposition</A>, a_type)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content-type helpers</FONT>
+
+    <A NAME="f_put_content_type_text_css"><A HREF="../src/http_header_modifier.html#f_put_content_type_text_css">put_content_type_text_css</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_css">text_css</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_text_csv"><A HREF="../src/http_header_modifier.html#f_put_content_type_text_csv">put_content_type_text_csv</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_csv">text_csv</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_text_html"><A HREF="../src/http_header_modifier.html#f_put_content_type_text_html">put_content_type_text_html</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_html">text_html</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_utf_8_text_html"><A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_html">put_content_type_utf_8_text_html</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type_with_charset">put_content_type_with_charset</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_html">text_html</A>, "utf-8")
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_text_javascript"><A HREF="../src/http_header_modifier.html#f_put_content_type_text_javascript">put_content_type_text_javascript</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_javascript">text_javascript</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_text_json"><A HREF="../src/http_header_modifier.html#f_put_content_type_text_json">put_content_type_text_json</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_json">text_json</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_text_plain"><A HREF="../src/http_header_modifier.html#f_put_content_type_text_plain">put_content_type_text_plain</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_plain">text_plain</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_text_xml"><A HREF="../src/http_header_modifier.html#f_put_content_type_text_xml">put_content_type_text_xml</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_xml">text_xml</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_application_json"><A HREF="../src/http_header_modifier.html#f_put_content_type_application_json">put_content_type_application_json</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_json">application_json</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_application_javascript"><A HREF="../src/http_header_modifier.html#f_put_content_type_application_javascript">put_content_type_application_javascript</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_javascript">application_javascript</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_application_zip"><A HREF="../src/http_header_modifier.html#f_put_content_type_application_zip">put_content_type_application_zip</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_zip">application_zip</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_application_pdf"><A HREF="../src/http_header_modifier.html#f_put_content_type_application_pdf">put_content_type_application_pdf</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_pdf">application_pdf</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_image_gif"><A HREF="../src/http_header_modifier.html#f_put_content_type_image_gif">put_content_type_image_gif</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_image_gif">image_gif</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_image_png"><A HREF="../src/http_header_modifier.html#f_put_content_type_image_png">put_content_type_image_png</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_image_png">image_png</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_image_jpg"><A HREF="../src/http_header_modifier.html#f_put_content_type_image_jpg">put_content_type_image_jpg</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_image_jpg">image_jpg</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_image_svg_xml"><A HREF="../src/http_header_modifier.html#f_put_content_type_image_svg_xml">put_content_type_image_svg_xml</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_image_svg_xml">image_svg_xml</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_message_http"><A HREF="../src/http_header_modifier.html#f_put_content_type_message_http">put_content_type_message_http</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_message_http">message_http</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_multipart_mixed"><A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_mixed">put_content_type_multipart_mixed</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_multipart_mixed">multipart_mixed</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_multipart_alternative"><A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_alternative">put_content_type_multipart_alternative</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_multipart_alternative">multipart_alternative</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_multipart_related"><A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_related">put_content_type_multipart_related</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_multipart_related">multipart_related</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_multipart_form_data"><A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_form_data">put_content_type_multipart_form_data</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_multipart_form_data">multipart_form_data</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_multipart_signed"><A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_signed">put_content_type_multipart_signed</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_multipart_signed">multipart_signed</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_multipart_encrypted"><A HREF="../src/http_header_modifier.html#f_put_content_type_multipart_encrypted">put_content_type_multipart_encrypted</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_multipart_encrypted">multipart_encrypted</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_application_x_www_form_encoded"><A HREF="../src/http_header_modifier.html#f_put_content_type_application_x_www_form_encoded">put_content_type_application_x_www_form_encoded</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_x_www_form_encoded">application_x_www_form_encoded</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_content_type_utf_8_text_plain"><A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_content_type_with_charset">put_content_type_with_charset</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_plain">text_plain</A>, "utf-8")
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cross-Origin Resource Sharing</FONT>
+
+    <A NAME="f_put_access_control_allow_origin"><A HREF="../src/http_header_modifier.html#f_put_access_control_allow_origin">put_access_control_allow_origin</A> (a_origin: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Access-Control-Allow-Origin: " + </FONT><I>a_origin</I><FONT COLOR="red"> header.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><I>a_origin</I><FONT COLOR="red"> specifies a URI that may access the resource</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_access_control_allow_origin">header_access_control_allow_origin</A>, a_origin)
+        <B>end</B></A>
+
+    <A NAME="f_put_access_control_allow_all_origin"><A HREF="../src/http_header_modifier.html#f_put_access_control_allow_all_origin">put_access_control_allow_all_origin</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Access-Control-Allow-Origin: *" header.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_access_control_allow_origin">put_access_control_allow_origin</A> ("*")
+        <B>end</B></A>
+
+    <A NAME="f_put_access_control_allow_credentials"><A HREF="../src/http_header_modifier.html#f_put_access_control_allow_credentials">put_access_control_allow_credentials</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates whether or not the response to the request can be exposed when the credentials flag is true.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note that simple GET requests are not preflighted, and so if a request is made for a resource with credentials,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if this header is not returned with the resource, the response is ignored by the browser and not returned to web content.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ex: Access-Control-Allow-Credentials: true | false</FONT>
+        <B>do</B>
+            <B>if</B> b <B>then</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_access_control_allow_credentials">header_access_control_allow_credentials</A>, "true")
+            <B>else</B>
+                <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_access_control_allow_credentials">header_access_control_allow_credentials</A>, "false")
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_put_access_control_allow_methods"><A HREF="../src/http_header_modifier.html#f_put_access_control_allow_methods">put_access_control_allow_methods</A> (a_methods: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If </FONT><I>a_methods</I><FONT COLOR="red"> is not empty, put </FONT><I>Access-Control-Allow-Methods</I><FONT COLOR="red"> header with list </FONT><I>a_methods</I><FONT COLOR="red"> of methods</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><I>a_methods</I><FONT COLOR="red"> specifies the method or methods allowed when accessing the resource.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This is used in response to a preflight request.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ex: Access-Control-Allow-Methods: &lt;method&gt;[, &lt;method&gt;]*</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_values">put_header_key_values</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_access_control_allow_methods">header_access_control_allow_methods</A>, a_methods, <B>Void</B>)
+        <B>end</B></A>
+
+    <A NAME="f_put_access_control_allow_headers"><A HREF="../src/http_header_modifier.html#f_put_access_control_allow_headers">put_access_control_allow_headers</A> (a_headers: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Access-Control-Allow-Headers" header. with value </FONT><I>a_headers</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ex: Access-Control-Allow-Headers: &lt;field-name&gt;[, &lt;field-name&gt;]*</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_access_control_allow_headers">header_access_control_allow_headers</A>, a_headers)
+        <B>end</B></A>
+
+    <A NAME="f_put_access_control_allow_iterable_headers"><A HREF="../src/http_header_modifier.html#f_put_access_control_allow_iterable_headers">put_access_control_allow_iterable_headers</A> (a_fields: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Access-Control-Allow-Headers" header. with value </FONT><I>a_headers</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ex: Access-Control-Allow-Headers: &lt;field-name&gt;[, &lt;field-name&gt;]*</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_values">put_header_key_values</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_access_control_allow_headers">header_access_control_allow_headers</A>, a_fields, <B>Void</B>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Method related</FONT>
+
+    <A NAME="f_put_allow"><A HREF="../src/http_header_modifier.html#f_put_allow">put_allow</A> (a_methods: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If </FONT><I>a_methods</I><FONT COLOR="red"> is not empty, put </FONT><I>Allow</I><FONT COLOR="red"> header with list </FONT><I>a_methods</I><FONT COLOR="red"> of methods</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_values">put_header_key_values</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_allow">header_allow</A>, a_methods, <B>Void</B>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Date</FONT>
+
+    <A NAME="f_put_date"><A HREF="../src/http_header_modifier.html#f_put_date">put_date</A> (a_date: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Date: " header</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_date">header_date</A>, a_date)
+        <B>end</B></A>
+
+    <A NAME="f_put_current_date"><A HREF="../src/http_header_modifier.html#f_put_current_date">put_current_date</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put current date time with "Date" header</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_utc_date">put_utc_date</A> (<B>create</B> {DATE_TIME}.make_now_utc <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_put_utc_date"><A HREF="../src/http_header_modifier.html#f_put_utc_date">put_utc_date</A> (a_utc_date: DATE_TIME)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put UTC date time </FONT><I>a_utc_date</I><FONT COLOR="red"> with "Date" header</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> using RFC1123 date formating.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_date">put_date</A> (<A HREF="../src/http_header_modifier.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (a_utc_date))
+        <B>end</B></A>
+
+    <A NAME="f_put_last_modified"><A HREF="../src/http_header_modifier.html#f_put_last_modified">put_last_modified</A> (a_utc_date: DATE_TIME)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put UTC date time </FONT><I>dt</I><FONT COLOR="red"> with "Last-Modified" header</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_last_modified">header_last_modified</A>, <A HREF="../src/http_header_modifier.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (a_utc_date))
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Authorization</FONT>
+
+    <A NAME="f_put_authorization"><A HREF="../src/http_header_modifier.html#f_put_authorization">put_authorization</A> (a_authorization: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put </FONT><I>a_authorization</I><FONT COLOR="red"> with "Authorization" header</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The Authorization header is constructed as follows:</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  1. Username and password are combined into a string "username:password".</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  2. The resulting string literal is then encoded using Base64.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  3. The authorization method and a space, i.e. "Basic " is then put before the encoded string.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ex: Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_authorization">header_authorization</A>, a_authorization)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Others	</FONT>
+
+    <A NAME="f_put_expires"><A HREF="../src/http_header_modifier.html#f_put_expires">put_expires</A> (a_seconds: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Expires" header to </FONT><I>a_seconds</I><FONT COLOR="red"> seconds</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and also "Cache-Control: max-age=.." .</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> To be supported by most browser.</FONT>
+        <B>local</B>
+            dt: DATE_TIME
+        <B>do</B>
+            <B>create</B> dt.make_now_utc;
+            dt.second_add (a_seconds)
+            <A HREF="../src/http_header_modifier.html#f_put_expires_date">put_expires_date</A> (dt)
+            <A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> ("max-age=" + a_seconds.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_expires_string"><A HREF="../src/http_header_modifier.html#f_put_expires_string">put_expires_string</A> (a_expires: <A HREF="../elks/string_8.html">STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Expires" header with </FONT><I>a_expires</I><FONT COLOR="red"> string value</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ("Expires", a_expires)
+        <B>end</B></A>
+
+    <A NAME="f_put_expires_date"><A HREF="../src/http_header_modifier.html#f_put_expires_date">put_expires_date</A> (a_utc_date: DATE_TIME)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Expires" header with UTC date time value</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> formatted following RFC1123 specification.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ("Expires", <A HREF="../src/http_header_modifier.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (a_utc_date))
+        <B>end</B></A>
+
+    <A NAME="f_put_cache_control"><A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> (a_cache_control: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Cache-Control" header with value </FONT><I>a_cache_control</I>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ("Cache-Control", a_cache_control)
+        <B>end</B></A>
+
+    <A NAME="f_put_pragma"><A HREF="../src/http_header_modifier.html#f_put_pragma">put_pragma</A> (a_pragma: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Pragma" header with value </FONT><I>a_pragma</I>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ("Pragma", a_pragma)
+        <B>end</B></A>
+
+    <A NAME="f_put_pragma_no_cache"><A HREF="../src/http_header_modifier.html#f_put_pragma_no_cache">put_pragma_no_cache</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Pragma" header with "no-cache" a_pragma</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_pragma">put_pragma</A> ("no-cache")
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Connection		</FONT>
+
+    <A NAME="f_put_connection"><A HREF="../src/http_header_modifier.html#f_put_connection">put_connection</A> (a_conn: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Connection" header with </FONT><I>a_conn</I><FONT COLOR="red"> value.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_connection">header_connection</A>, a_conn)
+        <B>end</B></A>
+
+    <A NAME="f_put_connection_keep_alive"><A HREF="../src/http_header_modifier.html#f_put_connection_keep_alive">put_connection_keep_alive</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Connection" header with "keep-alive".</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_connection">put_connection</A> ("keep-alive")
+        <B>end</B></A>
+
+    <A NAME="f_put_connection_close"><A HREF="../src/http_header_modifier.html#f_put_connection_close">put_connection_close</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put "Connection" header with "close".</FONT>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_connection">put_connection</A> ("close")
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Redirection</FONT>
+
+    <A NAME="f_put_location"><A HREF="../src/http_header_modifier.html#f_put_location">put_location</A> (a_uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Tell the client the new location </FONT><I>a_uri</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> using "Location" header.</FONT>
+        <B>require</B>
+            a_uri_valid: <B>not</B> a_uri.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_location">header_location</A>, a_uri)
+        <B>end</B></A>
+
+    <A NAME="f_put_refresh"><A HREF="../src/http_header_modifier.html#f_put_refresh">put_refresh</A> (a_uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_timeout_in_seconds: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Tell the client to refresh page with </FONT><I>a_uri</I><FONT COLOR="red"> after </FONT><I>a_timeout_in_seconds</I><FONT COLOR="red"> in seconds</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> using "Refresh" header.</FONT>
+        <B>require</B>
+            a_uri_valid: <B>not</B> a_uri.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_header_key_value">put_header_key_value</A> ({<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_refresh">header_refresh</A>, a_timeout_in_seconds.<A HREF="../elks/integer_32_ref.html#f_out">out</A> + "; url=" + a_uri)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cookie</FONT>
+
+    <A NAME="f_put_cookie"><A HREF="../src/http_header_modifier.html#f_put_cookie">put_cookie</A> (key, value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; expiration, path, domain: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; secure, http_only: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set a cookie on the client's machine</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> with key 'key' and value 'value'.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note: you should avoid using "localhost" as </FONT><I>domain</I><FONT COLOR="red"> for local cookies</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       since they are not always handled by browser (for instance Chrome)</FONT>
+        <B>require</B>
+            make_sense: (key /= <B>Void</B> <B>and</B> value /= <B>Void</B>) <B>and then</B> (<B>not</B> key.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>and</B> <B>not</B> value.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>)
+            domain_without_port_info: domain /= <B>Void</B> <B>implies</B> domain.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> (':', 1) = 0
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            s := {<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_set_cookie">header_set_cookie</A> + <A HREF="../src/http_header_modifier.html#f_colon_space">Colon_space</A> + key + "=" + value
+            <B>if</B> domain /= <B>Void</B> <B>and then</B> <B>not</B> domain.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("localhost") <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Domain=");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (domain)
+            <B>end</B>
+            <B>if</B> path /= <B>Void</B> <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Path=");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (path)
+            <B>end</B>
+            <B>if</B> expiration /= <B>Void</B> <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Expires=");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (expiration)
+            <B>end</B>
+            <B>if</B> secure <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Secure")
+            <B>end</B>
+            <B>if</B> http_only <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; HttpOnly")
+            <B>end</B>
+            <A HREF="../src/http_header_modifier.html#f_add_header">add_header</A> (s)
+        <B>end</B></A>
+
+    <A NAME="f_put_cookie_with_expiration_date"><A HREF="../src/http_header_modifier.html#f_put_cookie_with_expiration_date">put_cookie_with_expiration_date</A> (key, value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; expiration: DATE_TIME; path, domain: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; secure, http_only: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set a cookie on the client's machine</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> with key 'key' and value 'value'.</FONT>
+        <B>require</B>
+            make_sense: (key /= <B>Void</B> <B>and</B> value /= <B>Void</B>) <B>and then</B> (<B>not</B> key.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>and</B> <B>not</B> value.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>)
+        <B>do</B>
+            <A HREF="../src/http_header_modifier.html#f_put_cookie">put_cookie</A> (key, value, <A HREF="../src/http_header_modifier.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (expiration), path, domain, secure, http_only)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_date_to_rfc1123_http_date_format"><A HREF="../src/http_header_modifier.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (dt: DATE_TIME): <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of </FONT><I>dt</I><FONT COLOR="red"> using the RFC 1123</FONT>
+        <B>local</B>
+            d: <A HREF="../src/http_date.html">HTTP_DATE</A>
+        <B>do</B>
+            <B>create</B> d.<A HREF="../src/http_date.html#f_make_from_date_time">make_from_date_time</A> (dt)
+            <B>Result</B> := d.<A HREF="../src/http_date.html#f_string">string</A>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_has_same_header_name"><A HREF="../src/http_header_modifier.html#f_has_same_header_name">has_same_header_name</A> (h: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header line </FONT><I>h</I><FONT COLOR="red"> has same name as </FONT><I>a_name</I><FONT COLOR="red"> ?</FONT>
+        <B>do</B>
+            <B>if</B> h.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> (a_name) <B>then</B>
+                <B>if</B> h.<A HREF="../elks/readable_string_general.html#f_valid_index">valid_index</A> (a_name.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 1) <B>then</B>
+                    <B>Result</B> := h [a_name.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 1] = ':'
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Constants</FONT>
+
+    <A NAME="f_str_binary"><A HREF="../src/http_header_modifier.html#f_str_binary">Str_binary</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "binary"</A>
+
+    <A NAME="f_str_chunked"><A HREF="../src/http_header_modifier.html#f_str_chunked">Str_chunked</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "chunked"</A>
+
+    <A NAME="f_colon_space"><A HREF="../src/http_header_modifier.html#f_colon_space">Colon_space</A>: <A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (": ")
+        <B>end</B></A>
+
+    <A NAME="f_semi_colon_space"><A HREF="../src/http_header_modifier.html#f_semi_colon_space">Semi_colon_space</A>: <A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> ("; ")
+        <B>end</B></A>
+
+    <A NAME="f_comma_space"><A HREF="../src/http_header_modifier.html#f_comma_space">Comma_space</A>: <A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (", ")
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_header_modifier.html">HTTP_HEADER_MODIFIER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_header_modifier_chart.html">Chart</A></TD><TD><A HREF="http_header_modifier_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

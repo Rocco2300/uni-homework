@@ -1,0 +1,71 @@
+<HTML><HEAD>
+<meta name="description" content="TTThis class represents the value of a HTTP cookie, transferred in a request. TTThe class has features to build an HTTP cookie. TTTT TTFollowing a newer RFC standard for Cookies http://tools.ietf.org/html/rfc6265  TTTT TTDomain TT* WARNING: Some existing user agents treat an absent Domain attribute as if the Domain attribute were present and contained the current host name.   TT* For example, if example.com returns a Set-Cookie header without a Domain attribute, these user agents will erroneously send the cookie to www.example.com as well. TTTT TTMax-Age, Expires TT* If a cookie has both the Max-Age and the Expires attribute, the Max-Age attribute has precedence and controls the expiration date of the cookie.  TT* If a cookie has neither the Max-Age nor the Expires attribute, the user agent will retain the cookie until the current session is over (as defined by the user agent). TT* You will need to call the feature TTTT TTHttpOnly, Secure TT* Note that the HttpOnly attribute is independent of the Secure attribute: a cookie can have both the HttpOnly and the Secure attribute. "/>
+<meta name="eis" content="name=HTTP Cookie specification, src=http://tools.ietf.org/html/rfc6265, protocol=uri"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_cookie Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="http_cookie_links.html">Relations</A></TD><TD><A HREF="http_cookie.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../src/http_cookie_chart.html">HTTP_COOKIE</A>
+
+<B>General</B>
+    cluster: <A HREF="../src/index.html">src</A>
+    description: 
+        "This class represents the value of a HTTP cookie, transferred in a request.
+        The class has features to build an HTTP cookie.
+        
+        Following a newer RFC standard for Cookies <a href="http://tools.ietf.org/html/rfc6265">http://tools.ietf.org/html/rfc6265</a> 
+        
+        Domain
+        * WARNING: Some existing user agents treat an absent Domain attribute as if the Domain attribute were present and contained the current host name.  
+        * For example, if example.com returns a Set-Cookie header without a Domain attribute, these user agents will erroneously send the cookie to <a href="www.example.com">www.example.com</a> as well.
+        
+        Max-Age, Expires
+        * If a cookie has both the Max-Age and the Expires attribute, the Max-Age attribute has precedence and controls the expiration date of the cookie. 
+        * If a cookie has neither the Max-Age nor the Expires attribute, the user agent will retain the cookie until %"the current session is over%" (as defined by the user agent).
+        * You will need to call the feature
+        
+        HttpOnly, Secure
+        * Note that the HttpOnly attribute is independent of the Secure attribute: a cookie can have both the HttpOnly and the Secure attribute.
+        "
+    create: <A HREF="../src/http_cookie.html#f_make">make</A>
+
+<B>Ancestors</B>
+    <A HREF="../elks/any_chart.html">ANY</A>
+
+<B>Queries</B>
+    <A HREF="../src/http_cookie.html#f_domain">domain</A>: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/http_cookie.html#f_expiration">expiration</A>: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/http_cookie.html#f_has_valid_characters">has_valid_characters</A> (a_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/http_cookie.html#f_header_line">header_line</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_cookie.html#f_http_only">http_only</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/http_cookie.html#f_is_valid_rfc1123_date">is_valid_rfc1123_date</A> (a_string: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/http_cookie.html#f_max_age">max_age</A>: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>
+    <A HREF="../src/http_cookie.html#f_name">name</A>: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/http_cookie.html#f_path">path</A>: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/http_cookie.html#f_secure">secure</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/http_cookie.html#f_value">value</A>: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+
+<B>Commands</B>
+    <A HREF="../src/http_cookie.html#f_set_domain">set_domain</A> (a_domain: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_cookie.html#f_set_expiration">set_expiration</A> (a_date: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_cookie.html#f_set_expiration_date">set_expiration_date</A> (a_date: DATE_TIME)
+    <A HREF="../src/http_cookie.html#f_set_expiration_from_max_age">set_expiration_from_max_age</A>
+    <A HREF="../src/http_cookie.html#f_set_http_only">set_http_only</A> (a_http_only: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>)
+    <A HREF="../src/http_cookie.html#f_set_max_age">set_max_age</A> (a_max_age: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/http_cookie.html#f_set_name">set_name</A> (a_name: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_cookie.html#f_set_path">set_path</A> (a_path: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_cookie.html#f_set_secure">set_secure</A> (a_secure: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>)
+    <A HREF="../src/http_cookie.html#f_set_value">set_value</A> (a_value: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/http_cookie.html#f_unset_expiration">unset_expiration</A>
+    <A HREF="../src/http_cookie.html#f_unset_max_age">unset_max_age</A>
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="http_cookie_links.html">Relations</A></TD><TD><A HREF="http_cookie.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

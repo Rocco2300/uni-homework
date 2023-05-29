@@ -1,0 +1,597 @@
+<HTML><HEAD>
+<meta name="description" content="Main interface to send message back to the client  You can send part by part, i.e: - set the status code, see: set_status_code (a_code) - put the header's text, see: put_header_text (a_text) - put string for the body, see: put_string (s), put_character (c) - using put_error will eventually send error message directly to the underlying connector's log   (i.e for apache, it will go to the error log) - And you can also send the message as chunked, see put_chunk (..) for more details - Or you can send a WSF_RESPONSE_MESSAGE in once, see `send (mesg)'"/>
+<meta name="eis" content="name=Hypertext Transfer Protocol -- HTTP/1.1 , protocol=URI, src=http://www.w3.org/Protocols/rfc2616/rfc2616.html"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2016, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_response Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_response_chart.html">Chart</A></TD><TD><A HREF="wsf_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Main interface to send message back to the client
+        
+        You can send part by part, i.e:
+        - set the status code, see: set_status_code (a_code)
+        - put the header's text, see: put_header_text (a_text)
+        - put string for the body, see: put_string (s), put_character (c)
+        - using put_error will eventually send error message directly to the underlying connector's log
+          (i.e for apache, it will go to the error log)
+        - And you can also send the message as "chunked", see put_chunk (..) for more details
+        - Or you can send a WSF_RESPONSE_MESSAGE in once, see send (mesg)
+    ]"
+    date: "$Date: 2016-11-25 17:46:20 +0000 (Fri, 25 Nov 2016) $"
+    revision: "$Revision: 99528 $"
+    eis: "name=Hypertext Transfer Protocol -- HTTP/1.1 ", "protocol=URI", "src=<a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html">http://www.w3.org/Protocols/rfc2616/rfc2616.html</a>"
+    eis: "name=Chunked Transfer Coding", "protocol=URI", "src=<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.6.1">http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.6.1</a>"
+
+<B>class</B> 
+    <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>
+
+<B>create</B> {<A HREF="../src/wsf_execution.html">WSF_EXECUTION</A>, WGI_EXPORTER}
+    <A HREF="../src/wsf_response.html#f_make_from_wgi">make_from_wgi</A>
+
+
+<B>create</B> {<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>}
+    <A HREF="../src/wsf_response.html#f_make_from_wsf">make_from_wsf</A>
+
+<B>convert</B>
+    <A HREF="../src/wsf_response.html#f_make_from_wgi">make_from_wgi</A> ({WGI_RESPONSE})
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_from_wgi"><A HREF="../src/wsf_response.html#f_make_from_wgi">make_from_wgi</A> (r: WGI_RESPONSE)
+        <B>local</B>
+            wres: <B>detachable</B> <A HREF="../src/wsf_wgi_delayed_header_response.html">WSF_WGI_DELAYED_HEADER_RESPONSE</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A> := 0
+            <B>create</B> <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_make">make</A>
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A> := r
+            <B>if</B> <B>attached</B> {<A HREF="../src/wsf_wgi_delayed_header_response.html">WSF_WGI_DELAYED_HEADER_RESPONSE</A>} r <B>as</B> r_delayed <B>then</B>
+                r_delayed.<A HREF="../src/wsf_wgi_delayed_header_response.html#f_update_wsf_response">update_wsf_response</A> (<B>Current</B>)
+                <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A> := r_delayed
+            <B>elseif</B> <B>attached</B> {WGI_FILTER_RESPONSE} r <B>as</B> r_filter <B>then</B>
+                <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A> := r_filter.wgi_response
+            <B>else</B>
+                <B>create</B> wres.<A HREF="../src/wsf_wgi_delayed_header_response.html#f_make">make</A> (r, <B>Current</B>)
+                <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A> := wres
+            <B>end</B>
+            <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_wsf"><A HREF="../src/wsf_response.html#f_make_from_wsf">make_from_wsf</A> (res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A> := 0
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A> := res.<A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>
+            <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A> := res.<A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>
+            <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>)
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>, <A HREF="../src/wsf_response_exporter.html">WSF_RESPONSE_EXPORTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Properties		</FONT>
+
+    <A NAME="f_wgi_response"><A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>: WGI_RESPONSE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated WGI_RESPONSE.</FONT>
+
+    <A NAME="f_internal_header"><A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>: <A HREF="../src/wsf_header.html">WSF_HEADER</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated response header.	</FONT>
+    
+<B>feature</B> {<A HREF="../src/wsf_response_exporter.html">WSF_RESPONSE_EXPORTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Change		</FONT>
+
+    <A NAME="f_set_wgi_response"><A HREF="../src/wsf_response.html#f_set_wgi_response">set_wgi_response</A> (res: WGI_RESPONSE)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set associated WGI_RESPONSE</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A> := res
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_status_committed"><A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status line committed?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.status_committed
+        <B>end</B></A>
+
+    <A NAME="f_header_committed"><A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header committed?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.header_committed
+        <B>end</B></A>
+
+    <A NAME="f_message_committed"><A HREF="../src/wsf_response.html#f_message_committed">message_committed</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Message committed?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.message_committed
+        <B>end</B></A>
+
+    <A NAME="f_message_writable"><A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Can message be written?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.message_writable
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status setting</FONT>
+
+    <A NAME="f_status_is_set"><A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is status set?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_response.html#f_status_code">status_code</A> &gt; 0
+        <B>end</B></A>
+
+    <A NAME="f_set_status_code"><A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (a_code: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set response status code</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Should be done before sending any data back to the client</FONT>
+        <B>require</B>
+            a_code_valid: a_code &gt; 0
+            status_not_set: <B>not</B> <A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_status_code">status_code</A> := a_code
+            <A HREF="../src/wsf_response.html#f_status_reason_phrase">status_reason_phrase</A> := <B>Void</B>
+        <B>ensure</B>
+            status_code_set: <A HREF="../src/wsf_response.html#f_status_code">status_code</A> = a_code
+            status_set: <A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>
+            status_reason_phrase_unset: <A HREF="../src/wsf_response.html#f_status_reason_phrase">status_reason_phrase</A> = <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_status_code_with_reason_phrase"><A HREF="../src/wsf_response.html#f_set_status_code_with_reason_phrase">set_status_code_with_reason_phrase</A> (a_code: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_reason_phrase: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set response status code</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Should be done before sending any data back to the client</FONT>
+        <B>require</B>
+            a_code_valid: a_code &gt; 0
+            status_not_set: <B>not</B> <A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (a_code)
+            <A HREF="../src/wsf_response.html#f_status_reason_phrase">status_reason_phrase</A> := a_reason_phrase
+        <B>ensure</B>
+            status_code_set: <A HREF="../src/wsf_response.html#f_status_code">status_code</A> = a_code
+            status_reason_phrase_set: <A HREF="../src/wsf_response.html#f_status_reason_phrase">status_reason_phrase</A> = a_reason_phrase
+            status_set: <A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>
+        <B>end</B></A>
+
+    <A NAME="f_status_code"><A HREF="../src/wsf_response.html#f_status_code">status_code</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response status</FONT>
+
+    <A NAME="f_status_reason_phrase"><A HREF="../src/wsf_response.html#f_status_reason_phrase">status_reason_phrase</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Custom status reason phrase (optional)</FONT>
+    
+<B>feature</B> {<A HREF="../src/wsf_response_exporter.html">WSF_RESPONSE_EXPORTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header output operation</FONT>
+
+    <A NAME="f_process_header"><A HREF="../src/wsf_response.html#f_process_header">process_header</A>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <B>if</B> <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A> <B>then</B>
+                <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.set_status_code (<A HREF="../src/wsf_response.html#f_status_code">status_code</A>, <A HREF="../src/wsf_response.html#f_status_reason_phrase">status_reason_phrase</A>);
+                <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_header_text (<A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_string">string</A>)
+            <B>end</B>
+        <B>ensure</B>
+            status_committed: <A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>
+            header_committed: <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>end</B></A>
+
+    <A NAME="f_report_content_already_sent_and_header_ignored"><A HREF="../src/wsf_response.html#f_report_content_already_sent_and_header_ignored">report_content_already_sent_and_header_ignored</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_put_error">put_error</A> ("Content already sent, new header text ignored!")
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header access</FONT>
+
+    <A NAME="f_header"><A HREF="../src/wsf_response.html#f_header">header</A>: <A HREF="../src/http_header_modifier.html">HTTP_HEADER_MODIFIER</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated header builder interface.</FONT>
+        <B>local</B>
+            res: <B>like</B> <A HREF="../src/wsf_response.html#f_internal_response_header">internal_response_header</A>
+        <B>do</B>
+            res := <A HREF="../src/wsf_response.html#f_internal_response_header">internal_response_header</A>
+            <B>if</B> res = <B>Void</B> <B>then</B>
+                <B>create</B> {<A HREF="../src/wsf_response_header.html">WSF_RESPONSE_HEADER</A>} res.<A HREF="../src/wsf_response_header.html#f_make_with_response">make_with_response</A> (<B>Current</B>)
+                <A HREF="../src/wsf_response.html#f_internal_response_header">internal_response_header</A> := res
+            <B>end</B>
+            <B>Result</B> := res
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header access		</FONT>
+
+    <A NAME="f_internal_response_header"><A HREF="../src/wsf_response.html#f_internal_response_header">internal_response_header</A>: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_response.html#f_header">header</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cached version of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_response.html#f_header">header</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header output operation</FONT>
+
+    <A NAME="f_put_header_line"><A HREF="../src/wsf_response.html#f_put_header_line">put_header_line</A> (h: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put header </FONT><I>h</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Replace any existing value</FONT>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A> <B>then</B>
+                <A HREF="../src/wsf_response.html#f_report_content_already_sent_and_header_ignored">report_content_already_sent_and_header_ignored</A>
+            <B>else</B>
+                <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_put_header">put_header</A> (h)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_add_header_line"><A HREF="../src/wsf_response.html#f_add_header_line">add_header_line</A> (h: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>h</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This can lead to duplicated header entries</FONT>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A> <B>then</B>
+                <A HREF="../src/wsf_response.html#f_report_content_already_sent_and_header_ignored">report_content_already_sent_and_header_ignored</A>
+            <B>else</B>
+                <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_add_header">add_header</A> (h)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_put_header_text"><A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (a_text: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put the multiline header </FONT><I>a_text</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Overwite potential existing header</FONT>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+            a_text_ends_with_single_crlf: a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> &gt; 2 <B>implies</B> <B>not</B> a_text.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> - 2, a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A>).<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("%R%N")
+            a_text_does_not_end_with_double_crlf: a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> &gt; 4 <B>implies</B> <B>not</B> a_text.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> - 4, a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A>).<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("%R%N%R%N")
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A> <B>then</B>
+                <A HREF="../src/wsf_response.html#f_report_content_already_sent_and_header_ignored">report_content_already_sent_and_header_ignored</A>
+            <B>else</B>
+                <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_put_raw_header_data">put_raw_header_data</A> (a_text)
+            <B>end</B>
+        <B>ensure</B>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>end</B></A>
+
+    <A NAME="f_add_header_text"><A HREF="../src/wsf_response.html#f_add_header_text">add_header_text</A> (a_text: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add the multiline header </FONT><I>a_text</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Does not replace existing header with same name</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This could leads to multiple header with the same name</FONT>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+            a_text_ends_with_single_crlf: a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> &gt; 2 <B>implies</B> <B>not</B> a_text.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> - 2, a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A>).<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("%R%N")
+            a_text_does_not_end_with_double_crlf: a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> &gt; 4 <B>implies</B> <B>not</B> a_text.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A> - 4, a_text.<A HREF="../elks/readable_string_8.html#f_count">count</A>).<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("%R%N%R%N")
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A> <B>then</B>
+                <A HREF="../src/wsf_response.html#f_report_content_already_sent_and_header_ignored">report_content_already_sent_and_header_ignored</A>
+            <B>else</B>
+                <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_append_raw_header_data">append_raw_header_data</A> (a_text)
+            <B>end</B>
+        <B>ensure</B>
+            status_set: <A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header output operation: helpers</FONT>
+
+    <A NAME="f_put_header"><A HREF="../src/wsf_response.html#f_put_header">put_header</A> (a_status_code: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_headers: <B>detachable</B> <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put headers with status </FONT><I>a_status</I><FONT COLOR="red">, and headers from </FONT><I>a_headers</I>
+        <B>require</B>
+            a_status_code_valid: a_status_code &gt; 0
+            status_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (a_status_code)
+            <B>if</B> a_headers /= <B>Void</B> <B>then</B>
+                <B>create</B> h.<A HREF="../src/http_header.html#f_make_from_array">make_from_array</A> (a_headers)
+                <A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (h.<A HREF="../src/http_header.html#f_string">string</A>)
+            <B>end</B>
+        <B>ensure</B>
+            status_code_set: <A HREF="../src/wsf_response.html#f_status_code">status_code</A> = a_status_code
+            status_set: <A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>end</B></A>
+
+    <A NAME="f_add_header"><A HREF="../src/wsf_response.html#f_add_header">add_header</A> (a_status_code: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_headers: <B>detachable</B> <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put headers with status </FONT><I>a_status</I><FONT COLOR="red">, and headers from </FONT><I>a_headers</I>
+        <B>require</B>
+            a_status_code_valid: a_status_code &gt; 0
+            status_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (a_status_code)
+            <B>if</B> a_headers /= <B>Void</B> <B>then</B>
+                <B>create</B> h.<A HREF="../src/http_header.html#f_make_from_array">make_from_array</A> (a_headers)
+                <A HREF="../src/wsf_response.html#f_add_header_text">add_header_text</A> (h.<A HREF="../src/http_header.html#f_string">string</A>)
+            <B>end</B>
+        <B>ensure</B>
+            status_code_set: <A HREF="../src/wsf_response.html#f_status_code">status_code</A> = a_status_code
+            status_set: <A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>end</B></A>
+
+    <A NAME="f_put_header_lines"><A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (a_lines: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put headers from </FONT><I>a_lines</I>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <B>across</B>
+                a_lines <B>as</B> c
+            <B>loop</B>
+                <A HREF="../src/wsf_response.html#f_put_header_line">put_header_line</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_add_header_lines"><A HREF="../src/wsf_response.html#f_add_header_lines">add_header_lines</A> (a_lines: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add headers from </FONT><I>a_lines</I>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <B>across</B>
+                a_lines <B>as</B> c
+            <B>loop</B>
+                <A HREF="../src/wsf_response.html#f_add_header_line">add_header_line</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header add cookie</FONT>
+
+    <A NAME="f_add_cookie"><A HREF="../src/wsf_response.html#f_add_cookie">add_cookie</A> (a_cookie: <A HREF="../src/wsf_cookie.html">WSF_COOKIE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add a Set-Cookie header field to the response,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if no Set-Cookie header field already use same cookie-name.</FONT>
+        <B>local</B>
+            l_same_cookie_name: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>across</B>
+                <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_headers">headers</A> <B>as</B> ic
+            <B>until</B>
+                l_same_cookie_name
+            <B>loop</B>
+                <B>if</B> ic.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> ("Set-Cookie:") <B>then</B>
+                    l_same_cookie_name := <A HREF="../src/wsf_response.html#f_has_cookie_name">has_cookie_name</A> (ic.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>, a_cookie.<A HREF="../src/http_cookie.html#f_name">name</A>)
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> l_same_cookie_name <B>then</B>
+                <A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_add_header">add_header</A> (a_cookie.<A HREF="../src/http_cookie.html#f_header_line">header_line</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output report</FONT>
+
+    <A NAME="f_transfered_content_length"><A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Length of the content transfered via </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_response.html#f_put_string">put_string</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_response.html#f_put_character">put_character</A><FONT COLOR="red">`</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_response.html#f_put_chunk">put_chunk</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_response.html#f_put_substring">put_substring</A><FONT COLOR="red">`</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_increment_transfered_content_length"><A HREF="../src/wsf_response.html#f_increment_transfered_content_length">increment_transfered_content_length</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Increment </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> by </FONT><I>n</I>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A> := <A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A> + n.<A HREF="../elks/integer_32_ref.html#f_to_natural_64">to_natural_64</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Body</FONT>
+
+    <A NAME="f_put_character"><A HREF="../src/wsf_response.html#f_put_character">put_character</A> (c: <A HREF="../elks/character_8.html">CHARACTER_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send the character </FONT><I>c</I>
+        <B>require</B>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_character (c)
+            <A HREF="../src/wsf_response.html#f_increment_transfered_content_length">increment_transfered_content_length</A> (1)
+        <B>end</B></A>
+
+    <A NAME="f_put_string"><A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send the string </FONT><I>s</I>
+        <B>require</B>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_string (s)
+            <A HREF="../src/wsf_response.html#f_increment_transfered_content_length">increment_transfered_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+        <B>end</B></A>
+
+    <A NAME="f_put_substring"><A HREF="../src/wsf_response.html#f_put_substring">put_substring</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_begin_index, a_end_index: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send the substring </FONT><I>s[a_begin_index:a_end_index]</I>
+        <B>require</B>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_substring (s, a_begin_index, a_end_index)
+            <A HREF="../src/wsf_response.html#f_increment_transfered_content_length">increment_transfered_content_length</A> (a_end_index - a_begin_index + 1)
+        <B>end</B></A>
+
+    <A NAME="f_put_file_content"><A HREF="../src/wsf_response.html#f_put_file_content">put_file_content</A> (f: <A HREF="../elks/file.html">FILE</A>; a_offset: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_count: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send </FONT><I>a_count</I><FONT COLOR="red"> bytes from the content of file </FONT><I>f</I><FONT COLOR="red"> starting at offset </FONT><I>a_offset</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+            not_too_big: a_offset + a_count &lt;= f.<A HREF="../elks/file.html#f_count">count</A>
+        <B>do</B>
+            <B>if</B> a_count &gt; 0 <B>then</B>
+                <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_file_content (f, a_offset, a_count)
+                <A HREF="../src/wsf_response.html#f_increment_transfered_content_length">increment_transfered_content_length</A> (a_count)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Chunk body</FONT>
+
+    <A NAME="f_put_chunk"><A HREF="../src/wsf_response.html#f_put_chunk">put_chunk</A> (a_content: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_ext: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Write chunk non empty </FONT><I>a_content</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> with optional extension </FONT><I>a_ext</I><FONT COLOR="red">: chunk-extension= *( ";" chunk-ext-name [ "=" chunk-ext-val ] )</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note: that you should have header "Transfer-Encoding: chunked"</FONT>
+        <B>require</B>
+            a_content_not_empty: a_content /= <B>Void</B> <B>and then</B> <B>not</B> a_content.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+            message_writable: <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+            valid_chunk_extension: (a_ext /= <B>Void</B> <B>and then</B> <B>not</B> a_ext.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>) <B>implies</B> (a_ext.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> (";") <B>and</B> <B>not</B> a_ext.<A HREF="../elks/readable_string_8.html#f_has">has</A> ('%N') <B>and</B> <B>not</B> <B>not</B> a_ext.<A HREF="../elks/readable_string_8.html#f_has">has</A> ('%R'))
+        <B>local</B>
+            l_chunk_size_line: <A HREF="../elks/string_8.html">STRING_8</A>
+            i: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            l_chunk_size_line := a_content.<A HREF="../elks/readable_string_8.html#f_count">count</A>.<A HREF="../elks/integer_32_ref.html#f_to_hex_string">to_hex_string</A>
+            <B>from</B>
+                i := 1
+            <B>until</B>
+                l_chunk_size_line [i] /= '0'
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> i &gt; 1 <B>then</B>
+                l_chunk_size_line := l_chunk_size_line.<A HREF="../elks/string_8.html#f_substring">substring</A> (i, l_chunk_size_line.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+            <B>end</B>
+            <B>if</B> a_ext /= <B>Void</B> <B>then</B>
+                l_chunk_size_line.<A HREF="../elks/string_8.html#f_append">append</A> (a_ext)
+            <B>end</B>;
+            l_chunk_size_line.<A HREF="../elks/string_8.html#f_append">append</A> ({<A HREF="../src/http_constants.html">HTTP_CONSTANTS</A>}.<A HREF="../src/http_constants.html#f_crlf">crlf</A>);
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_string (l_chunk_size_line)
+            <A HREF="../src/wsf_response.html#f_put_string">put_string</A> (a_content);
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_string ({<A HREF="../src/http_constants.html">HTTP_CONSTANTS</A>}.<A HREF="../src/http_constants.html#f_crlf">crlf</A>)
+            <A HREF="../src/wsf_response.html#f_flush">flush</A>
+        <B>ensure</B>
+            <A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A> = <B>old</B> <A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A> + a_content.<A HREF="../elks/readable_string_8.html#f_count">count</A>.<A HREF="../elks/integer_32_ref.html#f_to_natural_64">to_natural_64</A>
+        <B>end</B></A>
+
+    <A NAME="f_put_custom_chunk_end"><A HREF="../src/wsf_response.html#f_put_custom_chunk_end">put_custom_chunk_end</A> (a_ext: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_trailer: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put end of chunked content,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> with optional extension </FONT><I>a_ext</I><FONT COLOR="red">: chunk-extension= *( ";" chunk-ext-name [ "=" chunk-ext-val ] )</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and with optional trailer </FONT><I>a_trailer</I><FONT COLOR="red"> : trailer= *(entity-header CRLF)</FONT>
+        <B>local</B>
+            l_chunk_size_line: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>create</B> l_chunk_size_line.<A HREF="../elks/readable_string_8.html#f_make">make</A> (1);
+            l_chunk_size_line.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> (0)
+            <B>if</B> a_ext /= <B>Void</B> <B>then</B>
+                l_chunk_size_line.<A HREF="../elks/string_8.html#f_append">append</A> (a_ext)
+            <B>end</B>;
+            l_chunk_size_line.<A HREF="../elks/string_8.html#f_append">append</A> ({<A HREF="../src/http_constants.html">HTTP_CONSTANTS</A>}.<A HREF="../src/http_constants.html#f_crlf">crlf</A>);
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_string (l_chunk_size_line)
+            <B>if</B> a_trailer /= <B>Void</B> <B>and then</B> <B>not</B> a_trailer.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_string (a_trailer)
+            <B>end</B>;
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_string ({<A HREF="../src/http_constants.html">HTTP_CONSTANTS</A>}.<A HREF="../src/http_constants.html#f_crlf">crlf</A>)
+            <A HREF="../src/wsf_response.html#f_flush">flush</A>
+        <B>end</B></A>
+
+    <A NAME="f_put_chunk_end"><A HREF="../src/wsf_response.html#f_put_chunk_end">put_chunk_end</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Put end of chunked content</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> without any optional trailer.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_put_custom_chunk_end">put_custom_chunk_end</A> (<B>Void</B>, <B>Void</B>)
+        <B>end</B></A>
+
+    <A NAME="f_flush"><A HREF="../src/wsf_response.html#f_flush">flush</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Flush if it makes sense</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.flush
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response object</FONT>
+
+    <A NAME="f_send"><A HREF="../src/wsf_response.html#f_send">send</A> (a_message: <A HREF="../src/wsf_response_message.html">WSF_RESPONSE_MESSAGE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><I>a_message</I><FONT COLOR="red"> as the whole response to the client</FONT>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+            status_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>
+            no_message_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_message_committed">message_committed</A>
+        <B>do</B>
+            a_message.<A HREF="../src/wsf_response_message.html#f_send_to">send_to</A> (<B>Current</B>)
+        <B>ensure</B>
+            status_committed: <A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Redirect</FONT>
+
+    <A NAME="f_redirect_now_custom"><A HREF="../src/wsf_response.html#f_redirect_now_custom">redirect_now_custom</A> (a_url: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_status_code: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_header: <B>detachable</B> <A HREF="../src/http_header.html">HTTP_HEADER</A>; a_content: <B>detachable</B> <A HREF="../elks/tuple.html">TUPLE</A> [body: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Redirect to the given url </FONT><I>a_url</I><FONT COLOR="red"> and precise custom </FONT><I>a_status_code</I><FONT COLOR="red">, custom header and content</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Please see </FONT><FONT COLOR="red">http://www.faqs.org/rfcs/rfc2616</FONT><FONT COLOR="red"> to use proper status code.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if </FONT><I>a_status_code</I><FONT COLOR="red"> is 0, use the default </FONT>{<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_temp_redirect">temp_redirect</A>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            b: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A> <B>then</B>
+                <A HREF="../src/wsf_response.html#f_put_string">put_string</A> ("Headers already sent.%NCannot redirect, for now please follow this &lt;a %"href=%"" + a_url + "%"&gt;link&lt;/a&gt; instead%N")
+            <B>else</B>
+                <B>if</B> a_header /= <B>Void</B> <B>then</B>
+                    <B>create</B> h.<A HREF="../src/http_header.html#f_make_from_header">make_from_header</A> (a_header)
+                <B>else</B>
+                    <B>create</B> h.<A HREF="../src/http_header.html#f_make_with_count">make_with_count</A> (1)
+                <B>end</B>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_location">put_location</A> (a_url)
+                <B>if</B> a_status_code = 0 <B>then</B>
+                    <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_temp_redirect">temp_redirect</A>)
+                <B>else</B>
+                    <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (a_status_code)
+                <B>end</B>
+                <B>if</B> a_content /= <B>Void</B> <B>then</B>
+                    b := a_content.body;
+                    h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (b.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+                    h.<A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> (a_content.type)
+                    <A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (h.<A HREF="../src/http_header.html#f_string">string</A>)
+                    <A HREF="../src/wsf_response.html#f_put_string">put_string</A> (b)
+                <B>else</B>
+                    h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (0)
+                    <A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (h.<A HREF="../src/http_header.html#f_string">string</A>)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_redirect_now"><A HREF="../src/wsf_response.html#f_redirect_now">redirect_now</A> (a_url: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Redirect to the given url </FONT><I>a_url</I>
+        <B>require</B>
+            header_not_committed: <B>not</B> <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_redirect_now_custom">redirect_now_custom</A> (a_url, {<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_found">found</A>, <B>Void</B>, <B>Void</B>)
+        <B>end</B></A>
+
+    <A NAME="f_redirect_now_with_content"><A HREF="../src/wsf_response.html#f_redirect_now_with_content">redirect_now_with_content</A> (a_url: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_content: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Redirect to the given url </FONT><I>a_url</I>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_redirect_now_custom">redirect_now_custom</A> (a_url, {<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_found">found</A>, <B>Void</B>, [a_content, a_content_type])
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Error reporting</FONT>
+
+    <A NAME="f_put_error"><A HREF="../src/wsf_response.html#f_put_error">put_error</A> (a_message: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Report error described by </FONT><I>a_message</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This might be used by the underlying connector</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_response.html#f_wgi_response">wgi_response</A>.put_error (a_message)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implemenation</FONT>
+
+    <A NAME="f_has_cookie_name"><A HREF="../src/wsf_response.html#f_has_cookie_name">has_cookie_name</A> (a_cookie_line, a_cookie_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has the cookie line </FONT><I>a_cookie_line</I><FONT COLOR="red">, the cookie name </FONT><I>a_cookie_name</I><FONT COLOR="red">?</FONT>
+        <B>local</B>
+            i, j, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            j := a_cookie_line.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> (':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, 1)
+            <B>if</B> j &gt; 0 <B>then</B>
+                i := a_cookie_line.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> ('='.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, 1)
+                <B>if</B> i &gt; j <B>then</B>
+                    i := i - 1
+                    j := j + 1
+                    <B>from</B>
+                        n := a_cookie_line.<A HREF="../elks/readable_string_general.html#f_count">count</A>
+                    <B>until</B>
+                        j &gt; n <B>or</B> <B>not</B> a_cookie_line [j].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                    <B>loop</B>
+                        j := j + 1
+                    <B>end</B>
+                    <B>if</B> j &lt;= n <B>then</B>
+                        <B>Result</B> := a_cookie_name.<A HREF="../elks/readable_string_general.html#f_same_characters">same_characters</A> (a_cookie_line, j, i, 1)
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2016, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_response.html">WSF_RESPONSE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_response_chart.html">Chart</A></TD><TD><A HREF="wsf_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,264 @@
+<HTML><HEAD>
+<meta name="description" content="Code page identifiers that Windows supports."/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="ca_ignore" content="CA032, CA032: too long routine"/>
+<meta name="library" content="Encoding: Library of reusable components for Eiffel."/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>code_pages Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../../class_list.html">Classes</A></TD><TD><A HREF="../../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="code_pages_chart.html">Chart</A></TD><TD><A HREF="code_pages_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Code page identifiers that Windows supports."
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2020-05-20 10:46:14 +0000 (Wed, 20 May 2020) $"
+    revision: "$Revision: 104297 $"
+
+<B>class</B> 
+    <A HREF="../../../../elks/encoding/implementation/windows/code_pages.html">CODE_PAGES</A>
+
+<B>create</B> 
+    <A HREF="../../../../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Code-Page Identifiers</FONT>
+
+    <A NAME="f_code_pages"><A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_code_pages">Code_pages</A>: <A HREF="../../../../elks/string_table.html">STRING_TABLE</A> [<A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Code page identifiers.</FONT>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../../../../elks/string_table.html#f_make_caseless">make_caseless</A> (168);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("037", "037");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("437", "437");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("500", "500");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("708", "708");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("709", "709");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("710", "710");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("720", "720");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("737", "737");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("775", "775");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("850", "850");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("852", "852");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("855", "855");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("857", "857");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("858", "858");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("860", "860");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("861", "861");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("862", "862");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("863", "863");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("864", "864");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("865", "865");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("866", "866");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("869", "869");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("870", "870");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("874", "874");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("875", "875");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("932", "932");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("936", "936");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("949", "949");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("950", "950");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1026", "1026");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1047", "1047");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1140", "1140");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1141", "1141");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1142", "1142");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1143", "1143");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1144", "1144");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1145", "1145");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1146", "1146");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1147", "1147");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1148", "1148");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1149", "1149");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1200", "1200");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1201", "1201");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1250", "1250");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1251", "1251");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1252", "1252");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1253", "1253");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1254", "1254");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1255", "1255");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1256", "1256");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1257", "1257");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1258", "1258");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1361", "1361");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10000", "10000");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10001", "10001");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10002", "10002");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10003", "10003");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10004", "10004");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10005", "10005");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10006", "10006");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10007", "10007");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10008", "10008");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10010", "10010");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10017", "10017");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10021", "10021");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10029", "10029");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10079", "10079");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10081", "10081");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("10082", "10082");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12000", "12000");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12001", "12001");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20000", "20000");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20001", "20001");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20002", "20002");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20003", "20003");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20004", "20004");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20005", "20005");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20105", "20105");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20106", "20106");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20107", "20107");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20108", "20108");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20127", "20127");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20261", "20261");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20269", "20269");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20273", "20273");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20277", "20277");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20278", "20278");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20280", "20280");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20284", "20284");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20285", "20285");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20290", "20290");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20297", "20297");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20420", "20420");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20423", "20423");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20424", "20424");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20833", "20833");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20838", "20838");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20866", "20866");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20871", "20871");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20880", "20880");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20905", "20905");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20924", "20924");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20932", "20932");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("20936", "20936");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("21025", "21025");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("21027", "21027");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("21866", "21866");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28591", "28591");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28592", "28592");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28593", "28593");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28594", "28594");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28595", "28595");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28596", "28596");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28597", "28597");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28598", "28598");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28599", "28599");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("28605", "28605");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("29001", "29001");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("38598", "38598");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50220", "50220");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50221", "50221");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50222", "50222");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50225", "50225");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50227", "50227");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50229", "50229");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50930", "50930");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50931", "50931");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50933", "50933");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50935", "50935");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50936", "50936");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50937", "50937");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("50939", "50939");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("51932", "51932");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("51936", "51936");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("51949", "51949");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("51950", "51950");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("52936", "52936");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("54936", "54936");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57002", "57002");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57003", "57003");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57004", "57004");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57005", "57005");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57006", "57006");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57007", "57007");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57008", "57008");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57009", "57009");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57010", "57010");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("57011", "57011");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("65000", "65000");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("65001", "65001");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("65000", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf7">utf7</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf7">utf7</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf7">utf7</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("65001", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf8">utf8</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf8">utf8</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf8">utf8</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1200", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16">utf16</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16">utf16</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16">utf16</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1200", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12000", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32">utf32</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32">utf32</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32">utf32</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12000", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1201", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12001", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>)
+        <B>ensure</B>
+            <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_two_byte_code_pages"><A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_two_byte_code_pages">Two_byte_code_pages</A>: <A HREF="../../../../elks/string_table.html">STRING_TABLE</A> [<A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>]
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../../../../elks/string_table.html#f_make_caseless">make_caseless</A> (8);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1200", "1200");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1201", "1201");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1200", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16">utf16</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16">utf16</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16">utf16</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1200", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1201", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>)
+        <B>ensure</B>
+            <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_four_byte_code_pages"><A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_four_byte_code_pages">Four_byte_code_pages</A>: <A HREF="../../../../elks/string_table.html">STRING_TABLE</A> [<A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>]
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../../../../elks/string_table.html#f_make_caseless">make_caseless</A> (8);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12000", "12000");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12001", "12001");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12000", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32">utf32</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32">utf32</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32">utf32</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12000", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12001", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>)
+        <B>ensure</B>
+            <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_big_endian_code_pages"><A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_big_endian_code_pages">Big_endian_code_pages</A>: <A HREF="../../../../elks/string_table.html">STRING_TABLE</A> [<A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>]
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../../../../elks/string_table.html#f_make_caseless">make_caseless</A> (6);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1201", "1201");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12001", "12001");
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("1201", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ("12001", {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>.<A HREF="../../../../elks/string_8.html#f_as_lower">as_lower</A>);
+            <B>Result</B>.<A HREF="../../../../elks/hash_table.html#f_put">put</A> ({<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>, {<A HREF="../../../../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../../../../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>)
+        <B>ensure</B>
+            <B>class</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    ca_ignore: "CA032", "CA032: too long routine"
+    library: "Encoding: Library of reusable components for Eiffel."
+    copyright: "Copyright (c) 1984-2020, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../../../../elks/encoding/implementation/windows/code_pages.html">CODE_PAGES</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../../class_list.html">Classes</A></TD><TD><A HREF="../../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="code_pages_chart.html">Chart</A></TD><TD><A HREF="code_pages_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

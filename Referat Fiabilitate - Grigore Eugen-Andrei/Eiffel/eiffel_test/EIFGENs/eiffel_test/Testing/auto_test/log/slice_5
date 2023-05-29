@@ -1,0 +1,1574 @@
+class GENERATED_TEST_CASE
+
+inherit
+
+	AUT_TEST_CASE
+
+feature
+
+	test
+		local
+			-- TODO: add variable declarations for not failing and not minimized TCs.
+		do
+			v_1 := Void
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot1 then
+				v_2 := l_ot1
+			end
+			v_3 := {CHARACTER_32} 'z'
+			execute_safe (agent v_2.separate_character_option_value (Void))
+			v_4 := last_object
+			execute_safe (agent v_2.option_sign)
+			v_5 := last_object
+			execute_safe (agent v_2.argument_array)
+			v_6 := last_object
+			execute_safe (agent v_2.argument_count)
+			v_7 := last_object
+			execute_safe (agent v_2.command_name)
+			v_8 := last_object
+			execute_safe (agent v_2.command_line)
+			v_9 := last_object
+			v_10 := {CHARACTER_32} '^'
+			execute_safe (agent v_2.set_option_sign (Void))
+			execute_safe (agent v_2.index_of_word_option (Void))
+			v_11 := last_object
+			v_12 := {INTEGER_32} 1
+			execute_safe (agent v_2.argument (Void))
+			v_13 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot2 then
+				v_14 := l_ot2
+			end
+			v_15 := {CHARACTER_32} '%/241/'
+			execute_safe (agent v_14.index_of_character_option (Void))
+			v_16 := last_object
+			v_17 := {CHARACTER_32} '%/239/'
+			execute_safe (agent v_2.coalesced_character_option_value (Void))
+			v_18 := last_object
+			execute_safe (agent v_2.coalesced_word_option_value (Void))
+			v_19 := last_object
+			v_20 := default_pointer
+			v_21 := {INTEGER_32} 0
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_byte_array (a_arg1, a_arg2)
+				end (Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot3 then
+				v_22 := l_ot3
+			end
+			execute_safe (agent v_14.separate_word_option_value (Void))
+			v_23 := last_object
+			execute_safe (agent v_2.index_of_beginning_with_word_option (Void))
+			v_24 := last_object
+			execute_safe (agent v_2.new_cursor)
+			v_25 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot4 then
+				v_26 := l_ot4
+			end
+			v_27 := {CHARACTER_32} '%/156/'
+			execute_safe (agent v_26.set_option_sign (Void))
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot5 then
+				v_28 := l_ot5
+			end
+			execute_safe (agent v_28.argument_count)
+			v_29 := last_object
+			execute_safe (agent v_2.index_of_word_option (Void))
+			v_30 := last_object
+			execute_safe (agent v_2.new_cursor)
+			v_31 := last_object
+			execute_safe (agent v_28.command_line)
+			v_32 := last_object
+			v_33 := {CHARACTER_32} '%/231/'
+			execute_safe (agent v_28.index_of_character_option (Void))
+			v_34 := last_object
+			v_35 := {CHARACTER_32} 'L'
+			execute_safe (agent v_28.coalesced_character_option_value (Void))
+			v_36 := last_object
+			execute_safe (agent v_28.command_name)
+			v_37 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot6 then
+				v_38 := l_ot6
+			end
+			execute_safe (agent v_38.coalesced_word_option_value (Void))
+			v_39 := last_object
+			execute_safe (agent v_14.argument_array)
+			v_40 := last_object
+			execute_safe (agent v_14.option_sign)
+			v_41 := last_object
+			v_42 := {CHARACTER_32} 'W'
+			execute_safe (agent v_38.separate_character_option_value (Void))
+			v_43 := last_object
+			execute_safe (agent v_26.separate_word_option_value (Void))
+			v_44 := last_object
+			execute_safe (agent v_26.index_of_beginning_with_word_option (Void))
+			v_45 := last_object
+			v_46 := {INTEGER_32} 9
+			execute_safe (agent v_38.argument (Void))
+			v_47 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot7 then
+				v_48 := l_ot7
+			end
+			v_49 := {CHARACTER_32} '%/170/'
+			execute_safe (agent v_48.coalesced_character_option_value (Void))
+			v_50 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot8 then
+				v_51 := l_ot8
+			end
+			execute_safe (agent v_51.command_line)
+			v_52 := last_object
+			v_53 := {CHARACTER_32} 'z'
+			execute_safe (agent v_51.separate_character_option_value (Void))
+			v_54 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot9 then
+				v_55 := l_ot9
+			end
+			execute_safe (agent v_55.option_sign)
+			v_56 := last_object
+			execute_safe (agent v_48.argument_count)
+			v_57 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot10 then
+				v_58 := l_ot10
+			end
+			v_59 := {INTEGER_32} -6
+			execute_safe (agent v_58.argument (Void))
+			v_60 := last_object
+			v_61 := default_pointer
+			v_62 := {INTEGER_32} 4
+			v_63 := {INTEGER_32} 1
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE; a_arg3: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_substring (a_arg1, a_arg2, a_arg3)
+				end (Void, Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot11 then
+				v_64 := l_ot11
+			end
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot12 then
+				v_65 := l_ot12
+			end
+			execute_safe (agent v_65.index_of_beginning_with_word_option (Void))
+			v_66 := last_object
+			execute_safe (agent v_38.argument_array)
+			v_67 := last_object
+			v_68 := {CHARACTER_32} '>'
+			execute_safe (agent v_48.index_of_character_option (Void))
+			v_69 := last_object
+			execute_safe (agent v_55.command_name)
+			v_70 := last_object
+			execute_safe (agent v_58.new_cursor)
+			v_71 := last_object
+			execute_safe (agent v_26.index_of_word_option (Void))
+			v_72 := last_object
+			v_73 := {CHARACTER_32} '%/2/'
+			execute_safe (agent v_14.set_option_sign (Void))
+			execute_safe (agent v_26.separate_word_option_value (Void))
+			v_74 := last_object
+			execute_safe (agent v_55.coalesced_word_option_value (Void))
+			v_75 := last_object
+			v_76 := {INTEGER_32} -2
+			execute_safe (agent v_48.argument (Void))
+			v_77 := last_object
+			v_78 := {CHARACTER_32} '%"'
+			execute_safe (agent v_2.separate_character_option_value (Void))
+			v_79 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot13 then
+				v_80 := l_ot13
+			end
+			execute_safe (agent v_80.index_of_beginning_with_word_option (Void))
+			v_81 := last_object
+			execute_safe (agent v_28.separate_word_option_value (Void))
+			v_82 := last_object
+			execute_safe (agent v_80.command_line)
+			v_83 := last_object
+			execute_safe (agent v_38.new_cursor)
+			v_84 := last_object
+			v_85 := {CHARACTER_32} '['
+			execute_safe (agent v_58.set_option_sign (Void))
+			execute_safe (agent v_80.command_name)
+			v_86 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot14 then
+				v_87 := l_ot14
+			end
+			execute_safe (agent v_87.index_of_word_option (Void))
+			v_88 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot15 then
+				v_89 := l_ot15
+			end
+			execute_safe (agent v_89.argument_count)
+			v_90 := last_object
+			v_91 := {CHARACTER_32} '>'
+			execute_safe (agent v_48.index_of_character_option (Void))
+			v_92 := last_object
+			execute_safe (agent v_2.option_sign)
+			v_93 := last_object
+			execute_safe (agent v_51.argument_array)
+			v_94 := last_object
+			v_95 := {CHARACTER_32} '%/164/'
+			execute_safe (agent v_58.coalesced_character_option_value (Void))
+			v_96 := last_object
+			execute_safe (agent v_51.coalesced_word_option_value (Void))
+			v_97 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot16 then
+				v_98 := l_ot16
+			end
+			v_99 := {INTEGER_32} -5
+			execute_safe (agent v_98.argument (Void))
+			v_100 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot17 then
+				v_101 := l_ot17
+			end
+			execute_safe (agent v_101.argument_count)
+			v_102 := last_object
+			v_103 := {CHARACTER_32} '%N'
+			execute_safe (agent v_2.index_of_character_option (Void))
+			v_104 := last_object
+			execute_safe (agent v_101.argument_array)
+			v_105 := last_object
+			execute_safe (agent v_2.command_name)
+			v_106 := last_object
+			execute_safe (agent v_65.index_of_beginning_with_word_option (Void))
+			v_107 := last_object
+			v_108 := {CHARACTER_32} '`'
+			execute_safe (agent v_98.separate_character_option_value (Void))
+			v_109 := last_object
+			execute_safe (agent v_26.command_line)
+			v_110 := last_object
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_separate (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot18 then
+				v_111 := l_ot18
+			end
+			execute_safe (agent v_28.index_of_word_option (Void))
+			v_112 := last_object
+			v_113 := {CHARACTER_32} '%/211/'
+			execute_safe (agent v_101.coalesced_character_option_value (Void))
+			v_114 := last_object
+			execute_safe (agent v_14.new_cursor)
+			v_115 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot19 then
+				v_116 := l_ot19
+			end
+			execute_safe (agent v_116.option_sign)
+			v_117 := last_object
+			execute_safe (agent v_87.coalesced_word_option_value (Void))
+			v_118 := last_object
+			execute_safe (agent v_89.separate_word_option_value (Void))
+			v_119 := last_object
+			v_120 := {CHARACTER_32} 'v'
+			execute_safe (agent v_55.set_option_sign (Void))
+			v_121 := {CHARACTER_32} '2'
+			execute_safe (agent v_116.index_of_character_option (Void))
+			v_122 := last_object
+			v_123 := {CHARACTER_32} '}'
+			execute_safe (agent v_28.coalesced_character_option_value (Void))
+			v_124 := last_object
+			execute_safe (agent v_48.argument_array)
+			v_125 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot20 then
+				v_126 := l_ot20
+			end
+			execute_safe (agent v_126.index_of_word_option (Void))
+			v_127 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot21 then
+				v_128 := l_ot21
+			end
+			execute_safe (agent v_128.option_sign)
+			v_129 := last_object
+			v_130 := {INTEGER_32} -1
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot22 then
+				v_131 := l_ot22
+			end
+			execute_safe (agent v_65.coalesced_word_option_value (Void))
+			v_132 := last_object
+			v_133 := {CHARACTER_32} '%/254/'
+			execute_safe (agent v_14.separate_character_option_value (Void))
+			v_134 := last_object
+			v_135 := {CHARACTER_32} '%/168/'
+			execute_safe (agent v_80.set_option_sign (Void))
+			v_136 := {INTEGER_32} -1
+			execute_safe (agent v_26.argument (Void))
+			v_137 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot23 then
+				v_138 := l_ot23
+			end
+			execute_safe (agent v_138.separate_word_option_value (Void))
+			v_139 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot24 then
+				v_140 := l_ot24
+			end
+			execute_safe (agent v_140.command_name)
+			v_141 := last_object
+			execute_safe (agent v_87.new_cursor)
+			v_142 := last_object
+			execute_safe (agent v_55.command_line)
+			v_143 := last_object
+			execute_safe (agent: IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_empty
+				end)
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot25 then
+				v_144 := l_ot25
+			end
+			execute_safe (agent v_126.index_of_beginning_with_word_option (Void))
+			v_145 := last_object
+			execute_safe (agent v_138.argument_count)
+			v_146 := last_object
+			execute_safe (agent v_51.argument_array)
+			v_147 := last_object
+			execute_safe (agent v_98.separate_word_option_value (Void))
+			v_148 := last_object
+			v_149 := {CHARACTER_32} '3'
+			execute_safe (agent v_89.set_option_sign (Void))
+			v_150 := {CHARACTER_32} '%/246/'
+			execute_safe (agent v_80.index_of_character_option (Void))
+			v_151 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot26 then
+				v_152 := l_ot26
+			end
+			execute_safe (agent v_152.new_cursor)
+			v_153 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot27 then
+				v_154 := l_ot27
+			end
+			v_155 := {CHARACTER_32} 'y'
+			execute_safe (agent v_154.coalesced_character_option_value (Void))
+			v_156 := last_object
+			v_157 := {CHARACTER_32} '%N'
+			execute_safe (agent v_138.separate_character_option_value (Void))
+			v_158 := last_object
+			v_159 := {INTEGER_32} 5
+			execute_safe (agent v_138.argument (Void))
+			v_160 := last_object
+			execute_safe (agent v_140.option_sign)
+			v_161 := last_object
+			execute_safe (agent v_126.command_name)
+			v_162 := last_object
+			execute_safe (agent v_116.index_of_word_option (Void))
+			v_163 := last_object
+			execute_safe (agent v_58.index_of_beginning_with_word_option (Void))
+			v_164 := last_object
+			execute_safe (agent v_14.argument_count)
+			v_165 := last_object
+			execute_safe (agent v_28.command_line)
+			v_166 := last_object
+			execute_safe (agent v_48.coalesced_word_option_value (Void))
+			v_167 := last_object
+			v_168 := {CHARACTER_32} '%/183/'
+			execute_safe (agent v_140.set_option_sign (Void))
+			v_169 := {CHARACTER_32} '8'
+			execute_safe (agent v_80.index_of_character_option (Void))
+			v_170 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot28 then
+				v_171 := l_ot28
+			end
+			v_172 := {CHARACTER_32} '%/26/'
+			execute_safe (agent v_171.separate_character_option_value (Void))
+			v_173 := last_object
+			execute_safe (agent: STRING_8
+				do
+					create {STRING_8} Result.make_empty
+				end)
+			check attached {STRING_8} last_object as l_ot29 then
+				v_174 := l_ot29
+			end
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_separate (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot30 then
+				v_175 := l_ot30
+			end
+			execute_safe (agent v_48.separate_word_option_value (Void))
+			v_176 := last_object
+			execute_safe (agent v_171.argument_count)
+			v_177 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot31 then
+				v_178 := l_ot31
+			end
+			execute_safe (agent v_178.command_line)
+			v_179 := last_object
+			execute_safe (agent v_55.new_cursor)
+			v_180 := last_object
+			execute_safe (agent v_51.index_of_beginning_with_word_option (Void))
+			v_181 := last_object
+			execute_safe (agent v_128.coalesced_word_option_value (Void))
+			v_182 := last_object
+			v_183 := {INTEGER_32} 9
+			execute_safe (agent v_87.argument (Void))
+			v_184 := last_object
+			execute_safe (agent v_101.argument_array)
+			v_185 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot32 then
+				v_186 := l_ot32
+			end
+			execute_safe (agent v_186.option_sign)
+			v_187 := last_object
+			v_188 := {CHARACTER_32} '%/143/'
+			execute_safe (agent v_38.coalesced_character_option_value (Void))
+			v_189 := last_object
+			execute_safe (agent v_178.index_of_word_option (Void))
+			v_190 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot33 then
+				v_191 := l_ot33
+			end
+			execute_safe (agent v_191.command_name)
+			v_192 := last_object
+			execute_safe (agent v_28.command_line)
+			v_193 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot34 then
+				v_194 := l_ot34
+			end
+			v_195 := {INTEGER_32} -6
+			execute_safe (agent v_194.argument (Void))
+			v_196 := last_object
+			v_197 := {CHARACTER_32} '+'
+			execute_safe (agent v_28.index_of_character_option (Void))
+			v_198 := last_object
+			execute_safe (agent v_128.index_of_word_option (Void))
+			v_199 := last_object
+			v_200 := {CHARACTER_32} '%/17/'
+			execute_safe (agent v_51.set_option_sign (Void))
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot35 then
+				v_201 := l_ot35
+			end
+			v_202 := {CHARACTER_32} '['
+			execute_safe (agent v_201.separate_character_option_value (Void))
+			v_203 := last_object
+			execute_safe (agent v_186.new_cursor)
+			v_204 := last_object
+			execute_safe (agent v_2.option_sign)
+			v_205 := last_object
+			execute_safe (agent v_152.coalesced_word_option_value (Void))
+			v_206 := last_object
+			execute_safe (agent v_58.index_of_beginning_with_word_option (Void))
+			v_207 := last_object
+			execute_safe (agent v_28.argument_count)
+			v_208 := last_object
+			v_209 := {CHARACTER_32} 's'
+			execute_safe (agent v_194.coalesced_character_option_value (Void))
+			v_210 := last_object
+			execute_safe (agent v_171.command_name)
+			v_211 := last_object
+			execute_safe (agent v_58.argument_array)
+			v_212 := last_object
+			execute_safe (agent v_28.separate_word_option_value (Void))
+			v_213 := last_object
+			v_214 := {CHARACTER_32} '2'
+			execute_safe (agent v_58.set_option_sign (Void))
+			v_215 := {INTEGER_32} -3
+			execute_safe (agent v_191.argument (Void))
+			v_216 := last_object
+			execute_safe (agent v_28.command_line)
+			v_217 := last_object
+			execute_safe (agent v_152.coalesced_word_option_value (Void))
+			v_218 := last_object
+			v_219 := {CHARACTER_32} 'Y'
+			execute_safe (agent v_65.index_of_character_option (Void))
+			v_220 := last_object
+			v_221 := {CHARACTER_32} '%R'
+			execute_safe (agent v_191.coalesced_character_option_value (Void))
+			v_222 := last_object
+			v_223 := {CHARACTER_32} ';'
+			execute_safe (agent v_38.separate_character_option_value (Void))
+			v_224 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot36 then
+				v_225 := l_ot36
+			end
+			execute_safe (agent v_225.option_sign)
+			v_226 := last_object
+			execute_safe (agent v_140.argument_array)
+			v_227 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot37 then
+				v_228 := l_ot37
+			end
+			execute_safe (agent v_228.argument_count)
+			v_229 := last_object
+			v_230 := default_pointer
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot38 then
+				v_231 := l_ot38
+			end
+			execute_safe (agent v_14.index_of_beginning_with_word_option (Void))
+			v_232 := last_object
+			execute_safe (agent v_65.command_name)
+			v_233 := last_object
+			execute_safe (agent v_225.index_of_word_option (Void))
+			v_234 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot39 then
+				v_235 := l_ot39
+			end
+			execute_safe (agent v_235.new_cursor)
+			v_236 := last_object
+			execute_safe (agent v_152.separate_word_option_value (Void))
+			v_237 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot40 then
+				v_238 := l_ot40
+			end
+			execute_safe (agent v_238.new_cursor)
+			v_239 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot41 then
+				v_240 := l_ot41
+			end
+			execute_safe (agent v_240.index_of_beginning_with_word_option (Void))
+			v_241 := last_object
+			execute_safe (agent v_58.command_name)
+			v_242 := last_object
+			execute_safe (agent v_116.option_sign)
+			v_243 := last_object
+			v_244 := {CHARACTER_32} '%/159/'
+			execute_safe (agent v_87.index_of_character_option (Void))
+			v_245 := last_object
+			v_246 := {CHARACTER_32} '%/210/'
+			execute_safe (agent v_228.separate_character_option_value (Void))
+			v_247 := last_object
+			execute_safe (agent v_191.command_line)
+			v_248 := last_object
+			v_249 := {CHARACTER_32} 'H'
+			execute_safe (agent v_87.coalesced_character_option_value (Void))
+			v_250 := last_object
+			execute_safe (agent v_38.argument_array)
+			v_251 := last_object
+			execute_safe (agent v_171.coalesced_word_option_value (Void))
+			v_252 := last_object
+			v_253 := default_pointer
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot42 then
+				v_254 := l_ot42
+			end
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot43 then
+				v_255 := l_ot43
+			end
+			execute_safe (agent v_255.argument_count)
+			v_256 := last_object
+			v_257 := {CHARACTER_32} 'i'
+			execute_safe (agent v_201.set_option_sign (Void))
+			execute_safe (agent v_255.index_of_word_option (Void))
+			v_258 := last_object
+			execute_safe (agent v_228.separate_word_option_value (Void))
+			v_259 := last_object
+			v_260 := {INTEGER_32} 7
+			execute_safe (agent v_235.argument (Void))
+			v_261 := last_object
+			v_262 := {CHARACTER_32} '%/180/'
+			execute_safe (agent v_48.index_of_character_option (Void))
+			v_263 := last_object
+			execute_safe (agent v_26.command_line)
+			v_264 := last_object
+			v_265 := {CHARACTER_32} '='
+			execute_safe (agent v_140.separate_character_option_value (Void))
+			v_266 := last_object
+			execute_safe (agent v_28.command_name)
+			v_267 := last_object
+			v_268 := {CHARACTER_32} '%/188/'
+			execute_safe (agent v_154.set_option_sign (Void))
+			v_269 := {CHARACTER_32} '2'
+			execute_safe (agent v_186.coalesced_character_option_value (Void))
+			v_270 := last_object
+			execute_safe (agent v_194.index_of_beginning_with_word_option (Void))
+			v_271 := last_object
+			execute_safe (agent v_2.new_cursor)
+			v_272 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot44 then
+				v_273 := l_ot44
+			end
+			v_274 := {CHARACTER_8} 'o'
+			v_275 := {INTEGER_32} 9
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_filled (a_arg1, a_arg2)
+				end (Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot45 then
+				v_276 := l_ot45
+			end
+			execute_safe (agent v_273.coalesced_word_option_value (Void))
+			v_277 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot46 then
+				v_278 := l_ot46
+			end
+			v_279 := default_pointer
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot47 then
+				v_280 := l_ot47
+			end
+			execute_safe (agent v_186.argument_count)
+			v_281 := last_object
+			v_282 := {INTEGER_32} -4
+			execute_safe (agent v_65.argument (Void))
+			v_283 := last_object
+			execute_safe (agent v_154.argument_array)
+			v_284 := last_object
+			execute_safe (agent v_26.index_of_word_option (Void))
+			v_285 := last_object
+			execute_safe (agent v_138.separate_word_option_value (Void))
+			v_286 := last_object
+			execute_safe (agent v_55.option_sign)
+			v_287 := last_object
+			execute_safe (agent v_2.index_of_beginning_with_word_option (Void))
+			v_288 := last_object
+			execute_safe (agent v_128.separate_word_option_value (Void))
+			v_289 := last_object
+			v_290 := {CHARACTER_32} '%/243/'
+			execute_safe (agent v_140.index_of_character_option (Void))
+			v_291 := last_object
+			v_292 := {CHARACTER_32} 'q'
+			execute_safe (agent v_14.set_option_sign (Void))
+			execute_safe (agent v_171.new_cursor)
+			v_293 := last_object
+			execute_safe (agent v_28.argument_array)
+			v_294 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot48 then
+				v_295 := l_ot48
+			end
+			execute_safe (agent v_295.command_line)
+			v_296 := last_object
+			v_297 := default_pointer
+			v_298 := {INTEGER_32} 0
+			v_299 := {INTEGER_32} -1
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE; a_arg3: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_substring (a_arg1, a_arg2, a_arg3)
+				end (Void, Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot49 then
+				v_300 := l_ot49
+			end
+			execute_safe (agent v_28.coalesced_word_option_value (Void))
+			v_301 := last_object
+			v_302 := {CHARACTER_32} 'Q'
+			execute_safe (agent v_240.separate_character_option_value (Void))
+			v_303 := last_object
+			execute_safe (agent v_140.command_name)
+			v_304 := last_object
+			v_305 := default_pointer
+			v_306 := {INTEGER_32} -1
+			v_307 := {INTEGER_32} -1
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE; a_arg3: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_substring (a_arg1, a_arg2, a_arg3)
+				end (Void, Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot50 then
+				v_308 := l_ot50
+			end
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot51 then
+				v_309 := l_ot51
+			end
+			execute_safe (agent v_309.argument_count)
+			v_310 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot52 then
+				v_311 := l_ot52
+			end
+			v_312 := {CHARACTER_32} '%''
+			execute_safe (agent v_311.coalesced_character_option_value (Void))
+			v_313 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot53 then
+				v_314 := l_ot53
+			end
+			execute_safe (agent v_314.option_sign)
+			v_315 := last_object
+			execute_safe (agent v_152.index_of_word_option (Void))
+			v_316 := last_object
+			v_317 := {INTEGER_32} 0
+			execute_safe (agent v_55.argument (Void))
+			v_318 := last_object
+			execute_safe (agent v_126.option_sign)
+			v_319 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot54 then
+				v_320 := l_ot54
+			end
+			v_321 := {CHARACTER_32} '%/178/'
+			execute_safe (agent v_320.separate_character_option_value (Void))
+			v_322 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot55 then
+				v_323 := l_ot55
+			end
+			execute_safe (agent v_323.command_name)
+			v_324 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot56 then
+				v_325 := l_ot56
+			end
+			v_326 := {CHARACTER_32} '%N'
+			execute_safe (agent v_325.coalesced_character_option_value (Void))
+			v_327 := last_object
+			execute_safe (agent v_26.index_of_beginning_with_word_option (Void))
+			v_328 := last_object
+			v_329 := {INTEGER_32} -6
+			execute_safe (agent v_311.argument (Void))
+			v_330 := last_object
+			v_331 := {CHARACTER_32} '%/253/'
+			execute_safe (agent v_235.set_option_sign (Void))
+			v_332 := {CHARACTER_32} '%/162/'
+			execute_safe (agent v_171.index_of_character_option (Void))
+			v_333 := last_object
+			execute_safe (agent v_89.separate_word_option_value (Void))
+			v_334 := last_object
+			execute_safe (agent v_89.command_line)
+			v_335 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot57 then
+				v_336 := l_ot57
+			end
+			execute_safe (agent v_336.new_cursor)
+			v_337 := last_object
+			execute_safe (agent v_98.argument_array)
+			v_338 := last_object
+			execute_safe (agent v_128.index_of_word_option (Void))
+			v_339 := last_object
+			execute_safe (agent v_138.coalesced_word_option_value (Void))
+			v_340 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot58 then
+				v_341 := l_ot58
+			end
+			execute_safe (agent v_341.argument_count)
+			v_342 := last_object
+			v_343 := {INTEGER_32} 9
+			execute_safe (agent v_89.argument (Void))
+			v_344 := last_object
+			execute_safe (agent v_235.coalesced_word_option_value (Void))
+			v_345 := last_object
+			execute_safe (agent v_295.command_line)
+			v_346 := last_object
+			v_347 := {CHARACTER_32} '%/15/'
+			execute_safe (agent v_154.set_option_sign (Void))
+			v_348 := {CHARACTER_32} '%/238/'
+			execute_safe (agent v_273.index_of_character_option (Void))
+			v_349 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot59 then
+				v_350 := l_ot59
+			end
+			execute_safe (agent v_350.option_sign)
+			v_351 := last_object
+			v_352 := {CHARACTER_32} 'u'
+			execute_safe (agent v_186.separate_character_option_value (Void))
+			v_353 := last_object
+			v_354 := {CHARACTER_32} '%/29/'
+			execute_safe (agent v_2.coalesced_character_option_value (Void))
+			v_355 := last_object
+			execute_safe (agent v_80.index_of_word_option (Void))
+			v_356 := last_object
+			execute_safe (agent v_320.command_name)
+			v_357 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot60 then
+				v_358 := l_ot60
+			end
+			execute_safe (agent v_358.argument_count)
+			v_359 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot61 then
+				v_360 := l_ot61
+			end
+			execute_safe (agent v_360.new_cursor)
+			v_361 := last_object
+			execute_safe (agent v_309.argument_array)
+			v_362 := last_object
+			execute_safe (agent v_128.index_of_beginning_with_word_option (Void))
+			v_363 := last_object
+			execute_safe (agent v_360.separate_word_option_value (Void))
+			v_364 := last_object
+			execute_safe (agent v_58.argument_count)
+			v_365 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot62 then
+				v_366 := l_ot62
+			end
+			v_367 := {CHARACTER_32} 'g'
+			execute_safe (agent v_366.coalesced_character_option_value (Void))
+			v_368 := last_object
+			v_369 := {CHARACTER_32} 'T'
+			execute_safe (agent v_320.separate_character_option_value (Void))
+			v_370 := last_object
+			execute_safe (agent v_98.command_name)
+			v_371 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot63 then
+				v_372 := l_ot63
+			end
+			execute_safe (agent v_372.command_line)
+			v_373 := last_object
+			execute_safe (agent v_116.new_cursor)
+			v_374 := last_object
+			v_375 := {CHARACTER_32} ':'
+			execute_safe (agent v_228.index_of_character_option (Void))
+			v_376 := last_object
+			execute_safe (agent v_80.index_of_word_option (Void))
+			v_377 := last_object
+			execute_safe (agent v_80.argument_array)
+			v_378 := last_object
+			execute_safe (agent: IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_empty
+				end)
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot64 then
+				v_379 := l_ot64
+			end
+			execute_safe (agent v_225.coalesced_word_option_value (Void))
+			v_380 := last_object
+			v_381 := {INTEGER_32} 5
+			execute_safe (agent v_235.argument (Void))
+			v_382 := last_object
+			v_383 := {CHARACTER_32} '%/172/'
+			execute_safe (agent v_235.set_option_sign (Void))
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot65 then
+				v_384 := l_ot65
+			end
+			execute_safe (agent v_384.option_sign)
+			v_385 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot66 then
+				v_386 := l_ot66
+			end
+			execute_safe (agent v_386.index_of_beginning_with_word_option (Void))
+			v_387 := last_object
+			execute_safe (agent v_194.separate_word_option_value (Void))
+			v_388 := last_object
+			v_389 := {INTEGER_32} -6
+			execute_safe (agent v_51.argument (Void))
+			v_390 := last_object
+			execute_safe (agent v_128.command_line)
+			v_391 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot67 then
+				v_392 := l_ot67
+			end
+			execute_safe (agent v_392.argument_count)
+			v_393 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot68 then
+				v_394 := l_ot68
+			end
+			execute_safe (agent v_394.coalesced_word_option_value (Void))
+			v_395 := last_object
+			v_396 := {CHARACTER_32} '%/21/'
+			execute_safe (agent v_323.index_of_character_option (Void))
+			v_397 := last_object
+			v_398 := {CHARACTER_32} '/'
+			execute_safe (agent v_191.coalesced_character_option_value (Void))
+			v_399 := last_object
+			execute_safe (agent v_140.separate_word_option_value (Void))
+			v_400 := last_object
+			execute_safe (agent v_278.option_sign)
+			v_401 := last_object
+			execute_safe (agent v_314.argument_array)
+			v_402 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot69 then
+				v_403 := l_ot69
+			end
+			v_404 := {CHARACTER_32} '%/207/'
+			execute_safe (agent v_403.set_option_sign (Void))
+			v_405 := {CHARACTER_32} '#'
+			execute_safe (agent v_126.separate_character_option_value (Void))
+			v_406 := last_object
+			execute_safe (agent v_154.index_of_word_option (Void))
+			v_407 := last_object
+			execute_safe (agent v_55.index_of_beginning_with_word_option (Void))
+			v_408 := last_object
+			execute_safe (agent v_48.new_cursor)
+			v_409 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot70 then
+				v_410 := l_ot70
+			end
+			execute_safe (agent v_410.command_name)
+			v_411 := last_object
+			v_412 := {CHARACTER_32} '%/1/'
+			execute_safe (agent v_336.coalesced_character_option_value (Void))
+			v_413 := last_object
+			v_414 := {CHARACTER_32} 'G'
+			execute_safe (agent v_410.set_option_sign (Void))
+			execute_safe (agent v_14.argument_array)
+			v_415 := last_object
+			v_416 := {CHARACTER_32} '%/226/'
+			execute_safe (agent v_235.index_of_character_option (Void))
+			v_417 := last_object
+			v_418 := {CHARACTER_32} '#'
+			execute_safe (agent v_278.separate_character_option_value (Void))
+			v_419 := last_object
+			execute_safe (agent v_201.option_sign)
+			v_420 := last_object
+			execute_safe (agent v_191.command_line)
+			v_421 := last_object
+			execute_safe (agent v_350.separate_word_option_value (Void))
+			v_422 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot71 then
+				v_423 := l_ot71
+			end
+			execute_safe (agent v_423.command_name)
+			v_424 := last_object
+			execute_safe (agent v_423.index_of_word_option (Void))
+			v_425 := last_object
+			execute_safe (agent v_350.argument_count)
+			v_426 := last_object
+			execute_safe (agent v_55.coalesced_word_option_value (Void))
+			v_427 := last_object
+			execute_safe (agent v_372.index_of_beginning_with_word_option (Void))
+			v_428 := last_object
+			execute_safe (agent v_55.new_cursor)
+			v_429 := last_object
+			v_430 := {INTEGER_32} 3
+			execute_safe (agent v_323.argument (Void))
+			v_431 := last_object
+			execute_safe (agent v_101.option_sign)
+			v_432 := last_object
+			execute_safe (agent v_336.argument_array)
+			v_433 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot72 then
+				v_434 := l_ot72
+			end
+			execute_safe (agent v_434.command_line)
+			v_435 := last_object
+			v_436 := {INTEGER_32} 0
+			execute_safe (agent v_138.argument (Void))
+			v_437 := last_object
+			execute_safe (agent v_80.new_cursor)
+			v_438 := last_object
+			v_439 := {CHARACTER_32} '%/26/'
+			execute_safe (agent v_410.separate_character_option_value (Void))
+			v_440 := last_object
+			execute_safe (agent v_14.index_of_beginning_with_word_option (Void))
+			v_441 := last_object
+			execute_safe (agent v_325.separate_word_option_value (Void))
+			v_442 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot73 then
+				v_443 := l_ot73
+			end
+			execute_safe (agent v_443.argument_count)
+			v_444 := last_object
+			execute_safe (agent v_178.index_of_word_option (Void))
+			v_445 := last_object
+			v_446 := {CHARACTER_32} '%/181/'
+			execute_safe (agent v_228.index_of_character_option (Void))
+			v_447 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot74 then
+				v_448 := l_ot74
+			end
+			execute_safe (agent v_448.command_name)
+			v_449 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot75 then
+				v_450 := l_ot75
+			end
+			v_451 := {CHARACTER_32} '%"'
+			execute_safe (agent v_450.set_option_sign (Void))
+			execute_safe (agent: IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_empty
+				end)
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot76 then
+				v_452 := l_ot76
+			end
+			execute_safe (agent v_152.coalesced_word_option_value (Void))
+			v_453 := last_object
+			v_454 := {CHARACTER_32} '%/213/'
+			execute_safe (agent v_350.coalesced_character_option_value (Void))
+			v_455 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot77 then
+				v_456 := l_ot77
+			end
+			execute_safe (agent v_456.command_line)
+			v_457 := last_object
+			execute_safe (agent v_410.argument_array)
+			v_458 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot78 then
+				v_459 := l_ot78
+			end
+			execute_safe (agent v_459.index_of_word_option (Void))
+			v_460 := last_object
+			execute_safe (agent v_360.option_sign)
+			v_461 := last_object
+			execute_safe (agent v_386.command_name)
+			v_462 := last_object
+			v_463 := {CHARACTER_32} '}'
+			execute_safe (agent v_336.set_option_sign (Void))
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot79 then
+				v_464 := l_ot79
+			end
+			v_465 := {CHARACTER_32} 'V'
+			execute_safe (agent v_464.separate_character_option_value (Void))
+			v_466 := last_object
+			execute_safe (agent v_238.coalesced_word_option_value (Void))
+			v_467 := last_object
+			execute_safe (agent v_14.index_of_beginning_with_word_option (Void))
+			v_468 := last_object
+			execute_safe (agent v_410.new_cursor)
+			v_469 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot80 then
+				v_470 := l_ot80
+			end
+			v_471 := {INTEGER_32} 7
+			execute_safe (agent v_470.argument (Void))
+			v_472 := last_object
+			execute_safe (agent: IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_empty
+				end)
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot81 then
+				v_473 := l_ot81
+			end
+			execute_safe (agent v_366.separate_word_option_value (Void))
+			v_474 := last_object
+			v_475 := {CHARACTER_32} '%"'
+			execute_safe (agent v_273.index_of_character_option (Void))
+			v_476 := last_object
+			execute_safe (agent v_456.argument_count)
+			v_477 := last_object
+			v_478 := {CHARACTER_32} 'W'
+			execute_safe (agent v_372.coalesced_character_option_value (Void))
+			v_479 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot82 then
+				v_480 := l_ot82
+			end
+			execute_safe (agent v_480.index_of_beginning_with_word_option (Void))
+			v_481 := last_object
+			execute_safe (agent v_89.coalesced_word_option_value (Void))
+			v_482 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot83 then
+				v_483 := l_ot83
+			end
+			execute_safe (agent v_483.new_cursor)
+			v_484 := last_object
+			v_485 := {INTEGER_32} -6
+			execute_safe (agent v_360.argument (Void))
+			v_486 := last_object
+			execute_safe (agent v_126.command_name)
+			v_487 := last_object
+			v_488 := {CHARACTER_32} '`'
+			execute_safe (agent v_191.index_of_character_option (Void))
+			v_489 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot84 then
+				v_490 := l_ot84
+			end
+			v_491 := {CHARACTER_32} '%/240/'
+			execute_safe (agent v_490.set_option_sign (Void))
+			execute_safe (agent v_101.separate_word_option_value (Void))
+			v_492 := last_object
+			execute_safe (agent v_87.command_line)
+			v_493 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot85 then
+				v_494 := l_ot85
+			end
+			v_495 := {CHARACTER_32} '%/2/'
+			execute_safe (agent v_494.coalesced_character_option_value (Void))
+			v_496 := last_object
+			execute_safe (agent v_58.index_of_word_option (Void))
+			v_497 := last_object
+			execute_safe (agent v_278.argument_count)
+			v_498 := last_object
+			execute_safe (agent v_336.option_sign)
+			v_499 := last_object
+			execute_safe (agent v_360.argument_array)
+			v_500 := last_object
+			v_501 := {CHARACTER_32} 'M'
+			execute_safe (agent v_38.separate_character_option_value (Void))
+			v_502 := last_object
+			execute_safe (agent v_394.command_name)
+			v_503 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot86 then
+				v_504 := l_ot86
+			end
+			v_505 := {CHARACTER_32} '%/157/'
+			execute_safe (agent v_504.set_option_sign (Void))
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot87 then
+				v_506 := l_ot87
+			end
+			execute_safe (agent v_506.argument_array)
+			v_507 := last_object
+			execute_safe (agent v_89.index_of_beginning_with_word_option (Void))
+			v_508 := last_object
+			execute_safe (agent v_28.argument_count)
+			v_509 := last_object
+			v_510 := {CHARACTER_32} '%/21/'
+			execute_safe (agent v_140.index_of_character_option (Void))
+			v_511 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot88 then
+				v_512 := l_ot88
+			end
+			execute_safe (agent v_512.command_line)
+			v_513 := last_object
+			v_514 := default_pointer
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot89 then
+				v_515 := l_ot89
+			end
+			v_516 := {CHARACTER_32} '%/243/'
+			execute_safe (agent v_273.coalesced_character_option_value (Void))
+			v_517 := last_object
+			v_518 := default_pointer
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot90 then
+				v_519 := l_ot90
+			end
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot91 then
+				v_520 := l_ot91
+			end
+			v_521 := default_pointer
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot92 then
+				v_522 := l_ot92
+			end
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot93 then
+				v_523 := l_ot93
+			end
+			execute_safe (agent v_523.coalesced_word_option_value (Void))
+			v_524 := last_object
+			v_525 := {INTEGER_32} 9
+			execute_safe (agent v_255.argument (Void))
+			v_526 := last_object
+			execute_safe (agent v_26.index_of_word_option (Void))
+			v_527 := last_object
+			v_528 := {CHARACTER_32} '%/192/'
+			execute_safe (agent v_128.separate_character_option_value (Void))
+			v_529 := last_object
+			execute_safe (agent v_320.separate_word_option_value (Void))
+			v_530 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot94 then
+				v_531 := l_ot94
+			end
+			execute_safe (agent v_531.new_cursor)
+			v_532 := last_object
+			execute_safe (agent v_506.option_sign)
+			v_533 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot95 then
+				v_534 := l_ot95
+			end
+			execute_safe (agent v_534.argument_array)
+			v_535 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot96 then
+				v_536 := l_ot96
+			end
+			execute_safe (agent v_536.index_of_word_option (Void))
+			v_537 := last_object
+			v_538 := {CHARACTER_32} '%/30/'
+			execute_safe (agent v_490.separate_character_option_value (Void))
+			v_539 := last_object
+			v_540 := {CHARACTER_32} '4'
+			execute_safe (agent v_28.set_option_sign (Void))
+			execute_safe (agent v_309.new_cursor)
+			v_541 := last_object
+			execute_safe (agent v_456.argument_count)
+			v_542 := last_object
+			v_543 := {INTEGER_32} -2
+			execute_safe (agent (a_arg1: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make (a_arg1)
+				end (Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot97 then
+				v_544 := l_ot97
+			end
+			v_545 := default_pointer
+			v_546 := {INTEGER_32} -2
+
+				-- Final routine call
+			set_is_recovery_enabled (False)
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_byte_array (a_arg1, a_arg2)
+				end (Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot98 then
+				v_547 := l_ot98
+			end
+		end
+
+	-- > ---multi-line-value-start---
+	-- > ---multi-line-value-end---
+	-- > status: exception
+	-- > 7
+	-- > make_from_c_byte_array
+	-- > READABLE_STRING_8
+	-- > non_negative_argument
+	-- > False
+	-- > ---multi-line-value-start---
+	-- > ******************************** Thread exception *****************************
+	-- > In thread           Root thread            0x0 (thread id)
+	-- > *******************************************************************************
+	-- > -------------------------------------------------------------------------------
+	-- > Class / Object      Routine                Nature of exception           Effect
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_byte_array @3
+	-- >                                            non_negative_argument:
+	-- > <0000022A0D30B058>  (From READABLE_STRING_8)
+	-- >                                            Runtime check violated.       Fail
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_byte_array @3
+	-- > <0000022A0D30B058>  (From READABLE_STRING_8)
+	-- >                                            Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ITP_INTERPRETER     execute_byte_code @5                                
+	-- > <0000022A1C07FD28>                         Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ---multi-line-value-end---
+	-- > done:
+class GENERATED_TEST_CASE
+
+inherit
+
+	AUT_TEST_CASE
+
+feature
+
+	test
+		local
+			v_545: POINTER
+			v_546: INTEGER_32
+			v_547: IMMUTABLE_STRING_8
+		do
+			v_545 := default_pointer
+			v_546 := {INTEGER_32} -2
+
+				-- Final routine call
+			set_is_recovery_enabled (False)
+			execute_safe (agent (a_arg1: POINTER; a_arg2: INTEGER_32): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_byte_array (a_arg1, a_arg2)
+				end (v_545, v_546))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot1 then
+				v_547 := l_ot1
+			end
+		end
+
+	-- > ---multi-line-value-start---
+	-- > ---multi-line-value-end---
+	-- > status: exception
+	-- > 7
+	-- > make_from_c_byte_array
+	-- > READABLE_STRING_8
+	-- > non_negative_argument
+	-- > False
+	-- > ---multi-line-value-start---
+	-- > ******************************** Thread exception *****************************
+	-- > In thread           Root thread            0x0 (thread id)
+	-- > *******************************************************************************
+	-- > -------------------------------------------------------------------------------
+	-- > Class / Object      Routine                Nature of exception           Effect
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_byte_array @3
+	-- >                                            non_negative_argument:
+	-- > <00000221F775F1F8>  (From READABLE_STRING_8)
+	-- >                                            Runtime check violated.       Fail
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_byte_array @3
+	-- > <00000221F775F1F8>  (From READABLE_STRING_8)
+	-- >                                            Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ITP_INTERPRETER     execute_byte_code @5                                
+	-- > <00000221F7751588>                         Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ---multi-line-value-end---
+	-- > done:

@@ -1,0 +1,345 @@
+<HTML><HEAD>
+<meta name="description" content="Encoding conversion implementation on Windows"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="ca_ignore" content="CA011, CA011: too many arguments"/>
+<meta name="library" content="Base: Library of reusable components for Eiffel."/>
+<meta name="copyright" content="Copyright (c) 1984-2021, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>encoding_imp Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../../class_list.html">Classes</A></TD><TD><A HREF="../../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="encoding_imp_chart.html">Chart</A></TD><TD><A HREF="encoding_imp_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Encoding conversion implementation on Windows"
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2021-02-22 14:30:58 +0000 (Mon, 22 Feb 2021) $"
+    revision: "$Revision: 105200 $"
+
+<B>class</B> 
+    <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html">ENCODING_IMP</A>
+
+<B>inherit</B>
+    <A HREF="../../../../elks/encoding/implementation/encoding_i.html">ENCODING_I</A>
+
+<B>inherit</B> {NONE}
+    <A HREF="../../../../elks/encoding/implementation/windows/code_pages.html">CODE_PAGES</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../../../../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> String encoding convertion</FONT>
+
+    <A NAME="f_convert_to"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_convert_to">convert_to</A> (a_from_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>; a_from_string: <A HREF="../../../../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_to_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert </FONT><I>a_from_string</I><FONT COLOR="red"> of </FONT><I>a_from_code_page</I><FONT COLOR="red"> to a string of </FONT><I>a_to_code_page</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            l_from_code_page, l_to_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_string_32: <A HREF="../../../../elks/string_32.html">STRING_32</A>
+            l_from_be, l_to_be: <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            l_converted_32: <A HREF="../../../../elks/string_32.html">STRING_32</A>
+            l_converted_8: <A HREF="../../../../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_last_conversion_lost_data">last_conversion_lost_data</A> := <B>False</B>
+            <B>if</B> a_from_string.<A HREF="../../../../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>True</B>
+                <B>if</B> a_from_string.<A HREF="../../../../elks/readable_string_general.html#f_is_string_8">is_string_8</A> <B>then</B>
+                    <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := {<A HREF="../../../../elks/string_8.html">STRING_8</A>} ""
+                <B>else</B>
+                    <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := {<A HREF="../../../../elks/string_32.html">STRING_32</A>} ""
+                <B>end</B>
+                <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A> := a_from_string.<A HREF="../../../../elks/readable_string_general.html#f_is_string_32">is_string_32</A>
+            <B>else</B>
+                l_from_code_page := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_platform_code_page_from_name">platform_code_page_from_name</A> (a_from_code_page)
+                l_to_code_page := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_platform_code_page_from_name">platform_code_page_from_name</A> (a_to_code_page)
+                l_from_be := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_big_endian_code_page">is_big_endian_code_page</A> (a_from_code_page)
+                l_to_be := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_big_endian_code_page">is_big_endian_code_page</A> (a_to_code_page)
+                <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>True</B>
+                <B>if</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_two_byte_code_page">is_two_byte_code_page</A> (a_from_code_page) <B>then</B>
+                    l_string_32 := a_from_string.<A HREF="../../../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+                    <B>if</B> l_from_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                        l_string_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_16_switch_endian">string_16_switch_endian</A> (l_string_32)
+                    <B>end</B>
+                    <B>if</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_four_bype_code_page">is_four_bype_code_page</A> (a_to_code_page) <B>then</B>
+                        l_string_32 := {<A HREF="../../../../elks/encoding/unicode_conversion.html">UNICODE_CONVERSION</A>}.<A HREF="../../../../elks/encoding/unicode_conversion.html#f_utf16_to_utf32">utf16_to_utf32</A> (l_string_32)
+                        <B>if</B> l_to_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                            l_converted_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_32_switch_endian">string_32_switch_endian</A> (l_string_32)
+                        <B>else</B>
+                            l_converted_32 := l_string_32
+                        <B>end</B>
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_32
+                    <B>elseif</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_two_byte_code_page">is_two_byte_code_page</A> (a_to_code_page) <B>then</B>
+                        <B>if</B> l_to_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                            l_converted_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_16_switch_endian">string_16_switch_endian</A> (l_string_32)
+                        <B>else</B>
+                            l_converted_32 := l_string_32
+                        <B>end</B>
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_32
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A> := <B>True</B>
+                    <B>else</B>
+                        l_converted_8 := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_wide_char_to_multi_byte">wide_char_to_multi_byte</A> (l_to_code_page, l_string_32)
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_8
+                    <B>end</B>
+                <B>elseif</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_four_bype_code_page">is_four_bype_code_page</A> (a_from_code_page) <B>then</B>
+                    l_string_32 := a_from_string.<A HREF="../../../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+                    <B>if</B> l_from_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                        l_string_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_32_switch_endian">string_32_switch_endian</A> (l_string_32)
+                    <B>end</B>
+                    <B>if</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_two_byte_code_page">is_two_byte_code_page</A> (a_to_code_page) <B>then</B>
+                        l_string_32 := {<A HREF="../../../../elks/encoding/unicode_conversion.html">UNICODE_CONVERSION</A>}.<A HREF="../../../../elks/encoding/unicode_conversion.html#f_utf32_to_utf16">utf32_to_utf16</A> (l_string_32)
+                        <B>if</B> l_to_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                            l_converted_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_16_switch_endian">string_16_switch_endian</A> (l_string_32)
+                        <B>else</B>
+                            l_converted_32 := l_string_32
+                        <B>end</B>
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_32
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A> := <B>True</B>
+                    <B>elseif</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_four_bype_code_page">is_four_bype_code_page</A> (a_to_code_page) <B>then</B>
+                        <B>if</B> l_to_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                            l_converted_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_32_switch_endian">string_32_switch_endian</A> (l_string_32)
+                        <B>else</B>
+                            l_converted_32 := l_string_32.<A HREF="../../../../elks/any.html#f_twin">twin</A>
+                        <B>end</B>
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_32
+                    <B>else</B>
+                        l_converted_32 := {<A HREF="../../../../elks/encoding/unicode_conversion.html">UNICODE_CONVERSION</A>}.<A HREF="../../../../elks/encoding/unicode_conversion.html#f_utf32_to_utf16">utf32_to_utf16</A> (l_string_32)
+                        l_converted_8 := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_wide_char_to_multi_byte">wide_char_to_multi_byte</A> (l_to_code_page, l_converted_32)
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_8
+                    <B>end</B>
+                <B>else</B>
+                    l_string_32 := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_multi_byte_to_wide_char">multi_byte_to_wide_char</A> (l_from_code_page, <B>if</B> a_from_string.<A HREF="../../../../elks/readable_string_general.html#f_is_valid_as_string_8">is_valid_as_string_8</A> <B>then</B>
+                            a_from_string.<A HREF="../../../../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                        <B>else</B>
+                            {<A HREF="../../../../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../../../../elks/utf_converter.html#f_utf_32_string_to_utf_8_string_8">utf_32_string_to_utf_8_string_8</A> (a_from_string)
+                        <B>end</B>)
+                    <B>if</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_two_byte_code_page">is_two_byte_code_page</A> (a_to_code_page) <B>then</B>
+                        <B>if</B> l_to_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                            l_converted_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_16_switch_endian">string_16_switch_endian</A> (l_string_32)
+                        <B>else</B>
+                            l_converted_32 := l_string_32
+                        <B>end</B>
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_32
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A> := <B>True</B>
+                    <B>elseif</B> <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_four_bype_code_page">is_four_bype_code_page</A> (a_to_code_page) <B>then</B>
+                        l_string_32 := {<A HREF="../../../../elks/encoding/unicode_conversion.html">UNICODE_CONVERSION</A>}.<A HREF="../../../../elks/encoding/unicode_conversion.html#f_utf16_to_utf32">utf16_to_utf32</A> (l_string_32)
+                        <B>if</B> l_to_be = <A HREF="../../../../elks/encoding/encoding_helper.html#f_is_little_endian">Is_little_endian</A> <B>then</B>
+                            l_converted_32 := <A HREF="../../../../elks/encoding/encoding_helper.html#f_string_32_switch_endian">string_32_switch_endian</A> (l_string_32)
+                        <B>else</B>
+                            l_converted_32 := l_string_32
+                        <B>end</B>
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_32
+                    <B>else</B>
+                        l_converted_8 := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_wide_char_to_multi_byte">wide_char_to_multi_byte</A> (l_to_code_page, l_string_32)
+                        <A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := l_converted_8
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_wide_char_to_multi_byte"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_wide_char_to_multi_byte">wide_char_to_multi_byte</A> (a_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>; a_string: <A HREF="../../../../elks/string_32.html">STRING_32</A>): <A HREF="../../../../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert UTF-16 string into 8bit string by </FONT><I>a_code_page</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            l_count: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            l_string: <A HREF="../../../../elks/managed_pointer.html">MANAGED_POINTER</A>
+            l_out_string: <A HREF="../../../../elks/managed_pointer.html">MANAGED_POINTER</A>
+        <B>do</B>
+            l_string := <A HREF="../../../../elks/encoding/encoding_helper.html#f_wide_string_to_pointer">wide_string_to_pointer</A> (a_string)
+            l_count := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_widechartomultibyte_buffer_length">cwin_widechartomultibyte_buffer_length</A> (a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_to_integer">to_integer</A>, l_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, a_string.<A HREF="../../../../elks/readable_string_32.html#f_count">count</A>)
+            <B>create</B> l_out_string.<A HREF="../../../../elks/managed_pointer.html#f_make">make</A> (l_count)
+            <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_wide_char_to_multi_byte">cwin_wide_char_to_multi_byte</A> (a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_to_integer">to_integer</A>, l_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, a_string.<A HREF="../../../../elks/readable_string_32.html#f_count">count</A>, l_out_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, l_count, $<A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A>, $<A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_last_conversion_lost_data">last_conversion_lost_data</A>)
+            <B>Result</B> := <A HREF="../../../../elks/encoding/encoding_helper.html#f_pointer_to_multi_byte">pointer_to_multi_byte</A> (l_out_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, l_count)
+        <B>end</B></A>
+
+    <A NAME="f_multi_byte_to_wide_char"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_multi_byte_to_wide_char">multi_byte_to_wide_char</A> (a_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>; a_string: <A HREF="../../../../elks/string_8.html">STRING_8</A>): <A HREF="../../../../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert 8bit string into UTF-16 string by </FONT><I>a_code_page</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            l_count: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            l_string: <A HREF="../../../../elks/managed_pointer.html">MANAGED_POINTER</A>
+            l_out_string: <A HREF="../../../../elks/managed_pointer.html">MANAGED_POINTER</A>
+        <B>do</B>
+            l_string := <A HREF="../../../../elks/encoding/encoding_helper.html#f_multi_byte_to_pointer">multi_byte_to_pointer</A> (a_string)
+            l_count := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_multibytetowidechar_buffer_length">cwin_multibytetowidechar_buffer_length</A> (a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_to_integer">to_integer</A>, l_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, a_string.<A HREF="../../../../elks/readable_string_8.html#f_count">count</A>)
+            <B>create</B> l_out_string.<A HREF="../../../../elks/managed_pointer.html#f_make">make</A> (l_count * <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_wchar_length">wchar_length</A>)
+            <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_multi_byte_to_wide_char">cwin_multi_byte_to_wide_char</A> (a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_to_integer">to_integer</A>, l_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, a_string.<A HREF="../../../../elks/readable_string_8.html#f_count">count</A>, l_out_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, l_count, $<A HREF="../../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A>)
+            <B>Result</B> := <A HREF="../../../../elks/encoding/encoding_helper.html#f_pointer_to_wide_string">pointer_to_wide_string</A> (l_out_string.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, l_count * <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_wchar_length">wchar_length</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_code_page_valid"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_code_page_valid">is_code_page_valid</A> (a_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_code_page</I><FONT COLOR="red"> valid?</FONT>
+        <B>do</B>
+            <B>if</B> a_code_page /= <B>Void</B> <B>and then</B> <B>not</B> a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>Result</B> := <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_known_code_page">is_known_code_page</A> (a_code_page)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_code_page_convertible"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_code_page_convertible">is_code_page_convertible</A> (a_from_code_page, a_to_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_from_code_page</I><FONT COLOR="red"> convertible to </FONT><I>a_to_code_page</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>True</B>
+        <B>end</B></A>
+
+    <A NAME="f_last_conversion_lost_data"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_last_conversion_lost_data">last_conversion_lost_data</A>: <A HREF="../../../../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Did last conversion lose data?</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_platform_code_page_from_name"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_platform_code_page_from_name">platform_code_page_from_name</A> (a_code_page_name: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Code page the OS supported.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Result can be passed to Windows API.</FONT>
+        <B>require</B>
+            a_code_page_name_not_void: a_code_page_name /= <B>Void</B>
+            a_code_page_name_not_empty: <B>not</B> a_code_page_name.<A HREF="../../../../elks/readable_string_general.html#f_is_empty">is_empty</A>
+            a_code_page_valid: <A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_code_page_valid">is_code_page_valid</A> (a_code_page_name)
+        <B>do</B>
+            <B>check</B>
+                from_precondition: <B>attached</B> <A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_code_pages">Code_pages</A> [a_code_page_name] <B>as</B> r
+            <B>then</B>
+                <B>Result</B> := r
+            <B>end</B>
+        <B>ensure</B>
+            result_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_known_code_page"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_known_code_page">is_known_code_page</A> (a_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_code_page</I><FONT COLOR="red"> a known code page?</FONT>
+        <B>require</B>
+            a_code_page_not_void: a_code_page /= <B>Void</B>
+            a_code_page_not_empty: <B>not</B> a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_code_pages">Code_pages</A>.<A HREF="../../../../elks/hash_table.html#f_has">has</A> (a_code_page)
+        <B>end</B></A>
+
+    <A NAME="f_is_two_byte_code_page"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_two_byte_code_page">is_two_byte_code_page</A> (a_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_code_page</I><FONT COLOR="red"> a known code page?</FONT>
+        <B>require</B>
+            a_code_page_not_void: a_code_page /= <B>Void</B>
+            a_code_page_not_empty: <B>not</B> a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_two_byte_code_pages">Two_byte_code_pages</A>.<A HREF="../../../../elks/hash_table.html#f_has">has</A> (a_code_page)
+        <B>end</B></A>
+
+    <A NAME="f_is_four_bype_code_page"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_four_bype_code_page">is_four_bype_code_page</A> (a_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_code_page</I><FONT COLOR="red"> a known code page?</FONT>
+        <B>require</B>
+            a_code_page_not_void: a_code_page /= <B>Void</B>
+            a_code_page_not_empty: <B>not</B> a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_four_byte_code_pages">Four_byte_code_pages</A>.<A HREF="../../../../elks/hash_table.html#f_has">has</A> (a_code_page)
+        <B>end</B></A>
+
+    <A NAME="f_is_big_endian_code_page"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_is_big_endian_code_page">is_big_endian_code_page</A> (a_code_page: <A HREF="../../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_code_page</I><FONT COLOR="red"> a known code page?</FONT>
+        <B>require</B>
+            a_code_page_not_void: a_code_page /= <B>Void</B>
+            a_code_page_not_empty: <B>not</B> a_code_page.<A HREF="../../../../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../../../../elks/encoding/implementation/windows/code_pages.html#f_big_endian_code_pages">Big_endian_code_pages</A>.<A HREF="../../../../elks/hash_table.html#f_has">has</A> (a_code_page)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_cwin_widechartomultibyte_buffer_length"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_widechartomultibyte_buffer_length">cwin_widechartomultibyte_buffer_length</A> (cpid: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_wide_string: <A HREF="../../../../elks/pointer.html">POINTER</A>; a_wide_count: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>): <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Get buffer length of converted result.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return WideCharToMultiByte ($cpid, 0, $a_wide_string, $a_wide_count, NULL, 0, NULL, NULL);"
+        <B>end</B></A>
+
+    <A NAME="f_cwin_multibytetowidechar_buffer_length"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_multibytetowidechar_buffer_length">cwin_multibytetowidechar_buffer_length</A> (cpid: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_multi_byte: <A HREF="../../../../elks/pointer.html">POINTER</A>; a_multi_byte_count: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>): <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Get buffer length of converted result.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return MultiByteToWideChar ($cpid, 0, $a_multi_byte, $a_multi_byte_count, NULL, 0);"
+        <B>end</B></A>
+
+    <A NAME="f_cwin_wide_char_to_multi_byte"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_wide_char_to_multi_byte">cwin_wide_char_to_multi_byte</A> (cpid: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_wide_string: <A HREF="../../../../elks/pointer.html">POINTER</A>; a_wide_count: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_out_pointer: <A HREF="../../../../elks/pointer.html">POINTER</A>; a_count_to_buffer: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_b, a_lost_b: <A HREF="../../../../elks/typed_pointer.html">TYPED_POINTER</A> [<A HREF="../../../../elks/boolean.html">BOOLEAN</A>])
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "[
+                				DWORD dw;
+                				BOOL l_lost = EIF_FALSE;
+                				LPBOOL lpUsedDefaultChar = NULL;
+                				DWORD dwFlags = WC_NO_BEST_FIT_CHARS;
+                
+                				if ($cpid == CP_UTF7 || $cpid == CP_UTF8) {
+                					lpUsedDefaultChar = NULL;
+                				} else {
+                					lpUsedDefaultChar = &#38;l_lost;
+                				}
+                				
+                				/* For following values, dwFlags = 0 is required by MSDN
+                				 * See http://msdn.microsoft.com/en-us/library/windows/desktop/dd374130(v=vs.85).aspx
+                				 */
+                				if ($cpid == 50220 || $cpid == 50221 || $cpid == 50222 || $cpid == 50225 || $cpid == 50227 || $cpid == 50229 || $cpid == 65000 || $cpid == 42) {
+                					dwFlags = 0;
+                				} else if ($cpid == 65001 || $cpid == 54936) {
+                					dwFlags = 0;
+                				} else if ($cpid &gt;= 57002 &#38;&#38; $cpid &lt;= 57011) {
+                					dwFlags = 0;
+                				}
+                				
+                				WideCharToMultiByte ((UINT) $cpid, dwFlags, (LPCWSTR) $a_wide_string,
+                					(int) $a_wide_count, (LPSTR) $a_out_pointer, (int) $a_count_to_buffer, (LPCCH) NULL, lpUsedDefaultChar);
+                					
+                				dw = GetLastError();
+                				if (dw == ERROR_INSUFFICIENT_BUFFER || dw == ERROR_INVALID_FLAGS || dw == ERROR_INVALID_PARAMETER) {
+                					*$a_b = 0;
+                				}
+                				*$a_lost_b = (l_lost ? EIF_TRUE : EIF_FALSE);
+            ]"
+        <B>end</B></A>
+
+    <A NAME="f_cwin_multi_byte_to_wide_char"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_cwin_multi_byte_to_wide_char">cwin_multi_byte_to_wide_char</A> (cpid: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_multi_byte: <A HREF="../../../../elks/pointer.html">POINTER</A>; a_multi_byte_count: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_out_pointer: <A HREF="../../../../elks/pointer.html">POINTER</A>; a_count_to_buffer: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_b: <A HREF="../../../../elks/typed_pointer.html">TYPED_POINTER</A> [<A HREF="../../../../elks/boolean.html">BOOLEAN</A>])
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "[
+                	DWORD dw;
+                    
+                	MultiByteToWideChar ((UINT) $cpid, (DWORD) 0, (LPCCH) $a_multi_byte,
+                		(int) $a_multi_byte_count, (LPWSTR) $a_out_pointer, (int) $a_count_to_buffer);
+                	dw = GetLastError();
+                	if (dw == ERROR_INSUFFICIENT_BUFFER || dw == ERROR_INVALID_FLAGS || dw == ERROR_INVALID_PARAMETER || dw == ERROR_NO_UNICODE_TRANSLATION) {
+                		*$a_b = 0;
+                	}
+            ]"
+        <B>end</B></A>
+
+    <A NAME="f_wchar_length"><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html#f_wchar_length">wchar_length</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Length of WCHAR.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return sizeof(WCHAR);"
+        <B>end</B></A>
+    
+<B>note</B>
+    ca_ignore: "CA011", "CA011: too many arguments"
+    library: "Base: Library of reusable components for Eiffel."
+    copyright: "Copyright (c) 1984-2021, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../../../../elks/encoding/implementation/windows/encoding_imp.html">ENCODING_IMP</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../../class_list.html">Classes</A></TD><TD><A HREF="../../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="encoding_imp_chart.html">Chart</A></TD><TD><A HREF="encoding_imp_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

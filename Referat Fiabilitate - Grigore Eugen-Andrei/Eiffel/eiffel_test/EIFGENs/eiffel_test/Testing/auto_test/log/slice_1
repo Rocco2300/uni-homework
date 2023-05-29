@@ -1,0 +1,271 @@
+class GENERATED_TEST_CASE
+
+inherit
+
+	AUT_TEST_CASE
+
+feature
+
+	test
+		local
+			-- TODO: add variable declarations for not failing and not minimized TCs.
+		do
+			v_1 := Void
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot1 then
+				v_2 := l_ot1
+			end
+			v_3 := {CHARACTER_32} 'z'
+			execute_safe (agent v_2.separate_character_option_value (Void))
+			v_4 := last_object
+			execute_safe (agent v_2.option_sign)
+			v_5 := last_object
+			execute_safe (agent v_2.argument_array)
+			v_6 := last_object
+			execute_safe (agent v_2.argument_count)
+			v_7 := last_object
+			execute_safe (agent v_2.command_name)
+			v_8 := last_object
+			execute_safe (agent v_2.command_line)
+			v_9 := last_object
+			v_10 := {CHARACTER_32} '^'
+			execute_safe (agent v_2.set_option_sign (Void))
+			execute_safe (agent v_2.index_of_word_option (Void))
+			v_11 := last_object
+			v_12 := {INTEGER_32} 1
+			execute_safe (agent v_2.argument (Void))
+			v_13 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot2 then
+				v_14 := l_ot2
+			end
+			v_15 := {CHARACTER_32} '%/241/'
+			execute_safe (agent v_14.index_of_character_option (Void))
+			v_16 := last_object
+			v_17 := {CHARACTER_32} '%/239/'
+			execute_safe (agent v_2.coalesced_character_option_value (Void))
+			v_18 := last_object
+			execute_safe (agent v_2.coalesced_word_option_value (Void))
+			v_19 := last_object
+			v_20 := default_pointer
+			v_21 := {INTEGER_32} 0
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_byte_array (a_arg1, a_arg2)
+				end (Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot3 then
+				v_22 := l_ot3
+			end
+			execute_safe (agent v_14.separate_word_option_value (Void))
+			v_23 := last_object
+			execute_safe (agent v_2.index_of_beginning_with_word_option (Void))
+			v_24 := last_object
+			execute_safe (agent v_2.new_cursor)
+			v_25 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot4 then
+				v_26 := l_ot4
+			end
+			v_27 := {CHARACTER_32} '%/156/'
+			execute_safe (agent v_26.set_option_sign (Void))
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot5 then
+				v_28 := l_ot5
+			end
+			execute_safe (agent v_28.argument_count)
+			v_29 := last_object
+			execute_safe (agent v_2.index_of_word_option (Void))
+			v_30 := last_object
+			execute_safe (agent v_2.new_cursor)
+			v_31 := last_object
+			execute_safe (agent v_28.command_line)
+			v_32 := last_object
+			v_33 := {CHARACTER_32} '%/231/'
+			execute_safe (agent v_28.index_of_character_option (Void))
+			v_34 := last_object
+			v_35 := {CHARACTER_32} 'L'
+			execute_safe (agent v_28.coalesced_character_option_value (Void))
+			v_36 := last_object
+			execute_safe (agent v_28.command_name)
+			v_37 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot6 then
+				v_38 := l_ot6
+			end
+			execute_safe (agent v_38.coalesced_word_option_value (Void))
+			v_39 := last_object
+			execute_safe (agent v_14.argument_array)
+			v_40 := last_object
+			execute_safe (agent v_14.option_sign)
+			v_41 := last_object
+			v_42 := {CHARACTER_32} 'W'
+			execute_safe (agent v_38.separate_character_option_value (Void))
+			v_43 := last_object
+			execute_safe (agent v_26.separate_word_option_value (Void))
+			v_44 := last_object
+			execute_safe (agent v_26.index_of_beginning_with_word_option (Void))
+			v_45 := last_object
+			v_46 := {INTEGER_32} 9
+			execute_safe (agent v_38.argument (Void))
+			v_47 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot7 then
+				v_48 := l_ot7
+			end
+			v_49 := {CHARACTER_32} '%/170/'
+			execute_safe (agent v_48.coalesced_character_option_value (Void))
+			v_50 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot8 then
+				v_51 := l_ot8
+			end
+			execute_safe (agent v_51.command_line)
+			v_52 := last_object
+			v_53 := {CHARACTER_32} 'z'
+			execute_safe (agent v_51.separate_character_option_value (Void))
+			v_54 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot9 then
+				v_55 := l_ot9
+			end
+			execute_safe (agent v_55.option_sign)
+			v_56 := last_object
+			execute_safe (agent v_48.argument_count)
+			v_57 := last_object
+			execute_safe (agent: APPLICATION
+				do
+					create {APPLICATION} Result.make
+				end)
+			check attached {APPLICATION} last_object as l_ot10 then
+				v_58 := l_ot10
+			end
+			v_59 := {INTEGER_32} -6
+			execute_safe (agent v_58.argument (Void))
+			v_60 := last_object
+			v_61 := default_pointer
+			v_62 := {INTEGER_32} 4
+			v_63 := {INTEGER_32} 1
+
+				-- Final routine call
+			set_is_recovery_enabled (False)
+			execute_safe (agent (a_arg1: NONE; a_arg2: NONE; a_arg3: NONE): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_substring (a_arg1, a_arg2, a_arg3)
+				end (Void, Void, Void))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot11 then
+				v_64 := l_ot11
+			end
+		end
+
+	-- > ---multi-line-value-start---
+	-- > ---multi-line-value-end---
+	-- > status: exception
+	-- > 7
+	-- > make_from_c_substring
+	-- > READABLE_STRING_8
+	-- > non_negative_argument
+	-- > False
+	-- > ---multi-line-value-start---
+	-- > ******************************** Thread exception *****************************
+	-- > In thread           Root thread            0x0 (thread id)
+	-- > *******************************************************************************
+	-- > -------------------------------------------------------------------------------
+	-- > Class / Object      Routine                Nature of exception           Effect
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_substring @6
+	-- >                                            non_negative_argument:
+	-- > <0000022A0D3ABE08>  (From READABLE_STRING_8)
+	-- >                                            Runtime check violated.       Fail
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_substring @6
+	-- > <0000022A0D3ABE08>  (From READABLE_STRING_8)
+	-- >                                            Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ITP_INTERPRETER     execute_byte_code @7                                
+	-- > <0000022A0D2B2588>                         Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ---multi-line-value-end---
+	-- > done:
+class GENERATED_TEST_CASE
+
+inherit
+
+	AUT_TEST_CASE
+
+feature
+
+	test
+		local
+			v_61: POINTER
+			v_62: INTEGER_32
+			v_63: INTEGER_32
+			v_64: IMMUTABLE_STRING_8
+		do
+			v_61 := default_pointer
+			v_62 := {INTEGER_32} 4
+			v_63 := {INTEGER_32} 1
+
+				-- Final routine call
+			set_is_recovery_enabled (False)
+			execute_safe (agent (a_arg1: POINTER; a_arg2: INTEGER_32; a_arg3: INTEGER_32): IMMUTABLE_STRING_8
+				do
+					create {IMMUTABLE_STRING_8} Result.make_from_c_substring (a_arg1, a_arg2, a_arg3)
+				end (v_61, v_62, v_63))
+			check attached {IMMUTABLE_STRING_8} last_object as l_ot1 then
+				v_64 := l_ot1
+			end
+		end
+
+	-- > ---multi-line-value-start---
+	-- > ---multi-line-value-end---
+	-- > status: exception
+	-- > 7
+	-- > make_from_c_substring
+	-- > READABLE_STRING_8
+	-- > non_negative_argument
+	-- > False
+	-- > ---multi-line-value-start---
+	-- > ******************************** Thread exception *****************************
+	-- > In thread           Root thread            0x0 (thread id)
+	-- > *******************************************************************************
+	-- > -------------------------------------------------------------------------------
+	-- > Class / Object      Routine                Nature of exception           Effect
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_substring @6
+	-- >                                            non_negative_argument:
+	-- > <0000025F6C35B448>  (From READABLE_STRING_8)
+	-- >                                            Runtime check violated.       Fail
+	-- > -------------------------------------------------------------------------------
+	-- > IMMUTABLE_STRING_8  make_from_c_substring @6
+	-- > <0000025F6C35B448>  (From READABLE_STRING_8)
+	-- >                                            Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ITP_INTERPRETER     execute_byte_code @7                                
+	-- > <0000025F6C349588>                         Routine failure.              Fail
+	-- > -------------------------------------------------------------------------------
+	-- > ---multi-line-value-end---
+	-- > done:

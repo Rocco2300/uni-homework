@@ -1,0 +1,1236 @@
+<HTML><HEAD>
+<meta name="description" content="TTTTSummary description for {HTTP_DATE}. TTTT TTTT TTT       HTTP-date    = rfc1123-date | rfc850-date | asctime-date TTT       rfc1123-date = wkday , SP date1 SP time SP GMT TTT       rfc850-date  = weekday , SP date2 SP time SP GMT TTT       asctime-date = wkday SP date3 SP time SP 4DIGIT TTT       date1        = 2DIGIT SP month SP 4DIGIT TTT                      ; day month year (e.g., 02 Jun 1982) TTT       date2        = 2DIGIT - month - 2DIGIT TTT                      ; day-month-year (e.g., 02-Jun-82) TTT       date3        = month SP ( 2DIGIT | ( SP 1DIGIT )) TTT                      ; month day (e.g., Jun  2) TTT       time         = 2DIGIT : 2DIGIT : 2DIGIT TTT                      ; 00:00:00 - 23:59:59 TTT       wkday        = Mon | Tue | Wed TTT                    | Thu | Fri | Sat | Sun TTT       weekday      = Monday | Tuesday | Wednesday TTT                    | Thursday | Friday | Saturday | Sunday TTT       month        = Jan | Feb | Mar | Apr TTT                    | May | Jun | Jul | Aug TTT                    | Sep | Oct | Nov | Dec TTT                     TTT Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123 TTT Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036 TTT Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format "/>
+<meta name="eis" content="name=RFC2616, protocol=URI, src=http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_date Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_date_chart.html">Chart</A></TD><TD><A HREF="http_date_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        				Summary description for {<A HREF="../src/http_date.html">HTTP_DATE</A>}.
+        				
+        				
+        			       HTTP-date    = rfc1123-date | rfc850-date | asctime-date
+        			       rfc1123-date = wkday "," SP date1 SP time SP "GMT"
+        			       rfc850-date  = weekday "," SP date2 SP time SP "GMT"
+        			       asctime-date = wkday SP date3 SP time SP 4DIGIT
+        			       date1        = 2DIGIT SP month SP 4DIGIT
+        			                      ; day month year (e.g., 02 Jun 1982)
+        			       date2        = 2DIGIT "-" month "-" 2DIGIT
+        			                      ; day-month-year (e.g., 02-Jun-82)
+        			       date3        = month SP ( 2DIGIT | ( SP 1DIGIT ))
+        			                      ; month day (e.g., Jun  2)
+        			       time         = 2DIGIT ":" 2DIGIT ":" 2DIGIT
+        			                      ; 00:00:00 - 23:59:59
+        			       wkday        = "Mon" | "Tue" | "Wed"
+        			                    | "Thu" | "Fri" | "Sat" | "Sun"
+        			       weekday      = "Monday" | "Tuesday" | "Wednesday"
+        			                    | "Thursday" | "Friday" | "Saturday" | "Sunday"
+        			       month        = "Jan" | "Feb" | "Mar" | "Apr"
+        			                    | "May" | "Jun" | "Jul" | "Aug"
+        			                    | "Sep" | "Oct" | "Nov" | "Dec"
+        			                    
+        			 Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123
+        			 Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
+        			 Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format
+        
+    ]"
+    date: "$Date: 2020-07-08 08:10:19 +0000 (Wed, 08 Jul 2020) $"
+    revision: "$Revision: 104532 $"
+    eis: "name=RFC2616", "protocol=URI", "src=<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html</a>"
+
+<B>class</B> 
+    <A HREF="../src/http_date.html">HTTP_DATE</A>
+
+<B>inherit</B>
+    <A HREF="../elks/debug_output.html">DEBUG_OUTPUT</A>
+
+<B>create</B> 
+    <A HREF="../src/http_date.html#f_make_now_utc">make_now_utc</A>,
+    <A HREF="../src/http_date.html#f_make_from_timestamp">make_from_timestamp</A>,
+    <A HREF="../src/http_date.html#f_make_from_string">make_from_string</A>,
+    <A HREF="../src/http_date.html#f_make_from_rfc3339_string">make_from_rfc3339_string</A>,
+    <A HREF="../src/http_date.html#f_make_from_date_time">make_from_date_time</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_from_timestamp"><A HREF="../src/http_date.html#f_make_from_timestamp">make_from_timestamp</A> (n: <A HREF="../elks/integer_64.html">INTEGER_64</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Build from unix timestamp </FONT><I>n</I>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_internal_timestamp">internal_timestamp</A> := n
+            <B>create</B> <A HREF="../src/http_date.html#f_date_time">date_time</A>.make_from_epoch (n.<A HREF="../elks/integer_64.html#f_as_integer_32">as_integer_32</A>)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_string"><A HREF="../src/http_date.html#f_make_from_string">make_from_string</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create from string representation </FONT><I>s</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Supports: RFC 1123 and RFC 850</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Tolerant with: GMT+offset and GMT-offset</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_date.html#f_string_to_date_time">string_to_date_time</A> (s) <B>as</B> dt <B>then</B>
+                <A HREF="../src/http_date.html#f_date_time">date_time</A> := dt
+            <B>elseif</B> <B>attached</B> <A HREF="../src/http_date.html#f_ansi_c_string_to_date_time">ansi_c_string_to_date_time</A> (s) <B>as</B> dt <B>then</B>
+                <A HREF="../src/http_date.html#f_date_time">date_time</A> := dt
+            <B>elseif</B> <B>attached</B> <A HREF="../src/http_date.html#f_rfc3339_string_to_date_time">rfc3339_string_to_date_time</A> (s) <B>as</B> dt <B>then</B>
+                <A HREF="../src/http_date.html#f_date_time">date_time</A> := dt
+            <B>else</B>
+                <A HREF="../src/http_date.html#f_has_error">has_error</A> := <B>True</B>
+                <A HREF="../src/http_date.html#f_date_time">date_time</A> := <A HREF="../src/http_date.html#f_epoch">Epoch</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_make_from_rfc3339_string"><A HREF="../src/http_date.html#f_make_from_rfc3339_string">make_from_rfc3339_string</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_date.html#f_rfc3339_string_to_date_time">rfc3339_string_to_date_time</A> (s) <B>as</B> dt <B>then</B>
+                <A HREF="../src/http_date.html#f_date_time">date_time</A> := dt
+            <B>else</B>
+                <A HREF="../src/http_date.html#f_has_error">has_error</A> := <B>True</B>
+                <A HREF="../src/http_date.html#f_date_time">date_time</A> := <A HREF="../src/http_date.html#f_epoch">Epoch</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_make_from_date_time"><A HREF="../src/http_date.html#f_make_from_date_time">make_from_date_time</A> (dt: DATE_TIME)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Build from date </FONT><I>dt</I>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_date_time">date_time</A> := dt
+        <B>end</B></A>
+
+    <A NAME="f_make_now_utc"><A HREF="../src/http_date.html#f_make_now_utc">make_now_utc</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Build from current utc date time.</FONT>
+        <B>do</B>
+            <B>create</B> <A HREF="../src/http_date.html#f_date_time">date_time</A>.make_now_utc
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_has_error"><A HREF="../src/http_date.html#f_has_error">has_error</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Error occurred during creation with </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_make_from_string">make_from_string</A><FONT COLOR="red">`</FONT><FONT COLOR="red">?</FONT>
+
+    <A NAME="f_date_time"><A HREF="../src/http_date.html#f_date_time">date_time</A>: DATE_TIME</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated Date time.</FONT>
+
+    <A NAME="f_string"><A HREF="../src/http_date.html#f_string">string</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation recommended for HTTP date.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_date.html#f_rfc1123_string">rfc1123_string</A>
+        <B>end</B></A>
+
+    <A NAME="f_timestamp"><A HREF="../src/http_date.html#f_timestamp">timestamp</A>: <A HREF="../elks/integer_64.html">INTEGER_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Unix timestamp.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_date.html#f_internal_timestamp">internal_timestamp</A>
+            <B>if</B> <B>Result</B> = 0 <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_date.html#f_date_time">date_time</A>.definite_duration (<A HREF="../src/http_date.html#f_epoch">Epoch</A>).seconds_count
+                <A HREF="../src/http_date.html#f_internal_timestamp">internal_timestamp</A> := <B>Result</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Internal</FONT>
+
+    <A NAME="f_epoch"><A HREF="../src/http_date.html#f_epoch">Epoch</A>: DATE_TIME
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>.make_from_epoch (0)
+        <B>end</B></A>
+
+    <A NAME="f_internal_timestamp"><A HREF="../src/http_date.html#f_internal_timestamp">internal_timestamp</A>: <B>like</B> <A HREF="../src/http_date.html#f_timestamp">timestamp</A></A>
+
+    <A NAME="f_internal_rfc1123_string"><A HREF="../src/http_date.html#f_internal_rfc1123_string">internal_rfc1123_string</A>: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion to string</FONT>
+
+    <A NAME="f_yyyy_mmm_dd_string"><A HREF="../src/http_date.html#f_yyyy_mmm_dd_string">yyyy_mmm_dd_string</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation [YYYY mmm dd]</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ex: 2012 Dec 25</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (11)
+            <A HREF="../src/http_date.html#f_append_date_time_to_yyyy_mmm_dd_string">append_date_time_to_yyyy_mmm_dd_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, <B>Result</B>)
+        <B>end</B></A>
+
+    <A NAME="f_rfc1123_string"><A HREF="../src/http_date.html#f_rfc1123_string">rfc1123_string</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation following RFC 1123.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> format: [ddd, dd mmm yyyy hh:mi:ss GMT]</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ex: Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123</FONT>
+        <B>local</B>
+            s: <B>like</B> <A HREF="../src/http_date.html#f_internal_rfc1123_string">internal_rfc1123_string</A>
+        <B>do</B>
+            s := <A HREF="../src/http_date.html#f_internal_rfc1123_string">internal_rfc1123_string</A>
+            <B>if</B> s = <B>Void</B> <B>then</B>
+                <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make">make</A> (32)
+                <A HREF="../src/http_date.html#f_append_date_time_to_rfc1123_string">append_date_time_to_rfc1123_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, s)
+                <A HREF="../src/http_date.html#f_internal_rfc1123_string">internal_rfc1123_string</A> := s
+            <B>end</B>
+            <B>Result</B> := s
+        <B>end</B></A>
+
+    <A NAME="f_rfc850_string"><A HREF="../src/http_date.html#f_rfc850_string">rfc850_string</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation following RFC 850.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> format: [mmm, dd-mmm-yy hh:mi:ss GMT]</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (32)
+            <A HREF="../src/http_date.html#f_append_date_time_to_rfc850_string">append_date_time_to_rfc850_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, <B>Result</B>)
+        <B>end</B></A>
+
+    <A NAME="f_iso8601_string"><A HREF="../src/http_date.html#f_iso8601_string">iso8601_string</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation following RFC 3339.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> format: </FONT><FONT COLOR="red">[yyyy-mm-ddThh:mi:ssZ]</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><FONT COLOR="red">https://www.rfc-editor.org/rfc/rfc3339.txt</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> note: RFC 3339 is a profile of ISO 8601.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><FONT COLOR="red">https://en.wikipedia.org/wiki/ISO_8601</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../src/http_date.html">HTTP_DATE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_rfc3339_string">rfc3339_string</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (25)
+            <A HREF="../src/http_date.html#f_append_date_time_to_rfc3339_string">append_date_time_to_rfc3339_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, <B>Result</B>)
+        <B>end</B></A>
+
+    <A NAME="f_rfc3339_string"><A HREF="../src/http_date.html#f_rfc3339_string">rfc3339_string</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation following RFC 3339.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> format: </FONT><FONT COLOR="red">[yyyy-mm-ddThh:mi:ssZ]</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><FONT COLOR="red">https://www.rfc-editor.org/rfc/rfc3339.txt</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> note: RFC 3339 is a profile of ISO 8601.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><FONT COLOR="red">https://en.wikipedia.org/wiki/ISO_8601</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../src/http_date.html">HTTP_DATE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_iso8601_string">iso8601_string</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (25)
+            <A HREF="../src/http_date.html#f_append_date_time_to_rfc3339_string">append_date_time_to_rfc3339_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, <B>Result</B>)
+        <B>end</B></A>
+
+    <A NAME="f_ansi_c_string"><A HREF="../src/http_date.html#f_ansi_c_string">ansi_c_string</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ANSI C's asctime() format	</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (32)
+            <A HREF="../src/http_date.html#f_append_date_time_to_ansi_c_string">append_date_time_to_ansi_c_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, <B>Result</B>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion into string		</FONT>
+
+    <A NAME="f_append_to_yyyy_mmm_dd_string"><A HREF="../src/http_date.html#f_append_to_yyyy_mmm_dd_string">append_to_yyyy_mmm_dd_string</A> (s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>datetime</I><FONT COLOR="red"> as [yyyy mmm dd] format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_date_time_to_yyyy_mmm_dd_string">append_date_time_to_yyyy_mmm_dd_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, s)
+        <B>end</B></A>
+
+    <A NAME="f_append_to_rfc1123_string"><A HREF="../src/http_date.html#f_append_to_rfc1123_string">append_to_rfc1123_string</A> (s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_date_time">date_time</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> as [ddd, dd mmm yyyy hh:mi:ss GMT] format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_date_time_to_rfc1123_string">append_date_time_to_rfc1123_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, s)
+        <B>end</B></A>
+
+    <A NAME="f_append_rfc850_string"><A HREF="../src/http_date.html#f_append_rfc850_string">append_rfc850_string</A> (s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_date_time">date_time</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> as [mmm, dd-mmm-yy hh:mi:ss GMT] format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_date_time_to_rfc850_string">append_date_time_to_rfc850_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, s)
+        <B>end</B></A>
+
+    <A NAME="f_append_to_ansi_c_string"><A HREF="../src/http_date.html#f_append_to_ansi_c_string">append_to_ansi_c_string</A> (s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_date_time">date_time</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> as ANSI C's asctime format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_date_time_to_ansi_c_string">append_date_time_to_ansi_c_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, s)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion into string</FONT>
+
+    <A NAME="f_append_date_time_to_yyyy_mmm_dd_string"><A HREF="../src/http_date.html#f_append_date_time_to_yyyy_mmm_dd_string">append_date_time_to_yyyy_mmm_dd_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>dt</I><FONT COLOR="red"> as [yyyy mmm dd] format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (dt.year, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_month_mmm_to">append_month_mmm_to</A> (dt.month, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (dt.day, s)
+        <B>end</B></A>
+
+    <A NAME="f_append_date_time_to_rfc1123_string"><A HREF="../src/http_date.html#f_append_date_time_to_rfc1123_string">append_date_time_to_rfc1123_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>dt</I><FONT COLOR="red"> as [ddd, dd mmm yyyy hh:mi:ss GMT] format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_day_ddd_to">append_day_ddd_to</A> (dt.date.day_of_the_week, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (44);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (dt.day, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_month_mmm_to">append_month_mmm_to</A> (dt.month, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (dt.year, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_2_digits_time_to">append_2_digits_time_to</A> (dt.time, s);
+            s.<A HREF="../elks/string_general.html#f_append">append</A> (" GMT")
+        <B>end</B></A>
+
+    <A NAME="f_append_date_time_to_rfc850_string"><A HREF="../src/http_date.html#f_append_date_time_to_rfc850_string">append_date_time_to_rfc850_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>dt</I><FONT COLOR="red"> as [mmm, dd-mmm-yy hh:mi:ss GMT] format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_day_name_to">append_day_name_to</A> (dt.date.day_of_the_week, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (44);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (dt.day, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (45)
+            <A HREF="../src/http_date.html#f_append_month_mmm_to">append_month_mmm_to</A> (dt.month, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (45)
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (dt.year \\ 100, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_2_digits_time_to">append_2_digits_time_to</A> (dt.time, s);
+            s.<A HREF="../elks/string_general.html#f_append">append</A> (" GMT")
+        <B>end</B></A>
+
+    <A NAME="f_append_date_time_to_iso8601_string"><A HREF="../src/http_date.html#f_append_date_time_to_iso8601_string">append_date_time_to_iso8601_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>dt</I><FONT COLOR="red"> as </FONT><FONT COLOR="red">[yyyy-mm-ddThh:mi:ssZ]</FONT><FONT COLOR="red"> format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../src/http_date.html">HTTP_DATE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_append_date_time_to_rfc3339_string">append_date_time_to_rfc3339_string</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (dt.year, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (45)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (dt.month, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (45)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (dt.day, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (84)
+            <A HREF="../src/http_date.html#f_append_2_digits_fine_time_to">append_2_digits_fine_time_to</A> (dt.time, s);
+            s.<A HREF="../elks/string_general.html#f_append">append</A> ("Z")
+        <B>end</B></A>
+
+    <A NAME="f_append_date_time_to_rfc3339_string"><A HREF="../src/http_date.html#f_append_date_time_to_rfc3339_string">append_date_time_to_rfc3339_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>dt</I><FONT COLOR="red"> as </FONT><FONT COLOR="red">[yyyy-mm-ddThh:mi:ssZ]</FONT><FONT COLOR="red"> format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was declared in </FONT>{<A HREF="../src/http_date.html">HTTP_DATE</A>}<FONT COLOR="red"> as synonym of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_date.html#f_append_date_time_to_iso8601_string">append_date_time_to_iso8601_string</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (dt.year, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (45)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (dt.month, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (45)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (dt.day, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (84)
+            <A HREF="../src/http_date.html#f_append_2_digits_fine_time_to">append_2_digits_fine_time_to</A> (dt.time, s);
+            s.<A HREF="../elks/string_general.html#f_append">append</A> ("Z")
+        <B>end</B></A>
+
+    <A NAME="f_append_date_time_to_ansi_c_string"><A HREF="../src/http_date.html#f_append_date_time_to_ansi_c_string">append_date_time_to_ansi_c_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>dt</I><FONT COLOR="red"> as ANSI C's asctime format to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Sun Nov  6 08:49:37 1994    ; ANSI C's asctime() format</FONT>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_day_ddd_to">append_day_ddd_to</A> (dt.date.day_of_the_week, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_month_mmm_to">append_month_mmm_to</A> (dt.month, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (dt.day, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_2_digits_time_to">append_2_digits_time_to</A> (dt.time, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (32)
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (dt.year, s)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_debug_output"><A HREF="../src/http_date.html#f_debug_output">debug_output</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String that should be displayed in debugger to represent </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_date.html#f_internal_rfc1123_string">internal_rfc1123_string</A> <B>as</B> st <B>then</B>
+                <B>Result</B> := st.<A HREF="../elks/readable_string_8.html#f_string">string</A>
+            <B>else</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (32)
+                <A HREF="../src/http_date.html#f_append_date_time_to_rfc1123_string">append_date_time_to_rfc1123_string</A> (<A HREF="../src/http_date.html#f_date_time">date_time</A>, <B>Result</B>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Helper routines.</FONT>
+
+    <A NAME="f_append_2_digits_integer_to"><A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (i: <A HREF="../elks/integer_32.html">INTEGER_32</A>; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+        <B>require</B>
+            is_not_negative: i &gt;= 0
+        <B>do</B>
+            <B>if</B> i &lt;= 9 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (48)
+            <B>end</B>
+            <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (i, s)
+        <B>end</B></A>
+
+    <A NAME="f_append_2_digits_time_to"><A HREF="../src/http_date.html#f_append_2_digits_time_to">append_2_digits_time_to</A> (t: TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (t.hour, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (58)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (t.minute, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (58)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (t.second, s)
+        <B>end</B></A>
+
+    <A NAME="f_append_2_digits_fine_time_to"><A HREF="../src/http_date.html#f_append_2_digits_fine_time_to">append_2_digits_fine_time_to</A> (t: TIME; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+        <B>local</B>
+            fd: <A HREF="../elks/format_double.html">FORMAT_DOUBLE</A>
+            r64: <A HREF="../elks/real_64.html">REAL_64</A>
+            f: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (t.hour, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (58)
+            <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (t.minute, s);
+            s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (58)
+            <B>create</B> fd.<A HREF="../elks/format_double.html#f_make">make</A> (2, 2);
+            fd.<A HREF="../elks/format_double.html#f_show_trailing_zeros">show_trailing_zeros</A>;
+            fd.<A HREF="../elks/format_double.html#f_show_zero">show_zero</A>
+            r64 := t.second.<A HREF="../elks/integer_32.html#f_to_double">to_double</A> + t.fractional_second * 0.01
+            f := fd.<A HREF="../elks/format_double.html#f_formatted">formatted</A> (r64)
+            <B>if</B> f.<A HREF="../elks/readable_string_general.html#f_ends_with">ends_with_general</A> (".00") <B>then</B>
+                <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (t.second, s)
+            <B>else</B>
+                <B>if</B> r64 &lt; 10.<A HREF="../elks/integer_32.html#f_to_double">to_double</A> <B>then</B>
+                    s.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (48)
+                <B>end</B>;
+                s.<A HREF="../elks/string_general.html#f_append">append</A> (f)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_append_day_ddd_to"><A HREF="../src/http_date.html#f_append_day_ddd_to">append_day_ddd_to</A> (d: <A HREF="../elks/integer_32.html">INTEGER_32</A>; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+        <B>require</B>
+            1 &lt;= d <B>and</B> d &lt;= 7
+        <B>do</B>
+            <B>inspect</B> d
+            <B>when</B> 1 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Sun")
+            <B>when</B> 2 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Mon")
+            <B>when</B> 3 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Tue")
+            <B>when</B> 4 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Wed")
+            <B>when</B> 5 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Thu")
+            <B>when</B> 6 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Fri")
+            <B>when</B> 7 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Sat")
+            <B>else</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_append_day_name_to"><A HREF="../src/http_date.html#f_append_day_name_to">append_day_name_to</A> (d: <A HREF="../elks/integer_32.html">INTEGER_32</A>; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+        <B>require</B>
+            1 &lt;= d <B>and</B> d &lt;= 7
+        <B>do</B>
+            <B>inspect</B> d
+            <B>when</B> 1 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Sunday")
+            <B>when</B> 2 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Monday")
+            <B>when</B> 3 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Tuesday")
+            <B>when</B> 4 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Wednesday")
+            <B>when</B> 5 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Thursday")
+            <B>when</B> 6 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Friday")
+            <B>when</B> 7 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Saturday")
+            <B>else</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_append_month_mmm_to"><A HREF="../src/http_date.html#f_append_month_mmm_to">append_month_mmm_to</A> (m: <A HREF="../elks/integer_32.html">INTEGER_32</A>; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+        <B>require</B>
+            1 &lt;= m <B>and</B> m &lt;= 12
+        <B>do</B>
+            <B>inspect</B> m
+            <B>when</B> 1 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Jan")
+            <B>when</B> 2 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Feb")
+            <B>when</B> 3 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Mar")
+            <B>when</B> 4 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Apr")
+            <B>when</B> 5 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("May")
+            <B>when</B> 6 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Jun")
+            <B>when</B> 7 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Jul")
+            <B>when</B> 8 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Aug")
+            <B>when</B> 9 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Sep")
+            <B>when</B> 10 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Oct")
+            <B>when</B> 11 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Nov")
+            <B>when</B> 12 <B>then</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> ("Dec")
+            <B>else</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_append_integer_to"><A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (i: <A HREF="../elks/integer_32.html">INTEGER_32</A>; s: <A HREF="../elks/string_general.html">STRING_GENERAL</A>)
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../elks/string_32.html">STRING_32</A>} s <B>as</B> s32 <B>then</B>
+                s32.<A HREF="../elks/string_32.html#f_append_integer">append_integer</A> (i)
+            <B>elseif</B> <B>attached</B> {<A HREF="../elks/string_8.html">STRING_8</A>} s <B>as</B> s8 <B>then</B>
+                s8.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> (i)
+            <B>else</B>
+                s.<A HREF="../elks/string_general.html#f_append">append</A> (i.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_string_to_date_time"><A HREF="../src/http_date.html#f_string_to_date_time">string_to_date_time</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> DATE_TIME
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of </FONT><I>dt</I><FONT COLOR="red"> using the RFC 1123</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       HTTP-date    = rfc1123-date | rfc850-date | asctime-date</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       rfc1123-date = wkday "," SP date1 SP time SP "GMT"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       rfc850-date  = weekday "," SP date2 SP time SP "GMT"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       asctime-date = wkday SP date3 SP time SP 4DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       date1        = 2DIGIT SP month SP 4DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; day month year (e.g., 02 Jun 1982)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       date2        = 2DIGIT "-" month "-" 2DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; day-month-year (e.g., 02-Jun-82)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       date3        = month SP ( 2DIGIT | ( SP 1DIGIT ))</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; month day (e.g., Jun  2)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       time         = 2DIGIT ":" 2DIGIT ":" 2DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; 00:00:00 - 23:59:59</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       wkday        = "Mon" | "Tue" | "Wed"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Thu" | "Fri" | "Sat" | "Sun"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       weekday      = "Monday" | "Tuesday" | "Wednesday"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Thursday" | "Friday" | "Saturday" | "Sunday"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       month        = "Jan" | "Feb" | "Mar" | "Apr"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "May" | "Jun" | "Jul" | "Aug"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Sep" | "Oct" | "Nov" | "Dec"</FONT>
+        <B>note</B>
+            eis: "name=RFC2616", "protocol=URI", "src=<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html</a>"
+        <B>local</B>
+            t: <A HREF="../elks/string_32.html">STRING_32</A>
+            l_ddd, l_mmm: <B>detachable</B> <A HREF="../elks/string_32.html">STRING_32</A>
+            l_dd, l_yyyy, l_hh, l_mi, l_ss, l_ff2: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_mo: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_gmt_offset: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            i, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            err: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            i := 1
+            n := s.<A HREF="../elks/readable_string_general.html#f_count">count</A>
+            <B>create</B> t.<A HREF="../elks/readable_string_32.html#f_make">make</A> (4)
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>;
+            t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_alpha">is_alpha</A>
+            <B>loop</B>
+                t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                i := i + 1
+            <B>end</B>
+            <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt;= 3 <B>then</B>
+                l_ddd := t.<A HREF="../elks/string_32.html#f_as_lower">as_lower</A>
+            <B>else</B>
+                err := <B>True</B>
+            <B>end</B>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>and</B> i &lt;= n <B>and</B> s [i] = ','.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                i := i + 1
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                <B>loop</B>
+                    i := i + 1
+                <B>end</B>;
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_dd := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>else</B>
+                err := <B>True</B>
+            <B>end</B>
+            <B>if</B> s [i] = '-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                i := i + 1
+            <B>else</B>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                <B>loop</B>
+                    i := i + 1
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_alpha">is_alpha</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt;= 3 <B>then</B>
+                    l_mmm := t.<A HREF="../elks/string_32.html#f_as_upper">as_upper</A>
+                    <B>if</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 3 <B>then</B>
+                        l_mmm.<A HREF="../elks/string_32.html#f_keep_head">keep_head</A> (3)
+                    <B>end</B>
+                    <B>if</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("JAN".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 1
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("FEB".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 2
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("MAR".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 3
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("APR".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 4
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("MAY".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 5
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("JUN".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 6
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("JUL".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 7
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("AUG".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 8
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("SEP".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 9
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("OCT".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 10
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("NOV".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 11
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("DEC".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                        l_mo := 12
+                    <B>else</B>
+                        err := <B>True</B>
+                    <B>end</B>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> s [i] = '-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                i := i + 1
+            <B>else</B>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                <B>loop</B>
+                    i := i + 1
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 4 <B>or</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_yyyy := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                    <B>if</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>then</B>
+                        l_yyyy := 1900 + l_yyyy
+                    <B>end</B>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>and</B> s [i] = ':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_hh := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                    i := i + 1
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>and</B> s [i] = ':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_mi := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                    i := i + 1
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_ss := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>and</B> s [i] = '.'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                i := i + 1;
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_ff2 := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                <B>loop</B>
+                    i := i + 1
+                <B>end</B>;
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_alpha">is_alpha</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i].<A HREF="../elks/character_32_ref.html#f_as_upper">as_upper</A>)
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> t.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("GMT".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>or</B> t.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("UTC".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>or</B> t.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                    <B>from</B>
+                    <B>until</B>
+                        i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                    <B>loop</B>
+                        i := i + 1
+                    <B>end</B>
+                    <B>if</B> i &lt;= n <B>then</B>
+                        t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                        <B>if</B> s [i] = '+'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                            t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                        <B>elseif</B> s [i] = '-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                            t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                        <B>else</B>
+                            err := <B>True</B>
+                        <B>end</B>
+                        <B>if</B> <B>not</B> err <B>then</B>
+                            i := i + 1
+                            <B>from</B>
+                            <B>until</B>
+                                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                            <B>loop</B>
+                                i := i + 1
+                            <B>end</B>
+                            <B>from</B>
+                            <B>until</B>
+                                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                            <B>loop</B>
+                                t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i].<A HREF="../elks/character_32_ref.html#f_as_upper">as_upper</A>)
+                                i := i + 1
+                            <B>end</B>
+                            l_gmt_offset := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A> * 60
+                            <B>if</B> i &lt;= n <B>and</B> s [i] = ':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                                i := i + 1;
+                                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                                <B>from</B>
+                                <B>until</B>
+                                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                                <B>loop</B>
+                                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i].<A HREF="../elks/character_32_ref.html#f_as_upper">as_upper</A>)
+                                    i := i + 1
+                                <B>end</B>
+                                l_gmt_offset := l_gmt_offset + l_gmt_offset.<A HREF="../elks/integer_32_ref.html#f_sign">sign</A> * t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                            <B>end</B>
+                        <B>end</B>
+                    <B>end</B>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                <B>check</B>
+                    valid_yyyy: 0 &lt; l_yyyy
+                    valid_dd: 0 &lt; l_dd <B>and</B> l_dd &lt;= 31
+                    valid_mo: 0 &lt; l_mo <B>and</B> l_mo &lt;= 12
+                    valid_hh: 0 &lt;= l_hh <B>and</B> l_hh &lt;= 23
+                    valid_mi: 0 &lt;= l_mi <B>and</B> l_mi &lt;= 59
+                    valid_ss: 0 &lt;= l_ss <B>and</B> l_ss &lt;= 59
+                <B>end</B>
+                <B>create</B> <B>Result</B>.make (l_yyyy, l_mo, l_dd, l_hh, l_mi, l_ss)
+                <B>if</B> l_gmt_offset /= 0 <B>then</B>
+                    <B>Result</B>.minute_add (- l_gmt_offset)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_ansi_c_string_to_date_time"><A HREF="../src/http_date.html#f_ansi_c_string_to_date_time">ansi_c_string_to_date_time</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> DATE_TIME
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ANSI C date from </FONT><I>s</I><FONT COLOR="red"> string representation using the RFC 1123</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       asctime-date = wkday SP date3 SP time SP 4DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       date3        = month SP ( 2DIGIT | ( SP 1DIGIT ))</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; month day (e.g., Jun  2)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       time         = 2DIGIT ":" 2DIGIT ":" 2DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; 00:00:00 - 23:59:59</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       wkday        = "Mon" | "Tue" | "Wed"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Thu" | "Fri" | "Sat" | "Sun"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       month        = "Jan" | "Feb" | "Mar" | "Apr"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "May" | "Jun" | "Jul" | "Aug"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Sep" | "Oct" | "Nov" | "Dec"			</FONT>
+        <B>note</B>
+            eis: "name=RFC2616", "protocol=URI", "src=<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html</a>"
+        <B>local</B>
+            t: <A HREF="../elks/string_32.html">STRING_32</A>
+            l_ddd, l_mmm: <B>detachable</B> <A HREF="../elks/string_32.html">STRING_32</A>
+            l_dd, l_yyyy, l_hh, l_mi, l_ss, l_ff2: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_mo: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_gmt_offset: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            i, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            err: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            i := 1
+            n := s.<A HREF="../elks/readable_string_general.html#f_count">count</A>
+            <B>create</B> t.<A HREF="../elks/readable_string_32.html#f_make">make</A> (4)
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>;
+            t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_alpha">is_alpha</A>
+            <B>loop</B>
+                t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                i := i + 1
+            <B>end</B>
+            <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt;= 3 <B>then</B>
+                l_ddd := t.<A HREF="../elks/string_32.html#f_as_lower">as_lower</A>
+            <B>else</B>
+                err := <B>True</B>
+            <B>end</B>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_alpha">is_alpha</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt;= 3 <B>then</B>
+                    l_mmm := t.<A HREF="../elks/string_32.html#f_as_upper">as_upper</A>
+                    <B>if</B> l_mmm.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 3 <B>then</B>
+                        l_mmm.<A HREF="../elks/string_32.html#f_keep_head">keep_head</A> (3)
+                    <B>end</B>
+                    <B>if</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("JAN") <B>then</B>
+                        l_mo := 1
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("FEB") <B>then</B>
+                        l_mo := 2
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("MAR") <B>then</B>
+                        l_mo := 3
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("APR") <B>then</B>
+                        l_mo := 4
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("MAY") <B>then</B>
+                        l_mo := 5
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("JUN") <B>then</B>
+                        l_mo := 6
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("JUL") <B>then</B>
+                        l_mo := 7
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("AUG") <B>then</B>
+                        l_mo := 8
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("SEP") <B>then</B>
+                        l_mo := 9
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("OCT") <B>then</B>
+                        l_mo := 10
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("NOV") <B>then</B>
+                        l_mo := 11
+                    <B>elseif</B> l_mmm.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> ("DEC") <B>then</B>
+                        l_mo := 12
+                    <B>else</B>
+                        err := <B>True</B>
+                    <B>end</B>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>and</B> i &lt;= n <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_dd := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>else</B>
+                err := <B>True</B>
+            <B>end</B>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>and</B> s [i] = ':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_hh := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                    i := i + 1
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>and</B> s [i] = ':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_mi := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                    i := i + 1
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_ss := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>and</B> s [i] = '.'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                i := i + 1;
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> i &lt;= n <B>and</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_ff2 := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 0 <B>then</B>
+                    <B>check</B>
+                        t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 4 <B>or</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>and</B> t.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                    <B>end</B>
+                    l_yyyy := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                    <B>if</B> t.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 2 <B>then</B>
+                        l_yyyy := 1900 + l_yyyy
+                    <B>end</B>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>from</B>
+            <B>until</B>
+                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> i &lt;= n <B>and</B> <B>not</B> err <B>then</B>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                <B>loop</B>
+                    i := i + 1
+                <B>end</B>;
+                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                <B>from</B>
+                <B>until</B>
+                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_alpha">is_alpha</A>
+                <B>loop</B>
+                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i].<A HREF="../elks/character_32_ref.html#f_as_upper">as_upper</A>)
+                    i := i + 1
+                <B>end</B>
+                <B>if</B> t.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("GMT".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>or</B> t.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> ("UTC".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>) <B>then</B>
+                    <B>from</B>
+                    <B>until</B>
+                        i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                    <B>loop</B>
+                        i := i + 1
+                    <B>end</B>
+                    <B>if</B> i &lt;= n <B>then</B>
+                        t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                        <B>if</B> s [i] = '+'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                            t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                        <B>elseif</B> s [i] = '-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                            t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i])
+                        <B>else</B>
+                            err := <B>True</B>
+                        <B>end</B>
+                        <B>if</B> <B>not</B> err <B>then</B>
+                            i := i + 1
+                            <B>from</B>
+                            <B>until</B>
+                                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A>
+                            <B>loop</B>
+                                i := i + 1
+                            <B>end</B>
+                            <B>from</B>
+                            <B>until</B>
+                                i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                            <B>loop</B>
+                                t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i].<A HREF="../elks/character_32_ref.html#f_as_upper">as_upper</A>)
+                                i := i + 1
+                            <B>end</B>
+                            l_gmt_offset := t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A> * 60
+                            <B>if</B> i &lt;= n <B>and</B> s [i] = ':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                                i := i + 1;
+                                t.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                                <B>from</B>
+                                <B>until</B>
+                                    i &gt; n <B>or else</B> <B>not</B> s [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A>
+                                <B>loop</B>
+                                    t.<A HREF="../elks/string_32.html#f_extend">extend</A> (s [i].<A HREF="../elks/character_32_ref.html#f_as_upper">as_upper</A>)
+                                    i := i + 1
+                                <B>end</B>
+                                l_gmt_offset := l_gmt_offset + l_gmt_offset.<A HREF="../elks/integer_32_ref.html#f_sign">sign</A> * t.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                            <B>end</B>
+                        <B>end</B>
+                    <B>end</B>
+                <B>else</B>
+                    err := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> err <B>then</B>
+                <B>check</B>
+                    valid_yyyy: 0 &lt; l_yyyy
+                    valid_dd: 0 &lt; l_dd <B>and</B> l_dd &lt;= 31
+                    valid_mo: 0 &lt; l_mo <B>and</B> l_mo &lt;= 12
+                    valid_hh: 0 &lt;= l_hh <B>and</B> l_hh &lt;= 23
+                    valid_mi: 0 &lt;= l_mi <B>and</B> l_mi &lt;= 59
+                    valid_ss: 0 &lt;= l_ss <B>and</B> l_ss &lt;= 59
+                <B>end</B>
+                <B>create</B> <B>Result</B>.make (l_yyyy, l_mo, l_dd, l_hh, l_mi, l_ss)
+                <B>if</B> l_gmt_offset /= 0 <B>then</B>
+                    <B>Result</B>.minute_add (- l_gmt_offset)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_rfc3339_string_to_date_time"><A HREF="../src/http_date.html#f_rfc3339_string_to_date_time">rfc3339_string_to_date_time</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> DATE_TIME
+        <B>note</B>
+            eis: "name=RFC3339", "protocol=URI", "src=<a href="https://tools.ietf.org/html/rfc3339">https://tools.ietf.org/html/rfc3339</a>"
+        <B>local</B>
+            y, mo, d, h, mi, sec, frac_sec: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_off_h, l_off_mi: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            tmp: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+            i, j, k, pos: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            err: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>if</B> s /= <B>Void</B> <B>then</B>
+                pos := s.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> ('T'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, 1)
+                <B>if</B> pos &gt; 0 <B>then</B>
+                    i := 1
+                    j := s.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> ('-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, i)
+                    <B>if</B> j &gt; i <B>and</B> j &lt; pos <B>then</B>
+                        y := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (i, j - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                        i := j + 1
+                        j := s.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> ('-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, i)
+                        <B>if</B> j &gt; i <B>and</B> j &lt; pos <B>then</B>
+                            mo := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (i, j - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                            d := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (j + 1, pos - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                        <B>else</B>
+                            err := <B>True</B>
+                        <B>end</B>
+                    <B>else</B>
+                        err := <B>True</B>
+                    <B>end</B>
+                    i := pos + 1
+                    j := s.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> (':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, i)
+                    <B>if</B> j &gt; i <B>then</B>
+                        h := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (i, j - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                        i := j + 1
+                        j := s.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> (':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, i)
+                        <B>if</B> j &gt; i <B>then</B>
+                            mi := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (i, j - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                            <B>from</B>
+                                k := j + 1
+                            <B>until</B>
+                                k &gt; s.<A HREF="../elks/readable_string_general.html#f_count">count</A> <B>or</B> s [k].<A HREF="../elks/character_32_ref.html#f_is_alpha">is_alpha</A> <B>or</B> s [k] = '+'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>or</B> s [k] = '-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>
+                            <B>loop</B>
+                                k := k + 1
+                            <B>end</B>
+                            tmp := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (j + 1, k - 1)
+                            j := tmp.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> ('.'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, 1)
+                            <B>if</B> j &gt; 0 <B>then</B>
+                                sec := tmp.<A HREF="../elks/readable_string_general.html#f_head">head</A> (j - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                                frac_sec := tmp.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (j + 1, tmp.<A HREF="../elks/readable_string_general.html#f_count">count</A>).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                            <B>else</B>
+                                sec := tmp.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                            <B>end</B>
+                            <B>if</B> k &lt;= s.<A HREF="../elks/readable_string_general.html#f_count">count</A> <B>then</B>
+                                <B>if</B> s [k] = '+'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                                    tmp := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (k + 1, s.<A HREF="../elks/readable_string_general.html#f_count">count</A>)
+                                    j := tmp.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> (':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, 1)
+                                    <B>if</B> j &gt; 0 <B>then</B>
+                                        l_off_h := - tmp.<A HREF="../elks/readable_string_general.html#f_head">head</A> (j - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                                        l_off_mi := - tmp.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (j + 1, tmp.<A HREF="../elks/readable_string_general.html#f_count">count</A>).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                                    <B>else</B>
+                                        l_off_h := - tmp.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                                    <B>end</B>
+                                <B>elseif</B> s [k] = '-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                                    tmp := s.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (k + 1, s.<A HREF="../elks/readable_string_general.html#f_count">count</A>)
+                                    j := tmp.<A HREF="../elks/readable_string_general.html#f_index_of">index_of</A> (':'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, 1)
+                                    <B>if</B> j &gt; 0 <B>then</B>
+                                        l_off_h := + tmp.<A HREF="../elks/readable_string_general.html#f_head">head</A> (j - 1).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                                        l_off_mi := + tmp.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (j + 1, tmp.<A HREF="../elks/readable_string_general.html#f_count">count</A>).<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                                    <B>else</B>
+                                        l_off_h := + tmp.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                                    <B>end</B>
+                                <B>elseif</B> s [k] = 'Z'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                                <B>end</B>
+                            <B>end</B>
+                        <B>else</B>
+                            err := <B>True</B>
+                        <B>end</B>
+                    <B>else</B>
+                        err := <B>True</B>
+                    <B>end</B>
+                    <B>if</B> <B>not</B> err <B>then</B>
+                        <B>create</B> <B>Result</B>.make (y, mo, d, h, mi, sec)
+                        <B>if</B> frac_sec /= 0 <B>then</B>
+                            <B>Result</B>.set_fractionals (frac_sec.<A HREF="../elks/integer_32.html#f_to_double">to_double</A>);
+                            <B>Result</B>.time.set_fractionals (frac_sec.<A HREF="../elks/integer_32.html#f_to_double">to_double</A>)
+                        <B>end</B>
+                        <B>if</B> l_off_h /= 0 <B>then</B>
+                            <B>Result</B>.hour_add (l_off_h)
+                        <B>end</B>
+                        <B>if</B> l_off_mi /= 0 <B>then</B>
+                            <B>Result</B>.minute_add (l_off_mi)
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_date.html">HTTP_DATE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_date_chart.html">Chart</A></TD><TD><A HREF="http_date_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

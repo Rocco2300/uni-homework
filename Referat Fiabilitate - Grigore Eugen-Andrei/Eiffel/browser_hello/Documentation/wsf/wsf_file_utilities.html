@@ -1,0 +1,254 @@
+<HTML><HEAD>
+<meta name="description" content="TTTTCollection of file system utilities.  TTTTSuch as getting safe temporary fileTin a specific directory,  TTTTTfor an optional prefix, and an optional expected filename."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_file_utilities Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_file_utilities_chart.html">Chart</A></TD><TD><A HREF="wsf_file_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        				Collection of file system utilities.
+        
+        				Such as getting safe temporary file	in a specific directory, 
+        					for an optional prefix, and an optional expected filename.
+    ]"
+    date: "$Date: 2015-06-10 16:48:30 +0000 (Wed, 10 Jun 2015) $"
+    revision: "$Revision: 97452 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_file_utilities.html">WSF_FILE_UTILITIES</A> [G -&gt; <A HREF="../elks/file.html">FILE</A> <B>create</B> <A HREF="../elks/file.html#f_make_with_path">make_with_path</A> <B>end</B>]
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Factory</FONT>
+
+    <A NAME="f_new_file"><A HREF="../src/wsf_file_utilities.html#f_new_file">new_file</A> (p: <A HREF="../elks/path.html">PATH</A>): <B>detachable</B> G
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> New temporary file open for writing at location </FONT><I>p</I><FONT COLOR="red"> or appended with integer suffix if already exists.</FONT>
+        <B>local</B>
+            f: G
+            bn: <A HREF="../elks/string_32.html">STRING_32</A>
+            n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>from</B>
+                <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (p)
+                <B>Result</B> := <A HREF="../src/wsf_file_utilities.html#f_new_file_opened_for_writing">new_file_opened_for_writing</A> (f)
+                n := 0
+            <B>until</B>
+                <B>Result</B> /= <B>Void</B> <B>or else</B> n &gt; 1000
+            <B>loop</B>
+                n := n + 1
+                <B>create</B> bn.<A HREF="../elks/readable_string_32.html#f_make">make</A> (2 + n // 10);
+                bn.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                bn.<A HREF="../elks/string_32.html#f_append_integer">append_integer</A> (n);
+                f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (p.<A HREF="../elks/path.html#f_appended">appended</A> (bn))
+                <B>Result</B> := <A HREF="../src/wsf_file_utilities.html#f_new_file_opened_for_writing">new_file_opened_for_writing</A> (f)
+            <B>end</B>
+        <B>ensure</B>
+            result_opened_for_writing_if_set: <B>Result</B> /= <B>Void</B> <B>implies</B> <B>Result</B>.<A HREF="../elks/file.html#f_is_open_write">is_open_write</A>
+        <B>end</B></A>
+
+    <A NAME="f_new_temporary_file"><A HREF="../src/wsf_file_utilities.html#f_new_temporary_file">new_temporary_file</A> (d: <A HREF="../elks/directory.html">DIRECTORY</A>; a_prefix: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_name: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> G
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> New temporary file open for writing inside directory </FONT><I>d</I><FONT COLOR="red">, with prefix </FONT><I>a_prefix</I><FONT COLOR="red"> is set, and based on name </FONT><I>a_name</I><FONT COLOR="red"> is set.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If it is unable to create such file opened for writing, then return Void.</FONT>
+        <B>require</B>
+            d_valid: d.<A HREF="../elks/directory.html#f_exists">exists</A> <B>and then</B> d.<A HREF="../elks/directory.html#f_is_writable">is_writable</A>
+        <B>local</B>
+            fn: <A HREF="../elks/path.html">PATH</A>
+            tmp: <A HREF="../elks/string_32.html">STRING_32</A>
+            dn: <A HREF="../elks/path.html">PATH</A>
+        <B>do</B>
+            <B>if</B> a_prefix /= <B>Void</B> <B>then</B>
+                <B>create</B> tmp.<A HREF="../elks/string_32.html#f_make_from_string_general">make_from_string_general</A> (a_prefix)
+            <B>else</B>
+                <B>create</B> tmp.<A HREF="../elks/string_32.html#f_make_from_string_general">make_from_string_general</A> ("tmp")
+            <B>end</B>
+            dn := d.<A HREF="../elks/directory.html#f_path">path</A>
+            <B>if</B> a_name /= <B>Void</B> <B>then</B>
+                tmp.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('-'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                tmp.<A HREF="../elks/string_32.html#f_append_string_general">append_string_general</A> (<A HREF="../src/wsf_file_utilities.html#f_safe_filename">safe_filename</A> (a_name))
+            <B>end</B>
+            fn := dn.<A HREF="../elks/path.html#f_extended">extended</A> (tmp)
+            <B>Result</B> := <A HREF="../src/wsf_file_utilities.html#f_new_file">new_file</A> (fn)
+        <B>ensure</B>
+            result_opened_for_writing_if_set: <B>Result</B> /= <B>Void</B> <B>implies</B> <B>Result</B>.<A HREF="../elks/file.html#f_is_open_write">is_open_write</A>
+        <B>end</B></A>
+
+    <A NAME="f_safe_filename"><A HREF="../src/wsf_file_utilities.html#f_safe_filename">safe_filename</A> (fn: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Safe filename that avoid impossible filename, or dangerous one.</FONT>
+        <B>local</B>
+            c: <A HREF="../elks/character_32.html">CHARACTER_32</A>
+            i, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>from</B>
+                i := 1
+                n := fn.<A HREF="../elks/readable_string_general.html#f_count">count</A>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (n)
+            <B>until</B>
+                i &gt; n
+            <B>loop</B>
+                c := fn [i]
+                <B>inspect</B> c
+                <B>when</B> '.', '-', '_' <B>then</B>
+                    <B>Result</B>.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (c.<A HREF="../elks/character_32.html#f_natural_32_code">natural_32_code</A>)
+                <B>when</B> 'A'..'Z', 'a'..'z', '0'..'9' <B>then</B>
+                    <B>Result</B>.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (c.<A HREF="../elks/character_32.html#f_natural_32_code">natural_32_code</A>)
+                <B>else</B>
+                    <B>inspect</B> c
+                    <B>when</B> 'À' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('A')
+                    <B>when</B> 'Á' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('A')
+                    <B>when</B> 'Â' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('A')
+                    <B>when</B> 'Ã' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('A')
+                    <B>when</B> 'Ä' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('A')
+                    <B>when</B> 'Å' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('A')
+                    <B>when</B> 'Ç' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('C')
+                    <B>when</B> 'È' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('E')
+                    <B>when</B> 'É' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('E')
+                    <B>when</B> 'Ê' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('E')
+                    <B>when</B> 'Ë' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('E')
+                    <B>when</B> 'Ì' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('I')
+                    <B>when</B> 'Í' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('I')
+                    <B>when</B> 'Î' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('I')
+                    <B>when</B> 'Ï' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('I')
+                    <B>when</B> 'Ò' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('O')
+                    <B>when</B> 'Ó' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('O')
+                    <B>when</B> 'Ô' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('O')
+                    <B>when</B> 'Õ' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('O')
+                    <B>when</B> 'Ö' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('O')
+                    <B>when</B> 'Ù' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('U')
+                    <B>when</B> 'Ú' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('U')
+                    <B>when</B> 'Û' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('U')
+                    <B>when</B> 'Ü' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('U')
+                    <B>when</B> 'Ý' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('Y')
+                    <B>when</B> 'à' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('a')
+                    <B>when</B> 'á' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('a')
+                    <B>when</B> 'â' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('a')
+                    <B>when</B> 'ã' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('a')
+                    <B>when</B> 'ä' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('a')
+                    <B>when</B> 'å' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('a')
+                    <B>when</B> 'ç' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('c')
+                    <B>when</B> 'è' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('e')
+                    <B>when</B> 'é' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('e')
+                    <B>when</B> 'ê' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('e')
+                    <B>when</B> 'ë' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('e')
+                    <B>when</B> 'ì' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('i')
+                    <B>when</B> 'í' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('i')
+                    <B>when</B> 'î' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('i')
+                    <B>when</B> 'ï' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('i')
+                    <B>when</B> 'ð' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('o')
+                    <B>when</B> 'ò' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('o')
+                    <B>when</B> 'ó' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('o')
+                    <B>when</B> 'ô' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('o')
+                    <B>when</B> 'õ' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('o')
+                    <B>when</B> 'ö' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('o')
+                    <B>when</B> 'ù' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('u')
+                    <B>when</B> 'ú' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('u')
+                    <B>when</B> 'û' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('u')
+                    <B>when</B> 'ü' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('u')
+                    <B>when</B> 'ý' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('y')
+                    <B>when</B> 'ÿ' <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('y')
+                    <B>else</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_extend">extend</A> ('-')
+                    <B>end</B>
+                <B>end</B>
+                i := i + 1
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_new_file_opened_for_writing"><A HREF="../src/wsf_file_utilities.html#f_new_file_opened_for_writing">new_file_opened_for_writing</A> (f: G): <B>detachable</B> G
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Returns a new file object opened for writing if possible</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> otherwise returns Void.</FONT>
+        <B>local</B>
+            retried: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>if</B> <B>not</B> retried <B>then</B>
+                <B>if</B> <B>not</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>then</B>
+                    f.<A HREF="../elks/file.html#f_open_write">open_write</A>
+                    <B>if</B> f.<A HREF="../elks/file.html#f_is_open_write">is_open_write</A> <B>then</B>
+                        <B>Result</B> := f
+                    <B>elseif</B> <B>not</B> f.<A HREF="../elks/file.html#f_is_closed">is_closed</A> <B>then</B>
+                        f.<A HREF="../elks/file.html#f_close">close</A>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>ensure</B>
+            <B>Result</B> /= <B>Void</B> <B>implies</B> <B>Result</B>.<A HREF="../elks/file.html#f_is_open_write">is_open_write</A>
+        <B>rescue</B>
+            retried := <B>True</B>
+            <B>retry</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_file_utilities.html">WSF_FILE_UTILITIES</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_file_utilities_chart.html">Chart</A></TD><TD><A HREF="wsf_file_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

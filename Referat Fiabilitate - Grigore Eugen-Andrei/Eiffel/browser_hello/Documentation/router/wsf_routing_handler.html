@@ -1,0 +1,92 @@
+<HTML><HEAD>
+<meta name="description" content="Summary description for {WSF_ROUTING_HANDLER}."/>
+<meta name="author" content=""/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_routing_handler Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_routing_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_routing_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Summary description for {<A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>}."
+    author: ""
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>
+
+<B>inherit</B>
+    <A HREF="../router/wsf_handler.html">WSF_HANDLER</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../router/wsf_routing_handler.html#f_make">make</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+        <B>do</B>
+            <B>create</B> <A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_make">make</A> (n)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_router"><A HREF="../router/wsf_routing_handler.html#f_router">router</A>: <A HREF="../router/wsf_router.html">WSF_ROUTER</A></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_count"><A HREF="../router/wsf_routing_handler.html#f_count">count</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Count of maps handled by current</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_count">count</A>
+        <B>end</B></A>
+
+    <A NAME="f_base_url"><A HREF="../router/wsf_routing_handler.html#f_base_url">base_url</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_base_url">base_url</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_base_url"><A HREF="../router/wsf_routing_handler.html#f_set_base_url">set_base_url</A> (a_base_url: <B>like</B> <A HREF="../router/wsf_routing_handler.html#f_base_url">base_url</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_routing_handler.html#f_base_url">base_url</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_base_url</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> make sure no map is already added (i.e: count = 0)</FONT>
+        <B>require</B>
+            no_handler_set: <A HREF="../router/wsf_routing_handler.html#f_count">count</A> = 0
+        <B>do</B>
+            <A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_set_base_url">set_base_url</A> (a_base_url)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_execute"><A HREF="../router/wsf_routing_handler.html#f_execute">execute</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execute </FONT><I>req</I><FONT COLOR="red"> responding in </FONT><I>res</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+            res_attached: res /= <B>Void</B>
+        <B>local</B>
+            sess: <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>
+        <B>do</B>
+            <B>create</B> sess;
+            <A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_dispatch">dispatch</A> (req, res, sess)
+            <B>if</B> <B>not</B> sess.<A HREF="../router/wsf_router_session.html#f_dispatched">dispatched</A> <B>then</B>
+                res.<A HREF="../src/wsf_response.html#f_put_header">put_header</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_not_found">not_found</A>, <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]] &lt;&lt;[{<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_content_length">header_content_length</A>, "0"]&gt;&gt;)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_routing_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_routing_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

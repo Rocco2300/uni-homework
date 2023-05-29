@@ -1,0 +1,330 @@
+<HTML><HEAD>
+<meta name="description" content="This class is used to report a 405 Method not allowed response, or a 501 not implemented response, depending upon whether the method is known to the server."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_method_not_allowed_response Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_method_not_allowed_response_chart.html">Chart</A></TD><TD><A HREF="wsf_method_not_allowed_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        This class is used to report a 405 Method not allowed response,
+        or a 501 not implemented response, depending upon whether
+        the method is known to the server.
+    ]"
+    date: "$Date: 2020-11-03 14:05:35 +0000 (Tue, 03 Nov 2020) $"
+    revision: "$Revision: 104855 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_method_not_allowed_response.html">WSF_METHOD_NOT_ALLOWED_RESPONSE</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_response_message.html">WSF_RESPONSE_MESSAGE</A>
+
+    SHARED_HTML_ENCODER
+
+<B>create</B> 
+    <A HREF="../src/wsf_method_not_allowed_response.html#f_make">make</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../src/wsf_method_not_allowed_response.html#f_make">make</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A> := req
+            <B>create</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_header">header</A>.<A HREF="../src/http_header.html#f_make">make</A>
+            <B>create</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A>
+            <B>create</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A>.<A HREF="../elks/arrayed_list.html#f_make">make</A> (0)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_header"><A HREF="../src/wsf_method_not_allowed_response.html#f_header">header</A>: <A HREF="../src/http_header.html">HTTP_HEADER</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response' header</FONT>
+
+    <A NAME="f_request"><A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>: <A HREF="../src/wsf_request.html">WSF_REQUEST</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated request.</FONT>
+
+    <A NAME="f_suggested_methods"><A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Optional suggestions</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> First is the default.</FONT>
+
+    <A NAME="f_suggested_items"><A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A>: <A HREF="../elks/arrayed_list.html">ARRAYED_LIST</A> [<A HREF="../elks/tuple.html">TUPLE</A> [location: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; text: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; description: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Optional suggestions</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> First is the default.</FONT>
+
+    <A NAME="f_body"><A HREF="../src/wsf_method_not_allowed_response.html#f_body">body</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Optional body</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Displayed as extra content</FONT>
+
+    <A NAME="f_recognized_methods"><A HREF="../src/wsf_method_not_allowed_response.html#f_recognized_methods">recognized_methods</A>: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> All methods recognized by the application</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_recognized_methods"><A HREF="../src/wsf_method_not_allowed_response.html#f_set_recognized_methods">set_recognized_methods</A> (m: <B>like</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_recognized_methods">recognized_methods</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_method_not_allowed_response.html#f_recognized_methods">recognized_methods</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>m</I>
+        <B>do</B>
+            <A HREF="../src/wsf_method_not_allowed_response.html#f_recognized_methods">recognized_methods</A> := m
+        <B>end</B></A>
+
+    <A NAME="f_set_default_recognized_methods"><A HREF="../src/wsf_method_not_allowed_response.html#f_set_default_recognized_methods">set_default_recognized_methods</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_method_not_allowed_response.html#f_default_recognized_methods">default_recognized_methods</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> (defined in HTTP/1.1 specification) to </FONT><I>m</I>
+        <B>do</B>
+            <A HREF="../src/wsf_method_not_allowed_response.html#f_recognized_methods">recognized_methods</A> := <A HREF="../src/wsf_method_not_allowed_response.html#f_default_recognized_methods">default_recognized_methods</A>
+        <B>end</B></A>
+
+    <A NAME="f_set_suggested_methods"><A HREF="../src/wsf_method_not_allowed_response.html#f_set_suggested_methods">set_suggested_methods</A> (m: <B>like</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>m</I>
+        <B>do</B>
+            <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A> := m
+        <B>end</B></A>
+
+    <A NAME="f_add_suggested_location"><A HREF="../src/wsf_method_not_allowed_response.html#f_add_suggested_location">add_suggested_location</A> (a_loc: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_title: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_description: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add </FONT><I>a_loc</I><FONT COLOR="red"> to </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A><FONT COLOR="red">`</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A>.<A HREF="../elks/arrayed_list.html#f_force">force</A> ([a_loc, a_title, a_description])
+        <B>end</B></A>
+
+    <A NAME="f_add_suggested_text"><A HREF="../src/wsf_method_not_allowed_response.html#f_add_suggested_text">add_suggested_text</A> (a_text: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_description: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add </FONT><I>a_text</I><FONT COLOR="red"> to </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A><FONT COLOR="red">`</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A>.<A HREF="../elks/arrayed_list.html#f_force">force</A> ([<B>Void</B>, a_text, a_description])
+        <B>end</B></A>
+
+    <A NAME="f_set_body"><A HREF="../src/wsf_method_not_allowed_response.html#f_set_body">set_body</A> (b: <B>like</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_body">body</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_method_not_allowed_response.html#f_body">body</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>b</I>
+        <B>do</B>
+            <A HREF="../src/wsf_method_not_allowed_response.html#f_body">body</A> := b
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>}{<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output</FONT>
+
+    <A NAME="f_send_to"><A HREF="../src/wsf_method_not_allowed_response.html#f_send_to">send_to</A> (res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send Current message to </FONT><I>res</I>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This feature should be called via </FONT><I>{WSF_RESPONSE}.send (obj)</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> where </FONT><I>obj</I><FONT COLOR="red"> is the current object</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+            l_text: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+            l_html_error_code_text, l_loc: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            h: <B>like</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_header">header</A>
+            l_messages: <A HREF="../src/http_status_code_messages.html">HTTP_STATUS_CODE_MESSAGES</A>
+        <B>do</B>
+            <B>create</B> l_messages
+            h := <A HREF="../src/wsf_method_not_allowed_response.html#f_header">header</A>
+            <B>if</B> <B>not</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_recognized_methods">recognized_methods</A> <B>as</B> l_recognized_methods <B>or else</B> l_recognized_methods.<A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>) <B>then</B>
+                res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (l_messages.<A HREF="../src/http_status_code.html#f_method_not_allowed">Method_not_allowed</A>)
+            <B>else</B>
+                res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (l_messages.<A HREF="../src/http_status_code.html#f_not_implemented">Not_implemented</A>)
+            <B>end</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A> <B>as</B> lst <B>and then</B> <B>not</B> lst.<A HREF="../router/wsf_request_methods.html#f_is_empty">is_empty</A> <B>then</B>
+                h.<A HREF="../src/http_header_modifier.html#f_put_allow">put_allow</A> (lst)
+            <B>end</B>
+            <B>if</B> <B>attached</B> l_messages.<A HREF="../src/http_status_code_messages.html#f_http_status_code_message">http_status_code_message</A> (res.<A HREF="../src/wsf_response.html#f_status_code">status_code</A>) <B>as</B> l_msg <B>then</B>
+                s := l_msg
+            <B>else</B>
+                <B>check</B>
+                    impossible: <B>False</B>
+                <B>end</B>
+                s := "Bug in server"
+            <B>end</B>
+            l_html_error_code_text := <A HREF="../src/wsf_method_not_allowed_response.html#f_html_error_code_text">html_error_code_text</A> (l_messages, <B>True</B>)
+            <B>if</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_is_content_type_accepted">is_content_type_accepted</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_html">text_html</A>) <B>then</B>
+                s := "&lt;html lang=%"en%"&gt;&lt;head&gt;";
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;title&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (Html_encoder.general_encoded_string (<A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>));
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_html_error_code_text + "!!");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/title&gt;%N");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("[
+                        &lt;style type="text/css"&gt;
+                        div#header {color: #fff; background-color: #000; padding: 20px; text-align: center; font-size: 2em; font-weight: bold;}
+                        div#message { margin: 40px; text-align: center; font-size: 1.5em; }
+                        div#suggestions { margin: auto; width: 60%;}
+                        div#suggestions ul { }
+                        div#footer {color: #999; background-color: #eee; padding: 10px; text-align: center; }
+                        div#logo { float: right; margin: 20px; width: 60px height: auto; font-size: 0.8em; text-align: center; }
+                        div#logo div.outter { padding: 6px; width: 60px; border: solid 3px #500; background-color: #b00;}
+                        div#logo div.outter div.inner1 { display: block; margin: 10px 15px;  width: 30px; height: 50px; color: #fff; background-color: #fff; border: solid 2px #900; }
+                        div#logo div.outter div.inner2 { margin: 10px 15px; width: 30px; height: 15px; color: #fff; background-color: #fff; border: solid 2px #900; }
+                        &lt;/style&gt;
+                        &lt;/head&gt;
+                        &lt;body&gt;
+                        &lt;div id="header"&gt;
+                    ]");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_html_error_code_text);
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("!!&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"logo%"&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div class=%"outter%"&gt; ");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div class=%"inner1%"&gt;&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div class=%"inner2%"&gt;&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_html_error_code_text + "&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"message%"&gt;" + l_html_error_code_text + ": the request method &lt;code&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>);
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/code&gt; is inappropriate for the URL for &lt;code&gt;" + Html_encoder.general_encoded_string (<A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>) + "&lt;/code&gt;.&lt;/div&gt;")
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A> <B>as</B> lst <B>and then</B> <B>not</B> lst.<A HREF="../router/wsf_request_methods.html#f_is_empty">is_empty</A> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"suggestions%"&gt;&lt;strong&gt;Allowed methods:&lt;/strong&gt;")
+                    <B>across</B>
+                        lst <B>as</B> c
+                    <B>loop</B>
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (" ");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N")
+                <B>end</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A> <B>as</B> lst <B>and then</B> <B>not</B> lst.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"suggestions%"&gt;&lt;strong&gt;Perhaps your are looking for:&lt;/strong&gt;&lt;ul&gt;")
+                    <B>from</B>
+                        lst.<A HREF="../elks/arrayed_list.html#f_start">start</A>
+                    <B>until</B>
+                        lst.<A HREF="../elks/list.html#f_after">after</A>
+                    <B>loop</B>
+                        l_text := lst.<A HREF="../elks/arrayed_list.html#f_item">item</A>.text
+                        l_loc := lst.<A HREF="../elks/arrayed_list.html#f_item">item</A>.location
+                        <B>if</B> l_loc /= <B>Void</B> <B>then</B>
+                            <B>if</B> l_text = <B>Void</B> <B>then</B>
+                                l_text := l_loc
+                            <B>end</B>;
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;");
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;a href=%"" + l_loc + "%"&gt;" + Html_encoder.general_encoded_string (l_text) + "&lt;/a&gt;")
+                        <B>elseif</B> l_text /= <B>Void</B> <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;li&gt;");
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (Html_encoder.general_encoded_string (l_text));
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/li&gt;%N")
+                        <B>end</B>
+                        <B>if</B> (l_loc /= <B>Void</B> <B>or</B> l_text /= <B>Void</B>) <B>then</B>
+                            <B>if</B> <B>attached</B> lst.<A HREF="../elks/arrayed_list.html#f_item">item</A>.description <B>as</B> l_desc <B>then</B>
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;br/&gt; - ");
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> (Html_encoder.general_encoded_string (l_desc));
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N")
+                            <B>end</B>;
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/li&gt;%N")
+                        <B>end</B>;
+                        lst.<A HREF="../elks/arrayed_list.html#f_forth">forth</A>
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/ul&gt;&lt;/div&gt;%N")
+                <B>end</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_body">body</A> <B>as</B> b <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div&gt;");
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> (b);
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/div&gt;%N")
+                <B>end</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"footer%"&gt;&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/body&gt;%N");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/html&gt;%N");
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_html">put_content_type_utf_8_text_html</A>
+            <B>else</B>
+                <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (l_html_error_code_text);
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (": the request method ");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>);
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (" is inappropriate for the URL for '" + Html_encoder.general_encoded_string (<A HREF="../src/wsf_method_not_allowed_response.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>) + "'.%N")
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_methods">suggested_methods</A> <B>as</B> lst <B>and then</B> <B>not</B> lst.<A HREF="../router/wsf_request_methods.html#f_is_empty">is_empty</A> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("Allowed methods:")
+                    <B>across</B>
+                        lst <B>as</B> c
+                    <B>loop</B>
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (" ");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N")
+                <B>end</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_suggested_items">suggested_items</A> <B>as</B> lst <B>and then</B> <B>not</B> lst.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%NPerhaps your are looking for:%N")
+                    <B>from</B>
+                        lst.<A HREF="../elks/arrayed_list.html#f_start">start</A>
+                    <B>until</B>
+                        lst.<A HREF="../elks/list.html#f_after">after</A>
+                    <B>loop</B>
+                        l_text := lst.<A HREF="../elks/arrayed_list.html#f_item">item</A>.text
+                        l_loc := lst.<A HREF="../elks/arrayed_list.html#f_item">item</A>.location
+                        <B>if</B> l_loc /= <B>Void</B> <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (" - ")
+                            <B>if</B> l_text = <B>Void</B> <B>then</B>
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_loc)
+                            <B>else</B>
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> (" : ");
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_text.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>)
+                            <B>end</B>
+                        <B>elseif</B> l_text /= <B>Void</B> <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (" - ");
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (l_text.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>)
+                        <B>end</B>
+                        <B>if</B> (l_loc /= <B>Void</B> <B>or</B> l_text /= <B>Void</B>) <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N")
+                            <B>if</B> <B>attached</B> lst.<A HREF="../elks/arrayed_list.html#f_item">item</A>.description <B>as</B> l_desc <B>then</B>
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> ("   ");
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_desc.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>);
+                                s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N")
+                            <B>end</B>
+                        <B>end</B>;
+                        lst.<A HREF="../elks/arrayed_list.html#f_forth">forth</A>
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_method_not_allowed_response.html#f_body">body</A> <B>as</B> b <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N");
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> (b);
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N")
+                <B>end</B>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A>
+            <B>end</B>;
+            h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+            res.<A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (h.<A HREF="../src/http_header.html#f_string">string</A>);
+            res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s);
+            res.<A HREF="../src/wsf_response.html#f_flush">flush</A>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+<FONT COLOR="red">--</FONT><FONT COLOR="red"> To be discussed later...</FONT>
+
+    <A NAME="f_default_recognized_methods"><A HREF="../src/wsf_method_not_allowed_response.html#f_default_recognized_methods">default_recognized_methods</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> All methods defined in HTTP/1.1 specification</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_make_from_iterable">make_from_iterable</A> (&lt;&lt;{<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_head">method_head</A>, {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_get">method_get</A>, {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_trace">method_trace</A>, {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_options">method_options</A>, {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_post">method_post</A>, {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_put">method_put</A>, {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_delete">method_delete</A>&gt;&gt;)
+        <B>ensure</B>
+            recognized_methods_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_html_error_code_text"><A HREF="../src/wsf_method_not_allowed_response.html#f_html_error_code_text">html_error_code_text</A> (a_messages: <A HREF="../src/http_status_code_messages.html">HTTP_STATUS_CODE_MESSAGES</A>; a_recognized: <A HREF="../elks/boolean.html">BOOLEAN</A>): <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Message for including in HTML error text according to </FONT><I>a_recognized</I>
+        <B>require</B>
+            a_messages_attached: a_messages /= <B>Void</B>
+        <B>local</B>
+            l_code: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>if</B> a_recognized <B>then</B>
+                l_code := a_messages.<A HREF="../src/http_status_code.html#f_method_not_allowed">Method_not_allowed</A>
+            <B>else</B>
+                l_code := a_messages.<A HREF="../src/http_status_code.html#f_not_implemented">Not_implemented</A>
+            <B>end</B>
+            <B>if</B> <B>attached</B> a_messages.<A HREF="../src/http_status_code_messages.html#f_http_status_code_message">http_status_code_message</A> (l_code) <B>as</B> l_msg <B>then</B>
+                <B>Result</B> := "Error " + l_code.<A HREF="../elks/integer_32_ref.html#f_out">out</A> + " (" + l_msg + ")"
+            <B>else</B>
+                <B>check</B>
+                    impossible: <B>False</B>
+                <B>end</B>
+                <B>Result</B> := "Bug in server"
+            <B>end</B>
+        <B>ensure</B>
+            html_error_code_text_attached: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_method_not_allowed_response.html">WSF_METHOD_NOT_ALLOWED_RESPONSE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_method_not_allowed_response_chart.html">Chart</A></TD><TD><A HREF="wsf_method_not_allowed_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

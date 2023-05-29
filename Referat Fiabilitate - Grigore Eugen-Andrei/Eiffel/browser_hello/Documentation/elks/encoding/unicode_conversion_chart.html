@@ -1,0 +1,44 @@
+<HTML><HEAD>
+<meta name="description" content="Eiffel implementations for Unicode encoding conversion."/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="library" content="Encoding: Library of reusable components for Eiffel."/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>unicode_conversion Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../class_list.html">Classes</A></TD><TD><A HREF="../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="unicode_conversion_links.html">Relations</A></TD><TD><A HREF="unicode_conversion.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../../elks/encoding/unicode_conversion_chart.html">UNICODE_CONVERSION</A>
+
+<B>General</B>
+    cluster: <A HREF="../../elks/encoding/index.html">encoding</A>
+    description: "Eiffel implementations for Unicode encoding conversion."
+    create: <A HREF="../../elks/any.html#f_default_create">default_create</A>
+
+<B>Ancestors</B>
+    <A HREF="../../elks/encoding/implementation/encoding_i_chart.html">ENCODING_I</A>*
+
+<B>Queries</B>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_is_code_page_convertible">is_code_page_convertible</A> (a_from_code_page, a_to_code_page: <A HREF="../../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_is_code_page_valid">is_code_page_valid</A> (a_code_page: <A HREF="../../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_is_valid_as_string_16">is_valid_as_string_16</A> (a_string: <A HREF="../../elks/readable_string_general_chart.html">READABLE_STRING_GENERAL</A>): <A HREF="../../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_is_valid_utf8">is_valid_utf8</A> (a_string: <A HREF="../../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_last_conversion_lost_data">Last_conversion_lost_data</A>: <A HREF="../../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_read_character_from_utf8">read_character_from_utf8</A> (a_position: <A HREF="../../elks/integer_32_chart.html">INTEGER_32</A>; a_read_bytes: <B>detachable</B> <A HREF="../../elks/integer_32_ref_chart.html">INTEGER_32_REF</A>; a_string: <A HREF="../../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../../elks/character_32_chart.html">CHARACTER_32</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_utf16_to_utf32">utf16_to_utf32</A> (a_str: <A HREF="../../elks/readable_string_32_chart.html">READABLE_STRING_32</A>): <A HREF="../../elks/string_32_chart.html">STRING_32</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_utf32_to_utf16">utf32_to_utf16</A> (a_str: <A HREF="../../elks/readable_string_32_chart.html">READABLE_STRING_32</A>): <A HREF="../../elks/string_32_chart.html">STRING_32</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_utf32_to_utf8">utf32_to_utf8</A> (a_string: <A HREF="../../elks/readable_string_32_chart.html">READABLE_STRING_32</A>): <A HREF="../../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_utf8_to_utf32">utf8_to_utf32</A> (a_string: <A HREF="../../elks/readable_string_8_chart.html">READABLE_STRING_8</A>): <A HREF="../../elks/string_32_chart.html">STRING_32</A>
+
+<B>Commands</B>
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_append_code_point_to_utf8">append_code_point_to_utf8</A> (a_code: <A HREF="../../elks/natural_32_chart.html">NATURAL_32</A>; a_string: <A HREF="../../elks/string_8_chart.html">STRING_8</A>)
+    <A HREF="../../elks/encoding/unicode_conversion.html#f_convert_to">convert_to</A> (a_from_code_page: <A HREF="../../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_from_string: <A HREF="../../elks/readable_string_general_chart.html">READABLE_STRING_GENERAL</A>; a_to_code_page: <A HREF="../../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../class_list.html">Classes</A></TD><TD><A HREF="../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="unicode_conversion_links.html">Relations</A></TD><TD><A HREF="unicode_conversion.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

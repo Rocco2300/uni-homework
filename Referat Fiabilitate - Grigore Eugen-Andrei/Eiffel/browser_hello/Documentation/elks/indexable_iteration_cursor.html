@@ -1,0 +1,164 @@
+<HTML><HEAD>
+<meta name="description" content="External iteration cursor for {READABLE_INDEXABLE}."/>
+<meta name="library" content="EiffelBase: Library of reusable components for Eiffel."/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>indexable_iteration_cursor Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="indexable_iteration_cursor_chart.html">Chart</A></TD><TD><A HREF="indexable_iteration_cursor_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "External iteration cursor for {<A HREF="../elks/readable_indexable.html">READABLE_INDEXABLE</A>}."
+    library: "EiffelBase: Library of reusable components for Eiffel."
+    status: "See notice at end of class."
+    legal: "See notice at end of class."
+    date: "$Date: 2020-10-17 16:34:00 +0000 (Sat, 17 Oct 2020) $"
+    revision: "$Revision: 104783 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [G -&gt; ]
+
+<B>inherit</B>
+    <A HREF="../elks/iteration_cursor.html">ITERATION_CURSOR</A> [G]
+
+    <A HREF="../elks/iterable.html">ITERABLE</A> [G]
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_cursor_index"><A HREF="../elks/indexable_iteration_cursor.html#f_cursor_index">cursor_index</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Index position of cursor in the iteration.</FONT>
+        <B>require</B>
+            is_valid: <A HREF="../elks/indexable_iteration_cursor.html#f_is_valid">is_valid</A>
+        <B>deferred</B>
+        <B>ensure</B>
+            positive_index: <B>Result</B> &gt;= 0
+        <B>end</B></A>
+
+    <A NAME="f_target_index"><A HREF="../elks/indexable_iteration_cursor.html#f_target_index">target_index</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Index position in target structure for current iteration.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_first_index"><A HREF="../elks/indexable_iteration_cursor.html#f_first_index">first_index</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> First valid index in target structure for current iteration.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note that if </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/indexable_iteration_cursor.html#f_first_index">first_index</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> might be greater than </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/indexable_iteration_cursor.html#f_last_index">last_index</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_last_index"><A HREF="../elks/indexable_iteration_cursor.html#f_last_index">last_index</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Last valid index in target structure for current iteration.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note that if </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/indexable_iteration_cursor.html#f_first_index">first_index</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> might be greater than </FONT><FONT COLOR="red">`</FONT><A HREF="../elks/indexable_iteration_cursor.html#f_last_index">last_index</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_step"><A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Distance between successive iteration elements.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_new_cursor"><A HREF="../elks/indexable_iteration_cursor.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [G]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Restarted cursor of the iteration.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_reversed"><A HREF="../elks/indexable_iteration_cursor.html#f_reversed">reversed</A> <B>alias</B> "-": <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [G]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Reversed cursor of the iteration.</FONT>
+        <B>deferred</B>
+        <B>ensure</B>
+            is_reversed: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A> = <B>not</B> <A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A>
+            same_step: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> = <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A>
+        <B>end</B></A>
+
+    <A NAME="f_incremented"><A HREF="../elks/indexable_iteration_cursor.html#f_incremented">incremented</A> <B>alias</B> "+" (n: <B>like</B> <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A>): <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [G]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cursor for the iteration with step increased by </FONT><I>n</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            n_valid: <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> + n &gt; 0
+        <B>deferred</B>
+        <B>ensure</B>
+            is_incremented: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> = <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> + n
+            same_direction: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A> = <A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A>
+        <B>end</B></A>
+
+    <A NAME="f_decremented"><A HREF="../elks/indexable_iteration_cursor.html#f_decremented">decremented</A> <B>alias</B> "-" (n: <B>like</B> <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A>): <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [G]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cursor for the iteration with step decreased by </FONT><I>n</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            n_valid: <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> &gt; n
+        <B>deferred</B>
+        <B>ensure</B>
+            is_incremented: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> = <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> - n
+            same_direction: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A> = <A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A>
+        <B>end</B></A>
+
+    <A NAME="f_with_step"><A HREF="../elks/indexable_iteration_cursor.html#f_with_step">with_step</A> (n: <B>like</B> <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A>): <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [G]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cursor for the iteration with step set to </FONT><I>n</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            n_positive: n &gt; 0
+        <B>deferred</B>
+        <B>ensure</B>
+            step_set: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> = n
+            same_direction: <B>Result</B>.<A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A> = <A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_reversed"><A HREF="../elks/indexable_iteration_cursor.html#f_is_reversed">is_reversed</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Are we traversing target structure backwards?</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_valid"><A HREF="../elks/indexable_iteration_cursor.html#f_is_valid">is_valid</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is the cursor still compatible with the associated underlying object?</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_first"><A HREF="../elks/indexable_iteration_cursor.html#f_is_first">is_first</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is cursor at first position?</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_last"><A HREF="../elks/indexable_iteration_cursor.html#f_is_last">is_last</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is cursor at last position?</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cursor movement</FONT>
+
+    <A NAME="f_start"><A HREF="../elks/indexable_iteration_cursor.html#f_start">start</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Move to first position.</FONT>
+        <B>deferred</B>
+        <B>ensure</B>
+            cursor_index_set_to_one: <A HREF="../elks/indexable_iteration_cursor.html#f_cursor_index">cursor_index</A> = 1
+            target_index_set_to_first: <A HREF="../elks/indexable_iteration_cursor.html#f_target_index">target_index</A> = <A HREF="../elks/indexable_iteration_cursor.html#f_first_index">first_index</A>
+            is_first: <A HREF="../elks/indexable_iteration_cursor.html#f_is_first">is_first</A>
+        <B>end</B></A>
+
+    <A NAME="f_forth"><A HREF="../elks/indexable_iteration_cursor.html#f_forth">forth</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Move to next position.</FONT>
+        <B>deferred</B>
+        <B>ensure then</B>
+            cursor_index_advanced: <A HREF="../elks/indexable_iteration_cursor.html#f_cursor_index">cursor_index</A> = <B>old</B> <A HREF="../elks/indexable_iteration_cursor.html#f_cursor_index">cursor_index</A> + 1
+        <B>end</B></A>
+    
+<B>invariant</B>
+    step_positive: <A HREF="../elks/indexable_iteration_cursor.html#f_step">step</A> &gt; 0
+
+<B>note</B>
+    copyright: "Copyright (c) 1984-2020, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="indexable_iteration_cursor_chart.html">Chart</A></TD><TD><A HREF="indexable_iteration_cursor_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,318 @@
+<HTML><HEAD>
+<meta name="description" content="TTTThis class is to represent a media type TTT TTTthe Internet Media Type of the attached entity if the type TTTwas provided via a Content-type field in the wgi_request header, TTTor if the server can determine it in the absence of a supplied TTTContent-type field. The syntax is the same as for the HTTP TTTContent-Type header field. TTT TTT CONTENT_TYPE =  | media-type TTT media-type   = type / subtype *( ; parameter) TTT type         = token TTT subtype      = token TTT parameter    = attribute = value TTT attribute    = token TTT value        = token | quoted-string TTT TTTThe type, subtype, and parameter attribute names are not TTTcase-sensitive. Parameter values MAY be case sensitive. Media TTTtypes and their use in HTTP are described in section 3.7 of TTTthe HTTP/1.1 specification [8]. TTT TTTExample: TTT TTT Tapplication/x-www-form-urlencoded TTTTapplication/x-www-form-urlencoded; charset=UTF8 "/>
+<meta name="eis" content="name=Wikipedia/Media Type, protocol=URI, src=http://en.wikipedia.org/wiki/Internet_media_type"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_media_type Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_media_type_chart.html">Chart</A></TD><TD><A HREF="http_media_type_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        			This class is to represent a media type
+        			
+        			the Internet Media Type of the attached entity if the type
+        			was provided via a "Content-type" field in the wgi_request header,
+        			or if the server can determine it in the absence of a supplied
+        			"Content-type" field. The syntax is the same as for the HTTP
+        			"Content-Type" header field.
+        			
+        			 CONTENT_TYPE = "" | media-type
+        			 media-type   = type "/" subtype *( ";" parameter)
+        			 type         = token
+        			 subtype      = token
+        			 parameter    = attribute "=" value
+        			 attribute    = token
+        			 value        = token | quoted-string
+        			
+        			The type, subtype, and parameter attribute names are not
+        			case-sensitive. Parameter values MAY be case sensitive. Media
+        			types and their use in HTTP are described in section 3.7 of
+        			the HTTP/1.1 specification [8].
+        			
+        			Example:
+        			
+        			 	application/x-www-form-urlencoded
+        				application/x-www-form-urlencoded; charset=UTF8
+        
+    ]"
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+    eis: "name=Wikipedia/Media Type", "protocol=URI", "src=<a href="http://en.wikipedia.org/wiki/Internet_media_type">http://en.wikipedia.org/wiki/Internet_media_type</a>"
+    eis: "name=RFC2046", "protocol=URI", "src=<a href="http://tools.ietf.org/html/rfc2046">http://tools.ietf.org/html/rfc2046</a>"
+
+<B>class</B> 
+    <A HREF="../src/http_media_type.html">HTTP_MEDIA_TYPE</A>
+
+<B>inherit</B>
+    <A HREF="../elks/debug_output.html">DEBUG_OUTPUT</A>
+
+<B>create</B> 
+    <A HREF="../src/http_media_type.html#f_make">make</A>,
+    <A HREF="../src/http_media_type.html#f_make_from_string">make_from_string</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../src/http_media_type.html#f_make">make</A> (a_type, a_subtype: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create Current based on </FONT><I>a_type/a_subtype</I>
+        <B>require</B>
+            <B>not</B> a_type.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+            <B>not</B> a_subtype.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <A HREF="../src/http_media_type.html#f_type">type</A> := a_type
+            <A HREF="../src/http_media_type.html#f_subtype">subtype</A> := a_subtype
+        <B>ensure</B>
+            has_no_error: <B>not</B> <A HREF="../src/http_media_type.html#f_has_error">has_error</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_from_string"><A HREF="../src/http_media_type.html#f_make_from_string">make_from_string</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create Current from </FONT><I>s</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if </FONT><I>s</I><FONT COLOR="red"> does not respect the expected syntax, has_error is True</FONT>
+        <B>local</B>
+            t: <A HREF="../elks/string_8.html">STRING_8</A>
+            i, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            p: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>from</B>
+                i := 1
+                n := s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            <B>until</B>
+                i &gt; n <B>or</B> <B>not</B> s [i].<A HREF="../elks/character_8_ref.html#f_is_space">is_space</A>
+            <B>loop</B>
+                i := i + 1
+            <B>end</B>
+            <B>if</B> i &lt; n <B>then</B>
+                p := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> (';', i)
+                <B>if</B> p &gt; 0 <B>then</B>
+                    t := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, p - 1).<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                    <B>create</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A>.<A HREF="../src/http_parameter_table.html#f_make_from_substring">make_from_substring</A> (s, p + 1, s.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                <B>else</B>
+                    t := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, n).<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                <B>end</B>;
+                t.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>
+                p := t.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('/', 1)
+                <B>if</B> p = 0 <B>then</B>
+                    t.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>
+                    <A HREF="../src/http_media_type.html#f_type">type</A> := t
+                    <B>if</B> t.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("*") <B>then</B>
+                    <B>else</B>
+                        <A HREF="../src/http_media_type.html#f_has_error">has_error</A> := <B>True</B>
+                    <B>end</B>
+                    <A HREF="../src/http_media_type.html#f_subtype">subtype</A> := "*"
+                <B>else</B>
+                    <A HREF="../src/http_media_type.html#f_subtype">subtype</A> := t.<A HREF="../elks/string_8.html#f_substring">substring</A> (p + 1, t.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                    <A HREF="../src/http_media_type.html#f_type">type</A> := t;
+                    t.<A HREF="../elks/string_8.html#f_keep_head">keep_head</A> (p - 1)
+                <B>end</B>
+            <B>else</B>
+                <A HREF="../src/http_media_type.html#f_has_error">has_error</A> := <B>True</B>
+                <A HREF="../src/http_media_type.html#f_type">type</A> := ""
+                <A HREF="../src/http_media_type.html#f_subtype">subtype</A> := <A HREF="../src/http_media_type.html#f_type">type</A>
+            <B>end</B>
+        <B>ensure</B>
+            <B>not</B> <A HREF="../src/http_media_type.html#f_has_error">has_error</A> <B>end</B> <B>implies</B> (<B>create</B> {<A HREF="../src/http_media_type.html">HTTP_MEDIA_TYPE</A>}.<A HREF="../src/http_media_type.html#f_make_from_string">make_from_string</A> (<A HREF="../src/http_media_type.html#f_string">string</A>) <B>end</B>).<A HREF="../src/http_media_type.html#f_same_string">same_string</A> (<A HREF="../src/http_media_type.html#f_string">string</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_has_error"><A HREF="../src/http_media_type.html#f_has_error">has_error</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Current has error?</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_type"><A HREF="../src/http_media_type.html#f_type">type</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Main type</FONT>
+
+    <A NAME="f_subtype"><A HREF="../src/http_media_type.html#f_subtype">subtype</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Sub type</FONT>
+
+    <A NAME="f_has_parameter"><A HREF="../src/http_media_type.html#f_has_parameter">has_parameter</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has Current a parameter?</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A> <B>as</B> plst <B>then</B>
+                <B>Result</B> := plst.<A HREF="../elks/hash_table.html#f_has">has</A> (a_name)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_parameter"><A HREF="../src/http_media_type.html#f_parameter">parameter</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value for eventual parameter named </FONT><I>a_name</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A> <B>as</B> plst <B>then</B>
+                <B>Result</B> := plst.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_parameters"><A HREF="../src/http_media_type.html#f_parameters">parameters</A>: <B>detachable</B> <A HREF="../src/http_parameter_table.html">HTTP_PARAMETER_TABLE</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Parameters</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion</FONT>
+
+    <A NAME="f_string"><A HREF="../src/http_media_type.html#f_string">string</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of type/subtype; attribute=value</FONT>
+        <B>local</B>
+            res: <B>like</B> <A HREF="../src/http_media_type.html#f_internal_string">internal_string</A>
+        <B>do</B>
+            res := <A HREF="../src/http_media_type.html#f_internal_string">internal_string</A>
+            <B>if</B> res = <B>Void</B> <B>then</B>
+                <B>create</B> res.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (<A HREF="../src/http_media_type.html#f_simple_type">simple_type</A>)
+                <B>if</B> <B>attached</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A> <B>as</B> plst <B>then</B>
+                    <B>across</B>
+                        plst <B>as</B> p
+                    <B>loop</B>
+                        res.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (';');
+                        res.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (' ');
+                        res.<A HREF="../elks/string_8.html#f_append">append</A> ({<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_utf_32_string_to_utf_8_string_8">utf_32_string_to_utf_8_string_8</A> (p.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>));
+                        res.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('=');
+                        res.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('"');
+                        res.<A HREF="../elks/string_8.html#f_append">append</A> (p.<A HREF="../elks/hash_table_iteration_cursor.html#f_item">item</A>);
+                        res.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('"')
+                    <B>end</B>
+                <B>end</B>
+                <A HREF="../src/http_media_type.html#f_internal_string">internal_string</A> := res
+            <B>end</B>
+            <B>Result</B> := res
+        <B>end</B></A>
+
+    <A NAME="f_simple_type"><A HREF="../src/http_media_type.html#f_simple_type">simple_type</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of type/subtype	</FONT>
+        <B>local</B>
+            res: <B>like</B> <A HREF="../src/http_media_type.html#f_internal_simple_type">internal_simple_type</A>
+            s: <B>like</B> <A HREF="../src/http_media_type.html#f_subtype">subtype</A>
+        <B>do</B>
+            res := <A HREF="../src/http_media_type.html#f_internal_simple_type">internal_simple_type</A>
+            <B>if</B> res = <B>Void</B> <B>then</B>
+                <B>create</B> res.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (<A HREF="../src/http_media_type.html#f_type">type</A>)
+                s := <A HREF="../src/http_media_type.html#f_subtype">subtype</A>
+                <B>if</B> <B>not</B> s.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                    <B>check</B>
+                        has_error: <A HREF="../src/http_media_type.html#f_has_error">has_error</A>
+                    <B>end</B>;
+                    res.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('/');
+                    res.<A HREF="../elks/string_8.html#f_append">append</A> (s)
+                <B>end</B>
+                <A HREF="../src/http_media_type.html#f_internal_simple_type">internal_simple_type</A> := res
+            <B>end</B>
+            <B>Result</B> := res
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_same_as"><A HREF="../src/http_media_type.html#f_same_as">same_as</A> (other: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Current has same type/subtype and parameters as </FONT><I>other</I><FONT COLOR="red">?</FONT>
+        <B>local</B>
+            plst, oplst: <B>like</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A>
+        <B>do</B>
+            <B>Result</B> := other.<A HREF="../src/http_media_type.html#f_type">type</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (other.<A HREF="../src/http_media_type.html#f_type">type</A>) <B>and then</B> other.<A HREF="../src/http_media_type.html#f_subtype">subtype</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (other.<A HREF="../src/http_media_type.html#f_subtype">subtype</A>)
+            <B>if</B> <B>Result</B> <B>then</B>
+                plst := <A HREF="../src/http_media_type.html#f_parameters">parameters</A>
+                oplst := other.<A HREF="../src/http_media_type.html#f_parameters">parameters</A>
+                <B>if</B> plst = oplst <B>then</B>
+                <B>elseif</B> plst = <B>Void</B> <B>then</B>
+                    <B>Result</B> := <B>False</B>
+                <B>elseif</B> oplst /= <B>Void</B> <B>and then</B> plst.<A HREF="../elks/hash_table.html#f_count">count</A> = oplst.<A HREF="../elks/hash_table.html#f_count">count</A> <B>then</B>
+                    <B>across</B>
+                        plst <B>as</B> p
+                    <B>until</B>
+                        <B>not</B> <B>Result</B>
+                    <B>loop</B>
+                        <B>Result</B> := <B>attached</B> oplst.<A HREF="../elks/hash_table.html#f_item">item</A> (p.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>) <B>as</B> op_value <B>and then</B> p.<A HREF="../elks/hash_table_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (op_value)
+                    <B>end</B>
+                <B>else</B>
+                    <B>Result</B> := <B>False</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_same_simple_type"><A HREF="../src/http_media_type.html#f_same_simple_type">same_simple_type</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Current has same type/subtype string representation as </FONT><I>s</I><FONT COLOR="red">?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_media_type.html#f_simple_type">simple_type</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (s)
+        <B>end</B></A>
+
+    <A NAME="f_same_string"><A HREF="../src/http_media_type.html#f_same_string">same_string</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Current has same string representation as </FONT><I>s</I><FONT COLOR="red">?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_media_type.html#f_string">string</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (s)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_add_parameter"><A HREF="../src/http_media_type.html#f_add_parameter">add_parameter</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set parameter for </FONT><I>a_name</I><FONT COLOR="red"> to </FONT><I>a_value</I>
+        <B>local</B>
+            plst: <B>like</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A>
+        <B>do</B>
+            plst := <A HREF="../src/http_media_type.html#f_parameters">parameters</A>
+            <B>if</B> plst = <B>Void</B> <B>then</B>
+                <B>create</B> plst.<A HREF="../elks/hash_table.html#f_make">make</A> (1)
+                <A HREF="../src/http_media_type.html#f_parameters">parameters</A> := plst
+            <B>end</B>;
+            plst.<A HREF="../elks/hash_table.html#f_force">force</A> (a_value, a_name)
+            <A HREF="../src/http_media_type.html#f_internal_string">internal_string</A> := <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_remove_parameter"><A HREF="../src/http_media_type.html#f_remove_parameter">remove_parameter</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Remove parameter named </FONT><I>a_name</I>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A> <B>as</B> plst <B>then</B>
+                plst.<A HREF="../elks/hash_table.html#f_remove">remove</A> (a_name)
+                <B>if</B> plst.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                    <A HREF="../src/http_media_type.html#f_parameters">parameters</A> := <B>Void</B>
+                <B>end</B>
+            <B>end</B>
+            <A HREF="../src/http_media_type.html#f_internal_string">internal_string</A> := <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Internal</FONT>
+
+    <A NAME="f_internal_string"><A HREF="../src/http_media_type.html#f_internal_string">internal_string</A>: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A></A>
+
+    <A NAME="f_internal_simple_type"><A HREF="../src/http_media_type.html#f_internal_simple_type">internal_simple_type</A>: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_debug_output"><A HREF="../src/http_media_type.html#f_debug_output">debug_output</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String that should be displayed in debugger to represent </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_media_type.html#f_type">type</A> <B>as</B> l_type <B>and</B> <B>attached</B> <A HREF="../src/http_media_type.html#f_subtype">subtype</A> <B>as</B> l_subtype <B>then</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (l_type);
+                <B>Result</B>.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('/');
+                <B>Result</B>.<A HREF="../elks/string_8.html#f_append">append</A> (l_subtype)
+                <B>if</B> <B>attached</B> <A HREF="../src/http_media_type.html#f_parameters">parameters</A> <B>as</B> plst <B>then</B>
+                    <B>across</B>
+                        plst <B>as</B> p
+                    <B>loop</B>
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_append">append</A> ("; ");
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_append">append</A> ({<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_utf_32_string_to_utf_8_string_8">utf_32_string_to_utf_8_string_8</A> (p.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>));
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_append">append</A> ("=%"");
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_append">append</A> (p.<A HREF="../elks/hash_table_iteration_cursor.html#f_item">item</A>);
+                        <B>Result</B>.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('"')
+                    <B>end</B>
+                <B>end</B>
+            <B>else</B>
+                <B>Result</B> := ""
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>invariant</B>
+    type_and_subtype_not_empty: <B>not</B> <A HREF="../src/http_media_type.html#f_has_error">has_error</A> <B>implies</B> <B>not</B> <A HREF="../src/http_media_type.html#f_type">type</A>.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>and</B> <B>not</B> <A HREF="../src/http_media_type.html#f_subtype">subtype</A>.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_media_type.html">HTTP_MEDIA_TYPE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_media_type_chart.html">Chart</A></TD><TD><A HREF="http_media_type_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

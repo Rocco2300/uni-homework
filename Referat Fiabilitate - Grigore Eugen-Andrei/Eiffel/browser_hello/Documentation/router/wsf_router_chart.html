@@ -1,0 +1,68 @@
+<HTML><HEAD>
+<meta name="description" content="TTTURL dispatching of request TTT TTTMap a route to an handler according to the request method and path "/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_router Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_router_links.html">Relations</A></TD><TD><A HREF="wsf_router.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../router/wsf_router_chart.html">WSF_ROUTER</A>
+
+<B>General</B>
+    cluster: <A HREF="../router/index.html">router</A>
+    description: 
+        "URL dispatching of request
+        
+        Map a route to an handler according to the request method and path
+        "
+    create: <A HREF="../router/wsf_router.html#f_make">make</A>, <A HREF="../router/wsf_router.html#f_make_with_base_url">make_with_base_url</A>
+
+<B>Ancestors</B>
+    <A HREF="../elks/iterable_chart.html">ITERABLE</A>* [G]
+    <A HREF="../src/wsf_request_exporter_chart.html">WSF_REQUEST_EXPORTER</A>*
+
+<B>Action sequences</B>
+    <A HREF="../router/wsf_router.html#f_pre_execution_actions">pre_execution_actions</A>: <A HREF="../ise/action_sequence_chart.html">ACTION_SEQUENCE</A> [<A HREF="../router/wsf_router_mapping_chart.html">WSF_ROUTER_MAPPING</A>]
+
+<B>Queries</B>
+    <A HREF="../router/wsf_router.html#f_all_allowed_methods">all_allowed_methods</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_allowed_methods_for_request">allowed_methods_for_request</A> (req: <A HREF="../src/wsf_request_chart.html">WSF_REQUEST</A>): <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_base_url">base_url</A>: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../router/wsf_router.html#f_count">count</A>: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>
+    <A HREF="../router/wsf_router.html#f_has_item_associated_with_resource">has_item_associated_with_resource</A> (a_resource: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../router/wsf_router.html#f_item_associated_with_resource">item_associated_with_resource</A> (a_resource: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>): <B>detachable</B> <A HREF="../router/wsf_router_item_chart.html">WSF_ROUTER_ITEM</A>
+    <A HREF="../router/wsf_router.html#f_items_associated_with_resource">items_associated_with_resource</A> (a_resource: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>): <A HREF="../elks/list_chart.html">LIST</A> [<A HREF="../router/wsf_router_item_chart.html">WSF_ROUTER_ITEM</A>]
+    <A HREF="../router/wsf_router.html#f_methods_delete">Methods_delete</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_get">Methods_get</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_get_post">Methods_get_post</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_get_put_delete">Methods_get_put_delete</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_head">Methods_head</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_head_get">Methods_head_get</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_head_get_post">Methods_head_get_post</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_options">Methods_options</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_post">Methods_post</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_put">Methods_put</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_methods_put_post">Methods_put_post</A>: <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>
+    <A HREF="../router/wsf_router.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/iteration_cursor_chart.html">ITERATION_CURSOR</A> [<A HREF="../router/wsf_router_item_chart.html">WSF_ROUTER_ITEM</A>]
+
+<B>Commands</B>
+    <A HREF="../router/wsf_router.html#f_dispatch">dispatch</A> (req: <A HREF="../src/wsf_request_chart.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response_chart.html">WSF_RESPONSE</A>; sess: <B>detachable</B> <A HREF="../router/wsf_router_session_chart.html">WSF_ROUTER_SESSION</A>)
+    <A HREF="../router/wsf_router.html#f_execute_after">execute_after</A> (a_mapping: <A HREF="../router/wsf_router_mapping_chart.html">WSF_ROUTER_MAPPING</A>)
+    <A HREF="../router/wsf_router.html#f_execute_before">execute_before</A> (a_mapping: <A HREF="../router/wsf_router_mapping_chart.html">WSF_ROUTER_MAPPING</A>)
+    <A HREF="../router/wsf_router.html#f_handle">handle</A> (a_resource: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; f: <A HREF="../router/wsf_router_mapping_factory_chart.html">WSF_ROUTER_MAPPING_FACTORY</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>)
+    <A HREF="../router/wsf_router.html#f_import">import</A> (a_mapping_items: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../router/wsf_router_item_chart.html">WSF_ROUTER_ITEM</A>])
+    <A HREF="../router/wsf_router.html#f_map">map</A> (a_mapping: <A HREF="../router/wsf_router_mapping_chart.html">WSF_ROUTER_MAPPING</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods_chart.html">WSF_REQUEST_METHODS</A>)
+    <A HREF="../router/wsf_router.html#f_set_base_url">set_base_url</A> (a_base_url: [<B>like</B> <A HREF="../router/wsf_router.html#f_base_url">base_url</A>] <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+
+<B>Constraints</B>
+    mappings attached
+    pre execution actions attached
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_router_links.html">Relations</A></TD><TD><A HREF="wsf_router.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

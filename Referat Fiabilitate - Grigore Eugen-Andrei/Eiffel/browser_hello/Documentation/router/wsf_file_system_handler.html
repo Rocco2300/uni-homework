@@ -1,0 +1,660 @@
+<HTML><HEAD>
+<meta name="description" content="Summary description for {WSF_FILE_SYSTEM_HANDLER}."/>
+<meta name="author" content=""/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_file_system_handler Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_file_system_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_file_system_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Summary description for {<A HREF="../router/wsf_file_system_handler.html">WSF_FILE_SYSTEM_HANDLER</A>}."
+    author: ""
+    date: "$Date: 2020-11-03 14:05:35 +0000 (Tue, 03 Nov 2020) $"
+    revision: "$Revision: 104855 $"
+
+<B>class</B> 
+    <A HREF="../router/wsf_file_system_handler.html">WSF_FILE_SYSTEM_HANDLER</A>
+
+<B>inherit</B>
+    <A HREF="../router/wsf_starts_with_handler.html">WSF_STARTS_WITH_HANDLER</A>
+        <B>rename</B>
+            <A HREF="../router/wsf_starts_with_handler.html#f_execute">execute</A> <B>as</B> <A HREF="../router/wsf_file_system_handler.html#f_execute_starts_with">execute_starts_with</A>
+        <B>end</B>
+
+    <A HREF="../router/wsf_self_documented_handler.html">WSF_SELF_DOCUMENTED_HANDLER</A>
+
+    SHARED_HTML_ENCODER
+
+    <A HREF="../src/shared_wsf_percent_encoder.html">SHARED_WSF_PERCENT_ENCODER</A>
+        <B>rename</B>
+            <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Percent_encoder</A> <B>as</B> <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Url_encoder</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+    <A HREF="../ise/shared_execution_environment.html">SHARED_EXECUTION_ENVIRONMENT</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../router/wsf_file_system_handler.html#f_make_with_path">make_with_path</A>,
+    <A HREF="../router/wsf_file_system_handler.html#f_make_hidden_with_path">make_hidden_with_path</A>,
+    <A HREF="../router/wsf_file_system_handler.html#f_make">make</A>,
+    <A HREF="../router/wsf_file_system_handler.html#f_make_hidden">make_hidden</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_with_path"><A HREF="../router/wsf_file_system_handler.html#f_make_with_path">make_with_path</A> (d: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_document_root">document_root</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_initialize">initialize</A>
+            <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A> := -1
+            <B>if</B> d.<A HREF="../elks/path.html#f_is_empty">is_empty</A> <B>then</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_document_root">document_root</A> := <A HREF="../ise/shared_execution_environment.html#f_execution_environment">Execution_environment</A>.<A HREF="../elks/execution_environment.html#f_current_working_path">current_working_path</A>
+            <B>else</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_document_root">document_root</A> := d
+            <B>end</B>
+        <B>ensure</B>
+            <B>not</B> <A HREF="../router/wsf_file_system_handler.html#f_document_root">document_root</A>.<A HREF="../elks/path.html#f_is_empty">is_empty</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_hidden_with_path"><A HREF="../router/wsf_file_system_handler.html#f_make_hidden_with_path">make_hidden_with_path</A> (d: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_document_root">document_root</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_make_with_path">make_with_path</A> (d)
+            <A HREF="../router/wsf_file_system_handler.html#f_is_hidden">is_hidden</A> := <B>True</B>
+        <B>ensure</B>
+            hidden: <A HREF="../router/wsf_file_system_handler.html#f_is_hidden">is_hidden</A>
+        <B>end</B></A>
+
+    <A NAME="f_make"><A HREF="../router/wsf_file_system_handler.html#f_make">make</A> (d: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_make_with_path">make_with_path</A> (<B>create</B> {<A HREF="../elks/path.html">PATH</A>}.<A HREF="../elks/path.html#f_make_from_string">make_from_string</A> (d) <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_make_hidden"><A HREF="../router/wsf_file_system_handler.html#f_make_hidden">make_hidden</A> (d: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_make">make</A> (d)
+            <A HREF="../router/wsf_file_system_handler.html#f_is_hidden">is_hidden</A> := <B>True</B>
+        <B>ensure</B>
+            hidden: <A HREF="../router/wsf_file_system_handler.html#f_is_hidden">is_hidden</A>
+        <B>end</B></A>
+
+    <A NAME="f_is_hidden"><A HREF="../router/wsf_file_system_handler.html#f_is_hidden">is_hidden</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Current mapped handler should be hidden from self documentation		</FONT>
+
+    <A NAME="f_initialize"><A HREF="../router/wsf_file_system_handler.html#f_initialize">initialize</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize Current handler.</FONT>
+        <B>do</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Documentation</FONT>
+
+    <A NAME="f_mapping_documentation"><A HREF="../router/wsf_file_system_handler.html#f_mapping_documentation">mapping_documentation</A> (m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>; a_request_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../router/wsf_router_mapping_documentation.html">WSF_ROUTER_MAPPING_DOCUMENTATION</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Documentation associated with Current handler, in the context of the mapping </FONT><I>m</I><FONT COLOR="red"> and methods </FONT><I>a_request_methods</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_router_mapping_documentation.html#f_make">make</A> (m);
+            <B>Result</B>.<A HREF="../router/wsf_router_mapping_documentation.html#f_set_is_hidden">set_is_hidden</A> (<A HREF="../router/wsf_file_system_handler.html#f_is_hidden">is_hidden</A>);
+            <B>Result</B>.<A HREF="../router/wsf_router_mapping_documentation.html#f_add_description">add_description</A> ("File service")
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access	</FONT>
+
+    <A NAME="f_document_root"><A HREF="../router/wsf_file_system_handler.html#f_document_root">document_root</A>: <A HREF="../elks/path.html">PATH</A></A>
+
+    <A NAME="f_max_age"><A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Max age, initialized at -1 by default.	</FONT>
+
+    <A NAME="f_index_disabled"><A HREF="../router/wsf_file_system_handler.html#f_index_disabled">index_disabled</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Index disabled?</FONT>
+
+    <A NAME="f_index_ignores_function"><A HREF="../router/wsf_file_system_handler.html#f_index_ignores_function">index_ignores_function</A>: <B>detachable</B> <A HREF="../elks/function.html">FUNCTION</A> [<A HREF="../elks/path.html">PATH</A>, <A HREF="../elks/boolean.html">BOOLEAN</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Function to evaluate if a path is ignored or not during autoindex.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If </FONT><I>index_ignores</I><FONT COLOR="red"> is Void and </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_file_system_handler.html#f_index_ignores_function">index_ignores_function</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> is Void, use default ignore rules.</FONT>
+
+    <A NAME="f_directory_index"><A HREF="../router/wsf_file_system_handler.html#f_directory_index">directory_index</A>: <B>detachable</B> <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> File serve if a directory index is requested.</FONT>
+
+    <A NAME="f_not_found_handler"><A HREF="../router/wsf_file_system_handler.html#f_not_found_handler">not_found_handler</A>: <B>detachable</B> <A HREF="../elks/procedure.html">PROCEDURE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../src/wsf_request.html">WSF_REQUEST</A>, <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>]</A>
+
+    <A NAME="f_access_denied_handler"><A HREF="../router/wsf_file_system_handler.html#f_access_denied_handler">access_denied_handler</A>: <B>detachable</B> <A HREF="../elks/procedure.html">PROCEDURE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../src/wsf_request.html">WSF_REQUEST</A>, <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>]</A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_enable_index"><A HREF="../router/wsf_file_system_handler.html#f_enable_index">enable_index</A>
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_index_disabled">index_disabled</A> := <B>False</B>
+        <B>end</B></A>
+
+    <A NAME="f_disable_index"><A HREF="../router/wsf_file_system_handler.html#f_disable_index">disable_index</A>
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_index_disabled">index_disabled</A> := <B>True</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_max_age"><A HREF="../router/wsf_file_system_handler.html#f_set_max_age">set_max_age</A> (a_seconds: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A> := a_seconds
+        <B>end</B></A>
+
+    <A NAME="f_set_directory_index"><A HREF="../router/wsf_file_system_handler.html#f_set_directory_index">set_directory_index</A> (idx: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_directory_index">directory_index</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_file_system_handler.html#f_directory_index">directory_index</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> as </FONT><I>idx</I>
+        <B>do</B>
+            <B>if</B> idx = <B>Void</B> <B>then</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_directory_index">directory_index</A> := <B>Void</B>
+            <B>else</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_directory_index">directory_index</A> := idx
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_not_found_handler"><A HREF="../router/wsf_file_system_handler.html#f_set_not_found_handler">set_not_found_handler</A> (h: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_not_found_handler">not_found_handler</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_file_system_handler.html#f_not_found_handler">not_found_handler</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>h</I>
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_not_found_handler">not_found_handler</A> := h
+        <B>end</B></A>
+
+    <A NAME="f_set_access_denied_handler"><A HREF="../router/wsf_file_system_handler.html#f_set_access_denied_handler">set_access_denied_handler</A> (h: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_access_denied_handler">access_denied_handler</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_file_system_handler.html#f_access_denied_handler">access_denied_handler</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>h</I><FONT COLOR="red">	</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_access_denied_handler">access_denied_handler</A> := h
+        <B>end</B></A>
+
+    <A NAME="f_set_default_index_ignores"><A HREF="../router/wsf_file_system_handler.html#f_set_default_index_ignores">set_default_index_ignores</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Use default auto index ignores behavior.</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_index_ignores_function">index_ignores_function</A> := <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_index_ignores_function"><A HREF="../router/wsf_file_system_handler.html#f_set_index_ignores_function">set_index_ignores_function</A> (fct: <B>attached</B> <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_index_ignores_function">index_ignores_function</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Use </FONT><I>fct</I><FONT COLOR="red"> to compute auto index ignores behavior.</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_index_ignores_function">index_ignores_function</A> := fct
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_ignoring_index_entry"><A HREF="../router/wsf_file_system_handler.html#f_ignoring_index_entry">ignoring_index_entry</A> (p: <A HREF="../elks/path.html">PATH</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Ignoring path </FONT><I>p</I><FONT COLOR="red"> for auto index?</FONT>
+        <B>local</B>
+            e: <B>detachable</B> <A HREF="../elks/path.html">PATH</A>
+            n: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_index_ignores_function">index_ignores_function</A> <B>as</B> fct <B>then</B>
+                <B>Result</B> := fct.<A HREF="../elks/function.html#f_item">item</A> ([p])
+            <B>else</B>
+                e := p.<A HREF="../elks/path.html#f_entry">entry</A>
+                <B>if</B> e = <B>Void</B> <B>then</B>
+                    e := p
+                <B>end</B>
+                <B>if</B> e.<A HREF="../elks/path.html#f_is_parent_symbol">is_parent_symbol</A> <B>then</B>
+                <B>elseif</B> e.<A HREF="../elks/path.html#f_is_current_symbol">is_current_symbol</A> <B>then</B>
+                    <B>Result</B> := <B>True</B>
+                <B>else</B>
+                    n := e.<A HREF="../elks/path.html#f_name">name</A>
+                    <B>Result</B> := n.<A HREF="../elks/readable_string_32.html#f_starts_with">starts_with</A> ({<A HREF="../elks/string_32.html">STRING_32</A>} ".") <B>or</B> n.<A HREF="../elks/readable_string_32.html#f_ends_with">ends_with</A> ({<A HREF="../elks/string_32.html">STRING_32</A>} "~") <B>or</B> n.<A HREF="../elks/readable_string_32.html#f_ends_with">ends_with</A> ({<A HREF="../elks/string_32.html">STRING_32</A>} ".swp")
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_execute"><A HREF="../router/wsf_file_system_handler.html#f_execute">execute</A> (a_start_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            p: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>create</B> p.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (req.<A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A>)
+            <B>if</B> p.<A HREF="../elks/readable_string_general.html#f_starts_with">starts_with_general</A> (a_start_path) <B>then</B>
+                p.<A HREF="../elks/string_8.html#f_remove_head">remove_head</A> (a_start_path.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+            <B>else</B>
+                <B>check</B>
+                    starts_with_base: <B>False</B>
+                <B>end</B>
+            <B>end</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_process_uri">process_uri</A> (p, req, res)
+        <B>end</B></A>
+
+    <A NAME="f_execute_starts_with"><A HREF="../router/wsf_file_system_handler.html#f_execute_starts_with">execute_starts_with</A> (a_start_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Handle </FONT><I>req</I><FONT COLOR="red"> responding into </FONT><I>res</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_file_system_handler.html#f_execute">execute</A> (a_start_path, req, res)
+        <B>end</B></A>
+
+    <A NAME="f_process_uri"><A HREF="../router/wsf_file_system_handler.html#f_process_uri">process_uri</A> (uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+            fn: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_resource_filename">resource_filename</A>
+        <B>do</B>
+            fn := <A HREF="../router/wsf_file_system_handler.html#f_resource_filename">resource_filename</A> (uri)
+            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (fn)
+            <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>then</B>
+                <B>if</B> f.<A HREF="../elks/file.html#f_is_access_readable">is_access_readable</A> <B>then</B>
+                    <B>if</B> f.<A HREF="../elks/file.html#f_is_directory">is_directory</A> <B>then</B>
+                        <B>if</B> <A HREF="../router/wsf_file_system_handler.html#f_index_disabled">index_disabled</A> <B>then</B>
+                            <A HREF="../router/wsf_file_system_handler.html#f_process_directory_index_disabled">process_directory_index_disabled</A> (uri, req, res)
+                        <B>elseif</B> uri.<A HREF="../elks/readable_string_8.html#f_ends_with">ends_with</A> ("/") <B>then</B>
+                            <A HREF="../router/wsf_file_system_handler.html#f_process_index">process_index</A> (uri, fn, req, res)
+                        <B>else</B>
+                            res.<A HREF="../src/wsf_response.html#f_redirect_now">redirect_now</A> (uri + "/")
+                        <B>end</B>
+                    <B>else</B>
+                        <A HREF="../router/wsf_file_system_handler.html#f_process_file">process_file</A> (f, req, res)
+                    <B>end</B>
+                <B>else</B>
+                    <A HREF="../router/wsf_file_system_handler.html#f_process_access_denied">process_access_denied</A> (uri, req, res)
+                <B>end</B>
+            <B>else</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_process_not_found">process_not_found</A> (uri, req, res)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_process_index"><A HREF="../router/wsf_file_system_handler.html#f_process_index">process_index</A> (a_uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; dn: <A HREF="../elks/path.html">PATH</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            uri, s: <A HREF="../elks/string_8.html">STRING_8</A>
+            d: <A HREF="../elks/directory.html">DIRECTORY</A>
+            l_files: <A HREF="../elks/list.html">LIST</A> [<A HREF="../elks/path.html">PATH</A>]
+            p: <A HREF="../elks/path.html">PATH</A>
+            n: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            httpdate: <A HREF="../src/http_date.html">HTTP_DATE</A>
+            pf: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+            l_is_dir: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>create</B> d.<A HREF="../elks/directory.html#f_make_with_path">make_with_path</A> (dn);
+            d.<A HREF="../elks/directory.html#f_open_read">open_read</A>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_directory_index_file">directory_index_file</A> (d) <B>as</B> f <B>then</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_process_file">process_file</A> (f, req, res)
+            <B>else</B>
+                uri := a_uri.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                <B>if</B> <B>not</B> uri.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>and then</B> uri [uri.<A HREF="../elks/readable_string_8.html#f_count">count</A>] /= '/' <B>then</B>
+                    uri.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('/')
+                <B>end</B>
+                s := "[
+                    &lt;html&gt;
+                    	&lt;head&gt;
+                    		&lt;title&gt;Index of $URI&lt;/title&gt;
+                    		&lt;style&gt;
+                    			td { padding-left: 10px;}
+                    		&lt;/style&gt;
+                    	&lt;/head&gt;
+                    	&lt;body&gt;
+                    		&lt;h1&gt;Index of $URI&lt;/h1&gt;
+                    		&lt;table&gt;
+                    		&lt;tr&gt;&lt;th/&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Last modified&lt;/th&gt;&lt;th&gt;Size&lt;/th&gt;&lt;/tr&gt;
+                    		&lt;tr&gt;&lt;th colspan="4"&gt;&lt;hr&gt;&lt;/th&gt;&lt;/tr&gt;
+                ]";
+                s.<A HREF="../elks/string_8.html#f_replace_substring_all">replace_substring_all</A> ("$URI", uri)
+                <B>from</B>
+                    l_files := d.<A HREF="../elks/directory.html#f_entries">entries</A>;
+                    l_files.<A HREF="../elks/chain.html#f_start">start</A>
+                <B>until</B>
+                    l_files.<A HREF="../elks/list.html#f_after">after</A>
+                <B>loop</B>
+                    p := l_files.<A HREF="../elks/active.html#f_item">item</A>
+                    <B>if</B> <A HREF="../router/wsf_file_system_handler.html#f_ignoring_index_entry">ignoring_index_entry</A> (p) <B>then</B>
+                    <B>else</B>
+                        n := p.<A HREF="../elks/path.html#f_name">name</A>
+                        <B>create</B> pf.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (dn.<A HREF="../elks/path.html#f_extended_path">extended_path</A> (p))
+                        <B>if</B> pf.<A HREF="../elks/file.html#f_exists">exists</A> <B>and then</B> pf.<A HREF="../elks/file.html#f_is_directory">is_directory</A> <B>then</B>
+                            l_is_dir := <B>True</B>
+                        <B>else</B>
+                            l_is_dir := <B>False</B>
+                        <B>end</B>;
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;tr&gt;&lt;td&gt;")
+                        <B>if</B> l_is_dir <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("[dir]")
+                        <B>else</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("&#38;nbsp;")
+                        <B>end</B>;
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/td&gt;");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;td&gt;&lt;a href=%"" + uri);
+                        <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Url_encoder</A>.append_percent_encoded_string_to (n, s);
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("%"&gt;")
+                        <B>if</B> p.<A HREF="../elks/path.html#f_is_parent_symbol">is_parent_symbol</A> <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("[Parent Directory] ..")
+                        <B>else</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> (Html_encoder.encoded_string (n))
+                        <B>end</B>
+                        <B>if</B> l_is_dir <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append">append</A> ("/")
+                        <B>end</B>;
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/td&gt;");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;td&gt;")
+                        <B>if</B> pf.<A HREF="../elks/file.html#f_exists">exists</A> <B>then</B>
+                            <B>create</B> httpdate.<A HREF="../src/http_date.html#f_make_from_date_time">make_from_date_time</A> (<A HREF="../router/wsf_file_system_handler.html#f_file_date">file_date</A> (pf));
+                            httpdate.<A HREF="../src/http_date.html#f_append_to_rfc1123_string">append_to_rfc1123_string</A> (s)
+                        <B>end</B>;
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/td&gt;");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;td&gt;")
+                        <B>if</B> <B>not</B> l_is_dir <B>and</B> pf.<A HREF="../elks/file.html#f_exists">exists</A> <B>then</B>
+                            s.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> (<A HREF="../router/wsf_file_system_handler.html#f_file_size">file_size</A> (pf))
+                        <B>end</B>;
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/td&gt;");
+                        s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/tr&gt;")
+                    <B>end</B>;
+                    l_files.<A HREF="../elks/list.html#f_forth">forth</A>
+                <B>end</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("[
+                        		&lt;tr&gt;&lt;th colspan="4"&gt;&lt;hr&gt;&lt;/th&gt;&lt;/tr&gt;				
+                        		&lt;/table&gt;
+                        	&lt;/body&gt;
+                        &lt;/html&gt;
+                    ]")
+                <B>create</B> h.<A HREF="../src/http_header.html#f_make">make</A>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_html">put_content_type_utf_8_text_html</A>;
+                res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>);
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+                res.<A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (h)
+                <B>if</B> <B>not</B> req.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_head">method_head</A>) <B>then</B>
+                    res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s)
+                <B>end</B>;
+                res.<A HREF="../src/wsf_response.html#f_flush">flush</A>
+            <B>end</B>;
+            d.<A HREF="../elks/directory.html#f_close">close</A>
+        <B>end</B></A>
+
+    <A NAME="f_process_file"><A HREF="../router/wsf_file_system_handler.html#f_process_file">process_file</A> (f: <A HREF="../elks/file.html">FILE</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>require</B>
+            f_valid: f.<A HREF="../elks/file.html#f_exists">exists</A> <B>and then</B> f.<A HREF="../elks/file.html#f_is_access_readable">is_access_readable</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> req.<A HREF="../src/wsf_request.html#f_meta_string_variable">meta_string_variable</A> ("HTTP_IF_MODIFIED_SINCE") <B>as</B> s_if_modified_since <B>and then</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_http_date_format_to_date">http_date_format_to_date</A> (s_if_modified_since) <B>as</B> l_if_modified_since_date <B>and then</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_file_date">file_date</A> (f) <B>as</B> f_date <B>and then</B> f_date &lt;= l_if_modified_since_date <B>then</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_process_not_modified">process_not_modified</A> (f_date, req, res)
+            <B>else</B>
+                <A HREF="../router/wsf_file_system_handler.html#f_process_transfert">process_transfert</A> (f, req, res)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_process_transfert"><A HREF="../router/wsf_file_system_handler.html#f_process_transfert">process_transfert</A> (f: <A HREF="../elks/file.html">FILE</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>require</B>
+            f_valid: f.<A HREF="../elks/file.html#f_exists">exists</A> <B>and then</B> f.<A HREF="../elks/file.html#f_is_access_readable">is_access_readable</A>
+        <B>local</B>
+            ext: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            ct: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            fres: <A HREF="../src/wsf_file_response.html">WSF_FILE_RESPONSE</A>
+            dt: DATE_TIME
+        <B>do</B>
+            ext := <A HREF="../router/wsf_file_system_handler.html#f_extension">extension</A> (f.<A HREF="../elks/file.html#f_path">path</A>.<A HREF="../elks/path.html#f_name">name</A>)
+            ct := <A HREF="../router/wsf_file_system_handler.html#f_extension_mime_mapping">Extension_mime_mapping</A>.<A HREF="../src/http_file_extension_mime_mapping.html#f_mime_type">mime_type</A> (ext)
+            <B>if</B> ct = <B>Void</B> <B>then</B>
+                ct := {<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_octet_stream">application_octet_stream</A>
+            <B>end</B>
+            <B>create</B> fres.<A HREF="../src/wsf_file_response.html#f_make_with_content_type_and_path">make_with_content_type_and_path</A> (ct, f.<A HREF="../elks/file.html#f_path">path</A>);
+            fres.<A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>)
+            <B>create</B> dt.make_now_utc;
+            fres.<A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_utc_date">put_utc_date</A> (dt)
+            <B>if</B> <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A> &gt;= 0 <B>then</B>
+                fres.<A HREF="../src/wsf_file_response.html#f_set_max_age">set_max_age</A> (<A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A>)
+                <B>if</B> <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A> &gt; 0 <B>then</B>
+                    dt := dt.<A HREF="../elks/any.html#f_twin">twin</A>;
+                    dt.second_add (<A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A>)
+                <B>end</B>;
+                fres.<A HREF="../src/wsf_file_response.html#f_set_expires_date">set_expires_date</A> (dt)
+            <B>end</B>;
+            fres.<A HREF="../src/wsf_file_response.html#f_set_answer_head_request_method">set_answer_head_request_method</A> (req.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_head">method_head</A>));
+            res.<A HREF="../src/wsf_response.html#f_send">send</A> (fres)
+        <B>end</B></A>
+
+    <A NAME="f_process_not_modified"><A HREF="../router/wsf_file_system_handler.html#f_process_not_modified">process_not_modified</A> (a_utc_date: <B>detachable</B> DATE_TIME; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            dt: DATE_TIME
+        <B>do</B>
+            <B>create</B> dt.make_now_utc
+            <B>create</B> h.<A HREF="../src/http_header.html#f_make">make</A>;
+            h.<A HREF="../src/http_header_modifier.html#f_put_utc_date">put_utc_date</A> (dt)
+            <B>if</B> <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A> &gt;= 0 <B>then</B>
+                h.<A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> ("max-age=" + <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A>.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+                <B>if</B> <A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A> &gt; 0 <B>then</B>
+                    dt := dt.<A HREF="../elks/any.html#f_twin">twin</A>;
+                    dt.second_add (<A HREF="../router/wsf_file_system_handler.html#f_max_age">max_age</A>)
+                <B>end</B>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_expires_date">put_expires_date</A> (dt)
+            <B>end</B>
+            <B>if</B> a_utc_date /= <B>Void</B> <B>then</B>
+                h.<A HREF="../src/http_header_modifier.html#f_put_last_modified">put_last_modified</A> (a_utc_date)
+            <B>end</B>;
+            res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_not_modified">not_modified</A>);
+            res.<A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (h);
+            res.<A HREF="../src/wsf_response.html#f_flush">flush</A>
+        <B>end</B></A>
+
+    <A NAME="f_process_not_found"><A HREF="../router/wsf_file_system_handler.html#f_process_not_found">process_not_found</A> (uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_not_found_handler">not_found_handler</A> <B>as</B> hdl <B>then</B>
+                hdl.<A HREF="../elks/procedure.html#f_call">call</A> ([uri, req, res])
+            <B>else</B>
+                <B>create</B> h.<A HREF="../src/http_header.html#f_make">make</A>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A>
+                <B>create</B> s.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("Resource %"" + uri + "%" not found%N");
+                res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_not_found">not_found</A>);
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+                res.<A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (h);
+                res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s);
+                res.<A HREF="../src/wsf_response.html#f_flush">flush</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_process_access_denied"><A HREF="../router/wsf_file_system_handler.html#f_process_access_denied">process_access_denied</A> (uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_access_denied_handler">access_denied_handler</A> <B>as</B> hdl <B>then</B>
+                hdl.<A HREF="../elks/procedure.html#f_call">call</A> ([uri, req, res])
+            <B>else</B>
+                <B>create</B> h.<A HREF="../src/http_header.html#f_make">make</A>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A>
+                <B>create</B> s.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("Resource %"" + uri + "%": Access denied%N");
+                res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_forbidden">forbidden</A>);
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+                res.<A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (h);
+                res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s);
+                res.<A HREF="../src/wsf_response.html#f_flush">flush</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_process_directory_index_disabled"><A HREF="../router/wsf_file_system_handler.html#f_process_directory_index_disabled">process_directory_index_disabled</A> (uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            h: <A HREF="../src/http_header.html">HTTP_HEADER</A>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_access_denied_handler">access_denied_handler</A> <B>as</B> hdl <B>then</B>
+                hdl.<A HREF="../elks/procedure.html#f_call">call</A> ([uri, req, res])
+            <B>else</B>
+                <B>create</B> h.<A HREF="../src/http_header.html#f_make">make</A>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A>
+                <B>create</B> s.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("Directory index %"" + uri + "%": Access denied%N");
+                res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_forbidden">forbidden</A>);
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+                res.<A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (h);
+                res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s);
+                res.<A HREF="../src/wsf_response.html#f_flush">flush</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_directory_index_file"><A HREF="../router/wsf_file_system_handler.html#f_directory_index_file">directory_index_file</A> (d: <A HREF="../elks/directory.html">DIRECTORY</A>): <B>detachable</B> <A HREF="../elks/file.html">FILE</A>
+        <B>local</B>
+            f: <B>detachable</B> <A HREF="../elks/raw_file.html">RAW_FILE</A>
+            fn: <A HREF="../elks/path.html">PATH</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_file_system_handler.html#f_directory_index">directory_index</A> <B>as</B> default_index <B>then</B>
+                <B>across</B>
+                    default_index <B>as</B> c
+                <B>until</B>
+                    <B>Result</B> /= <B>Void</B>
+                <B>loop</B>
+                    <B>if</B> d.<A HREF="../elks/directory.html#f_has_entry">has_entry</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>) <B>then</B>
+                        fn := d.<A HREF="../elks/directory.html#f_path">path</A>.<A HREF="../elks/path.html#f_extended">extended</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+                        <B>if</B> f = <B>Void</B> <B>then</B>
+                            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (fn)
+                        <B>else</B>
+                            f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (fn)
+                        <B>end</B>
+                        <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>and then</B> f.<A HREF="../elks/file.html#f_is_readable">is_readable</A> <B>then</B>
+                            <B>Result</B> := f
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_resource_filename"><A HREF="../router/wsf_file_system_handler.html#f_resource_filename">resource_filename</A> (uri: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/path.html">PATH</A>
+        <B>local</B>
+            s: <B>like</B> <A HREF="../router/wsf_file_system_handler.html#f_uri_path_to_filename">uri_path_to_filename</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_file_system_handler.html#f_document_root">document_root</A>
+            s := <A HREF="../router/wsf_file_system_handler.html#f_uri_path_to_filename">uri_path_to_filename</A> (uri)
+            <B>if</B> <B>not</B> s.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>Result</B> := <B>Result</B>.<A HREF="../elks/path.html#f_extended">extended</A> (s)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_dirname"><A HREF="../router/wsf_file_system_handler.html#f_dirname">dirname</A> (uri: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>): <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+        <B>local</B>
+            p: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            p := uri.<A HREF="../elks/readable_string_32.html#f_last_index_of">last_index_of</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} '/', uri.<A HREF="../elks/readable_string_32.html#f_count">count</A>)
+            <B>if</B> p &gt; 0 <B>then</B>
+                <B>Result</B> := uri.<A HREF="../elks/readable_string_32.html#f_substring">substring</A> (1, p - 1)
+            <B>else</B>
+                <B>create</B> {<A HREF="../elks/string_32.html">STRING_32</A>} <B>Result</B>.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_filename"><A HREF="../router/wsf_file_system_handler.html#f_filename">filename</A> (uri: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>): <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+        <B>local</B>
+            p: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            p := uri.<A HREF="../elks/readable_string_32.html#f_last_index_of">last_index_of</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} '/', uri.<A HREF="../elks/readable_string_32.html#f_count">count</A>)
+            <B>if</B> p &gt; 0 <B>then</B>
+                <B>Result</B> := uri.<A HREF="../elks/readable_string_32.html#f_substring">substring</A> (p + 1, uri.<A HREF="../elks/readable_string_32.html#f_count">count</A>)
+            <B>else</B>
+                <B>Result</B> := uri.<A HREF="../elks/any.html#f_twin">twin</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_extension"><A HREF="../router/wsf_file_system_handler.html#f_extension">extension</A> (uri: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>): <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+        <B>local</B>
+            p: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            p := uri.<A HREF="../elks/readable_string_32.html#f_last_index_of">last_index_of</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} '.', uri.<A HREF="../elks/readable_string_32.html#f_count">count</A>)
+            <B>if</B> p &gt; 0 <B>then</B>
+                <B>Result</B> := uri.<A HREF="../elks/readable_string_32.html#f_substring">substring</A> (p + 1, uri.<A HREF="../elks/readable_string_32.html#f_count">count</A>)
+            <B>else</B>
+                <B>create</B> {<A HREF="../elks/string_32.html">STRING_32</A>} <B>Result</B>.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_uri_path_to_filename"><A HREF="../router/wsf_file_system_handler.html#f_uri_path_to_filename">uri_path_to_filename</A> (fn: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Real filename from url-path </FONT><I>fn</I>
+        <B>local</B>
+            n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            n := fn.<A HREF="../elks/readable_string_general.html#f_count">count</A>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/string_32.html#f_make_from_string_general">make_from_string_general</A> (fn)
+            <B>if</B> n &gt; 0 <B>and then</B> <B>Result</B>.<A HREF="../elks/string_32.html#f_item">item</A> (<B>Result</B>.<A HREF="../elks/readable_string_32.html#f_count">count</A>) = {<A HREF="../elks/character_32.html">CHARACTER_32</A>} '/' <B>then</B>
+                <B>Result</B>.<A HREF="../elks/string_32.html#f_remove_tail">remove_tail</A> (1)
+                n := n - 1
+            <B>end</B>
+            <B>if</B> n &gt; 0 <B>and then</B> <B>Result</B>.<A HREF="../elks/string_32.html#f_item">item</A> (1) = {<A HREF="../elks/character_32.html">CHARACTER_32</A>} '/' <B>then</B>
+                <B>Result</B>.<A HREF="../elks/string_32.html#f_remove_head">remove_head</A> (1)
+                n := n - 1
+            <B>end</B>
+            <B>if</B> n &gt; 0 <B>then</B>
+                <B>if</B> {<A HREF="../elks/platform.html">PLATFORM</A>}.<A HREF="../elks/platform.html#f_is_windows">is_windows</A> <B>then</B>
+                    <B>Result</B>.<A HREF="../elks/string_32.html#f_replace_substring_all">replace_substring_all</A> ({<A HREF="../elks/string_32.html">STRING_32</A>} "/", {<A HREF="../elks/string_32.html">STRING_32</A>} "\")
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_extension_mime_mapping"><A HREF="../router/wsf_file_system_handler.html#f_extension_mime_mapping">Extension_mime_mapping</A>: <A HREF="../src/http_file_extension_mime_mapping.html">HTTP_FILE_EXTENSION_MIME_MAPPING</A>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>once</B>
+            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_name">make_with_name</A> ("mime.types")
+            <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>and then</B> f.<A HREF="../elks/file.html#f_is_readable">is_readable</A> <B>then</B>
+                <B>create</B> <B>Result</B>.<A HREF="../src/http_file_extension_mime_mapping.html#f_make_from_file">make_from_file</A> (f.<A HREF="../elks/file.html#f_path">path</A>.<A HREF="../elks/path.html#f_name">name</A>)
+            <B>else</B>
+                <B>create</B> <B>Result</B>.<A HREF="../src/http_file_extension_mime_mapping.html#f_make_default">make_default</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> implementation: date time</FONT>
+
+    <A NAME="f_file_size"><A HREF="../router/wsf_file_system_handler.html#f_file_size">file_size</A> (f: <A HREF="../elks/file.html">FILE</A>): <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>Result</B> := f.<A HREF="../elks/file.html#f_count">count</A>
+        <B>end</B></A>
+
+    <A NAME="f_file_date"><A HREF="../router/wsf_file_system_handler.html#f_file_date">file_date</A> (f: <A HREF="../elks/file.html">FILE</A>): DATE_TIME
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_file_system_handler.html#f_timestamp_to_date">timestamp_to_date</A> (f.<A HREF="../elks/file.html#f_date">date</A>)
+        <B>end</B></A>
+
+    <A NAME="f_http_date_format_to_date"><A HREF="../router/wsf_file_system_handler.html#f_http_date_format_to_date">http_date_format_to_date</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> DATE_TIME
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of </FONT><I>dt</I><FONT COLOR="red"> using the RFC 1123</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       HTTP-date    = rfc1123-date | rfc850-date | asctime-date</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       rfc1123-date = wkday "," SP date1 SP time SP "GMT"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       rfc850-date  = weekday "," SP date2 SP time SP "GMT"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       asctime-date = wkday SP date3 SP time SP 4DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       date1        = 2DIGIT SP month SP 4DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; day month year (e.g., 02 Jun 1982)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       date2        = 2DIGIT "-" month "-" 2DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; day-month-year (e.g., 02-Jun-82)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       date3        = month SP ( 2DIGIT | ( SP 1DIGIT ))</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; month day (e.g., Jun  2)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       time         = 2DIGIT ":" 2DIGIT ":" 2DIGIT</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      ; 00:00:00 - 23:59:59</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       wkday        = "Mon" | "Tue" | "Wed"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Thu" | "Fri" | "Sat" | "Sun"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       weekday      = "Monday" | "Tuesday" | "Wednesday"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Thursday" | "Friday" | "Saturday" | "Sunday"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       month        = "Jan" | "Feb" | "Mar" | "Apr"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "May" | "Jun" | "Jul" | "Aug"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                    | "Sep" | "Oct" | "Nov" | "Dec"</FONT>
+        <B>note</B>
+            eis: "name=RFC2616", "protocol=URI", "src=<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html">http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html</a>"
+        <B>local</B>
+            d: <A HREF="../src/http_date.html">HTTP_DATE</A>
+        <B>do</B>
+            <B>create</B> d.<A HREF="../src/http_date.html#f_make_from_string">make_from_string</A> (s)
+            <B>if</B> <B>not</B> d.<A HREF="../src/http_date.html#f_has_error">has_error</A> <B>then</B>
+                <B>Result</B> := d.<A HREF="../src/http_date.html#f_date_time">date_time</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_timestamp_to_date"><A HREF="../router/wsf_file_system_handler.html#f_timestamp_to_date">timestamp_to_date</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>): DATE_TIME
+        <B>local</B>
+            d: <A HREF="../src/http_date.html">HTTP_DATE</A>
+        <B>do</B>
+            <B>create</B> d.<A HREF="../src/http_date.html#f_make_from_timestamp">make_from_timestamp</A> (n.<A HREF="../elks/integer_32_ref.html#f_to_integer_64">to_integer_64</A>)
+            <B>Result</B> := d.<A HREF="../src/http_date.html#f_date_time">date_time</A>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_file_system_handler.html">WSF_FILE_SYSTEM_HANDLER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_file_system_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_file_system_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

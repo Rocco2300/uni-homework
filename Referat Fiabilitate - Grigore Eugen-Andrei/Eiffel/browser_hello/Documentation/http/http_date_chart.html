@@ -1,0 +1,86 @@
+<HTML><HEAD>
+<meta name="description" content="TTTTSummary description for {HTTP_DATE}. TTTT TTTT TTT       HTTP-date    = rfc1123-date | rfc850-date | asctime-date TTT       rfc1123-date = wkday , SP date1 SP time SP GMT TTT       rfc850-date  = weekday , SP date2 SP time SP GMT TTT       asctime-date = wkday SP date3 SP time SP 4DIGIT TTT       date1        = 2DIGIT SP month SP 4DIGIT TTT                      ; day month year (e.g., 02 Jun 1982) TTT       date2        = 2DIGIT - month - 2DIGIT TTT                      ; day-month-year (e.g., 02-Jun-82) TTT       date3        = month SP ( 2DIGIT | ( SP 1DIGIT )) TTT                      ; month day (e.g., Jun  2) TTT       time         = 2DIGIT : 2DIGIT : 2DIGIT TTT                      ; 00:00:00 - 23:59:59 TTT       wkday        = Mon | Tue | Wed TTT                    | Thu | Fri | Sat | Sun TTT       weekday      = Monday | Tuesday | Wednesday TTT                    | Thursday | Friday | Saturday | Sunday TTT       month        = Jan | Feb | Mar | Apr TTT                    | May | Jun | Jul | Aug TTT                    | Sep | Oct | Nov | Dec TTT                     TTT Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123 TTT Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036 TTT Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format "/>
+<meta name="eis" content="name=RFC2616, protocol=URI, src=http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_date Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="http_date_links.html">Relations</A></TD><TD><A HREF="http_date.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../src/http_date_chart.html">HTTP_DATE</A>
+
+<B>General</B>
+    cluster: <A HREF="../src/index.html">src</A>
+    description: 
+        "Summary description for {<A HREF="../src/http_date_chart.html">HTTP_DATE</A>}.
+        
+        
+               HTTP-date    = rfc1123-date | rfc850-date | asctime-date
+               rfc1123-date = wkday %",%" SP date1 SP time SP %"GMT%"
+               rfc850-date  = weekday %",%" SP date2 SP time SP %"GMT%"
+               asctime-date = wkday SP date3 SP time SP 4DIGIT
+               date1        = 2DIGIT SP month SP 4DIGIT
+                              ; day month year (e.g., 02 Jun 1982)
+               date2        = 2DIGIT %"-%" month %"-%" 2DIGIT
+                              ; day-month-year (e.g., 02-Jun-82)
+               date3        = month SP ( 2DIGIT | ( SP 1DIGIT ))
+                              ; month day (e.g., Jun  2)
+               time         = 2DIGIT %":%" 2DIGIT %":%" 2DIGIT
+                              ; 00:00:00 - 23:59:59
+               wkday        = %"Mon%" | %"Tue%" | %"Wed%"
+                            | %"Thu%" | %"Fri%" | %"Sat%" | %"Sun%"
+               weekday      = %"Monday%" | %"Tuesday%" | %"Wednesday%"
+                            | %"Thursday%" | %"Friday%" | %"Saturday%" | %"Sunday%"
+               month        = %"Jan%" | %"Feb%" | %"Mar%" | %"Apr%"
+                            | %"May%" | %"Jun%" | %"Jul%" | %"Aug%"
+                            | %"Sep%" | %"Oct%" | %"Nov%" | %"Dec%"
+                            
+         Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123
+         Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
+         Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format
+        "
+    create: <A HREF="../src/http_date.html#f_make_now_utc">make_now_utc</A>, <A HREF="../src/http_date.html#f_make_from_timestamp">make_from_timestamp</A>, <A HREF="../src/http_date.html#f_make_from_string">make_from_string</A>, <A HREF="../src/http_date.html#f_make_from_rfc3339_string">make_from_rfc3339_string</A>, <A HREF="../src/http_date.html#f_make_from_date_time">make_from_date_time</A>
+
+<B>Ancestors</B>
+    <A HREF="../elks/debug_output_chart.html">DEBUG_OUTPUT</A>*
+
+<B>Queries</B>
+    <A HREF="../src/http_date.html#f_ansi_c_string">ansi_c_string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_date.html#f_date_time">date_time</A>: DATE_TIME
+    <A HREF="../src/http_date.html#f_debug_output">debug_output</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_date.html#f_has_error">has_error</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/http_date.html#f_iso8601_string">iso8601_string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_date.html#f_rfc1123_string">rfc1123_string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_date.html#f_rfc3339_string">rfc3339_string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_date.html#f_rfc850_string">rfc850_string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_date.html#f_string">string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+    <A HREF="../src/http_date.html#f_timestamp">timestamp</A>: <A HREF="../elks/integer_64_chart.html">INTEGER_64</A>
+    <A HREF="../src/http_date.html#f_yyyy_mmm_dd_string">yyyy_mmm_dd_string</A>: <A HREF="../elks/string_8_chart.html">STRING_8</A>
+
+<B>Commands</B>
+    <A HREF="../src/http_date.html#f_append_2_digits_fine_time_to">append_2_digits_fine_time_to</A> (t: TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_2_digits_integer_to">append_2_digits_integer_to</A> (i: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_2_digits_time_to">append_2_digits_time_to</A> (t: TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_date_time_to_ansi_c_string">append_date_time_to_ansi_c_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_date_time_to_iso8601_string">append_date_time_to_iso8601_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_date_time_to_rfc1123_string">append_date_time_to_rfc1123_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_date_time_to_rfc3339_string">append_date_time_to_rfc3339_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_date_time_to_rfc850_string">append_date_time_to_rfc850_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_date_time_to_yyyy_mmm_dd_string">append_date_time_to_yyyy_mmm_dd_string</A> (dt: DATE_TIME; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_day_ddd_to">append_day_ddd_to</A> (d: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_day_name_to">append_day_name_to</A> (d: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_integer_to">append_integer_to</A> (i: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_month_mmm_to">append_month_mmm_to</A> (m: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_rfc850_string">append_rfc850_string</A> (s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_to_ansi_c_string">append_to_ansi_c_string</A> (s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_to_rfc1123_string">append_to_rfc1123_string</A> (s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+    <A HREF="../src/http_date.html#f_append_to_yyyy_mmm_dd_string">append_to_yyyy_mmm_dd_string</A> (s: <A HREF="../elks/string_general_chart.html">STRING_GENERAL</A>)
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="http_date_links.html">Relations</A></TD><TD><A HREF="http_date.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

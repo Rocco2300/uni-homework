@@ -1,0 +1,334 @@
+<HTML><HEAD>
+<meta name="description" content="TTTOptions used by WSF_SERVICE_LAUNCHER  TTTFor instance options supported by Standalone as default connector:: TTTTport: numeric such as 8099 (or equivalent string as 8099) TTTTbase: base_url (very specific to standalone server) TTTTverbose: to display verbose output, useful for Standalone"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2013, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_service_launcher_options Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_service_launcher_options_chart.html">Chart</A></TD><TD><A HREF="wsf_service_launcher_options_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        			Options used by WSF_SERVICE_LAUNCHER
+        
+        			For instance options supported by Standalone as default connector::
+        				port: numeric such as 8099 (or equivalent string as "8099")
+        				base: base_url (very specific to standalone server)
+        				verbose: to display verbose output, useful for Standalone
+    ]"
+    date: "$Date: 2018-10-29 14:22:37 +0000 (Mon, 29 Oct 2018) $"
+    revision: "$Revision: 102384 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_service_launcher_options.html">WSF_SERVICE_LAUNCHER_OPTIONS</A>
+
+<B>inherit</B>
+    <A HREF="../elks/table_iterable.html">TABLE_ITERABLE</A> [<B>detachable</B> <A HREF="../elks/any.html">ANY</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]
+        <B>redefine</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_default_create">default_create</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../src/wsf_service_launcher_options.html#f_default_create">default_create</A>,
+    <A HREF="../src/wsf_service_launcher_options.html#f_make">make</A>,
+    <A HREF="../src/wsf_service_launcher_options.html#f_make_from_array">make_from_array</A>,
+    <A HREF="../src/wsf_service_launcher_options.html#f_make_from_iterable">make_from_iterable</A>
+
+<B>convert</B>
+    <A HREF="../src/wsf_service_launcher_options.html#f_make_from_array">make_from_array</A> ({<A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; value: <B>detachable</B> <A HREF="../elks/any.html">ANY</A>]]})
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_default_create"><A HREF="../src/wsf_service_launcher_options.html#f_default_create">default_create</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Process instances of classes with no creation clause.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> (Default: do nothing.)</FONT>
+        <B>do</B>
+            <B>Precursor</B>
+            <B>create</B> <A HREF="../src/wsf_service_launcher_options.html#f_options">options</A>.<A HREF="../elks/hash_table.html#f_make">make</A> (0)
+        <B>end</B></A>
+
+    <A NAME="f_make"><A HREF="../src/wsf_service_launcher_options.html#f_make">make</A>
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_default_create">default_create</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_from_array"><A HREF="../src/wsf_service_launcher_options.html#f_make_from_array">make_from_array</A> (a_options: <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; value: <B>detachable</B> <A HREF="../elks/any.html">ANY</A>]])
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_make">make</A>
+            <A HREF="../src/wsf_service_launcher_options.html#f_append_array_of_options">append_array_of_options</A> (a_options)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_iterable"><A HREF="../src/wsf_service_launcher_options.html#f_make_from_iterable">make_from_iterable</A> (a_options: <A HREF="../elks/table_iterable.html">TABLE_ITERABLE</A> [<B>detachable</B> <A HREF="../elks/any.html">ANY</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>])
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_make">make</A>
+            <A HREF="../src/wsf_service_launcher_options.html#f_append_options">append_options</A> (a_options)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Merging</FONT>
+
+    <A NAME="f_append_array_of_options"><A HREF="../src/wsf_service_launcher_options.html#f_append_array_of_options">append_array_of_options</A> (a_options: <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; value: <B>detachable</B> <A HREF="../elks/any.html">ANY</A>]])
+        <B>do</B>
+            <B>across</B>
+                a_options <B>as</B> opt
+            <B>loop</B>
+                <B>if</B> <B>attached</B> opt.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A> <B>as</B> o <B>then</B>
+                    <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (o.name, o.value)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_append_options"><A HREF="../src/wsf_service_launcher_options.html#f_append_options">append_options</A> (a_options: <A HREF="../elks/table_iterable.html">TABLE_ITERABLE</A> [<B>detachable</B> <A HREF="../elks/any.html">ANY</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>])
+        <B>do</B>
+            <B>across</B>
+                a_options <B>as</B> o
+            <B>loop</B>
+                <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (o.<A HREF="../elks/table_iteration_cursor.html#f_key">key</A>, o.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_import_ini_file_options"><A HREF="../src/wsf_service_launcher_options.html#f_import_ini_file_options">import_ini_file_options</A> (a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Import options from ini file </FONT><I>a_filename</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_append_options">append_options</A> (<B>create</B> {<A HREF="../src/wsf_service_launcher_options_from_ini.html">WSF_SERVICE_LAUNCHER_OPTIONS_FROM_INI</A>}.<A HREF="../src/wsf_service_launcher_options_from_ini.html#f_make_from_file">make_from_file</A> (a_filename) <B>end</B>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_option"><A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/any.html">ANY</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_service_launcher_options.html#f_options">options</A>.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Helpers</FONT>
+
+    <A NAME="f_has_option"><A HREF="../src/wsf_service_launcher_options.html#f_has_option">has_option</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is there any value associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">?</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name)
+        <B>end</B></A>
+
+    <A NAME="f_has_integer_option"><A HREF="../src/wsf_service_launcher_options.html#f_has_integer_option">has_integer_option</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is there any INTEGER value associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">?</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name) <B>as</B> opt <B>then</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/integer_32.html">INTEGER_32</A>} opt <B>as</B> i <B>then</B>
+                    <B>Result</B> := <B>True</B>
+                <B>else</B>
+                    s := opt.<A HREF="../elks/any.html#f_out">out</A>
+                    <B>Result</B> := s.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_has_string_32_option"><A HREF="../src/wsf_service_launcher_options.html#f_has_string_32_option">has_string_32_option</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is there any string 32 value associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">?</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name) <B>as</B> opt <B>then</B>
+                <B>Result</B> := <B>attached</B> {<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>} opt
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_option_string_32_value"><A HREF="../src/wsf_service_launcher_options.html#f_option_string_32_value">option_string_32_value</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_default: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/immutable_string_32.html">IMMUTABLE_STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Unicode String value associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">, other return </FONT><I>a_default</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name) <B>as</B> opt <B>then</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>} opt <B>as</B> s32 <B>then</B>
+                    <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make_from_string">make_from_string</A> (s32)
+                <B>elseif</B> <B>attached</B> {<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>} opt <B>as</B> s <B>then</B>
+                    <B>create</B> <B>Result</B>.<A HREF="../elks/immutable_string_32.html#f_make_from_string_general">make_from_string_general</A> (s)
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>Result</B> = <B>Void</B> <B>and</B> a_default /= <B>Void</B> <B>then</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/immutable_string_32.html#f_make_from_string_general">make_from_string_general</A> (a_default)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_option_integer_value"><A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_default: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> INTEGER value associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">, other return </FONT><I>a_default</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+        <B>do</B>
+            <B>Result</B> := a_default
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name) <B>as</B> opt <B>then</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/integer_32.html">INTEGER_32</A>} opt <B>as</B> i <B>then</B>
+                    <B>Result</B> := i
+                <B>else</B>
+                    s := opt.<A HREF="../elks/any.html#f_out">out</A>
+                    <B>if</B> s.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A> <B>then</B>
+                        <B>Result</B> := s.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_option_natural_64_value"><A HREF="../src/wsf_service_launcher_options.html#f_option_natural_64_value">option_natural_64_value</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_default: <A HREF="../elks/natural_64.html">NATURAL_64</A>): <A HREF="../elks/natural_64.html">NATURAL_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> NATURAL_64 value associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">, other return </FONT><I>a_default</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+        <B>do</B>
+            <B>Result</B> := a_default
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name) <B>as</B> opt <B>then</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/natural_64.html">NATURAL_64</A>} opt <B>as</B> n <B>then</B>
+                    <B>Result</B> := n
+                <B>else</B>
+                    s := opt.<A HREF="../elks/any.html#f_out">out</A>
+                    <B>if</B> s.<A HREF="../elks/readable_string_general.html#f_is_natural_64">is_natural_64</A> <B>then</B>
+                        <B>Result</B> := s.<A HREF="../elks/readable_string_general.html#f_to_natural_64">to_natural_64</A>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_option_timeout_ns_value"><A HREF="../src/wsf_service_launcher_options.html#f_option_timeout_ns_value">option_timeout_ns_value</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_default: <A HREF="../elks/natural_64.html">NATURAL_64</A>): <A HREF="../elks/natural_64.html">NATURAL_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Timeout in nanoseconds associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">, other return </FONT><I>a_default</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            v: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+            s: <A HREF="../elks/string_32.html">STRING_32</A>
+            i, l_count: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>if</B> a_opt_name.<A HREF="../elks/readable_string_general.html#f_ends_with">ends_with</A> ("_ns") <B>then</B>
+                <B>Result</B> := <A HREF="../src/wsf_service_launcher_options.html#f_option_natural_64_value">option_natural_64_value</A> (a_opt_name, a_default)
+            <B>elseif</B> <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name) <B>as</B> opt <B>then</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>} opt <B>as</B> str <B>then</B>
+                    <B>from</B>
+                        i := 1
+                        l_count := str.<A HREF="../elks/readable_string_general.html#f_count">count</A>
+                    <B>until</B>
+                        i &gt; l_count <B>or</B> v /= <B>Void</B>
+                    <B>loop</B>
+                        <B>if</B> str [i].<A HREF="../elks/character_32_ref.html#f_is_space">is_space</A> <B>then</B>
+                        <B>elseif</B> str [i].<A HREF="../elks/character_32_ref.html#f_is_digit">is_digit</A> <B>then</B>
+                        <B>else</B>
+                            v := str.<A HREF="../elks/readable_string_general.html#f_head">head</A> (i - 1)
+                            <B>create</B> s.<A HREF="../elks/string_32.html#f_make_from_string_general">make_from_string_general</A> (str.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (i, l_count));
+                            s.<A HREF="../elks/string_general.html#f_adjust">adjust</A>
+                        <B>end</B>
+                        i := i + 1
+                    <B>end</B>
+                    <B>if</B> v = <B>Void</B> <B>then</B>
+                        v := str
+                    <B>end</B>
+                    <B>if</B> v /= <B>Void</B> <B>then</B>
+                        <B>if</B> s = <B>Void</B> <B>or else</B> s.<A HREF="../elks/readable_string_general.html#f_is_whitespace">is_whitespace</A> <B>or else</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("s") <B>then</B>
+                            <B>Result</B> := <A HREF="../src/wsf_service_launcher_options.html#f_timeout_utilities">Timeout_utilities</A>.<A HREF="../src/wsf_timeout_utilities.html#f_seconds_to_nanoseconds">seconds_to_nanoseconds</A> (v.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>)
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("ns") <B>then</B>
+                            <B>check</B>
+                                v.<A HREF="../elks/readable_string_general.html#f_is_natural_64">is_natural_64</A>
+                            <B>end</B>
+                            <B>Result</B> := v.<A HREF="../elks/readable_string_general.html#f_to_natural_64">to_natural_64</A>
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("us") <B>then</B>
+                            <B>check</B>
+                                v.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                            <B>end</B>
+                            <B>Result</B> := <A HREF="../src/wsf_service_launcher_options.html#f_timeout_utilities">Timeout_utilities</A>.<A HREF="../src/wsf_timeout_utilities.html#f_microseconds_to_nanoseconds">microseconds_to_nanoseconds</A> (v.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>)
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("ms") <B>then</B>
+                            <B>check</B>
+                                v.<A HREF="../elks/readable_string_general.html#f_is_integer">is_integer</A>
+                            <B>end</B>
+                            <B>Result</B> := <A HREF="../src/wsf_service_launcher_options.html#f_timeout_utilities">Timeout_utilities</A>.<A HREF="../src/wsf_timeout_utilities.html#f_milliseconds_to_nanoseconds">milliseconds_to_nanoseconds</A> (v.<A HREF="../elks/readable_string_general.html#f_to_integer">to_integer</A>)
+                        <B>end</B>
+                    <B>end</B>
+                <B>else</B>
+                    <B>Result</B> := <A HREF="../src/wsf_service_launcher_options.html#f_timeout_utilities">Timeout_utilities</A>.<A HREF="../src/wsf_timeout_utilities.html#f_seconds_to_nanoseconds">seconds_to_nanoseconds</A> (<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> (a_opt_name, <A HREF="../src/wsf_service_launcher_options.html#f_timeout_utilities">Timeout_utilities</A>.<A HREF="../src/wsf_timeout_utilities.html#f_nanoseconds_to_seconds">nanoseconds_to_seconds</A> (a_default)))
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_option_boolean_value"><A HREF="../src/wsf_service_launcher_options.html#f_option_boolean_value">option_boolean_value</A> (a_opt_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_default: <A HREF="../elks/boolean.html">BOOLEAN</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> BOOLEAN value associated to option name </FONT><I>a_opt_name</I><FONT COLOR="red">, other return </FONT><I>a_default</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+        <B>do</B>
+            <B>Result</B> := a_default
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> (a_opt_name) <B>as</B> opt <B>then</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/boolean.html">BOOLEAN</A>} opt <B>as</B> b <B>then</B>
+                    <B>Result</B> := b
+                <B>else</B>
+                    s := opt.<A HREF="../elks/any.html#f_out">out</A>
+                    <B>Result</B> := s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("true") <B>or</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("yes")
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_new_cursor"><A HREF="../src/wsf_service_launcher_options.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/table_iteration_cursor.html">TABLE_ITERATION_CURSOR</A> [<B>detachable</B> <A HREF="../elks/any.html">ANY</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fresh cursor associated with current structure</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_service_launcher_options.html#f_options">options</A>.<A HREF="../elks/hash_table.html#f_new_cursor">new_cursor</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_option"><A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_value: <B>detachable</B> <A HREF="../elks/any.html">ANY</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_options">options</A>.<A HREF="../elks/hash_table.html#f_force">force</A> (a_value, a_name)
+        <B>end</B></A>
+
+    <A NAME="f_unset_option"><A HREF="../src/wsf_service_launcher_options.html#f_unset_option">unset_option</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_options">options</A>.<A HREF="../elks/hash_table.html#f_remove">remove</A> (a_name)
+        <B>end</B></A>
+
+    <A NAME="f_set_string_option"><A HREF="../src/wsf_service_launcher_options.html#f_set_string_option">set_string_option</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_value: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <B>if</B> a_value = <B>Void</B> <B>then</B>
+                <A HREF="../src/wsf_service_launcher_options.html#f_unset_option">unset_option</A> (a_name)
+            <B>else</B>
+                <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (a_name, a_value)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_numeric_option"><A HREF="../src/wsf_service_launcher_options.html#f_set_numeric_option">set_numeric_option</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_value: <A HREF="../elks/numeric.html">NUMERIC</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (a_name, a_value)
+        <B>end</B></A>
+
+    <A NAME="f_set_boolean_option"><A HREF="../src/wsf_service_launcher_options.html#f_set_boolean_option">set_boolean_option</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_value: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+        <B>do</B>
+            <B>if</B> a_value <B>then</B>
+                <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (a_name, "true")
+            <B>else</B>
+                <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (a_name, "false")
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_verbose"><A HREF="../src/wsf_service_launcher_options.html#f_set_verbose">set_verbose</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set option "verbose" to </FONT><I>b</I>
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> ("verbose", b)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_options"><A HREF="../src/wsf_service_launcher_options.html#f_options">options</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<B>detachable</B> <A HREF="../elks/any.html">ANY</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Custom options which might be support (or not) by the default service</FONT>
+
+    <A NAME="f_timeout_utilities"><A HREF="../src/wsf_service_launcher_options.html#f_timeout_utilities">Timeout_utilities</A>: <A HREF="../src/wsf_timeout_utilities.html">WSF_TIMEOUT_UTILITIES</A>
+        <B>once</B>
+            <B>create</B> <B>Result</B>
+        <B>end</B></A>
+    
+<B>invariant</B>
+    options_attached: <A HREF="../src/wsf_service_launcher_options.html#f_options">options</A> /= <B>Void</B>
+
+<B>note</B>
+    copyright: "2011-2013, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_service_launcher_options.html">WSF_SERVICE_LAUNCHER_OPTIONS</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_service_launcher_options_chart.html">Chart</A></TD><TD><A HREF="wsf_service_launcher_options_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,21 @@
+.container > .login-form-field {
+    margin-bottom: 20px;
+}
+
+.container > .login-form-field > input {
+    width: 300px;
+    height: 30px;
+
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-indent: 10px;
+}
+
+.container > #signin-btns > button {
+    width: 140px;
+    height: 30px;
+}
+
+.container > #signin-btns > .signup-btn {
+    float: right;
+}

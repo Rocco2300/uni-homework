@@ -1,0 +1,315 @@
+<HTML><HEAD>
+<meta name="description" content="Eiffel implementations for Unicode encoding conversion."/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="library" content="Encoding: Library of reusable components for Eiffel."/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>unicode_conversion Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="unicode_conversion_chart.html">Chart</A></TD><TD><A HREF="unicode_conversion_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Eiffel implementations for Unicode encoding conversion."
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2020-05-20 11:14:50 +0000 (Wed, 20 May 2020) $"
+    revision: "$Revision: 104299 $"
+
+<B>class</B> 
+    <A HREF="../elks/encoding/unicode_conversion.html">UNICODE_CONVERSION</A>
+
+<B>inherit</B>
+    <A HREF="../elks/encoding/implementation/encoding_i.html">ENCODING_I</A>
+
+<B>create</B> {<A HREF="../elks/encoding/encoding.html">ENCODING</A>}
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Query</FONT>
+
+    <A NAME="f_is_code_page_valid"><A HREF="../elks/encoding/unicode_conversion.html#f_is_code_page_valid">is_code_page_valid</A> (a_code_page: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_code_page</I><FONT COLOR="red"> valid?</FONT>
+        <B>do</B>
+            <B>if</B> a_code_page /= <B>Void</B> <B>and then</B> <B>not</B> a_code_page.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>Result</B> := <A HREF="../elks/encoding/unicode_conversion.html#f_unicode_encodings">Unicode_encodings</A>.<A HREF="../elks/hash_table.html#f_has">has</A> (a_code_page)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_code_page_convertible"><A HREF="../elks/encoding/unicode_conversion.html#f_is_code_page_convertible">is_code_page_convertible</A> (a_from_code_page, a_to_code_page: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_from_code_page</I><FONT COLOR="red"> convertible to </FONT><I>a_to_code_page</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := a_from_code_page = {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A> <B>and then</B> a_to_code_page = {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>
+            <B>if</B> <B>not</B> <B>Result</B> <B>then</B>
+                <B>if</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>) <B>then</B>
+                    <B>Result</B> := a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>) <B>or else</B> a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>)
+                <B>elseif</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>) <B>then</B>
+                    <B>Result</B> := a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>) <B>or else</B> a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>) <B>or else</B> a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16">utf16</A>)
+                <B>elseif</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16">utf16</A>) <B>then</B>
+                    <B>Result</B> := a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16">utf16</A>) <B>or else</B> a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>)
+                <B>elseif</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf7">utf7</A>) <B>then</B>
+                    <B>Result</B> := a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf7">utf7</A>)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_last_conversion_lost_data"><A HREF="../elks/encoding/unicode_conversion.html#f_last_conversion_lost_data">Last_conversion_lost_data</A>: <A HREF="../elks/boolean.html">BOOLEAN</A> = <B>False</B></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has last conversion between two encodings lost data?</FONT>
+
+    <A NAME="f_is_valid_utf8"><A HREF="../elks/encoding/unicode_conversion.html#f_is_valid_utf8">is_valid_utf8</A> (a_string: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_string</I><FONT COLOR="red"> valid UTF-8 string?</FONT>
+        <B>require</B>
+            a_string_not_void: a_string /= <B>Void</B>
+        <B>do</B>
+            <B>Result</B> := {<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_is_valid_utf_8_string_8">is_valid_utf_8_string_8</A> (a_string)
+        <B>end</B></A>
+
+    <A NAME="f_is_valid_as_string_16"><A HREF="../elks/encoding/unicode_conversion.html#f_is_valid_as_string_16">is_valid_as_string_16</A> (a_string: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Check high 16 bit of any char in </FONT><I>a_string</I><FONT COLOR="red"> is zero.</FONT>
+        <B>local</B>
+            i, nb: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_area: <A HREF="../elks/special.html">SPECIAL</A> [<A HREF="../elks/character_32.html">CHARACTER_32</A>]
+        <B>do</B>
+            <B>if</B> a_string /= <B>Void</B> <B>then</B>
+                <B>if</B> a_string.<A HREF="../elks/readable_string_general.html#f_is_string_32">is_string_32</A> <B>then</B>
+                    <B>from</B>
+                        nb := a_string.<A HREF="../elks/readable_string_general.html#f_count">count</A>
+                        <B>Result</B> := <B>True</B>
+                        l_area := a_string.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>.<A HREF="../elks/string_32.html#f_area">area</A>
+                    <B>until</B>
+                        i = nb <B>or</B> <B>not</B> <B>Result</B>
+                    <B>loop</B>
+                        <B>Result</B> := l_area [i].<A HREF="../elks/character_32.html#f_code">code</A> &lt;= 65535
+                        i := i + 1
+                    <B>end</B>
+                <B>else</B>
+                    <B>Result</B> := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion</FONT>
+
+    <A NAME="f_convert_to"><A HREF="../elks/encoding/unicode_conversion.html#f_convert_to">convert_to</A> (a_from_code_page: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_from_string: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_to_code_page: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert between Unicode encodings.</FONT>
+        <B>do</B>
+            <A HREF="../elks/encoding/implementation/encoding_i.html#f_reset">reset</A>
+            <B>if</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (a_to_code_page) <B>then</B>
+                <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>True</B>
+                <B>if</B> a_from_string.<A HREF="../elks/readable_string_general.html#f_is_string_8">is_string_8</A> <B>then</B>
+                    <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := a_from_string.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                <B>else</B>
+                    <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := a_from_string.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+                <B>end</B>
+            <B>else</B>
+                <B>if</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>) <B>then</B>
+                    <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := <A HREF="../elks/encoding/unicode_conversion.html#f_utf8_to_utf32">utf8_to_utf32</A> (<B>if</B> a_from_string.<A HREF="../elks/readable_string_general.html#f_is_valid_as_string_8">is_valid_as_string_8</A> <B>then</B>
+                            a_from_string.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                        <B>else</B>
+                            {<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_utf_32_string_to_utf_8_string_8">utf_32_string_to_utf_8_string_8</A> (a_from_string)
+                        <B>end</B>)
+                    <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>True</B>
+                <B>elseif</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>) <B>then</B>
+                    <B>if</B> a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>) <B>then</B>
+                        <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := <A HREF="../elks/encoding/unicode_conversion.html#f_utf32_to_utf8">utf32_to_utf8</A> (a_from_string.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                        <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>True</B>
+                    <B>elseif</B> a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16">utf16</A>) <B>then</B>
+                        <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := <A HREF="../elks/encoding/unicode_conversion.html#f_utf32_to_utf16">utf32_to_utf16</A> (a_from_string.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                        <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A> := <B>True</B>
+                        <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>True</B>
+                    <B>end</B>
+                <B>elseif</B> a_from_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16">utf16</A>) <B>then</B>
+                    <B>if</B> a_to_code_page.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>) <B>then</B>
+                        <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := <A HREF="../elks/encoding/unicode_conversion.html#f_utf16_to_utf32">utf16_to_utf32</A> (a_from_string.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                        <A HREF="../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>True</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Explicit Conversion</FONT>
+
+    <A NAME="f_utf8_to_utf32"><A HREF="../elks/encoding/unicode_conversion.html#f_utf8_to_utf32">utf8_to_utf32</A> (a_string: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> UTF8 to UTF32 conversion, Eiffel implementation.</FONT>
+        <B>require</B>
+            a_string_not_void: a_string /= <B>Void</B>
+        <B>do</B>
+            <B>Result</B> := {<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_utf_8_string_8_to_string_32">utf_8_string_8_to_string_32</A> (a_string)
+        <B>ensure</B>
+            result_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_utf32_to_utf8"><A HREF="../elks/encoding/unicode_conversion.html#f_utf32_to_utf8">utf32_to_utf8</A> (a_string: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>): <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert UTF32 to UTF8.</FONT>
+        <B>require</B>
+            a_string_not_void: a_string /= <B>Void</B>
+        <B>do</B>
+            <B>Result</B> := {<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_utf_32_string_to_utf_8_string_8">utf_32_string_to_utf_8_string_8</A> (a_string)
+        <B>ensure</B>
+            result_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_utf32_to_utf16"><A HREF="../elks/encoding/unicode_conversion.html#f_utf32_to_utf16">utf32_to_utf16</A> (a_str: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>): <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert utf32 to utf16 without data lose.</FONT>
+        <B>require</B>
+            a_str_not_void: a_str /= <B>Void</B>
+        <B>local</B>
+            l_code: <A HREF="../elks/natural_32.html">NATURAL_32</A>
+            i, l_count: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make">make</A> (a_str.<A HREF="../elks/readable_string_32.html#f_count">count</A> * 2)
+            <B>from</B>
+                i := 1
+                l_count := a_str.<A HREF="../elks/readable_string_32.html#f_count">count</A>
+            <B>until</B>
+                i &gt; l_count
+            <B>loop</B>
+                l_code := a_str.<A HREF="../elks/readable_string_general.html#f_code">code</A> (i) &#38; 1048575
+                <B>if</B> l_code &gt; 65535 <B>then</B>
+                    l_code := l_code - 65536;
+                    <B>Result</B>.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (l_code |&gt;&gt; 10 | 55296);
+                    <B>Result</B>.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (l_code &#38; 1023 | 56320)
+                <B>else</B>
+                    <B>Result</B>.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (l_code)
+                <B>end</B>
+                i := i + 1
+            <B>end</B>
+        <B>ensure</B>
+            instance_free: <B>class</B>
+            result_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_utf16_to_utf32"><A HREF="../elks/encoding/unicode_conversion.html#f_utf16_to_utf32">utf16_to_utf32</A> (a_str: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>): <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert utf16 to utf32.</FONT>
+        <B>require</B>
+            a_str_not_void: a_str /= <B>Void</B>
+        <B>local</B>
+            i, l_count: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_code: <A HREF="../elks/natural_32.html">NATURAL_32</A>
+            l_temp: <A HREF="../elks/natural_32.html">NATURAL_32</A>
+            l_lower: <A HREF="../elks/natural_32.html">NATURAL_32</A>
+        <B>do</B>
+            l_count := a_str.<A HREF="../elks/readable_string_32.html#f_count">count</A>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make">make</A> (l_count)
+            <B>from</B>
+                i := 1
+            <B>until</B>
+                i &gt; l_count
+            <B>loop</B>
+                l_code := a_str.<A HREF="../elks/readable_string_general.html#f_code">code</A> (i)
+                i := i + 1
+                l_temp := l_code &#38; 65535
+                <B>if</B> i &lt;= l_count <B>then</B>
+                    l_lower := a_str.<A HREF="../elks/readable_string_general.html#f_code">code</A> (i) &#38; 65535
+                <B>end</B>
+                <B>if</B> l_temp &gt;= 55296 <B>and then</B> l_temp &lt;= 56319 <B>and then</B> i &lt;= l_count <B>and then</B> l_lower &gt;= 56320 <B>and then</B> l_lower &lt;= 57343 <B>then</B>
+                    <B>Result</B>.<A HREF="../elks/string_general.html#f_append_code">append_code</A> ((l_temp &#38; 1023) |&lt;&lt; 10 + l_lower &#38; 1023 + 65536)
+                    i := i + 1
+                <B>else</B>
+                    <B>Result</B>.<A HREF="../elks/string_general.html#f_append_code">append_code</A> (l_temp)
+                <B>end</B>
+            <B>end</B>
+        <B>ensure</B>
+            instance_free: <B>class</B>
+            result_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_append_code_point_to_utf8"><A HREF="../elks/encoding/unicode_conversion.html#f_append_code_point_to_utf8">append_code_point_to_utf8</A> (a_code: <A HREF="../elks/natural_32.html">NATURAL_32</A>; a_string: <A HREF="../elks/string_8.html">STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append a Unicode code point </FONT><I>a_code</I><FONT COLOR="red"> to a UTF-8 stream.</FONT>
+        <B>require</B>
+            a_string_not_void: a_string /= <B>Void</B>
+            a_code_is_valid: a_code &gt;= 0 <B>and then</B> a_code &lt;= 1114111
+        <B>do</B>
+            {<A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>}.<A HREF="../elks/utf_converter.html#f_utf_32_code_into_utf_8_string_8">utf_32_code_into_utf_8_string_8</A> (a_code, a_string)
+        <B>ensure</B>
+            a_string_appended: (a_code &lt;= 127 <B>implies</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> = <B>old</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 1) <B>and</B> ((a_code &gt; 127 <B>and</B> a_code &lt;= 2047) <B>implies</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> = <B>old</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 2) <B>and</B> ((a_code &gt; 2047 <B>and</B> a_code &lt;= 65535) <B>implies</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> = <B>old</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 3) <B>and</B> ((a_code &gt; 65535 <B>and</B> a_code &lt;= 1114111) <B>implies</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> = <B>old</B> a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 4)
+        <B>end</B></A>
+
+    <A NAME="f_read_character_from_utf8"><A HREF="../elks/encoding/unicode_conversion.html#f_read_character_from_utf8">read_character_from_utf8</A> (a_position: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_read_bytes: <B>detachable</B> <A HREF="../elks/integer_32_ref.html">INTEGER_32_REF</A>; a_string: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/character_32.html">CHARACTER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Read a Unicode character from UTF-8 string.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><I>a_string</I><FONT COLOR="red"> is in UTF-8.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><I>a_position</I><FONT COLOR="red"> is the starting byte point of a character.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><I>a_read_bytes</I><FONT COLOR="red"> is the number of bytes read.</FONT>
+        <B>require</B>
+            a_string_not_void: a_string /= <B>Void</B>
+            a_position_in_range: a_position &gt; 0 <B>and</B> a_position &lt;= a_string.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+            a_position_valid: a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (a_position).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A> &lt;= 127 <B>or</B> (a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (a_position).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A> &#38; 224) = 192 <B>or</B> (a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (a_position).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A> &#38; 240) = 224 <B>or</B> (a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (a_position).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A> &#38; 248) = 240 <B>or</B> (a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (a_position).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A> &#38; 252) = 248 <B>or</B> (a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (a_position).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A> &#38; 254) = 252
+        <B>local</B>
+            l_pos: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_nat8: <A HREF="../elks/natural_8.html">NATURAL_8</A>
+            l_code: <A HREF="../elks/natural_32.html">NATURAL_32</A>
+        <B>do</B>
+            l_pos := a_position
+            l_nat8 := a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (l_pos).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A>
+            <B>if</B> l_nat8 &lt;= 127 <B>then</B>
+                <B>Result</B> := l_nat8.<A HREF="../elks/natural_8.html#f_to_character_32">to_character_32</A>
+            <B>elseif</B> (l_nat8 &#38; 224) = 192 <B>then</B>
+                l_code := (l_nat8 &#38; 31).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A> |&lt;&lt; 6
+                l_pos := l_pos + 1
+                l_nat8 := a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (l_pos).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A>
+                l_code := l_code | (l_nat8 &#38; 63).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A>
+                <B>Result</B> := l_code.<A HREF="../elks/natural_32.html#f_to_character_32">to_character_32</A>
+            <B>elseif</B> (l_nat8 &#38; 240) = 224 <B>then</B>
+                l_code := (l_nat8 &#38; 15).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A> |&lt;&lt; 12
+                l_nat8 := a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (l_pos + 1).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A>
+                l_code := l_code | ((l_nat8 &#38; 63).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A> |&lt;&lt; 6)
+                l_nat8 := a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (l_pos + 2).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A>
+                l_code := l_code | (l_nat8 &#38; 63).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A>
+                <B>Result</B> := l_code.<A HREF="../elks/natural_32.html#f_to_character_32">to_character_32</A>
+                l_pos := l_pos + 2
+            <B>elseif</B> (l_nat8 &#38; 248) = 240 <B>then</B>
+                l_code := (l_nat8 &#38; 7).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A> |&lt;&lt; 18
+                l_nat8 := a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (l_pos + 1).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A>
+                l_code := l_code | ((l_nat8 &#38; 63).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A> |&lt;&lt; 12)
+                l_nat8 := a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (l_pos + 2).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A>
+                l_code := l_code | ((l_nat8 &#38; 63).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A> |&lt;&lt; 6)
+                l_nat8 := a_string.<A HREF="../elks/readable_string_general.html#f_code">code</A> (l_pos + 3).<A HREF="../elks/natural_32_ref.html#f_to_natural_8">to_natural_8</A>
+                l_code := l_code | (l_nat8 &#38; 63).<A HREF="../elks/natural_8_ref.html#f_to_natural_32">to_natural_32</A>
+                <B>Result</B> := l_code.<A HREF="../elks/natural_32.html#f_to_character_32">to_character_32</A>
+                l_pos := l_pos + 3
+            <B>elseif</B> (l_nat8 &#38; 252) = 248 <B>then</B>
+                <B>Result</B> := ' '.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>
+                l_pos := l_pos + 4
+            <B>else</B>
+                <B>Result</B> := ' '.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>
+                l_pos := l_pos + 5
+            <B>end</B>
+            <B>if</B> a_read_bytes /= <B>Void</B> <B>then</B>
+                a_read_bytes.<A HREF="../elks/integer_32_ref.html#f_set_item">set_item</A> (l_pos - a_position + 1)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_unicode_encodings"><A HREF="../elks/encoding/unicode_conversion.html#f_unicode_encodings">Unicode_encodings</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Supported Unicode encodings.</FONT>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/hash_table.html#f_make">make</A> (8);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf7">utf7</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf7">utf7</A>);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf8">utf8</A>);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16">utf16</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16">utf16</A>);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_le">utf16_le</A>);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32">utf32</A>);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_le">utf32_le</A>);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf16_be">utf16_be</A>);
+            <B>Result</B>.<A HREF="../elks/hash_table.html#f_put">put</A> ({<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>, {<A HREF="../elks/encoding/code_page_constants.html">CODE_PAGE_CONSTANTS</A>}.<A HREF="../elks/encoding/code_page_constants.html#f_utf32_be">utf32_be</A>)
+        <B>end</B></A>
+    
+<B>note</B>
+    library: "Encoding: Library of reusable components for Eiffel."
+    copyright: "Copyright (c) 1984-2020, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../elks/encoding/unicode_conversion.html">UNICODE_CONVERSION</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="unicode_conversion_chart.html">Chart</A></TD><TD><A HREF="unicode_conversion_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

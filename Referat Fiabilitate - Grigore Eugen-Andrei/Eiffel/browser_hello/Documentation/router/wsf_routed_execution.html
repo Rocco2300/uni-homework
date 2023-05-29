@@ -1,0 +1,112 @@
+<HTML><HEAD>
+<meta name="description" content="Execution based on router."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_routed_execution Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_routed_execution_chart.html">Chart</A></TD><TD><A HREF="wsf_routed_execution_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Execution based on router."
+    date: "$Date: 2015-06-10 16:48:30 +0000 (Wed, 10 Jun 2015) $"
+    revision: "$Revision: 97452 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../router/wsf_routed_execution.html">WSF_ROUTED_EXECUTION</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_execution.html">WSF_EXECUTION</A>
+        <B>redefine</B>
+            <A HREF="../router/wsf_routed_execution.html#f_initialize">initialize</A>
+        <B>end</B>
+
+    <A HREF="../router/wsf_routed.html">WSF_ROUTED</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize</FONT>
+
+    <A NAME="f_initialize"><A HREF="../router/wsf_routed_execution.html#f_initialize">initialize</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize Current object.</FONT>
+        <B>do</B>
+            <B>Precursor</B>
+            <A HREF="../router/wsf_routed_execution.html#f_initialize_router">initialize_router</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Router</FONT>
+
+    <A NAME="f_initialize_router"><A HREF="../router/wsf_routed_execution.html#f_initialize_router">initialize_router</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize router</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_routed_execution.html#f_create_router">create_router</A>
+            <A HREF="../router/wsf_routed_execution.html#f_setup_router">setup_router</A>
+        <B>end</B></A>
+
+    <A NAME="f_create_router"><A HREF="../router/wsf_routed_execution.html#f_create_router">create_router</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_routed_execution.html#f_router">router</A><FONT COLOR="red">`</FONT><FONT COLOR="red">	</FONT>
+        <B>do</B>
+            <B>create</B> <A HREF="../router/wsf_routed_execution.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_make">make</A> (10)
+        <B>ensure</B>
+            router_created: <A HREF="../router/wsf_routed_execution.html#f_router">router</A> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_setup_router"><A HREF="../router/wsf_routed_execution.html#f_setup_router">setup_router</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Setup </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_routed_execution.html#f_router">router</A><FONT COLOR="red">`</FONT>
+        <B>require</B>
+            router_created: <A HREF="../router/wsf_routed_execution.html#f_router">router</A> /= <B>Void</B>
+        <B>deferred</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_router"><A HREF="../router/wsf_routed_execution.html#f_router">router</A>: <A HREF="../router/wsf_router.html">WSF_ROUTER</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Router used to dispatch the request according to the WSF_REQUEST object</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and associated request methods		</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_execute"><A HREF="../router/wsf_routed_execution.html#f_execute">execute</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Dispatch the request</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and if handler is not found, execute the default procedure </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_routed_execution.html#f_execute_default">execute_default</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_routed_execution.html#f_router_execute">router_execute</A> (<A HREF="../src/wsf_execution.html#f_request">request</A>, <A HREF="../src/wsf_execution.html#f_response">response</A>)
+        <B>end</B></A>
+
+    <A NAME="f_router_execute"><A HREF="../router/wsf_routed_execution.html#f_router_execute">router_execute</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>local</B>
+            sess: <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>
+        <B>do</B>
+            <B>create</B> sess;
+            <A HREF="../router/wsf_routed_execution.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_dispatch">dispatch</A> (req, res, sess)
+            <B>if</B> <B>not</B> sess.<A HREF="../router/wsf_router_session.html#f_dispatched">dispatched</A> <B>then</B>
+                <A HREF="../router/wsf_routed_execution.html#f_execute_default">execute_default</A> (req, res)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_execute_default"><A HREF="../router/wsf_routed_execution.html#f_execute_default">execute_default</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Dispatch requests without a matching handler.</FONT>
+        <B>local</B>
+            msg: <A HREF="../src/wsf_default_router_response.html">WSF_DEFAULT_ROUTER_RESPONSE</A>
+        <B>do</B>
+            <B>create</B> msg.<A HREF="../src/wsf_default_router_response.html#f_make_with_router">make_with_router</A> (<A HREF="../src/wsf_execution.html#f_request">request</A>, <A HREF="../router/wsf_routed_execution.html#f_router">router</A>);
+            msg.<A HREF="../src/wsf_default_router_response.html#f_set_documentation_included">set_documentation_included</A> (<B>True</B>);
+            <A HREF="../src/wsf_execution.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_send">send</A> (msg)
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_routed_execution.html">WSF_ROUTED_EXECUTION</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_routed_execution_chart.html">Chart</A></TD><TD><A HREF="wsf_routed_execution_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

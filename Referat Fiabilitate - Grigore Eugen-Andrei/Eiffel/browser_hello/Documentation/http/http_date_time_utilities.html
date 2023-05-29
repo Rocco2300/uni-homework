@@ -1,0 +1,93 @@
+<HTML><HEAD>
+<meta name="description" content="Utilities routines to manipulate date"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2011, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_date_time_utilities Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_date_time_utilities_chart.html">Chart</A></TD><TD><A HREF="http_date_time_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Utilities routines to manipulate date
+    ]"
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2015-06-10 16:48:30 +0000 (Wed, 10 Jun 2015) $"
+    revision: "$Revision: 97452 $"
+
+<B>class</B> 
+    <A HREF="../src/http_date_time_utilities.html">HTTP_DATE_TIME_UTILITIES</A>
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_now_utc"><A HREF="../src/http_date_time_utilities.html#f_now_utc">now_utc</A>: DATE_TIME
+        <B>do</B>
+            <B>create</B> <B>Result</B>.make_now_utc
+        <B>end</B></A>
+
+    <A NAME="f_epoch"><A HREF="../src/http_date_time_utilities.html#f_epoch">Epoch</A>: DATE_TIME
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>.make_from_epoch (0)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Unix time stamp</FONT>
+
+    <A NAME="f_unix_time_stamp"><A HREF="../src/http_date_time_utilities.html#f_unix_time_stamp">unix_time_stamp</A> (dt: <B>detachable</B> DATE_TIME): <A HREF="../elks/integer_64.html">INTEGER_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Unix time stamp from </FONT><I>dt</I><FONT COLOR="red"> if attached or from epoch is detached</FONT>
+        <B>local</B>
+            l_date_time: DATE_TIME
+        <B>do</B>
+            <B>if</B> dt /= <B>Void</B> <B>then</B>
+                l_date_time := dt
+            <B>else</B>
+                l_date_time := <A HREF="../src/http_date_time_utilities.html#f_now_utc">now_utc</A>
+            <B>end</B>
+            <B>Result</B> := l_date_time.definite_duration (<A HREF="../src/http_date_time_utilities.html#f_epoch">Epoch</A>).seconds_count
+        <B>end</B></A>
+
+    <A NAME="f_fine_unix_time_stamp"><A HREF="../src/http_date_time_utilities.html#f_fine_unix_time_stamp">fine_unix_time_stamp</A> (dt: <B>detachable</B> DATE_TIME): <A HREF="../elks/real_64.html">REAL_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fine unix time stamp from </FONT><I>dt</I><FONT COLOR="red"> if attached or from epoch is detached</FONT>
+        <B>local</B>
+            l_date_time: DATE_TIME
+        <B>do</B>
+            <B>if</B> dt /= <B>Void</B> <B>then</B>
+                l_date_time := dt
+            <B>else</B>
+                l_date_time := <A HREF="../src/http_date_time_utilities.html#f_now_utc">now_utc</A>
+            <B>end</B>
+            <B>Result</B> := l_date_time.definite_duration (<A HREF="../src/http_date_time_utilities.html#f_epoch">Epoch</A>).fine_seconds_count
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Unix time stamp conversion</FONT>
+
+    <A NAME="f_unix_time_stamp_to_date_time"><A HREF="../src/http_date_time_utilities.html#f_unix_time_stamp_to_date_time">unix_time_stamp_to_date_time</A> (i64: <A HREF="../elks/integer_64.html">INTEGER_64</A>): DATE_TIME
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Date time related to </FONT><I>i64</I>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.make_from_epoch (i64.<A HREF="../elks/integer_64.html#f_as_integer_32">as_integer_32</A>)
+        <B>ensure</B>
+            same_unix_time_stamp: <A HREF="../src/http_date_time_utilities.html#f_unix_time_stamp">unix_time_stamp</A> (<B>Result</B>) = i64
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "Copyright (c) 1984-2011, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_date_time_utilities.html">HTTP_DATE_TIME_UTILITIES</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_date_time_utilities_chart.html">Chart</A></TD><TD><A HREF="http_date_time_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

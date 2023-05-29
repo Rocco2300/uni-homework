@@ -1,0 +1,94 @@
+<HTML><HEAD>
+<meta name="description" content="Utility for timeout conversion."/>
+<meta name="author" content="$Author: jfiat $"/>
+<meta name="seealso" content="See also {SOCKET_TIMEOUT_UTILITIES} from EiffelNet library."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_timeout_utilities Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_timeout_utilities_chart.html">Chart</A></TD><TD><A HREF="wsf_timeout_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Utility for timeout conversion."
+    author: "$Author: jfiat $"
+    date: "$Date: 2018-10-29 14:43:53 +0000 (Mon, 29 Oct 2018) $"
+    revision: "$Revision: 102385 $"
+    seealso: "See also {SOCKET_TIMEOUT_UTILITIES} from EiffelNet library."
+
+<B>class</B> 
+    <A HREF="../src/wsf_timeout_utilities.html">WSF_TIMEOUT_UTILITIES</A>
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Time helpers</FONT>
+
+    <A NAME="f_one_second_in_nanoseconds"><A HREF="../src/wsf_timeout_utilities.html#f_one_second_in_nanoseconds">One_second_in_nanoseconds</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A> = 1000000000</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of nanoseconds in one second.</FONT>
+
+    <A NAME="f_one_millisecond_in_nanoseconds"><A HREF="../src/wsf_timeout_utilities.html#f_one_millisecond_in_nanoseconds">One_millisecond_in_nanoseconds</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A> = 1000000</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of nanoseconds in one millisecond.</FONT>
+
+    <A NAME="f_one_microsecond_in_nanoseconds"><A HREF="../src/wsf_timeout_utilities.html#f_one_microsecond_in_nanoseconds">One_microsecond_in_nanoseconds</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A> = 1000</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of nanoseconds in one microsecond.</FONT>
+
+    <A NAME="f_max_timeout_ns_value"><A HREF="../src/wsf_timeout_utilities.html#f_max_timeout_ns_value">Max_timeout_ns_value</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A> = 2147483647999999999</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Maximum value for a timeout in nanoseconds.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> See </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_timeout_utilities.html#f_is_valid_timeout_ns">is_valid_timeout_ns</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> for explanation.</FONT>
+
+    <A NAME="f_nanoseconds_to_seconds"><A HREF="../src/wsf_timeout_utilities.html#f_nanoseconds_to_seconds">nanoseconds_to_seconds</A> (ns: <A HREF="../elks/natural_64.html">NATURAL_64</A>): <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of seconds in </FONT><I>ns</I><FONT COLOR="red"> nanoseconds (that fits in INTEGER_32 value).</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Warning: Result can not be more than </FONT><FONT COLOR="red">{</FONT><FONT COLOR="red">INTEGER</FONT><FONT COLOR="red">}</FONT><FONT COLOR="red">.max_value</FONT><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            n64: <A HREF="../elks/natural_64.html">NATURAL_64</A>
+        <B>do</B>
+            n64 := ns // <A HREF="../src/wsf_timeout_utilities.html#f_one_second_in_nanoseconds">One_second_in_nanoseconds</A>
+            <B>if</B> n64 &gt; {<A HREF="../elks/integer_32.html">INTEGER_32</A>}.<A HREF="../elks/integer_32_ref.html#f_max_value">max_value</A>.<A HREF="../elks/integer_32_ref.html#f_to_natural_64">to_natural_64</A> <B>then</B>
+                <B>Result</B> := {<A HREF="../elks/integer_32.html">INTEGER_32</A>}.<A HREF="../elks/integer_32_ref.html#f_max_value">max_value</A>
+            <B>else</B>
+                <B>Result</B> := n64.<A HREF="../elks/natural_64_ref.html#f_to_integer_32">to_integer_32</A>
+            <B>end</B>
+        <B>ensure</B>
+            non_negative: <B>Result</B> &gt;= 0
+            coherent: <B>Result</B>.<A HREF="../elks/integer_32_ref.html#f_to_natural_64">to_natural_64</A> * <A HREF="../src/wsf_timeout_utilities.html#f_one_second_in_nanoseconds">One_second_in_nanoseconds</A> &lt;= ns
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_seconds_to_nanoseconds"><A HREF="../src/wsf_timeout_utilities.html#f_seconds_to_nanoseconds">seconds_to_nanoseconds</A> (s: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/natural_64.html">NATURAL_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of nanoseconds in </FONT><I>s</I><FONT COLOR="red"> seconds (that fits in NATURAL_64 value).</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_timeout_utilities.html#f_one_second_in_nanoseconds">One_second_in_nanoseconds</A> * s.<A HREF="../elks/integer_32_ref.html#f_to_natural_64">to_natural_64</A>
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_milliseconds_to_nanoseconds"><A HREF="../src/wsf_timeout_utilities.html#f_milliseconds_to_nanoseconds">milliseconds_to_nanoseconds</A> (ms: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/natural_64.html">NATURAL_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of nanoseconds in </FONT><I>ms</I><FONT COLOR="red"> milliseconds (that fits in NATURAL_64 value).</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_timeout_utilities.html#f_one_millisecond_in_nanoseconds">One_millisecond_in_nanoseconds</A> * ms.<A HREF="../elks/integer_32_ref.html#f_to_natural_64">to_natural_64</A>
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_microseconds_to_nanoseconds"><A HREF="../src/wsf_timeout_utilities.html#f_microseconds_to_nanoseconds">microseconds_to_nanoseconds</A> (us: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/natural_64.html">NATURAL_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of nanoseconds in </FONT><I>us</I><FONT COLOR="red"> microseconds (that fits in NATURAL_64 value).</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_timeout_utilities.html#f_one_microsecond_in_nanoseconds">One_microsecond_in_nanoseconds</A> * us.<A HREF="../elks/integer_32_ref.html#f_to_natural_64">to_natural_64</A>
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Validation			</FONT>
+
+    <A NAME="f_is_valid_timeout_ns"><A HREF="../src/wsf_timeout_utilities.html#f_is_valid_timeout_ns">is_valid_timeout_ns</A> (ns: <A HREF="../elks/natural_64.html">NATURAL_64</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>Result</B> := 0 &lt;= ns <B>and then</B> ns &lt;= <A HREF="../src/wsf_timeout_utilities.html#f_max_timeout_ns_value">Max_timeout_ns_value</A>
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+    
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_timeout_utilities.html">WSF_TIMEOUT_UTILITIES</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_timeout_utilities_chart.html">Chart</A></TD><TD><A HREF="wsf_timeout_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

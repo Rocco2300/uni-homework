@@ -1,0 +1,29 @@
+FN1: 
+- Fiecare coloana din fiecare tabela este unica
+- Fiecare tabela are cheie primara
+
+FN2:
+- Se afla in FN1
+- Toate atributele din toate tabelele sunt strict dependente de cheia primara
+
+FN3: 
+Initial B.D. nu era in FN3, 
+- Tabela date_contact avea o dependenta tranzitiva intre coloane:
+  valoare -> tip_contact 
+  tip_contact -> id_date_contact (PK)
+  Aceasta dependenta a fost tratata prin a face cheia primara compusa din valoare si id_date_contact.
+- Tabela adresa initial continea toate coloanele legate de adrese, dar existau 2 relatii tranzitive:
+  cod_postal->localitate  
+  localitate->judet  
+  judet->id_adresa
+  Am decis sa impart tabela astfel incat avem:
+	- tabela zona_administrativa (id_zona_administrativa, judet, localitate) PK (id_zona..., localitate)
+	- tabela zona_postala (id_zona_administrativa, cod_postal) PK (cod_postal) FK (id_zona...)
+  Iar tabela adresa acum are o legatura cu zona_postala
+
+- Se afla in FN2
+- Nu exista relatii tranzitive intre atribute
+
+=> B.D. se afla in FN3
+
+

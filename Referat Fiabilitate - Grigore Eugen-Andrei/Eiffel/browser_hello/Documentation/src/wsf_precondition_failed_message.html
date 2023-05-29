@@ -1,0 +1,142 @@
+<HTML><HEAD>
+<meta name="description" content="This class is used to report a 412 Precondition Failed page"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_precondition_failed_message Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_precondition_failed_message_chart.html">Chart</A></TD><TD><A HREF="wsf_precondition_failed_message_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        This class is used to report a 412 Precondition Failed page
+    ]"
+    date: "$Date: 2020-11-03 14:05:35 +0000 (Tue, 03 Nov 2020) $"
+    revision: "$Revision: 104855 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_precondition_failed_message.html">WSF_PRECONDITION_FAILED_MESSAGE</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_response_message.html">WSF_RESPONSE_MESSAGE</A>
+
+    SHARED_HTML_ENCODER
+
+<B>create</B> 
+    <A HREF="../src/wsf_precondition_failed_message.html#f_make">make</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../src/wsf_precondition_failed_message.html#f_make">make</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize setting </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> from </FONT><I>req</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A> := req
+            <B>create</B> <A HREF="../src/wsf_precondition_failed_message.html#f_header">header</A>.<A HREF="../src/http_header.html#f_make">make</A>
+        <B>ensure</B>
+            req_aliased: <A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A> = req
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header</FONT>
+
+    <A NAME="f_header"><A HREF="../src/wsf_precondition_failed_message.html#f_header">header</A>: <A HREF="../src/http_header.html">HTTP_HEADER</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response' header</FONT>
+
+    <A NAME="f_request"><A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A>: <A HREF="../src/wsf_request.html">WSF_REQUEST</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated request.</FONT>
+
+    <A NAME="f_body"><A HREF="../src/wsf_precondition_failed_message.html#f_body">body</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Optional body</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Displayed as extra content</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_body"><A HREF="../src/wsf_precondition_failed_message.html#f_set_body">set_body</A> (b: <B>like</B> <A HREF="../src/wsf_precondition_failed_message.html#f_body">body</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_precondition_failed_message.html#f_body">body</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>b</I>
+        <B>do</B>
+            <A HREF="../src/wsf_precondition_failed_message.html#f_body">body</A> := b
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>}{<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output</FONT>
+
+    <A NAME="f_send_to"><A HREF="../src/wsf_precondition_failed_message.html#f_send_to">send_to</A> (res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send Current message to </FONT><I>res</I>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This feature should be called via </FONT><I>{WSF_RESPONSE}.send (obj)</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> where </FONT><I>obj</I><FONT COLOR="red"> is the current object</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+            h: <B>like</B> <A HREF="../src/wsf_precondition_failed_message.html#f_header">header</A>
+        <B>do</B>
+            h := <A HREF="../src/wsf_precondition_failed_message.html#f_header">header</A>;
+            res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_precondition_failed">precondition_failed</A>)
+            <B>if</B> <A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_is_content_type_accepted">is_content_type_accepted</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_html">text_html</A>) <B>then</B>
+                s := "&lt;html lang=%"en%"&gt;&lt;head&gt;";
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;title&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (Html_encoder.general_encoded_string (<A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>));
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("Error 412 (Precondition Failed)");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/title&gt;%N");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("[
+                        &lt;style type="text/css"&gt;
+                        div#header {color: #fff; background-color: #000; padding: 20px; text-align: center; font-size: 2em; font-weight: bold;}
+                        div#message { margin: 40px; text-align: center; font-size: 1.5em; }
+                        div#footer {color: #999; background-color: #eee; padding: 10px; text-align: center; }
+                        div#logo { float: right; margin: 20px; width: 60px height: auto; font-size: 0.8em; text-align: center; }
+                        div#logo div.outter { padding: 6px; width: 60px; border: solid 3px #500; background-color: #b00;}
+                        div#logo div.outter div.inner1 { display: block; margin: 10px 15px;  width: 30px; height: 50px; color: #fff; background-color: #fff; border: solid 2px #900; }
+                        div#logo div.outter div.inner2 { margin: 10px 15px; width: 30px; height: 15px; color: #fff; background-color: #fff; border: solid 2px #900; }
+                        &lt;/style&gt;
+                        &lt;/head&gt;
+                        &lt;body&gt;
+                        &lt;div id="header"&gt;Error 412 (Precondition Failed)&lt;/div&gt;
+                    ]");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"logo%"&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div class=%"outter%"&gt; ");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div class=%"inner1%"&gt;&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div class=%"inner2%"&gt;&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("Error 412 (Precondition Failed)&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"message%"&gt;Error 412 (Precondition Failed): &lt;code&gt;" + Html_encoder.general_encoded_string (<A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>) + "&lt;/code&gt;&lt;/div&gt;")
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_precondition_failed_message.html#f_body">body</A> <B>as</B> b <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div&gt;");
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> (b);
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/div&gt;%N")
+                <B>end</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;div id=%"footer%"&gt;&lt;/div&gt;");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/body&gt;%N");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("&lt;/html&gt;%N");
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_html">put_content_type_utf_8_text_html</A>
+            <B>else</B>
+                s := "Error 412 (Precondition Failed): ";
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../src/wsf_precondition_failed_message.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>);
+                s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('%N')
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_precondition_failed_message.html#f_body">body</A> <B>as</B> b <B>then</B>
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N");
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> (b);
+                    s.<A HREF="../elks/string_8.html#f_append">append</A> ("%N")
+                <B>end</B>;
+                h.<A HREF="../src/http_header_modifier.html#f_put_content_type_utf_8_text_plain">put_content_type_utf_8_text_plain</A>
+            <B>end</B>;
+            h.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+            res.<A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (h.<A HREF="../src/http_header.html#f_string">string</A>);
+            res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s);
+            res.<A HREF="../src/wsf_response.html#f_flush">flush</A>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_precondition_failed_message.html">WSF_PRECONDITION_FAILED_MESSAGE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_precondition_failed_message_chart.html">Chart</A></TD><TD><A HREF="wsf_precondition_failed_message_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

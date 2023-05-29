@@ -1,0 +1,373 @@
+<HTML><HEAD>
+<meta name="description" content="TTThis class represents the value of a HTTP cookie, transferred in a request. TTThe class has features to build an HTTP cookie. TTTT TTFollowing a newer RFC standard for Cookies http://tools.ietf.org/html/rfc6265  TTTT TTDomain TT* WARNING: Some existing user agents treat an absent Domain attribute as if the Domain attribute were present and contained the current host name.   TT* For example, if example.com returns a Set-Cookie header without a Domain attribute, these user agents will erroneously send the cookie to www.example.com as well. TTTT TTMax-Age, Expires TT* If a cookie has both the Max-Age and the Expires attribute, the Max-Age attribute has precedence and controls the expiration date of the cookie.  TT* If a cookie has neither the Max-Age nor the Expires attribute, the user agent will retain the cookie until the current session is over (as defined by the user agent). TT* You will need to call the feature TTTT TTHttpOnly, Secure TT* Note that the HttpOnly attribute is independent of the Secure attribute: a cookie can have both the HttpOnly and the Secure attribute. "/>
+<meta name="eis" content="name=HTTP Cookie specification, src=http://tools.ietf.org/html/rfc6265, protocol=uri"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_cookie Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_cookie_chart.html">Chart</A></TD><TD><A HREF="http_cookie_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        		This class represents the value of a HTTP cookie, transferred in a request.
+        		The class has features to build an HTTP cookie.
+        				
+        		Following a newer RFC standard for Cookies <a href="http://tools.ietf.org/html/rfc6265">http://tools.ietf.org/html/rfc6265</a> 
+        				
+        		Domain
+        		* WARNING: Some existing user agents treat an absent Domain attribute as if the Domain attribute were present and contained the current host name.  
+        		* For example, if example.com returns a Set-Cookie header without a Domain attribute, these user agents will erroneously send the cookie to <a href="www.example.com">www.example.com</a> as well.
+        				
+        		Max-Age, Expires
+        		* If a cookie has both the Max-Age and the Expires attribute, the Max-Age attribute has precedence and controls the expiration date of the cookie. 
+        		* If a cookie has neither the Max-Age nor the Expires attribute, the user agent will retain the cookie until "the current session is over" (as defined by the user agent).
+        		* You will need to call the feature
+        				
+        		HttpOnly, Secure
+        		* Note that the HttpOnly attribute is independent of the Secure attribute: a cookie can have both the HttpOnly and the Secure attribute.
+        
+    ]"
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+    eis: "name=HTTP Cookie specification", "src=<a href="http://tools.ietf.org/html/rfc6265">http://tools.ietf.org/html/rfc6265</a>", "protocol=uri"
+
+<B>class</B> 
+    <A HREF="../src/http_cookie.html">HTTP_COOKIE</A>
+
+<B>create</B> 
+    <A HREF="../src/http_cookie.html#f_make">make</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../src/http_cookie.html#f_make">make</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create an object instance of cookie with name </FONT><I>a_name</I><FONT COLOR="red"> and value </FONT><I>a_value</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_name_not_blank: a_name /= <B>Void</B> <B>and then</B> <B>not</B> a_name.<A HREF="../elks/readable_string_general.html#f_is_whitespace">is_whitespace</A>
+            a_name_has_valid_characters: a_name /= <B>Void</B> <B>and then</B> <A HREF="../src/http_cookie.html#f_has_valid_characters">has_valid_characters</A> (a_name)
+            a_value_has_valid_characters: a_value /= <B>Void</B> <B>and then</B> <A HREF="../src/http_cookie.html#f_has_valid_characters">has_valid_characters</A> (a_value)
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_set_name">set_name</A> (a_name)
+            <A HREF="../src/http_cookie.html#f_set_value">set_value</A> (a_value)
+            <A HREF="../src/http_cookie.html#f_unset_max_age">unset_max_age</A>
+        <B>ensure</B>
+            name_set: <A HREF="../src/http_cookie.html#f_name">name</A> = a_name
+            value_set: <A HREF="../src/http_cookie.html#f_value">value</A> = a_value
+            max_age_set: <A HREF="../src/http_cookie.html#f_max_age">max_age</A> &lt; 0
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_name"><A HREF="../src/http_cookie.html#f_name">name</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> name of the cookie.</FONT>
+
+    <A NAME="f_value"><A HREF="../src/http_cookie.html#f_value">value</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> value of the cookie.</FONT>
+
+    <A NAME="f_expiration"><A HREF="../src/http_cookie.html#f_expiration">expiration</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value of the Expires attribute.</FONT>
+
+    <A NAME="f_path"><A HREF="../src/http_cookie.html#f_path">path</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value of the Path attribute.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Path to which the cookie applies.</FONT>
+
+    <A NAME="f_domain"><A HREF="../src/http_cookie.html#f_domain">domain</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value of the Domain attribute.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Domain to which the cookies apply.</FONT>
+
+    <A NAME="f_secure"><A HREF="../src/http_cookie.html#f_secure">secure</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value of the Secure attribute.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> By default False.</FONT>
+
+    <A NAME="f_http_only"><A HREF="../src/http_cookie.html#f_http_only">http_only</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value of the http_only attribute.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> By default false.</FONT>
+
+    <A NAME="f_max_age"><A HREF="../src/http_cookie.html#f_max_age">max_age</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value of the Max-Age attribute.</FONT>
+
+    <A NAME="f_has_valid_characters"><A HREF="../src/http_cookie.html#f_has_valid_characters">has_valid_characters</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has </FONT><I>a_name</I><FONT COLOR="red"> valid characters for cookies?</FONT>
+        <B>local</B>
+            l_iterator: <A HREF="../elks/string_iteration_cursor.html">STRING_ITERATION_CURSOR</A>
+            l_found: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>create</B> l_iterator.<A HREF="../elks/string_iteration_cursor.html#f_make">make</A> (a_name)
+            <B>Result</B> := <B>True</B>
+            <B>across</B>
+                l_iterator <B>as</B> ic
+            <B>until</B>
+                l_found
+            <B>loop</B>
+                <B>if</B> <B>not</B> <A HREF="../src/http_cookie.html#f_is_valid_character">is_valid_character</A> (ic.<A HREF="../elks/string_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/character_32.html#f_natural_32_code">natural_32_code</A>) <B>then</B>
+                    <B>Result</B> := <B>False</B>
+                    l_found := <B>True</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_valid_rfc1123_date"><A HREF="../src/http_cookie.html#f_is_valid_rfc1123_date">is_valid_rfc1123_date</A> (a_string: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is the date represented by </FONT><I>a_string</I><FONT COLOR="red"> a valid rfc1123 date?</FONT>
+        <B>local</B>
+            d: <A HREF="../src/http_date.html">HTTP_DATE</A>
+        <B>do</B>
+            <B>create</B> d.<A HREF="../src/http_date.html#f_make_from_string">make_from_string</A> (a_string)
+            <B>Result</B> := <B>not</B> d.<A HREF="../src/http_date.html#f_has_error">has_error</A> <B>and then</B> d.<A HREF="../src/http_date.html#f_rfc1123_string">rfc1123_string</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (a_string)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Obsolete query		</FONT>
+
+    <A NAME="f_include_max_age"><A HREF="../src/http_cookie.html#f_include_max_age">include_max_age</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>obsolete</B> "Use `max_age &gt; 0' [2017-05-31]"
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_cookie.html#f_max_age">max_age</A> &gt; 0
+        <B>end</B></A>
+
+    <A NAME="f_include_expires"><A HREF="../src/http_cookie.html#f_include_expires">include_expires</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>obsolete</B> "Use `expires /= Void' [2017-05-31]"
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/http_cookie.html#f_expiration">expiration</A> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Obsolete element change		</FONT>
+
+    <A NAME="f_mark_max_age"><A HREF="../src/http_cookie.html#f_mark_max_age">mark_max_age</A>
+        <B>obsolete</B> "Uset `set_max_age' and `unset_*' features to add or remove the attributes from the response header [2017-05-31]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><I>max_age &gt; 0</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><I>expires to void</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set-Cookie will include only Max-Age attribute and not Expires.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_max_age">max_age</A> := 1
+            <A HREF="../src/http_cookie.html#f_expiration">expiration</A> := <B>Void</B>
+        <B>ensure</B>
+            max_age_true: <A HREF="../src/http_cookie.html#f_include_max_age">include_max_age</A>
+            expire_false: <B>not</B> <A HREF="../src/http_cookie.html#f_include_expires">include_expires</A>
+        <B>end</B></A>
+
+    <A NAME="f_mark_expires"><A HREF="../src/http_cookie.html#f_mark_expires">mark_expires</A>
+        <B>obsolete</B> "Use `set_expiration' and `unset_*' features to add or remove the attribute from the response header [2017-05-31]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><I>mark_age</I><FONT COLOR="red"> to -1.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><I>expiration to a default date</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set-Cookie will include only Expires attribute and not Max_Age.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_max_age">max_age</A> := -1
+            <A HREF="../src/http_cookie.html#f_set_expiration_date">set_expiration_date</A> (<B>create</B> {DATE_TIME}.make_now_utc <B>end</B>)
+        <B>ensure</B>
+            expires_true: <A HREF="../src/http_cookie.html#f_include_expires">include_expires</A>
+            max_age_false: <B>not</B> <A HREF="../src/http_cookie.html#f_include_max_age">include_max_age</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Change Element</FONT>
+
+    <A NAME="f_set_name"><A HREF="../src/http_cookie.html#f_set_name">set_name</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_name">name</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_name</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_name_not_blank: a_name /= <B>Void</B> <B>and then</B> <B>not</B> a_name.<A HREF="../elks/readable_string_general.html#f_is_whitespace">is_whitespace</A>
+            a_name_has_valid_characters: a_name /= <B>Void</B> <B>and then</B> <A HREF="../src/http_cookie.html#f_has_valid_characters">has_valid_characters</A> (a_name)
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_name">name</A> := a_name
+        <B>ensure</B>
+            name_set: <A HREF="../src/http_cookie.html#f_name">name</A> = a_name
+        <B>end</B></A>
+
+    <A NAME="f_set_value"><A HREF="../src/http_cookie.html#f_set_value">set_value</A> (a_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_value">value</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_value</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_value_has_valid_characters: a_value /= <B>Void</B> <B>and then</B> <A HREF="../src/http_cookie.html#f_has_valid_characters">has_valid_characters</A> (a_value)
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_value">value</A> := a_value
+        <B>ensure</B>
+            value_set: <A HREF="../src/http_cookie.html#f_value">value</A> = a_value
+        <B>end</B></A>
+
+    <A NAME="f_set_expiration"><A HREF="../src/http_cookie.html#f_set_expiration">set_expiration</A> (a_date: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_expiration">expiration</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to RFC1123 date string </FONT><I>a_date</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            rfc1133_date: a_date /= <B>Void</B> <B>and then</B> <A HREF="../src/http_cookie.html#f_is_valid_rfc1123_date">is_valid_rfc1123_date</A> (a_date)
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_expiration">expiration</A> := a_date
+        <B>ensure</B>
+            expiration_set: <B>attached</B> <A HREF="../src/http_cookie.html#f_expiration">expiration</A> <B>as</B> l_expiration <B>and then</B> l_expiration.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (a_date)
+        <B>end</B></A>
+
+    <A NAME="f_set_expiration_date"><A HREF="../src/http_cookie.html#f_set_expiration_date">set_expiration_date</A> (a_date: DATE_TIME)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_expiration">expiration</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_date</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_set_expiration">set_expiration</A> (<A HREF="../src/http_cookie.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (a_date))
+        <B>ensure</B>
+            expiration_set: <B>attached</B> <A HREF="../src/http_cookie.html#f_expiration">expiration</A> <B>as</B> l_expiration <B>and then</B> l_expiration.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (<A HREF="../src/http_cookie.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (a_date))
+        <B>end</B></A>
+
+    <A NAME="f_set_expiration_from_max_age"><A HREF="../src/http_cookie.html#f_set_expiration_from_max_age">set_expiration_from_max_age</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_expiration">expiration</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> value from </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_max_age">max_age</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            dt: DATE_TIME
+        <B>do</B>
+            <B>if</B> <A HREF="../src/http_cookie.html#f_max_age">max_age</A> &lt; 0 <B>then</B>
+                <A HREF="../src/http_cookie.html#f_unset_expiration">unset_expiration</A>
+            <B>else</B>
+                <B>if</B> <A HREF="../src/http_cookie.html#f_max_age">max_age</A> = 0 <B>then</B>
+                    <B>create</B> dt.make_from_epoch (0)
+                <B>else</B>
+                    <B>create</B> dt.make_now_utc;
+                    dt.second_add (<A HREF="../src/http_cookie.html#f_max_age">max_age</A>)
+                <B>end</B>
+                <A HREF="../src/http_cookie.html#f_set_expiration_date">set_expiration_date</A> (dt)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_path"><A HREF="../src/http_cookie.html#f_set_path">set_path</A> (a_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_path">path</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_path</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_path">path</A> := a_path
+        <B>ensure</B>
+            path_set: <A HREF="../src/http_cookie.html#f_path">path</A> = a_path
+        <B>end</B></A>
+
+    <A NAME="f_set_domain"><A HREF="../src/http_cookie.html#f_set_domain">set_domain</A> (a_domain: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_domain">domain</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_domain</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note: you should avoid using "localhost" as </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_domain">domain</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> for local cookies</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">       since they are not always handled by browser (for instance Chrome)</FONT>
+        <B>require</B>
+            domain_without_port_info: a_domain /= <B>Void</B> <B>implies</B> <B>not</B> a_domain.<A HREF="../elks/readable_string_8.html#f_has">has</A> (':')
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_domain">domain</A> := a_domain
+        <B>ensure</B>
+            domain_set: <A HREF="../src/http_cookie.html#f_domain">domain</A> = a_domain
+        <B>end</B></A>
+
+    <A NAME="f_set_secure"><A HREF="../src/http_cookie.html#f_set_secure">set_secure</A> (a_secure: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_secure">secure</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_secure</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_secure">secure</A> := a_secure
+        <B>ensure</B>
+            secure_set: <A HREF="../src/http_cookie.html#f_secure">secure</A> = a_secure
+        <B>end</B></A>
+
+    <A NAME="f_set_http_only"><A HREF="../src/http_cookie.html#f_set_http_only">set_http_only</A> (a_http_only: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_http_only">http_only</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_http_only</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_http_only">http_only</A> := a_http_only
+        <B>ensure</B>
+            http_only_set: <A HREF="../src/http_cookie.html#f_http_only">http_only</A> = a_http_only
+        <B>end</B></A>
+
+    <A NAME="f_set_max_age"><A HREF="../src/http_cookie.html#f_set_max_age">set_max_age</A> (a_max_age: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_max_age">max_age</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_max_age</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            valid_max_age: a_max_age &gt;= 0
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_max_age">max_age</A> := a_max_age
+        <B>ensure</B>
+            max_age_set: <A HREF="../src/http_cookie.html#f_max_age">max_age</A> = a_max_age
+        <B>end</B></A>
+
+    <A NAME="f_unset_max_age"><A HREF="../src/http_cookie.html#f_unset_max_age">unset_max_age</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_max_age">max_age</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to -1.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_max_age">max_age</A> := -1
+        <B>ensure</B>
+            max_age_unset: <A HREF="../src/http_cookie.html#f_max_age">max_age</A> = -1
+        <B>end</B></A>
+
+    <A NAME="f_unset_expiration"><A HREF="../src/http_cookie.html#f_unset_expiration">unset_expiration</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/http_cookie.html#f_expiration">expiration</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to Void.</FONT>
+        <B>do</B>
+            <A HREF="../src/http_cookie.html#f_expiration">expiration</A> := <B>Void</B>
+        <B>ensure</B>
+            expiration_void: <A HREF="../src/http_cookie.html#f_expiration">expiration</A> = <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Date Utils</FONT>
+
+    <A NAME="f_date_to_rfc1123_http_date_format"><A HREF="../src/http_cookie.html#f_date_to_rfc1123_http_date_format">date_to_rfc1123_http_date_format</A> (dt: DATE_TIME): <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of </FONT><I>dt</I><FONT COLOR="red"> using the RFC 1123</FONT>
+        <B>local</B>
+            d: <A HREF="../src/http_date.html">HTTP_DATE</A>
+        <B>do</B>
+            <B>create</B> d.<A HREF="../src/http_date.html#f_make_from_date_time">make_from_date_time</A> (dt)
+            <B>Result</B> := d.<A HREF="../src/http_date.html#f_string">string</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output</FONT>
+
+    <A NAME="f_header_line"><A HREF="../src/http_cookie.html#f_header_line">header_line</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of Set-Cookie header line of Current.</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            s := {<A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>}.<A HREF="../src/http_header_names.html#f_header_set_cookie">header_set_cookie</A> + <A HREF="../src/http_cookie.html#f_colon_space">Colon_space</A> + <A HREF="../src/http_cookie.html#f_name">name</A> + "=" + <A HREF="../src/http_cookie.html#f_value">value</A>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_cookie.html#f_domain">domain</A> <B>as</B> l_domain <B>and then</B> <B>not</B> l_domain.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> ("localhost") <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Domain=");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_domain)
+            <B>end</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_cookie.html#f_path">path</A> <B>as</B> l_path <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Path=");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_path)
+            <B>end</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/http_cookie.html#f_expiration">expiration</A> <B>as</B> l_expires <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Expires=");
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (l_expires)
+            <B>end</B>
+            <B>if</B> <A HREF="../src/http_cookie.html#f_max_age">max_age</A> &gt;= 0 <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Max-Age=");
+                s.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> (<A HREF="../src/http_cookie.html#f_max_age">max_age</A>)
+            <B>end</B>
+            <B>if</B> <A HREF="../src/http_cookie.html#f_secure">secure</A> <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; Secure")
+            <B>end</B>
+            <B>if</B> <A HREF="../src/http_cookie.html#f_http_only">http_only</A> <B>then</B>
+                s.<A HREF="../elks/string_8.html#f_append">append</A> ("; HttpOnly")
+            <B>end</B>
+            <B>Result</B> := s
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Constants</FONT>
+
+    <A NAME="f_colon_space"><A HREF="../src/http_cookie.html#f_colon_space">Colon_space</A>: <A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (": ")
+        <B>end</B></A>
+
+    <A NAME="f_is_valid_character"><A HREF="../src/http_cookie.html#f_is_valid_character">is_valid_character</A> (c: <A HREF="../elks/natural_32.html">NATURAL_32</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> RFC6265 that specifies that the following is valid for characters in cookies.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The following character ranges are valid:</FONT><FONT COLOR="red">http://tools.ietf.org/html/rfc6265#section-4.1.1</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> %x21 / %x23-2B / %x2D-3A / %x3C-5B / %x5D-7E</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 0x21: !</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 0x23-2B: #$%&#38;'()*+</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 0x2D-3A: -./0123456789:</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 0x3C-5B: &lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 0x5D-7E: ]^_`abcdefghijklmnopqrstuvwxyz{|}~</FONT>
+        <B>note</B>
+            eis: "name=valid-characters", "src=<a href="http://tools.ietf.org/html/rfc6265#section-4.1.1">http://tools.ietf.org/html/rfc6265#section-4.1.1</a>", "protocol=uri"
+        <B>do</B>
+            <B>Result</B> := <B>True</B>
+            <B>inspect</B> c
+            <B>when</B> 33 <B>then</B>
+            <B>when</B> 35..43 <B>then</B>
+            <B>when</B> 45..58 <B>then</B>
+            <B>when</B> 60..91 <B>then</B>
+            <B>when</B> 93..126 <B>then</B>
+            <B>else</B>
+                <B>Result</B> := <B>False</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_cookie.html">HTTP_COOKIE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_cookie_chart.html">Chart</A></TD><TD><A HREF="http_cookie_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

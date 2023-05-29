@@ -1,0 +1,52 @@
+<HTML><HEAD>
+<meta name="description" content="{WSF_MULTIPLE_STRING} represents a sequence of name=value parameters"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_multiple_string Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_multiple_string_links.html">Relations</A></TD><TD><A HREF="wsf_multiple_string.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../src/wsf_multiple_string_chart.html">WSF_MULTIPLE_STRING</A>
+
+<B>General</B>
+    cluster: <A HREF="../src/index.html">src</A>
+    description: "{<A HREF="../src/wsf_multiple_string_chart.html">WSF_MULTIPLE_STRING</A>} represents a sequence of name=value parameters"
+    create: <A HREF="../src/wsf_multiple_string.html#f_make_with_value">make_with_value</A>, <A HREF="../src/wsf_multiple_string.html#f_make_with_array">make_with_array</A>, <A HREF="../src/wsf_multiple_string.html#f_make_with_string">make_with_string</A>
+
+<B>Ancestors</B>
+    <A HREF="../elks/iterable_chart.html">ITERABLE</A>* [G]
+    <A HREF="../src/wsf_value_chart.html">WSF_VALUE</A>*
+
+<B>Queries</B>
+    <A HREF="../src/wsf_multiple_string.html#f_as_string">as_string</A>: <A HREF="../src/wsf_string_chart.html">WSF_STRING</A>
+    <A HREF="../src/wsf_value.html#f_debug_output">debug_output</A>: <A HREF="../elks/string_32_chart.html">STRING_32</A><FONT COLOR="red"> -- (from WSF_VALUE)</FONT>
+    <A HREF="../src/wsf_multiple_string.html#f_first_value">first_value</A>: <A HREF="../src/wsf_string_chart.html">WSF_STRING</A>
+    <A HREF="../src/wsf_value.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (a_other: <A HREF="../elks/readable_string_general_chart.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from WSF_VALUE)</FONT>
+    <A HREF="../src/wsf_multiple_string.html#f_is_empty">is_empty</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_multiple_string.html#f_is_string">is_string</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_value.html#f_key">key</A>: [<B>like</B> <A HREF="../src/wsf_multiple_string.html#f_name">name</A>] <A HREF="../elks/readable_string_32_chart.html">READABLE_STRING_32</A><FONT COLOR="red"> -- (from WSF_VALUE)</FONT>
+    <A HREF="../src/wsf_multiple_string.html#f_name">name</A>: <A HREF="../elks/readable_string_32_chart.html">READABLE_STRING_32</A>
+    <A HREF="../src/wsf_multiple_string.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/iteration_cursor_chart.html">ITERATION_CURSOR</A> [<A HREF="../src/wsf_string_chart.html">WSF_STRING</A>]
+    <A HREF="../src/wsf_value.html#f_same_string">same_string</A> (a_other: <A HREF="../elks/readable_string_general_chart.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean_chart.html">BOOLEAN</A><FONT COLOR="red"> -- (from WSF_VALUE)</FONT>
+    <A HREF="../src/wsf_multiple_string.html#f_string_representation">string_representation</A>: <A HREF="../elks/string_32_chart.html">STRING_32</A>
+    <A HREF="../src/wsf_multiple_string.html#f_url_encoded_name">url_encoded_name</A>: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Url_encoder</A>: <A HREF="../src/wsf_percent_encoder_chart.html">WSF_PERCENT_ENCODER</A><FONT COLOR="red"> -- (from SHARED_WSF_PERCENT_ENCODER)</FONT>
+    <A HREF="../src/wsf_multiple_string.html#f_values">values</A>: <A HREF="../elks/list_chart.html">LIST</A> [<A HREF="../src/wsf_string_chart.html">WSF_STRING</A>]
+
+<B>Commands</B>
+    <A HREF="../src/wsf_multiple_string.html#f_add_string_value">add_string_value</A> (s: <A HREF="../src/wsf_string_chart.html">WSF_STRING</A>)
+    <A HREF="../src/wsf_multiple_string.html#f_add_value">add_value</A> (a_value: <A HREF="../src/wsf_value_chart.html">WSF_VALUE</A>)
+    <A HREF="../src/wsf_multiple_string.html#f_change_name">change_name</A> (a_name: [<B>like</B> <A HREF="../src/wsf_multiple_string.html#f_name">name</A>] <A HREF="../elks/readable_string_32_chart.html">READABLE_STRING_32</A>)
+    <A HREF="../src/wsf_multiple_string.html#f_process">process</A> (vis: <A HREF="../src/wsf_value_visitor_chart.html">WSF_VALUE_VISITOR</A>)
+
+<B>Constraints</B>
+    string values not empty
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_multiple_string_links.html">Relations</A></TD><TD><A HREF="wsf_multiple_string.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

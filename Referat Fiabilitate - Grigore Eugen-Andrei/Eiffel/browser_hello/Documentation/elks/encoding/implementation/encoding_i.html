@@ -1,0 +1,141 @@
+<HTML><HEAD>
+<meta name="description" content="Interfaces of encoding conversion."/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="library" content="Base: Library of reusable components for Eiffel."/>
+<meta name="copyright" content="Copyright (c) 1984-2021, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>encoding_i Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../class_list.html">Classes</A></TD><TD><A HREF="../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="encoding_i_chart.html">Chart</A></TD><TD><A HREF="encoding_i_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Interfaces of encoding conversion."
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2021-02-22 14:30:58 +0000 (Mon, 22 Feb 2021) $"
+    revision: "$Revision: 105200 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../../../elks/encoding/implementation/encoding_i.html">ENCODING_I</A>
+
+<B>inherit</B> {NONE}
+    <A HREF="../../../elks/encoding/encoding_helper.html">ENCODING_HELPER</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+<B>feature</B> {<A HREF="../../../elks/encoding/encoding.html">ENCODING</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> String encoding convertion</FONT>
+
+    <A NAME="f_convert_to"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_convert_to">convert_to</A> (a_from_code_page: <A HREF="../../../elks/readable_string_8.html">READABLE_STRING_8</A>; a_from_string: <A HREF="../../../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_to_code_page: <A HREF="../../../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Convert </FONT><I>a_from_string</I><FONT COLOR="red"> of </FONT><I>a_from_code_page</I><FONT COLOR="red"> to a string of </FONT><I>a_to_code_page</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_from_code_page_valid: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_is_code_page_valid">is_code_page_valid</A> (a_from_code_page)
+            a_to_code_page_valid: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_is_code_page_valid">is_code_page_valid</A> (a_to_code_page)
+            code_page_convertible: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_is_code_page_convertible">is_code_page_convertible</A> (a_from_code_page, a_to_code_page)
+            a_from_string_not_void: a_from_string /= <B>Void</B>
+        <B>deferred</B>
+        <B>ensure</B>
+            success_implies_not_void: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> <B>implies</B> <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_stream">last_converted_stream</A> /= <B>Void</B>
+            success_implies_not_void: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> <B>implies</B> <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../../../elks/encoding/encoding.html">ENCODING</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Reset</FONT>
+
+    <A NAME="f_reset"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_reset">reset</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Reset</FONT>
+        <B>do</B>
+            <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> := <B>Void</B>
+            <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A> := <B>False</B>
+            <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A> := <B>False</B>
+        <B>ensure</B>
+            last_converted_string_reset: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> = <B>Void</B>
+            last_conversion_successful_reset: <B>not</B> <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../../../elks/encoding/encoding.html">ENCODING</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_last_converted_stream"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_stream">last_converted_stream</A>: <A HREF="../../../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Stream prepresentation of last converted string.</FONT>
+        <B>require</B>
+            last_conversion_successful: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A>
+        <B>do</B>
+            <B>check</B>
+                from_precondition: <B>attached</B> <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> <B>as</B> l_last
+            <B>then</B>
+                <B>if</B> <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A> <B>then</B>
+                    <B>Result</B> := <A HREF="../../../elks/encoding/encoding_helper.html#f_string_16_to_stream">string_16_to_stream</A> (l_last.<A HREF="../../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                <B>else</B>
+                    <B>Result</B> := <A HREF="../../../elks/encoding/encoding_helper.html#f_string_general_to_stream">string_general_to_stream</A> (l_last)
+                <B>end</B>
+            <B>end</B>
+        <B>ensure</B>
+            last_converted_stream_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_last_converted_string_8"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string_8">last_converted_string_8</A>: <A HREF="../../../elks/string_8.html">STRING_8</A>
+        <B>require</B>
+            last_conversion_successful: <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A>
+            not_wide: <B>not</B> <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A>
+        <B>do</B>
+            <B>check</B>
+                <B>attached</B> <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A> <B>as</B> l_string
+            <B>then</B>
+                <B>Result</B> := <A HREF="../../../elks/encoding/encoding_helper.html#f_string_general_to_stream">string_general_to_stream</A> (l_string)
+            <B>end</B>
+        <B>ensure</B>
+            last_converted_stream_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_last_converted_string"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_converted_string">last_converted_string</A>: <B>detachable</B> <A HREF="../../../elks/readable_string_general.html">READABLE_STRING_GENERAL</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Last converted string.</FONT>
+    
+<B>feature</B> {<A HREF="../../../elks/encoding/encoding.html">ENCODING</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_code_page_valid"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_is_code_page_valid">is_code_page_valid</A> (a_code_page: <A HREF="../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_code_page</I><FONT COLOR="red"> valid?</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_code_page_convertable"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_is_code_page_convertable">is_code_page_convertable</A> (a_from_code_page, a_to_code_page: <A HREF="../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../elks/boolean.html">BOOLEAN</A>
+        <B>obsolete</B> "Use is_code_page_convertible [2020-04-22]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_from_code_page</I><FONT COLOR="red"> convertible to </FONT><I>a_to_code_page</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../../../elks/encoding/implementation/encoding_i.html#f_is_code_page_convertible">is_code_page_convertible</A> (a_from_code_page, a_to_code_page)
+        <B>end</B></A>
+
+    <A NAME="f_is_code_page_convertible"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_is_code_page_convertible">is_code_page_convertible</A> (a_from_code_page, a_to_code_page: <A HREF="../../../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_from_code_page</I><FONT COLOR="red"> convertible to </FONT><I>a_to_code_page</I><FONT COLOR="red">.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_last_conversion_lost_data"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_lost_data">last_conversion_lost_data</A>: <A HREF="../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has last conversion between two encodings lost data?</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_last_conversion_successful"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_conversion_successful">last_conversion_successful</A>: <A HREF="../../../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Was last conversion successful?</FONT>
+
+    <A NAME="f_last_was_wide_string"><A HREF="../../../elks/encoding/implementation/encoding_i.html#f_last_was_wide_string">last_was_wide_string</A>: <A HREF="../../../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Last conversion result was wide string?</FONT>
+    
+<B>note</B>
+    library: "Base: Library of reusable components for Eiffel."
+    copyright: "Copyright (c) 1984-2021, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../../../elks/encoding/implementation/encoding_i.html">ENCODING_I</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../class_list.html">Classes</A></TD><TD><A HREF="../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="encoding_i_chart.html">Chart</A></TD><TD><A HREF="encoding_i_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

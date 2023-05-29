@@ -1,0 +1,565 @@
+<HTML><HEAD>
+<meta name="description" content="Object that is use in relation with WSF_ROUTER, to precise which request methods is accepted. For convenience, `make_from_iterable' is available, so that you can use <<GET, POST>> for instance but remember manifest string are evil ...  Since in HTTP you can use your own custom request method, this is not possible to catch any typo  ( for instance if you write POST instead of P0ST this is hard to find the error,     but in one case it uses upper o and in the other case this is zero 0  )     The recommanded way to use is for instance     create {WSF_REQUEST_METHODS}.make_get_post     create methods; methods.enable_get; methods.enable_post  This sounds heavy, but this is much safer.   ( note: in addition internally this first checks using reference comparison   and then compare string value, so it brings optimization for accepted request methods. )"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2013, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_request_methods Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_request_methods_chart.html">Chart</A></TD><TD><A HREF="wsf_request_methods_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Object that is use in relation with WSF_ROUTER, to precise which request methods is accepted.
+        For convenience, `<A HREF="../router/wsf_request_methods.html#f_make_from_iterable">make_from_iterable</A>` is available, so that you can use &lt;&lt;"GET", "POST"&gt;&gt; for instance
+        but remember manifest string are evil ... 
+        Since in HTTP you can use your own custom request method, this is not possible to catch any typo
+         ( for instance if you write "POST" instead of "P0ST" this is hard to find the error, 
+           but in one case it uses upper "o" and in the other case this is zero "0"
+         )
+           
+        The recommanded way to use is for instance
+            create {<A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>}.make_get_post
+            create methods; methods.enable_get; methods.enable_post
+        
+        This sounds heavy, but this is much safer. 
+        
+        ( note: in addition internally this first checks using reference comparison
+          and then compare string value, so it brings optimization for accepted request methods.
+        )
+    ]"
+    date: "$Date: 2013-05-20 13:34:55 +0000 (Mon, 20 May 2013) $"
+    revision: "$Revision: 92549 $"
+
+<B>class</B> 
+    <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+
+<B>inherit</B>
+    <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+        <B>redefine</B>
+            <A HREF="../router/wsf_request_methods.html#f_default_create">default_create</A>
+        <B>end</B>
+
+    <A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>
+        <B>redefine</B>
+            <A HREF="../router/wsf_request_methods.html#f_default_create">default_create</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../router/wsf_request_methods.html#f_default_create">default_create</A>,
+    <A HREF="../router/wsf_request_methods.html#f_make">make</A>,
+    <A HREF="../router/wsf_request_methods.html#f_make_from_iterable">make_from_iterable</A>,
+    <A HREF="../router/wsf_request_methods.html#f_make_from_string">make_from_string</A>
+
+<B>convert</B>
+    <A HREF="../router/wsf_request_methods.html#f_to_array">to_array</A>: {<A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]},
+    <A HREF="../router/wsf_request_methods.html#f_make_from_iterable">make_from_iterable</A> ({<A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>],
+        <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/string_8.html">STRING_8</A>],
+        <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>],
+        <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/string_8.html">STRING_8</A>]}),
+    <A HREF="../router/wsf_request_methods.html#f_make_from_string">make_from_string</A> ({<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>,
+        <A HREF="../elks/string_8.html">STRING_8</A>})
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_default_create"><A HREF="../router/wsf_request_methods.html#f_default_create">default_create</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Process instances of classes with no creation clause.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> (Default: do nothing.)</FONT>
+        <B>do</B>
+            <B>Precursor</B>
+            <A HREF="../router/wsf_request_methods.html#f_make">make</A> (1)
+        <B>end</B></A>
+
+    <A NAME="f_make"><A HREF="../router/wsf_request_methods.html#f_make">make</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize with capacity for </FONT><I>n</I><FONT COLOR="red"> methods.</FONT>
+        <B>require</B>
+            valid_number_of_items: n &gt;= 0
+        <B>do</B>
+            <B>create</B> <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_make">make</A> (n)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_iterable"><A HREF="../router/wsf_request_methods.html#f_make_from_iterable">make_from_iterable</A> (v: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize for all methods named by </FONT><I>v</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            v_all_methods_attached: v /= <B>Void</B> <B>and then</B> <B>across</B>
+                    v <B>as</B> c
+                <B>all</B>
+                    c.<A HREF="../elks/iteration_cursor.html#f_item">item</A> /= <B>Void</B>
+                <B>end</B>
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_make">make</A> (1)
+            <A HREF="../router/wsf_request_methods.html#f_add_methods">add_methods</A> (v)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_string"><A HREF="../router/wsf_request_methods.html#f_make_from_string">make_from_string</A> (v: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize from comma-separated methods named in </FONT><I>v</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            v_attached: v /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_make_from_iterable">make_from_iterable</A> (v.<A HREF="../elks/readable_string_general.html#f_split">split</A> (','.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>))
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_locked"><A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current locked? And then can not be modified?</FONT>
+
+    <A NAME="f_is_empty"><A HREF="../router/wsf_request_methods.html#f_is_empty">is_empty</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_count">count</A> = 0
+        <B>end</B></A>
+
+    <A NAME="f_has"><A HREF="../router/wsf_request_methods.html#f_has">has</A> (a_method: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has </FONT><I>a_method</I><FONT COLOR="red"> enabled?</FONT>
+        <B>require</B>
+            a_method_attached: a_method /= <B>Void</B>
+            a_method_is_uppercase: a_method.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (a_method.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>do</B>
+            <B>Result</B> := <B>across</B>
+                <A HREF="../router/wsf_request_methods.html#f_methods">methods</A> <B>as</B> c
+            <B>some</B>
+                c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A> = a_method
+            <B>end</B>
+            <B>if</B> <B>not</B> <B>Result</B> <B>then</B>
+                <B>Result</B> := <B>across</B>
+                    <A HREF="../router/wsf_request_methods.html#f_methods">methods</A> <B>as</B> c
+                <B>some</B>
+                    c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> (a_method)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_has_some_of"><A HREF="../router/wsf_request_methods.html#f_has_some_of">has_some_of</A> (a_methods: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Have any methods from </FONT><I>a_methods</I><FONT COLOR="red"> been enabled?</FONT>
+        <B>require</B>
+            a_methods_attached: a_methods /= <B>Void</B>
+        <B>do</B>
+            <B>Result</B> := <B>across</B>
+                a_methods <B>as</B> c
+            <B>some</B>
+                <A HREF="../router/wsf_request_methods.html#f_has">has</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_has_all_of"><A HREF="../router/wsf_request_methods.html#f_has_all_of">has_all_of</A> (a_methods: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Have all methods from </FONT><I>a_methods</I><FONT COLOR="red"> been enabled?</FONT>
+        <B>require</B>
+            a_methods_attached: a_methods /= <B>Void</B>
+        <B>do</B>
+            <B>Result</B> := <B>across</B>
+                a_methods <B>as</B> c
+            <B>all</B>
+                <A HREF="../router/wsf_request_methods.html#f_has">has</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_has_method_get"><A HREF="../router/wsf_request_methods.html#f_has_method_get">has_method_get</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method GET been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_post"><A HREF="../router/wsf_request_methods.html#f_has_method_post">has_method_post</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method POST been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_put"><A HREF="../router/wsf_request_methods.html#f_has_method_put">has_method_put</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method PUT been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_delete"><A HREF="../router/wsf_request_methods.html#f_has_method_delete">has_method_delete</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method DELETE been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_options"><A HREF="../router/wsf_request_methods.html#f_has_method_options">has_method_options</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method OPTIONS been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_head"><A HREF="../router/wsf_request_methods.html#f_has_method_head">has_method_head</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method HEAD been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_trace"><A HREF="../router/wsf_request_methods.html#f_has_method_trace">has_method_trace</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method TRACE been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_connect"><A HREF="../router/wsf_request_methods.html#f_has_method_connect">has_method_connect</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method CONNECT been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>)
+        <B>end</B></A>
+
+    <A NAME="f_has_method_patch"><A HREF="../router/wsf_request_methods.html#f_has_method_patch">has_method_patch</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has method PATCH been enabled?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_new_cursor"><A HREF="../router/wsf_request_methods.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fresh cursor associated with current structure</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_new_cursor">new_cursor</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status change</FONT>
+
+    <A NAME="f_lock"><A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Lock current and prevent any change in methods</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Once it is locked, it is impossible to unlock.</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A> := <B>True</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Basic operations</FONT>
+
+    <A NAME="f_plus"><A HREF="../router/wsf_request_methods.html#f_plus">plus</A> <B>alias</B> "+" (a_other: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Merge Current and a_other into Result</FONT>
+        <B>require</B>
+            a_other_not_void: a_other /= <B>Void</B>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_make_from_iterable">make_from_iterable</A> (<B>Current</B>);
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_add_methods">add_methods</A> (a_other)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_enable_get"><A HREF="../router/wsf_request_methods.html#f_enable_get">enable_get</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            get_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>)
+        <B>ensure</B>
+            get_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_get"><A HREF="../router/wsf_request_methods.html#f_disable_get">disable_get</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            get_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>)
+        <B>ensure</B>
+            get_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_post"><A HREF="../router/wsf_request_methods.html#f_enable_post">enable_post</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            post_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>)
+        <B>ensure</B>
+            post_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_post"><A HREF="../router/wsf_request_methods.html#f_disable_post">disable_post</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            post_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>)
+        <B>ensure</B>
+            post_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_put"><A HREF="../router/wsf_request_methods.html#f_enable_put">enable_put</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            put_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>)
+        <B>ensure</B>
+            put_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_put"><A HREF="../router/wsf_request_methods.html#f_disable_put">disable_put</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            put_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>)
+        <B>ensure</B>
+            put_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_delete"><A HREF="../router/wsf_request_methods.html#f_enable_delete">enable_delete</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            delete_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>)
+        <B>ensure</B>
+            delete_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_delete"><A HREF="../router/wsf_request_methods.html#f_disable_delete">disable_delete</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            delete_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>)
+        <B>ensure</B>
+            delete_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_options"><A HREF="../router/wsf_request_methods.html#f_enable_options">enable_options</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            options_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>)
+        <B>ensure</B>
+            options_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_options"><A HREF="../router/wsf_request_methods.html#f_disable_options">disable_options</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            options_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>)
+        <B>ensure</B>
+            options_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_head"><A HREF="../router/wsf_request_methods.html#f_enable_head">enable_head</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            head_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>)
+        <B>ensure</B>
+            head_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_head"><A HREF="../router/wsf_request_methods.html#f_disable_head">disable_head</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            head_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>)
+        <B>ensure</B>
+            head_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_trace"><A HREF="../router/wsf_request_methods.html#f_enable_trace">enable_trace</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            trace_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>)
+        <B>ensure</B>
+            trace_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_trace"><A HREF="../router/wsf_request_methods.html#f_disable_trace">disable_trace</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            trace_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>)
+        <B>ensure</B>
+            trace_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_connect"><A HREF="../router/wsf_request_methods.html#f_enable_connect">enable_connect</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            connect_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>)
+        <B>ensure</B>
+            connect_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_connect"><A HREF="../router/wsf_request_methods.html#f_disable_connect">disable_connect</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            connect_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>)
+        <B>ensure</B>
+            connect_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_patch"><A HREF="../router/wsf_request_methods.html#f_enable_patch">enable_patch</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            patch_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>)
+        <B>ensure</B>
+            patch_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_patch"><A HREF="../router/wsf_request_methods.html#f_disable_patch">disable_patch</A>
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            patch_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>)
+        <B>ensure</B>
+            patch_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>)
+        <B>end</B></A>
+
+    <A NAME="f_enable_custom"><A HREF="../router/wsf_request_methods.html#f_enable_custom">enable_custom</A> (m: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            not_blank: <B>not</B> <B>across</B>
+                    m <B>as</B> mc
+                <B>some</B>
+                    mc.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/character_8_ref.html#f_is_space">is_space</A>
+                <B>end</B>
+            custom_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>ensure</B>
+            custom_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>end</B></A>
+
+    <A NAME="f_disable_custom"><A HREF="../router/wsf_request_methods.html#f_disable_custom">disable_custom</A> (m: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+        <B>require</B>
+            is_not_locked: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A>
+            m_attached: m /= <B>Void</B>
+            not_blank: <B>not</B> <B>across</B>
+                    m <B>as</B> mc
+                <B>some</B>
+                    mc.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/character_8_ref.html#f_is_space">is_space</A>
+                <B>end</B>
+            custom_enabled: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>ensure</B>
+            custom_disabled: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_methods"><A HREF="../router/wsf_request_methods.html#f_methods">methods</A>: <A HREF="../elks/arrayed_list.html">ARRAYED_LIST</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]</A>
+
+    <A NAME="f_to_array"><A HREF="../router/wsf_request_methods.html#f_to_array">to_array</A>: <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_to_array">to_array</A>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_add_methods"><A HREF="../router/wsf_request_methods.html#f_add_methods">add_methods</A> (lst: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Enable methods from </FONT><I>lst</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            lst_all_attached: lst /= <B>Void</B> <B>and then</B> <B>across</B>
+                    lst <B>as</B> c
+                <B>all</B>
+                    c.<A HREF="../elks/iteration_cursor.html#f_item">item</A> /= <B>Void</B>
+                <B>end</B>
+        <B>do</B>
+            <B>if</B> <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A> <B>then</B>
+                <B>across</B>
+                    lst <B>as</B> c
+                <B>loop</B>
+                    <B>if</B> <B>not</B> c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>and</B> <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>) <B>then</B>
+                        <A HREF="../router/wsf_request_methods.html#f_add_method_using_constant">add_method_using_constant</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation		</FONT>
+
+    <A NAME="f_add_method_using_constant"><A HREF="../router/wsf_request_methods.html#f_add_method_using_constant">add_method_using_constant</A> (v: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add method </FONT><I>v</I><FONT COLOR="red"> using method_* constant.</FONT>
+        <B>require</B>
+            v_attached: v /= <B>Void</B>
+            v_not_empty: <B>not</B> v.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+            new_method: <B>not</B> <A HREF="../router/wsf_request_methods.html#f_has">has</A> (v)
+        <B>do</B>
+            <B>if</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_get">enable_get</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_post">enable_post</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_put">enable_put</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_delete">enable_delete</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_head">enable_head</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_options">enable_options</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_trace">enable_trace</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_connect">enable_connect</A>
+            <B>elseif</B> v.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>) <B>then</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_patch">enable_patch</A>
+            <B>else</B>
+                <A HREF="../router/wsf_request_methods.html#f_enable_custom">enable_custom</A> (v)
+            <B>end</B>
+        <B>ensure</B>
+            method_set: <A HREF="../router/wsf_request_methods.html#f_has">has</A> (v.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>end</B></A>
+
+    <A NAME="f_prune_method"><A HREF="../router/wsf_request_methods.html#f_prune_method">prune_method</A> (v: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Remove method named </FONT><I>v</I><FONT COLOR="red"> from </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Does nothing if </FONT><I>Current</I><FONT COLOR="red"> </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            v_attached: v /= <B>Void</B>
+            is_upper_case: v.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (v.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>local</B>
+            m: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>if</B> <B>not</B> <A HREF="../router/wsf_request_methods.html#f_is_locked">is_locked</A> <B>then</B>
+                <B>from</B>
+                    <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_start">start</A>
+                <B>until</B>
+                    <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/list.html#f_after">after</A>
+                <B>loop</B>
+                    m := <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_item">item</A>
+                    <B>if</B> m = v <B>or else</B> m.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (v) <B>then</B>
+                        <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_remove">remove</A>
+                    <B>else</B>
+                        <A HREF="../router/wsf_request_methods.html#f_methods">methods</A>.<A HREF="../elks/arrayed_list.html#f_forth">forth</A>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>invariant</B>
+    methods_attached: <A HREF="../router/wsf_request_methods.html#f_methods">methods</A> /= <B>Void</B>
+    methods_are_uppercase: <B>across</B>
+            <A HREF="../router/wsf_request_methods.html#f_methods">methods</A> <B>as</B> c
+        <B>all</B>
+            c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>)
+        <B>end</B>
+
+<B>note</B>
+    copyright: "2011-2013, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_request_methods_chart.html">Chart</A></TD><TD><A HREF="wsf_request_methods_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

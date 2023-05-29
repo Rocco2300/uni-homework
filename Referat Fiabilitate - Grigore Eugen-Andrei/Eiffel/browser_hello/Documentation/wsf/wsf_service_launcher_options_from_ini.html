@@ -1,0 +1,98 @@
+<HTML><HEAD>
+<meta name="description" content="Options used by WSF_SERVICE_LAUNCHER Built from ini configuration file"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2013, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_service_launcher_options_from_ini Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_service_launcher_options_from_ini_chart.html">Chart</A></TD><TD><A HREF="wsf_service_launcher_options_from_ini_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Options used by WSF_SERVICE_LAUNCHER
+        Built from ini configuration file
+    ]"
+
+<B>class</B> 
+    <A HREF="../src/wsf_service_launcher_options_from_ini.html">WSF_SERVICE_LAUNCHER_OPTIONS_FROM_INI</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_service_launcher_options.html">WSF_SERVICE_LAUNCHER_OPTIONS</A>
+
+<B>create</B> 
+    <A HREF="../src/wsf_service_launcher_options_from_ini.html#f_make_from_file">make_from_file</A>,
+    <A HREF="../src/wsf_service_launcher_options_from_ini.html#f_make_from_file_and_defaults">make_from_file_and_defaults</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_from_file"><A HREF="../src/wsf_service_launcher_options_from_ini.html#f_make_from_file">make_from_file</A> (a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_make">make</A>
+            <A HREF="../src/wsf_service_launcher_options_from_ini.html#f_import">import</A> (a_filename)
+        <B>end</B></A>
+
+    <A NAME="f_make_from_file_and_defaults"><A HREF="../src/wsf_service_launcher_options_from_ini.html#f_make_from_file_and_defaults">make_from_file_and_defaults</A> (a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; dft: <B>detachable</B> <A HREF="../src/wsf_service_launcher_options.html">WSF_SERVICE_LAUNCHER_OPTIONS</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_service_launcher_options.html#f_make">make</A>
+            <B>if</B> dft /= <B>Void</B> <B>then</B>
+                <A HREF="../src/wsf_service_launcher_options.html#f_append_options">append_options</A> (dft)
+            <B>end</B>
+            <A HREF="../src/wsf_service_launcher_options_from_ini.html#f_import">import</A> (a_filename)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_import"><A HREF="../src/wsf_service_launcher_options_from_ini.html#f_import">import</A> (a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Import ini file content</FONT>
+        <B>local</B>
+            f: <A HREF="../elks/plain_text_file.html">PLAIN_TEXT_FILE</A>
+            l, v: <A HREF="../elks/string_8.html">STRING_8</A>
+            p: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>create</B> f.<A HREF="../elks/plain_text_file.html#f_make_with_name">make_with_name</A> (a_filename)
+            <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>and</B> f.<A HREF="../elks/file.html#f_is_readable">is_readable</A> <B>then</B>
+                f.<A HREF="../elks/file.html#f_open_read">open_read</A>
+                <B>from</B>
+                    f.<A HREF="../elks/file.html#f_read_line">read_line</A>
+                <B>until</B>
+                    f.<A HREF="../elks/linear.html#f_exhausted">exhausted</A>
+                <B>loop</B>
+                    l := f.<A HREF="../elks/io_medium.html#f_last_string">last_string</A>;
+                    l.<A HREF="../elks/string_8.html#f_left_adjust">left_adjust</A>
+                    <B>if</B> <B>not</B> l.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>and then</B> l [1] /= '#' <B>then</B>
+                        p := l.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('=', 1)
+                        <B>if</B> p &gt; 1 <B>then</B>
+                            v := l.<A HREF="../elks/string_8.html#f_substring">substring</A> (p + 1, l.<A HREF="../elks/readable_string_8.html#f_count">count</A>);
+                            l.<A HREF="../elks/string_8.html#f_keep_head">keep_head</A> (p - 1);
+                            v.<A HREF="../elks/string_8.html#f_left_adjust">left_adjust</A>;
+                            v.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>;
+                            l.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>
+                            <A HREF="../src/wsf_service_launcher_options.html#f_set_option">set_option</A> (l.<A HREF="../elks/string_8.html#f_as_lower">as_lower</A>, v)
+                        <B>end</B>
+                    <B>end</B>;
+                    f.<A HREF="../elks/file.html#f_read_line">read_line</A>
+                <B>end</B>;
+                f.<A HREF="../elks/file.html#f_close">close</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2013, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_service_launcher_options_from_ini.html">WSF_SERVICE_LAUNCHER_OPTIONS_FROM_INI</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_service_launcher_options_from_ini_chart.html">Chart</A></TD><TD><A HREF="wsf_service_launcher_options_from_ini_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,180 @@
+<HTML><HEAD>
+<meta name="description" content="Status code constants pertaining to the HTTP protocol See http://en.wikipedia.org/wiki/List_of_HTTP_status_codes"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2012, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_status_code_messages Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_status_code_messages_chart.html">Chart</A></TD><TD><A HREF="http_status_code_messages_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Status code constants pertaining to the HTTP protocol
+        See <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes">http://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a>
+    ]"
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2013-05-20 13:34:55 +0000 (Mon, 20 May 2013) $"
+    revision: "$Revision: 92549 $"
+
+<B>class</B> 
+    <A HREF="../src/http_status_code_messages.html">HTTP_STATUS_CODE_MESSAGES</A>
+
+<B>inherit</B>
+    <A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_valid_http_status_code"><A HREF="../src/http_status_code_messages.html#f_is_valid_http_status_code">is_valid_http_status_code</A> (v: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is the given value a valid http status code?</FONT>
+        <B>do</B>
+            <B>Result</B> := v &gt;= <A HREF="../src/http_status_code.html#f_continue">Continue</A> <B>and</B> v &lt;= <A HREF="../src/http_status_code.html#f_user_access_denied">User_access_denied</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status messages</FONT>
+
+    <A NAME="f_http_status_code_message"><A HREF="../src/http_status_code_messages.html#f_http_status_code_message">http_status_code_message</A> (a_code: <A HREF="../elks/integer_32.html">INTEGER_32</A>): <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header message related to HTTP status code </FONT><I>a_code</I>
+        <B>do</B>
+            <B>inspect</B> a_code
+            <B>when</B> <A HREF="../src/http_status_code.html#f_continue">Continue</A> <B>then</B>
+                <B>Result</B> := "Continue"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_switching_protocols">Switching_protocols</A> <B>then</B>
+                <B>Result</B> := "Switching Protocols"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_processing">Processing</A> <B>then</B>
+                <B>Result</B> := "Processing"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_ok">Ok</A> <B>then</B>
+                <B>Result</B> := "OK"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_created">Created</A> <B>then</B>
+                <B>Result</B> := "Created"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_accepted">Accepted</A> <B>then</B>
+                <B>Result</B> := "Accepted"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_nonauthoritative_info">Nonauthoritative_info</A> <B>then</B>
+                <B>Result</B> := "Non-Authoritative Information"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_no_content">No_content</A> <B>then</B>
+                <B>Result</B> := "No Content"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_reset_content">Reset_content</A> <B>then</B>
+                <B>Result</B> := "Reset Content"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_partial_content">Partial_content</A> <B>then</B>
+                <B>Result</B> := "Partial Content"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_multistatus">Multistatus</A> <B>then</B>
+                <B>Result</B> := "Multi-Status"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_multiple_choices">Multiple_choices</A> <B>then</B>
+                <B>Result</B> := "Multiple Choices"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_moved_permanently">Moved_permanently</A> <B>then</B>
+                <B>Result</B> := "Moved Permanently"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_found">Found</A> <B>then</B>
+                <B>Result</B> := "Found"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_see_other">See_other</A> <B>then</B>
+                <B>Result</B> := "See Other"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_not_modified">Not_modified</A> <B>then</B>
+                <B>Result</B> := "Not Modified"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_use_proxy">Use_proxy</A> <B>then</B>
+                <B>Result</B> := "Use Proxy"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_switch_proxy">Switch_proxy</A> <B>then</B>
+                <B>Result</B> := "Switch Proxy"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_temp_redirect">Temp_redirect</A> <B>then</B>
+                <B>Result</B> := "Temporary Redirect"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_bad_request">Bad_request</A> <B>then</B>
+                <B>Result</B> := "Bad Request"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_unauthorized">Unauthorized</A> <B>then</B>
+                <B>Result</B> := "Unauthorized"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_payment_required">Payment_required</A> <B>then</B>
+                <B>Result</B> := "Payment Required"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_forbidden">Forbidden</A> <B>then</B>
+                <B>Result</B> := "Forbidden"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_not_found">Not_found</A> <B>then</B>
+                <B>Result</B> := "Not Found"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_method_not_allowed">Method_not_allowed</A> <B>then</B>
+                <B>Result</B> := "Method Not Allowed"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_not_acceptable">Not_acceptable</A> <B>then</B>
+                <B>Result</B> := "Not Acceptable"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_proxy_auth_required">Proxy_auth_required</A> <B>then</B>
+                <B>Result</B> := "Proxy Authentication Required"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_request_timeout">Request_timeout</A> <B>then</B>
+                <B>Result</B> := "Request Timeout"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_conflict">Conflict</A> <B>then</B>
+                <B>Result</B> := "Conflict"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_gone">Gone</A> <B>then</B>
+                <B>Result</B> := "Gone"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_length_required">Length_required</A> <B>then</B>
+                <B>Result</B> := "Length Required"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_precondition_failed">Precondition_failed</A> <B>then</B>
+                <B>Result</B> := "Precondition Failed"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_request_entity_too_large">Request_entity_too_large</A> <B>then</B>
+                <B>Result</B> := "Request Entity Too Large"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_request_uri_too_long">Request_uri_too_long</A> <B>then</B>
+                <B>Result</B> := "Request-URI Too Long"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_unsupported_media_type">Unsupported_media_type</A> <B>then</B>
+                <B>Result</B> := "Unsupported Media Type"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_request_range_not_satisfiable">Request_range_not_satisfiable</A> <B>then</B>
+                <B>Result</B> := "Requested Range Not Satisfiable"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_expectation_failed">Expectation_failed</A> <B>then</B>
+                <B>Result</B> := "Expectation Failed"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_teapot">Teapot</A> <B>then</B>
+                <B>Result</B> := "I'm a teapot"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_too_many_connections">Too_many_connections</A> <B>then</B>
+                <B>Result</B> := "There are too many connections from your internet address"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_unprocessable_entity">Unprocessable_entity</A> <B>then</B>
+                <B>Result</B> := "Unprocessable Entity"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_locked">Locked</A> <B>then</B>
+                <B>Result</B> := "Locked"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_failed_dependency">Failed_dependency</A> <B>then</B>
+                <B>Result</B> := "Failed Dependency"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_unordered_collection">Unordered_collection</A> <B>then</B>
+                <B>Result</B> := "Unordered Collection"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_upgrade_required">Upgrade_required</A> <B>then</B>
+                <B>Result</B> := "Upgrade Required"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_retry_with">Retry_with</A> <B>then</B>
+                <B>Result</B> := "Retry With"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_blocked_parental">Blocked_parental</A> <B>then</B>
+                <B>Result</B> := "Blocked by Windows Parental Controls"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_internal_server_error">Internal_server_error</A> <B>then</B>
+                <B>Result</B> := "Internal Server Error"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_not_implemented">Not_implemented</A> <B>then</B>
+                <B>Result</B> := "Not Implemented"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_bad_gateway">Bad_gateway</A> <B>then</B>
+                <B>Result</B> := "Bad Gateway"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_service_unavailable">Service_unavailable</A> <B>then</B>
+                <B>Result</B> := "Service Unavailable"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_gateway_timeout">Gateway_timeout</A> <B>then</B>
+                <B>Result</B> := "Gateway Timeout"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_http_version_not_supported">Http_version_not_supported</A> <B>then</B>
+                <B>Result</B> := "HTTP Version Not Supported"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_variant_also_negotiates">Variant_also_negotiates</A> <B>then</B>
+                <B>Result</B> := "Variant Also Negotiates"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_insufficient_storage">Insufficient_storage</A> <B>then</B>
+                <B>Result</B> := "Insufficient Storage"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_bandwidth_limit_exceeded">Bandwidth_limit_exceeded</A> <B>then</B>
+                <B>Result</B> := "Bandwidth Limit Exceeded"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_not_extended">Not_extended</A> <B>then</B>
+                <B>Result</B> := "Not Extended"
+            <B>when</B> <A HREF="../src/http_status_code.html#f_user_access_denied">User_access_denied</A> <B>then</B>
+                <B>Result</B> := "User access denied"
+            <B>else</B>
+                <B>Result</B> := <B>Void</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2012, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_status_code_messages.html">HTTP_STATUS_CODE_MESSAGES</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_status_code_messages_chart.html">Chart</A></TD><TD><A HREF="http_status_code_messages_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

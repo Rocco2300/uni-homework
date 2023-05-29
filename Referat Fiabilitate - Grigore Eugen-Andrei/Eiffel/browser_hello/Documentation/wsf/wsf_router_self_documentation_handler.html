@@ -1,0 +1,109 @@
+<HTML><HEAD>
+<meta name="description" content="Handler based on a STARTS_WITH handler to respond a  WSF_ROUTER_SELF_DOCUMENTATION_MESSAGE message  This is a self documentation for WSF_ROUTER."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_router_self_documentation_handler Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_self_documentation_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_router_self_documentation_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Handler based on a STARTS_WITH handler to respond a 
+        WSF_ROUTER_SELF_DOCUMENTATION_MESSAGE message
+        
+        This is a self documentation for WSF_ROUTER.
+    ]"
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+
+<B>class</B> 
+    <A HREF="../router/wsf_router_self_documentation_handler.html">WSF_ROUTER_SELF_DOCUMENTATION_HANDLER</A>
+
+<B>inherit</B>
+    <A HREF="../router/wsf_starts_with_handler.html">WSF_STARTS_WITH_HANDLER</A>
+        <B>redefine</B>
+            <A HREF="../router/wsf_router_self_documentation_handler.html#f_on_mapped">on_mapped</A>
+        <B>end</B>
+
+    <A HREF="../router/wsf_self_documented_handler.html">WSF_SELF_DOCUMENTED_HANDLER</A>
+
+<B>create</B> 
+    <A HREF="../router/wsf_router_self_documentation_handler.html#f_make">make</A>,
+    <A HREF="../router/wsf_router_self_documentation_handler.html#f_make_hidden">make_hidden</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../router/wsf_router_self_documentation_handler.html#f_make">make</A> (a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_router_attached: a_router /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A> := a_router
+        <B>ensure</B>
+            router_aliased: <A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A> = a_router
+            not_hidden: <B>not</B> <A HREF="../router/wsf_router_self_documentation_handler.html#f_is_hidden">is_hidden</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_hidden"><A HREF="../router/wsf_router_self_documentation_handler.html#f_make_hidden">make_hidden</A> (a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Do not display documentation for </FONT><I>a_router</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_router_attached: a_router /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_router_self_documentation_handler.html#f_make">make</A> (a_router)
+            <A HREF="../router/wsf_router_self_documentation_handler.html#f_is_hidden">is_hidden</A> := <B>True</B>
+        <B>ensure</B>
+            router_aliased: <A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A> = a_router
+            hidden: <A HREF="../router/wsf_router_self_documentation_handler.html#f_is_hidden">is_hidden</A>
+        <B>end</B></A>
+
+    <A NAME="f_router"><A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A>: <A HREF="../router/wsf_router.html">WSF_ROUTER</A></A>
+
+    <A NAME="f_resource"><A HREF="../router/wsf_router_self_documentation_handler.html#f_resource">resource</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+
+    <A NAME="f_is_hidden"><A HREF="../router/wsf_router_self_documentation_handler.html#f_is_hidden">is_hidden</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Current mapped handler should be hidden from self documentation</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Documentation</FONT>
+
+    <A NAME="f_mapping_documentation"><A HREF="../router/wsf_router_self_documentation_handler.html#f_mapping_documentation">mapping_documentation</A> (m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>; a_request_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../router/wsf_router_mapping_documentation.html">WSF_ROUTER_MAPPING_DOCUMENTATION</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Documentation associated with Current handler, in the context of the mapping </FONT><I>m</I><FONT COLOR="red"> and methods </FONT><I>a_request_methods</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_router_mapping_documentation.html#f_make">make</A> (m);
+            <B>Result</B>.<A HREF="../router/wsf_router_mapping_documentation.html#f_set_is_hidden">set_is_hidden</A> (<A HREF="../router/wsf_router_self_documentation_handler.html#f_is_hidden">is_hidden</A>);
+            <B>Result</B>.<A HREF="../router/wsf_router_mapping_documentation.html#f_add_description">add_description</A> ("Self generated documentation based on the router's setup")
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../router/wsf_router.html">WSF_ROUTER</A>}{<A HREF="../router/wsf_router.html">WSF_ROUTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Mapping</FONT>
+
+    <A NAME="f_on_mapped"><A HREF="../router/wsf_router_self_documentation_handler.html#f_on_mapped">on_mapped</A> (a_mapping: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>; a_rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Callback called when a router map a route to Current handler</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../router/wsf_starts_with_mapping.html">WSF_STARTS_WITH_MAPPING</A>} a_mapping <B>as</B> m <B>then</B>
+                <A HREF="../router/wsf_router_self_documentation_handler.html#f_resource">resource</A> := m.<A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_execute"><A HREF="../router/wsf_router_self_documentation_handler.html#f_execute">execute</A> (a_start_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Handle </FONT><I>req</I><FONT COLOR="red"> responding into </FONT><I>res</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            m: <A HREF="../router/wsf_router_self_documentation_message.html">WSF_ROUTER_SELF_DOCUMENTATION_MESSAGE</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../router/wsf_router_self_documentation_handler.html#f_resource">resource</A> <B>as</B> l_resource <B>then</B>
+                <B>create</B> m.<A HREF="../router/wsf_router_self_documentation_message.html#f_make_with_resource">make_with_resource</A> (req, <A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A>, l_resource)
+            <B>else</B>
+                <B>create</B> m.<A HREF="../router/wsf_router_self_documentation_message.html#f_make">make</A> (req, <A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A>)
+            <B>end</B>;
+            res.<A HREF="../src/wsf_response.html#f_send">send</A> (m)
+        <B>end</B></A>
+    
+<B>invariant</B>
+    router_attached: <A HREF="../router/wsf_router_self_documentation_handler.html#f_router">router</A> /= <B>Void</B>
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_router_self_documentation_handler.html">WSF_ROUTER_SELF_DOCUMENTATION_HANDLER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_self_documentation_handler_chart.html">Chart</A></TD><TD><A HREF="wsf_router_self_documentation_handler_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

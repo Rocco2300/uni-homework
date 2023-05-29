@@ -1,0 +1,241 @@
+<HTML><HEAD>
+<meta name="description" content="See http://en.wikipedia.org/wiki/List_of_HTTP_headers"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2014, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_header_names Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_header_names_chart.html">Chart</A></TD><TD><A HREF="http_header_names_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        See <a href="http://en.wikipedia.org/wiki/List_of_HTTP_headers">http://en.wikipedia.org/wiki/List_of_HTTP_headers</a>
+    ]"
+    date: "$Date: 2014-05-14 14:52:42 +0000 (Wed, 14 May 2014) $"
+    revision: "$Revision: 95057 $"
+
+<B>class</B> 
+    <A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A>
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request header name</FONT>
+
+    <A NAME="f_header_accept"><A HREF="../src/http_header_names.html#f_header_accept">Header_accept</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Accept"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content-Types that are acceptable</FONT>
+
+    <A NAME="f_header_accept_charset"><A HREF="../src/http_header_names.html#f_header_accept_charset">Header_accept_charset</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Accept-Charset"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Character sets that are acceptable</FONT>
+
+    <A NAME="f_header_accept_encoding"><A HREF="../src/http_header_names.html#f_header_accept_encoding">Header_accept_encoding</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Accept-Encoding"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Acceptable encodings. See HTTP compression.</FONT>
+
+    <A NAME="f_header_accept_language"><A HREF="../src/http_header_names.html#f_header_accept_language">Header_accept_language</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Accept-Language"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Acceptable languages for response</FONT>
+
+    <A NAME="f_header_authorization"><A HREF="../src/http_header_names.html#f_header_authorization">Header_authorization</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Authorization"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Authentication credentials for HTTP authentication</FONT>
+
+    <A NAME="f_header_cookie"><A HREF="../src/http_header_names.html#f_header_cookie">Header_cookie</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Cookie"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> an HTTP cookie previously sent by the server with Set-Cookie (below)</FONT>
+
+    <A NAME="f_header_expect"><A HREF="../src/http_header_names.html#f_header_expect">Header_expect</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Expect"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates that particular server behaviors are required by the client</FONT>
+
+    <A NAME="f_header_from"><A HREF="../src/http_header_names.html#f_header_from">Header_from</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "From"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The email address of the user making the request</FONT>
+
+    <A NAME="f_header_host"><A HREF="../src/http_header_names.html#f_header_host">Header_host</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Host"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The domain name of the server (for virtual hosting), mandatory since HTTP/1.1</FONT>
+
+    <A NAME="f_header_if_match"><A HREF="../src/http_header_names.html#f_header_if_match">Header_if_match</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "If-Match"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Only perform the action if the client supplied entity matches the same entity on the server. This is mainly for methods like PUT to only update a resource if it has not been modified since the user last updated it.</FONT>
+
+    <A NAME="f_header_if_modified_since"><A HREF="../src/http_header_names.html#f_header_if_modified_since">Header_if_modified_since</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "If-Modified-Since"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Allows a 304 Not Modified to be returned if content is unchanged</FONT>
+
+    <A NAME="f_header_if_none_match"><A HREF="../src/http_header_names.html#f_header_if_none_match">Header_if_none_match</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "If-None-Match"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Allows a 304 Not Modified to be returned if content is unchanged, see HTTP ETag</FONT>
+
+    <A NAME="f_header_if_range"><A HREF="../src/http_header_names.html#f_header_if_range">Header_if_range</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "If-Range"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If the entity is unchanged, send me the part(s) that I am missing; otherwise, send me the entire new entity</FONT>
+
+    <A NAME="f_header_if_unmodified_since"><A HREF="../src/http_header_names.html#f_header_if_unmodified_since">Header_if_unmodified_since</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "If-Unmodified-Since"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Only send the response if the entity has not been modified since a specific time.</FONT>
+
+    <A NAME="f_header_max_forwards"><A HREF="../src/http_header_names.html#f_header_max_forwards">Header_max_forwards</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Max-Forwards"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Limit the number of times the message can be forwarded through proxies or gateways.</FONT>
+
+    <A NAME="f_header_proxy_authorization"><A HREF="../src/http_header_names.html#f_header_proxy_authorization">Header_proxy_authorization</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Proxy-Authorization"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Authorization credentials for connecting to a proxy.</FONT>
+
+    <A NAME="f_header_range"><A HREF="../src/http_header_names.html#f_header_range">Header_range</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Range"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request only part of an entity. Bytes are numbered from 0.</FONT>
+
+    <A NAME="f_header_referer"><A HREF="../src/http_header_names.html#f_header_referer">Header_referer</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Referer[sic]"</A>
+
+    <A NAME="f_header_te"><A HREF="../src/http_header_names.html#f_header_te">Header_te</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "TE"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The transfer encodings the user agent is willing to accept: the same values as for the response header Transfer-Encoding can be used, plus the "trailers" value (related to the "chunked" transfer method) to notify the server it accepts to receive additional headers (the trailers) after the last, zero-sized, chunk.</FONT>
+
+    <A NAME="f_header_upgrade"><A HREF="../src/http_header_names.html#f_header_upgrade">Header_upgrade</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Upgrade"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Ask the server to upgrade to another protocol.</FONT>
+
+    <A NAME="f_header_user_agent"><A HREF="../src/http_header_names.html#f_header_user_agent">Header_user_agent</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "User-Agent"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The user agent string of the user agent</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response header name</FONT>
+
+    <A NAME="f_header_accept_ranges"><A HREF="../src/http_header_names.html#f_header_accept_ranges">Header_accept_ranges</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Accept-Ranges"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> "Accept-Ranges"	What partial content range types this server supports</FONT>
+
+    <A NAME="f_header_age"><A HREF="../src/http_header_names.html#f_header_age">Header_age</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Age"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The age the object has been in a proxy cache in seconds</FONT>
+
+    <A NAME="f_header_allow"><A HREF="../src/http_header_names.html#f_header_allow">Header_allow</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Allow"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Valid actions for a specified resource. To be used for a 405 Method not allowed</FONT>
+
+    <A NAME="f_header_content_encoding"><A HREF="../src/http_header_names.html#f_header_content_encoding">Header_content_encoding</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Encoding"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The type of encoding used on the data. See HTTP compression.</FONT>
+
+    <A NAME="f_header_content_language"><A HREF="../src/http_header_names.html#f_header_content_language">Header_content_language</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Language"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The language the content is in</FONT>
+
+    <A NAME="f_header_content_location"><A HREF="../src/http_header_names.html#f_header_content_location">Header_content_location</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Location"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> An alternate location for the returned data</FONT>
+
+    <A NAME="f_header_content_disposition"><A HREF="../src/http_header_names.html#f_header_content_disposition">Header_content_disposition</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Disposition"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> An opportunity to raise a "File Download" dialogue box for a known MIME type</FONT>
+
+    <A NAME="f_header_content_range"><A HREF="../src/http_header_names.html#f_header_content_range">Header_content_range</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Range"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Where in a full body message this partial message belongs</FONT>
+
+    <A NAME="f_header_etag"><A HREF="../src/http_header_names.html#f_header_etag">Header_etag</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "ETag"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> An identifier for a specific version of a resource, often a message digest</FONT>
+
+    <A NAME="f_header_expires"><A HREF="../src/http_header_names.html#f_header_expires">Header_expires</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Expires"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Gives the date/time after which the response is considered stale</FONT>
+
+    <A NAME="f_header_last_modified"><A HREF="../src/http_header_names.html#f_header_last_modified">Header_last_modified</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Last-Modified"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The last modified date for the requested object, in RFC 2822 format</FONT>
+
+    <A NAME="f_header_link"><A HREF="../src/http_header_names.html#f_header_link">Header_link</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Link"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Used to express a typed relationship with another resource, where the relation type is defined by RFC 5988</FONT>
+
+    <A NAME="f_header_location"><A HREF="../src/http_header_names.html#f_header_location">Header_location</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Location"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Used in redirection, or when a new resource has been created.</FONT>
+
+    <A NAME="f_header_p3p"><A HREF="../src/http_header_names.html#f_header_p3p">Header_p3p</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "P3P"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This header is supposed to set P3P policy, in the form of P3P:CP="your_compact_policy". However, P3P did not take off,</FONT><FONT COLOR="red">[5]</FONT><FONT COLOR="red"> most browsers have never fully implemented it, a lot of websites set this header with fake policy text, that was enough to fool browsers the existence of P3P policy and grant permissions for third party cookies.</FONT>
+
+    <A NAME="f_header_proxy_authenticate"><A HREF="../src/http_header_names.html#f_header_proxy_authenticate">Header_proxy_authenticate</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Proxy-Authenticate"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request authentication to access the proxy.</FONT>
+
+    <A NAME="f_header_refresh"><A HREF="../src/http_header_names.html#f_header_refresh">Header_refresh</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Refresh"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Used in redirection, or when a new resource has been created. This refresh redirects after 5 seconds. This is a proprietary, non-standard header extension introduced by Netscape and supported by most web browsers.</FONT>
+
+    <A NAME="f_header_retry_after"><A HREF="../src/http_header_names.html#f_header_retry_after">Header_retry_after</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Retry-After"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If an entity is temporarily unavailable, this instructs the client to try again after a specified period of time.</FONT>
+
+    <A NAME="f_header_server"><A HREF="../src/http_header_names.html#f_header_server">Header_server</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Server"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> A name for the server</FONT>
+
+    <A NAME="f_header_set_cookie"><A HREF="../src/http_header_names.html#f_header_set_cookie">Header_set_cookie</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Set-Cookie"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> an HTTP cookie</FONT>
+
+    <A NAME="f_header_strict_transport_security"><A HREF="../src/http_header_names.html#f_header_strict_transport_security">Header_strict_transport_security</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Strict-Transport-Security"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> A HSTS Policy informing the HTTP client how long to cache the HTTPS only policy and whether this applies to subdomains.</FONT>
+
+    <A NAME="f_header_trailer"><A HREF="../src/http_header_names.html#f_header_trailer">Header_trailer</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Trailer"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The Trailer general field value indicates that the given set of header fields is present in the trailer of a message encoded with chunked transfer-coding.</FONT>
+
+    <A NAME="f_header_transfer_encoding"><A HREF="../src/http_header_names.html#f_header_transfer_encoding">Header_transfer_encoding</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Transfer-Encoding"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity.</FONT>
+
+    <A NAME="f_header_vary"><A HREF="../src/http_header_names.html#f_header_vary">Header_vary</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Vary"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Tells downstream proxies how to match future request headers to decide whether the cached response</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> can be used rather than requesting a fresh one from the origin server.</FONT>
+
+    <A NAME="f_header_www_authenticate"><A HREF="../src/http_header_names.html#f_header_www_authenticate">Header_www_authenticate</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "WWW-Authenticate"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates the authentication scheme that should be used to access the requested entity.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cross-Origin Resource Sharing</FONT>
+
+    <A NAME="f_header_access_control_allow_origin"><A HREF="../src/http_header_names.html#f_header_access_control_allow_origin">Header_access_control_allow_origin</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Access-Control-Allow-Origin"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates whether a resource can be shared based by returning</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the value of the Origin request header in the response.</FONT>
+
+    <A NAME="f_header_access_control_allow_credentials"><A HREF="../src/http_header_names.html#f_header_access_control_allow_credentials">Header_access_control_allow_credentials</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Access-Control-Allow-Credentials"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates whether or not the response to the request can be exposed when the credentials flag is true.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note that simple GET requests are not preflighted, and so if a request is made for a resource with credentials,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if this header is not returned with the resource, the response is ignored by the browser and not returned to web content.</FONT>
+
+    <A NAME="f_header_access_control_allow_methods"><A HREF="../src/http_header_names.html#f_header_access_control_allow_methods">Header_access_control_allow_methods</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Access-Control-Allow-Methods"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates, as part of the response to a preflight request,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> which methods can be used during the actual request.</FONT>
+
+    <A NAME="f_header_access_control_allow_headers"><A HREF="../src/http_header_names.html#f_header_access_control_allow_headers">Header_access_control_allow_headers</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Access-Control-Allow-Headers"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates, as part of the response to a preflight request,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> which header field names can be used during the actual request.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request or Response header name</FONT>
+
+    <A NAME="f_header_cache_control"><A HREF="../src/http_header_names.html#f_header_cache_control">Header_cache_control</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Cache-Control"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request: Used to specify directives that MUST be obeyed by all caching mechanisms along the request/response chain</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response: Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds</FONT>
+
+    <A NAME="f_header_connection"><A HREF="../src/http_header_names.html#f_header_connection">Header_connection</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Connection"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request: What type of connection the user-agent would prefer</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response: Options that are desired for the connection</FONT><FONT COLOR="red">[4]</FONT>
+
+    <A NAME="f_header_content_length"><A HREF="../src/http_header_names.html#f_header_content_length">Header_content_length</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Length"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request: The length of the request body in octets (8-bit bytes)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response: The length of the response body in octets (8-bit bytes)</FONT>
+
+    <A NAME="f_header_content_md5"><A HREF="../src/http_header_names.html#f_header_content_md5">Header_content_md5</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-MD5"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request: A Base64-encoded binary MD5 sum of the content of the request body</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response: A Base64-encoded binary MD5 sum of the content of the response</FONT>
+
+    <A NAME="f_header_content_type"><A HREF="../src/http_header_names.html#f_header_content_type">Header_content_type</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Type"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request: The mime type of the body of the request (used with POST and PUT requests)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response : The mime type of this content</FONT>
+
+    <A NAME="f_header_date"><A HREF="../src/http_header_names.html#f_header_date">Header_date</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Date"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The date and time that the message was sent</FONT>
+
+    <A NAME="f_header_pragma"><A HREF="../src/http_header_names.html#f_header_pragma">Header_pragma</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Pragma"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation-specific headers that may have various effects anywhere along the request-response chain.</FONT>
+
+    <A NAME="f_header_status"><A HREF="../src/http_header_names.html#f_header_status">Header_status</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Status"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> CGI program can use this to return the HTTP status code to the client.	</FONT>
+
+    <A NAME="f_header_via"><A HREF="../src/http_header_names.html#f_header_via">Header_via</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Via"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request: Informs the server of proxies through which the request was sent.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Response: Informs the client of proxies through which the response was sent.</FONT>
+
+    <A NAME="f_header_warning"><A HREF="../src/http_header_names.html#f_header_warning">Header_warning</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Warning"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> A general warning about possible problems with the entity body.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> MIME related</FONT>
+
+    <A NAME="f_header_content_transfer_encoding"><A HREF="../src/http_header_names.html#f_header_content_transfer_encoding">Header_content_transfer_encoding</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "Content-Transfer-Encoding"</A>
+    
+<B>note</B>
+    copyright: "2011-2014, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_header_names.html">HTTP_HEADER_NAMES</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_header_names_chart.html">Chart</A></TD><TD><A HREF="http_header_names_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

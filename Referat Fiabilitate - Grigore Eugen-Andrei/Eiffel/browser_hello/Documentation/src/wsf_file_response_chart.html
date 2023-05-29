@@ -1,0 +1,53 @@
+<HTML><HEAD>
+<meta name="description" content="Response to send a file back to the client"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_file_response Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_file_response_links.html">Relations</A></TD><TD><A HREF="wsf_file_response.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../src/wsf_file_response_chart.html">WSF_FILE_RESPONSE</A>
+
+<B>General</B>
+    cluster: <A HREF="../src/index.html">src</A>
+    description: "Response to send a file back to the client"
+    create: <A HREF="../src/wsf_file_response.html#f_make_with_path">make_with_path</A>, <A HREF="../src/wsf_file_response.html#f_make_with_content_type_and_path">make_with_content_type_and_path</A>, <A HREF="../src/wsf_file_response.html#f_make_html_with_path">make_html_with_path</A>, <A HREF="../src/wsf_file_response.html#f_make">make</A>, <A HREF="../src/wsf_file_response.html#f_make_with_content_type">make_with_content_type</A>, <A HREF="../src/wsf_file_response.html#f_make_html">make_html</A>
+
+<B>Ancestors</B>
+    <A HREF="../src/wsf_response_message_chart.html">WSF_RESPONSE_MESSAGE</A>*
+
+<B>Queries</B>
+    <A HREF="../src/wsf_file_response.html#f_answer_head_request_method">answer_head_request_method</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_file_response.html#f_bottom">bottom</A>: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/wsf_file_response.html#f_content_length">content_length</A>: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>
+    <A HREF="../src/wsf_file_response.html#f_content_type">content_type</A>: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>: <A HREF="../elks/path_chart.html">PATH</A>
+    <A HREF="../src/wsf_file_response.html#f_file_size">file_size</A>: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>
+    <A HREF="../src/wsf_file_response.html#f_head">head</A>: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/wsf_file_response.html#f_header">header</A>: <A HREF="../src/http_header_chart.html">HTTP_HEADER</A>
+    <A HREF="../src/wsf_file_response.html#f_status_code">status_code</A>: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>
+
+<B>Commands</B>
+    <A HREF="../src/wsf_file_response.html#f_get_content_type">get_content_type</A>
+    <A HREF="../src/wsf_file_response.html#f_set_answer_head_request_method">set_answer_head_request_method</A> (b: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_bottom">set_bottom</A> (s: [<B>like</B> <A HREF="../src/wsf_file_response.html#f_bottom">bottom</A>] <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_content_type">set_content_type</A> (a_content_type: [<B>detachable</B> <B>like</B> <A HREF="../src/wsf_file_response.html#f_content_type">content_type</A>] <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_expires">set_expires</A> (s: <A HREF="../elks/string_8_chart.html">STRING_8</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_expires_date">set_expires_date</A> (dt: DATE_TIME)
+    <A HREF="../src/wsf_file_response.html#f_set_expires_in_seconds">set_expires_in_seconds</A> (sec: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_head">set_head</A> (s: [<B>like</B> <A HREF="../src/wsf_file_response.html#f_head">head</A>] <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_max_age">set_max_age</A> (sec: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_no_cache">set_no_cache</A>
+    <A HREF="../src/wsf_file_response.html#f_set_private_max_age">set_private_max_age</A> (sec: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_public_max_age">set_public_max_age</A> (sec: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> (c: [<B>like</B> <A HREF="../src/wsf_file_response.html#f_status_code">status_code</A>] <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_file_response_links.html">Relations</A></TD><TD><A HREF="wsf_file_response.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

@@ -1,0 +1,142 @@
+<HTML><HEAD>
+<meta name="description" content="Request execution based on attributes `request' and `response'. "/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_execution Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_execution_chart.html">Chart</A></TD><TD><A HREF="wsf_execution_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Request execution based on attributes `<A HREF="../src/wsf_execution.html#f_request">request</A>` and `<A HREF="../src/wsf_execution.html#f_response">response</A>`. "
+    date: "$Date: 2016-08-06 11:34:52 +0000 (Sat, 06 Aug 2016) $"
+    revision: "$Revision: 99106 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../src/wsf_execution.html">WSF_EXECUTION</A>
+
+<B>inherit</B>
+    WGI_EXECUTION
+        <B>rename</B>
+            request <B>as</B> wgi_request,
+            response <B>as</B> wgi_response,
+            make_from_execution <B>as</B> make_from_wgi_execution
+        <B>redefine</B>
+            <A HREF="../src/wsf_execution.html#f_make">make</A>,
+            <A HREF="../src/wsf_execution.html#f_clean">clean</A>,
+            <A HREF="../src/wsf_execution.html#f_is_valid_end_of_execution">is_valid_end_of_execution</A>
+        <B>end</B>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><B>frozen</B> <A HREF="../src/wsf_execution.html#f_make">make</A> (req: WGI_REQUEST; res: WGI_RESPONSE)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create Current execution with request </FONT><I>req</I><FONT COLOR="red"> and response </FONT><I>res</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Precursor</B> (req, res)
+            <B>create</B> <A HREF="../src/wsf_execution.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_make_from_wgi">make_from_wgi</A> (wgi_request)
+            <B>create</B> <A HREF="../src/wsf_execution.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_make_from_wgi">make_from_wgi</A> (wgi_response)
+            <A HREF="../src/wsf_execution.html#f_initialize">initialize</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_from_execution"><B>frozen</B> <A HREF="../src/wsf_execution.html#f_make_from_execution">make_from_execution</A> (a_execution: <A HREF="../src/wsf_execution.html">WSF_EXECUTION</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create current execution from </FONT><I>a_execution</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            make_from_wgi_execution (a_execution)
+            <A HREF="../src/wsf_execution.html#f_request">request</A> := a_execution.<A HREF="../src/wsf_execution.html#f_request">request</A>
+            <A HREF="../src/wsf_execution.html#f_response">response</A> := a_execution.<A HREF="../src/wsf_execution.html#f_response">response</A>
+            <A HREF="../src/wsf_execution.html#f_initialize">initialize</A>
+        <B>end</B></A>
+
+    <A NAME="f_initialize"><A HREF="../src/wsf_execution.html#f_initialize">initialize</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize Current object.</FONT>
+        <B>do</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_request"><A HREF="../src/wsf_execution.html#f_request">request</A>: <A HREF="../src/wsf_request.html">WSF_REQUEST</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access to request data.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header, Query, Post, Input data..</FONT>
+
+    <A NAME="f_response"><A HREF="../src/wsf_execution.html#f_response">response</A>: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access to output stream, back to the client.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_execute"><A HREF="../src/wsf_execution.html#f_execute">execute</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execute Current request,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> getting data from </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_execution.html#f_request">request</A><FONT COLOR="red">`</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and response to client via </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_execution.html#f_response">response</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>deferred</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_valid_end_of_execution"><A HREF="../src/wsf_execution.html#f_is_valid_end_of_execution">is_valid_end_of_execution</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Last </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_execution.html#f_execute">execute</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> completed in valid state?</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>Precursor</B> <B>and</B> <A HREF="../src/wsf_execution.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>
+        <B>end</B></A>
+
+    <A NAME="f_message_writable"><A HREF="../src/wsf_execution.html#f_message_writable">message_writable</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_execution.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Helpers</FONT>
+
+    <A NAME="f_put_character"><A HREF="../src/wsf_execution.html#f_put_character">put_character</A> (c: <A HREF="../elks/character_8.html">CHARACTER_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send the character </FONT><I>c</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            message_writable: <A HREF="../src/wsf_execution.html#f_message_writable">message_writable</A>
+        <B>do</B>
+            <A HREF="../src/wsf_execution.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_put_character">put_character</A> (c)
+        <B>end</B></A>
+
+    <A NAME="f_put_string"><A HREF="../src/wsf_execution.html#f_put_string">put_string</A> (s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send the string </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            message_writable: <A HREF="../src/wsf_execution.html#f_message_writable">message_writable</A>
+        <B>do</B>
+            <A HREF="../src/wsf_execution.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s)
+        <B>end</B></A>
+
+    <A NAME="f_put_error"><A HREF="../src/wsf_execution.html#f_put_error">put_error</A> (err: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Report error message </FONT><I>err</I><FONT COLOR="red"> on the error output of the associated connector.</FONT>
+        <B>require</B>
+            message_writable: <A HREF="../src/wsf_execution.html#f_message_writable">message_writable</A>
+        <B>do</B>
+            <A HREF="../src/wsf_execution.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_put_error">put_error</A> (err)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cleaning</FONT>
+
+    <A NAME="f_clean"><A HREF="../src/wsf_execution.html#f_clean">clean</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Precursor</FONT>
+        <B>do</B>
+            <B>Precursor</B>;
+            <A HREF="../src/wsf_execution.html#f_request">request</A>.<A HREF="../src/wsf_request.html#f_destroy">destroy</A>
+        <B>end</B></A>
+    
+<B>invariant</B>
+    wsf_request_set: <A HREF="../src/wsf_execution.html#f_request">request</A> /= <B>Void</B>
+    wsf_response_set: <A HREF="../src/wsf_execution.html#f_response">response</A> /= <B>Void</B>
+
+<B>note</B>
+    copyright: "2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_execution.html">WSF_EXECUTION</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_execution_chart.html">Chart</A></TD><TD><A HREF="wsf_execution_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

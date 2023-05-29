@@ -1,0 +1,71 @@
+<HTML><HEAD>
+<meta name="description" content="Object with a `filter: WSF_FILTER' feature."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_filtered Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_filtered_chart.html">Chart</A></TD><TD><A HREF="wsf_filtered_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Object with a filter: WSF_FILTER feature."
+    date: "$Date: 2016-10-21 17:45:18 +0000 (Fri, 21 Oct 2016) $"
+    revision: "$Revision: 99331 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../router/wsf_filtered.html">WSF_FILTERED</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_initialize_filter"><A HREF="../router/wsf_filtered.html#f_initialize_filter">initialize_filter</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_filtered.html#f_filter">filter</A><FONT COLOR="red">`</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_filtered.html#f_create_filter">create_filter</A>
+            <A HREF="../router/wsf_filtered.html#f_setup_filter">setup_filter</A>
+        <B>end</B></A>
+
+    <A NAME="f_create_filter"><A HREF="../router/wsf_filtered.html#f_create_filter">create_filter</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_filtered.html#f_filter">filter</A><FONT COLOR="red">`</FONT><FONT COLOR="red">	</FONT>
+        <B>deferred</B>
+        <B>ensure</B>
+            filter_created: <A HREF="../router/wsf_filtered.html#f_filter">filter</A> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_setup_filter"><A HREF="../router/wsf_filtered.html#f_setup_filter">setup_filter</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Setup </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_filtered.html#f_filter">filter</A><FONT COLOR="red">`</FONT>
+        <B>require</B>
+            filter_created: <A HREF="../router/wsf_filtered.html#f_filter">filter</A> /= <B>Void</B>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_append_filter"><A HREF="../router/wsf_filtered.html#f_append_filter">append_filter</A> (a_filter: <A HREF="../router/wsf_filter.html">WSF_FILTER</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append </FONT><I>a_filter</I><FONT COLOR="red"> to the end of the </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_filtered.html#f_filter">filter</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> chain.</FONT>
+        <B>do</B>
+            <A HREF="../router/wsf_filtered.html#f_filter">filter</A>.<A HREF="../router/wsf_filter.html#f_append">append</A> (a_filter)
+        <B>end</B></A>
+
+    <A NAME="f_append_filters"><A HREF="../router/wsf_filtered.html#f_append_filters">append_filters</A> (a_filters: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../router/wsf_filter.html">WSF_FILTER</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append collection </FONT><I>a_filters</I><FONT COLOR="red"> of filters to the end of the </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_filtered.html#f_filter">filter</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> chain.</FONT>
+        <B>local</B>
+            f: <B>like</B> <A HREF="../router/wsf_filtered.html#f_filter">filter</A>
+            l_next_filter: <B>detachable</B> <B>like</B> <A HREF="../router/wsf_filtered.html#f_filter">filter</A>
+        <B>do</B>
+            f := <A HREF="../router/wsf_filtered.html#f_filter">filter</A>.<A HREF="../router/wsf_filter.html#f_last">last</A>
+            <B>across</B>
+                a_filters <B>as</B> ic
+            <B>loop</B>
+                l_next_filter := ic.<A HREF="../elks/iteration_cursor.html#f_item">item</A>;
+                f.<A HREF="../router/wsf_filter.html#f_set_next">set_next</A> (l_next_filter)
+                f := l_next_filter
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_filter"><A HREF="../router/wsf_filtered.html#f_filter">filter</A>: <A HREF="../router/wsf_filter.html">WSF_FILTER</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Filter</FONT>
+    
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_filtered.html">WSF_FILTERED</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_filtered_chart.html">Chart</A></TD><TD><A HREF="wsf_filtered_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

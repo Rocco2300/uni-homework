@@ -1,0 +1,102 @@
+<HTML><HEAD>
+<meta name="description" content="Describes a route or mapping for the WSF_ROUTER"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2021, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Alexander Kogtenkov, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_router_mapping Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_mapping_chart.html">Chart</A></TD><TD><A HREF="wsf_router_mapping_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Describes a route or mapping for the WSF_ROUTER
+    ]"
+    date: "$Date: 2021-10-31 07:57:07 +0000 (Sun, 31 Oct 2021) $"
+    revision: "$Revision: 105922 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+
+<B>inherit</B>
+    <A HREF="../elks/debug_output.html">DEBUG_OUTPUT</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_associated_resource"><A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Name (URI, or URI template or regular expression or ...) of handled resource</FONT>
+        <B>deferred</B>
+        <B>ensure</B>
+            assciated_resource_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_handler"><A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>: <A HREF="../router/wsf_handler.html">WSF_HANDLER</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Handler associated with </FONT><I>Current</I><FONT COLOR="red"> mapping</FONT>
+        <B>deferred</B>
+        <B>ensure</B>
+            handler_attached: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Documentation</FONT>
+
+    <A NAME="f_description"><A HREF="../router/wsf_router_mapping.html#f_description">description</A>: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Short description of associated mapping</FONT>
+        <B>deferred</B>
+        <B>ensure</B>
+            description_attached: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_debug_output"><A HREF="../router/wsf_router_mapping.html#f_debug_output">debug_output</A>: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String that should be displayed in debugger to represent </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            s: <A HREF="../elks/string_32.html">STRING_32</A>
+        <B>do</B>
+            <B>create</B> s.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>;
+            s.<A HREF="../elks/string_32.html#f_append">append</A> (<A HREF="../router/wsf_router_mapping.html#f_description">description</A>);
+            s.<A HREF="../elks/string_32.html#f_append_string_general">append_string_general</A> (" : ");
+            s.<A HREF="../elks/string_32.html#f_append_string_general">append_string_general</A> (<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>)
+            <B>Result</B> := s
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status</FONT>
+
+    <A NAME="f_is_mapping"><A HREF="../router/wsf_router_mapping.html#f_is_mapping">is_mapping</A> (a_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Does </FONT><I>Current</I><FONT COLOR="red"> accept path </FONT><I>a_path</I><FONT COLOR="red"> and request </FONT><I>req</I><FONT COLOR="red"> when using </FONT><I>a_router</I><FONT COLOR="red">?</FONT>
+        <B>require</B>
+            a_path_attached: a_path /= <B>Void</B>
+            req_attached: req /= <B>Void</B>
+            a_router_attached: a_router /= <B>Void</B>
+        <B>deferred</B>
+        <B>end</B></A>
+
+    <A NAME="f_try"><A HREF="../router/wsf_router_mapping.html#f_try">try</A> (a_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>; sess: <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>; a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Try using </FONT><I>Current</I><FONT COLOR="red"> mapping and if it matches path </FONT><I>a_path</I><FONT COLOR="red"> and request </FONT><I>req</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> execute associated handler and set this handler in session </FONT><I>sess</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_path_attached: a_path /= <B>Void</B>
+            req_attached: req /= <B>Void</B>
+            res_attached: res /= <B>Void</B>
+            sess_attached: sess /= <B>Void</B>
+            a_router_attached: a_router /= <B>Void</B>
+        <B>deferred</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2021, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Alexander Kogtenkov, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_mapping_chart.html">Chart</A></TD><TD><A HREF="wsf_router_mapping_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

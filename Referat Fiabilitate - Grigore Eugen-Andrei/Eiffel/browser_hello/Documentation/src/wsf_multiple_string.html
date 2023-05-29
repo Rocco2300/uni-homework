@@ -1,0 +1,215 @@
+<HTML><HEAD>
+<meta name="description" content="{WSF_MULTIPLE_STRING} represents a sequence of name=value parameters"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_multiple_string Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_multiple_string_chart.html">Chart</A></TD><TD><A HREF="wsf_multiple_string_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        {<A HREF="../src/wsf_multiple_string.html">WSF_MULTIPLE_STRING</A>} represents a sequence of name=value parameters
+    ]"
+    date: "$Date: 2017-05-03 21:55:11 +0000 (Wed, 03 May 2017) $"
+    revision: "$Revision: 100326 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_multiple_string.html">WSF_MULTIPLE_STRING</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+        <B>redefine</B>
+            <A HREF="../src/wsf_multiple_string.html#f_as_string">as_string</A>
+        <B>end</B>
+
+    <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_string.html">WSF_STRING</A>]
+
+<B>create</B> 
+    <A HREF="../src/wsf_multiple_string.html#f_make_with_value">make_with_value</A>,
+    <A HREF="../src/wsf_multiple_string.html#f_make_with_array">make_with_array</A>,
+    <A HREF="../src/wsf_multiple_string.html#f_make_with_string">make_with_string</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_with_value"><A HREF="../src/wsf_multiple_string.html#f_make_with_value">make_with_value</A> (a_value: <A HREF="../src/wsf_value.html">WSF_VALUE</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_multiple_string.html#f_name">name</A> := a_value.<A HREF="../src/wsf_value.html#f_name">name</A>
+            <B>create</B> {<A HREF="../elks/arrayed_list.html">ARRAYED_LIST</A> [<A HREF="../src/wsf_string.html">WSF_STRING</A>]} <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/arrayed_list.html#f_make">make</A> (3)
+            <A HREF="../src/wsf_multiple_string.html#f_add_value">add_value</A> (a_value)
+        <B>end</B></A>
+
+    <A NAME="f_make_with_array"><A HREF="../src/wsf_multiple_string.html#f_make_with_array">make_with_array</A> (arr: <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>])
+        <B>require</B>
+            arr_not_empty: <B>not</B> arr.<A HREF="../elks/finite.html#f_is_empty">is_empty</A>
+            all_same_name: <B>across</B>
+                    arr <B>as</B> c
+                <B>all</B>
+                    c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../src/wsf_value.html#f_name">name</A>.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> (arr [arr.<A HREF="../elks/array.html#f_lower">lower</A>].<A HREF="../src/wsf_value.html#f_name">name</A>)
+                <B>end</B>
+        <B>local</B>
+            i, up: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            up := arr.<A HREF="../elks/array.html#f_upper">upper</A>
+            i := arr.<A HREF="../elks/array.html#f_lower">lower</A>
+            <A HREF="../src/wsf_multiple_string.html#f_make_with_value">make_with_value</A> (arr [i])
+            <B>from</B>
+                i := i + 1
+            <B>until</B>
+                i &gt; up
+            <B>loop</B>
+                <A HREF="../src/wsf_multiple_string.html#f_add_value">add_value</A> (arr [i])
+                i := i + 1
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_make_with_string"><A HREF="../src/wsf_multiple_string.html#f_make_with_string">make_with_string</A> (a_name: <B>like</B> <A HREF="../src/wsf_multiple_string.html#f_name">name</A>; a_string: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_multiple_string.html#f_make_with_value">make_with_value</A> (<B>create</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>}.<A HREF="../src/wsf_string.html#f_make">make</A> (a_name, a_string) <B>end</B>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_name"><A HREF="../src/wsf_multiple_string.html#f_name">name</A>: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Parameter name</FONT>
+
+    <A NAME="f_url_encoded_name"><A HREF="../src/wsf_multiple_string.html#f_url_encoded_name">url_encoded_name</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> URL encoded string of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_multiple_string.html#f_name">name</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_value.html#f_url_encoded_string">url_encoded_string</A> (<A HREF="../src/wsf_multiple_string.html#f_name">name</A>)
+        <B>end</B></A>
+
+    <A NAME="f_values"><A HREF="../src/wsf_multiple_string.html#f_values">values</A>: <A HREF="../elks/list.html">LIST</A> [<A HREF="../src/wsf_string.html">WSF_STRING</A>]</A>
+
+    <A NAME="f_string_values"><B>frozen</B> <A HREF="../src/wsf_multiple_string.html#f_string_values">string_values</A>: <B>like</B> <A HREF="../src/wsf_multiple_string.html#f_values">values</A>
+        <B>obsolete</B> "Use `values' [2017-05-31]"
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_multiple_string.html#f_values">values</A>
+        <B>end</B></A>
+
+    <A NAME="f_first_value"><A HREF="../src/wsf_multiple_string.html#f_first_value">first_value</A>: <A HREF="../src/wsf_string.html">WSF_STRING</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/chain.html#f_first">first</A>
+        <B>end</B></A>
+
+    <A NAME="f_first_string_value"><B>frozen</B> <A HREF="../src/wsf_multiple_string.html#f_first_string_value">first_string_value</A>: <A HREF="../src/wsf_string.html">WSF_STRING</A>
+        <B>obsolete</B> "Use `first_value' [2017-05-31]"
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_multiple_string.html#f_first_value">first_value</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_change_name"><A HREF="../src/wsf_multiple_string.html#f_change_name">change_name</A> (a_name: <B>like</B> <A HREF="../src/wsf_multiple_string.html#f_name">name</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Change parameter </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_multiple_string.html#f_name">name</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_multiple_string.html#f_name">name</A> := a_name
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_string"><A HREF="../src/wsf_multiple_string.html#f_is_string">is_string</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current as a WSF_STRING representation?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/finite.html#f_count">count</A> = 1
+        <B>end</B></A>
+
+    <A NAME="f_is_empty"><A HREF="../src/wsf_multiple_string.html#f_is_empty">is_empty</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current empty?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/finite.html#f_is_empty">is_empty</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Conversion</FONT>
+
+    <A NAME="f_as_string"><A HREF="../src/wsf_multiple_string.html#f_as_string">as_string</A>: <A HREF="../src/wsf_string.html">WSF_STRING</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String value</FONT>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/finite.html#f_count">count</A> = 1 <B>then</B>
+                <B>Result</B> := <A HREF="../src/wsf_multiple_string.html#f_first_value">first_value</A>
+            <B>else</B>
+                <B>Result</B> := <B>Precursor</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Traversing</FONT>
+
+    <A NAME="f_new_cursor"><A HREF="../src/wsf_multiple_string.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/iteration_cursor.html">ITERATION_CURSOR</A> [<A HREF="../src/wsf_string.html">WSF_STRING</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fresh cursor associated with current structure</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/readable_indexable.html#f_new_cursor">new_cursor</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Helper</FONT>
+
+    <A NAME="f_string_representation"><A HREF="../src/wsf_multiple_string.html#f_string_representation">string_representation</A>: <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String representation of Current</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if possible</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> note: unicode value.</FONT>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/finite.html#f_count">count</A> = 1 <B>then</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make_from_string">make_from_string</A> (<A HREF="../src/wsf_multiple_string.html#f_first_value">first_value</A>.<A HREF="../src/wsf_string.html#f_string_representation">string_representation</A>)
+            <B>else</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make_from_string">make_from_string</A> ("[".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                <B>across</B>
+                    <A HREF="../src/wsf_multiple_string.html#f_values">values</A> <B>as</B> c
+                <B>loop</B>
+                    <B>if</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_count">count</A> &gt; 1 <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/string_32.html#f_append_character">append_character</A> (','.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+                    <B>end</B>;
+                    <B>Result</B>.<A HREF="../elks/string_32.html#f_append_string">append_string</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../src/wsf_string.html#f_string_representation">string_representation</A>)
+                <B>end</B>;
+                <B>Result</B>.<A HREF="../elks/string_32.html#f_append_character">append_character</A> (']'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_add_value"><A HREF="../src/wsf_multiple_string.html#f_add_value">add_value</A> (a_value: <A HREF="../src/wsf_value.html">WSF_VALUE</A>)
+        <B>require</B>
+            same_name: a_value.<A HREF="../src/wsf_value.html#f_name">name</A>.<A HREF="../elks/readable_string_32.html#f_same_string">same_string</A> (<A HREF="../src/wsf_multiple_string.html#f_name">name</A>)
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} a_value <B>as</B> sval <B>then</B>
+                <A HREF="../src/wsf_multiple_string.html#f_add_string_value">add_string_value</A> (sval)
+            <B>elseif</B> <B>attached</B> {<A HREF="../src/wsf_multiple_string.html">WSF_MULTIPLE_STRING</A>} a_value <B>as</B> slst <B>then</B>
+                <B>across</B>
+                    slst <B>as</B> cur
+                <B>loop</B>
+                    <A HREF="../src/wsf_multiple_string.html#f_add_string_value">add_string_value</A> (cur.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_add_string_value"><A HREF="../src/wsf_multiple_string.html#f_add_string_value">add_string_value</A> (s: <A HREF="../src/wsf_string.html">WSF_STRING</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/bag.html#f_extend">extend</A> (s)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Visitor</FONT>
+
+    <A NAME="f_process"><A HREF="../src/wsf_multiple_string.html#f_process">process</A> (vis: <A HREF="../src/wsf_value_visitor.html">WSF_VALUE_VISITOR</A>)
+        <B>do</B>
+            vis.<A HREF="../src/wsf_value_visitor.html#f_process_multiple_string">process_multiple_string</A> (<B>Current</B>)
+        <B>end</B></A>
+    
+<B>invariant</B>
+    string_values_not_empty: <A HREF="../src/wsf_multiple_string.html#f_values">values</A>.<A HREF="../elks/finite.html#f_count">count</A> &gt;= 1
+
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_multiple_string.html">WSF_MULTIPLE_STRING</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_multiple_string_chart.html">Chart</A></TD><TD><A HREF="wsf_multiple_string_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

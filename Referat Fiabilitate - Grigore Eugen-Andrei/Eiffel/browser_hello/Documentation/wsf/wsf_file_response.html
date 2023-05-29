@@ -1,0 +1,364 @@
+<HTML><HEAD>
+<meta name="description" content="Response to send a file back to the client"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_file_response Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_file_response_chart.html">Chart</A></TD><TD><A HREF="wsf_file_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Response to send a file back to the client"
+    date: "$Date: 2020-07-10 09:01:02 +0000 (Fri, 10 Jul 2020) $"
+    revision: "$Revision: 104537 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_file_response.html">WSF_FILE_RESPONSE</A>
+
+<B>inherit</B>
+    <A HREF="../src/wsf_response_message.html">WSF_RESPONSE_MESSAGE</A>
+
+<B>create</B> 
+    <A HREF="../src/wsf_file_response.html#f_make_with_path">make_with_path</A>,
+    <A HREF="../src/wsf_file_response.html#f_make_with_content_type_and_path">make_with_content_type_and_path</A>,
+    <A HREF="../src/wsf_file_response.html#f_make_html_with_path">make_html_with_path</A>,
+    <A HREF="../src/wsf_file_response.html#f_make">make</A>,
+    <A HREF="../src/wsf_file_response.html#f_make_with_content_type">make_with_content_type</A>,
+    <A HREF="../src/wsf_file_response.html#f_make_html">make_html</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_with_path"><A HREF="../src/wsf_file_response.html#f_make_with_path">make_with_path</A> (a_path: <A HREF="../elks/path.html">PATH</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>)
+            <A HREF="../src/wsf_file_response.html#f_file_path">file_path</A> := a_path
+            <A HREF="../src/wsf_file_response.html#f_get_content_type">get_content_type</A>
+            <A HREF="../src/wsf_file_response.html#f_initialize">initialize</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_with_content_type_and_path"><A HREF="../src/wsf_file_response.html#f_make_with_content_type_and_path">make_with_content_type_and_path</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_path: <A HREF="../elks/path.html">PATH</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>)
+            <A HREF="../src/wsf_file_response.html#f_file_path">file_path</A> := a_path
+            <A HREF="../src/wsf_file_response.html#f_content_type">content_type</A> := a_content_type
+            <A HREF="../src/wsf_file_response.html#f_initialize">initialize</A>
+        <B>end</B></A>
+
+    <A NAME="f_make_html_with_path"><A HREF="../src/wsf_file_response.html#f_make_html_with_path">make_html_with_path</A> (a_path: <A HREF="../elks/path.html">PATH</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_make_with_content_type_and_path">make_with_content_type_and_path</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_html">text_html</A>, a_path)
+        <B>end</B></A>
+
+    <A NAME="f_make"><A HREF="../src/wsf_file_response.html#f_make">make</A> (a_file_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_make_with_path">make_with_path</A> (<B>create</B> {<A HREF="../elks/path.html">PATH</A>}.<A HREF="../elks/path.html#f_make_from_string">make_from_string</A> (a_file_name) <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_make_with_content_type"><A HREF="../src/wsf_file_response.html#f_make_with_content_type">make_with_content_type</A> (a_content_type: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_file_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_make_with_content_type_and_path">make_with_content_type_and_path</A> (a_content_type, <B>create</B> {<A HREF="../elks/path.html">PATH</A>}.<A HREF="../elks/path.html#f_make_from_string">make_from_string</A> (a_file_name) <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_make_html"><A HREF="../src/wsf_file_response.html#f_make_html">make_html</A> (a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_make_with_content_type">make_with_content_type</A> ({<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_text_html">text_html</A>, a_filename)
+        <B>end</B></A>
+
+    <A NAME="f_initialize"><A HREF="../src/wsf_file_response.html#f_initialize">initialize</A>
+        <B>local</B>
+            h: <B>like</B> <A HREF="../src/wsf_file_response.html#f_header">header</A>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_get_file_exists">get_file_exists</A>
+            <B>create</B> h.<A HREF="../src/http_header.html#f_make">make</A>
+            <A HREF="../src/wsf_file_response.html#f_header">header</A> := h;
+            h.<A HREF="../src/http_header_modifier.html#f_put_content_type">put_content_type</A> (<A HREF="../src/wsf_file_response.html#f_content_type">content_type</A>)
+            <B>if</B> <A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A> <B>then</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_file_response.html#f_file_last_modified">file_last_modified</A> <B>as</B> dt <B>then</B>
+                    h.<A HREF="../src/http_header_modifier.html#f_put_last_modified">put_last_modified</A> (dt)
+                <B>end</B>
+                <A HREF="../src/wsf_file_response.html#f_get_file_size">get_file_size</A>
+                <B>if</B> <A HREF="../src/wsf_file_response.html#f_file_size">file_size</A> = 0 <B>then</B>
+                    <A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_not_found">not_found</A>)
+                <B>else</B>
+                    <A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_ok">ok</A>)
+                <B>end</B>
+            <B>else</B>
+                <A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_not_found">not_found</A>)
+            <B>end</B>
+            <A HREF="../src/wsf_file_response.html#f_update_content_length">update_content_length</A>
+        <B>end</B></A>
+
+    <A NAME="f_update_content_length"><A HREF="../src/wsf_file_response.html#f_update_content_length">update_content_length</A>
+        <B>local</B>
+            n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A> <B>then</B>
+                n := <A HREF="../src/wsf_file_response.html#f_file_size">file_size</A>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_file_response.html#f_head">head</A> <B>as</B> h <B>then</B>
+                    n := n + h.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                <B>end</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_file_response.html#f_bottom">bottom</A> <B>as</B> b <B>then</B>
+                    n := n + b.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                <B>end</B>
+            <B>else</B>
+                n := 0
+            <B>end</B>
+            <A HREF="../src/wsf_file_response.html#f_content_length">content_length</A> := n;
+            <A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_content_length">put_content_length</A> (n)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_content_type"><A HREF="../src/wsf_file_response.html#f_set_content_type">set_content_type</A> (a_content_type: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_file_response.html#f_content_type">content_type</A>)
+        <B>do</B>
+            <B>if</B> a_content_type = <B>Void</B> <B>then</B>
+                <A HREF="../src/wsf_file_response.html#f_get_content_type">get_content_type</A>
+            <B>else</B>
+                <A HREF="../src/wsf_file_response.html#f_content_type">content_type</A> := a_content_type
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_max_age"><A HREF="../src/wsf_file_response.html#f_set_max_age">set_max_age</A> (sec: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> ("max-age=" + sec.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_set_public_max_age"><A HREF="../src/wsf_file_response.html#f_set_public_max_age">set_public_max_age</A> (sec: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> ("public, max-age=" + sec.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_set_private_max_age"><A HREF="../src/wsf_file_response.html#f_set_private_max_age">set_private_max_age</A> (sec: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> ("private, max-age=" + sec.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+        <B>end</B></A>
+
+    <A NAME="f_set_expires_in_seconds"><A HREF="../src/wsf_file_response.html#f_set_expires_in_seconds">set_expires_in_seconds</A> (sec: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set Expires and Cache-control: max-age... to value related </FONT><I>sec</I><FONT COLOR="red"> seconds.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_expires">put_expires</A> (sec)
+        <B>end</B></A>
+
+    <A NAME="f_set_expires"><A HREF="../src/wsf_file_response.html#f_set_expires">set_expires</A> (s: <A HREF="../elks/string_8.html">STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set Expires header value to </FONT><I>s</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_expires_string">put_expires_string</A> (s)
+        <B>end</B></A>
+
+    <A NAME="f_set_expires_date"><A HREF="../src/wsf_file_response.html#f_set_expires_date">set_expires_date</A> (dt: DATE_TIME)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set Expires header value to date time </FONT><I>dt</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header_modifier.html#f_put_expires_date">put_expires_date</A> (dt)
+        <B>end</B></A>
+
+    <A NAME="f_set_no_cache"><A HREF="../src/wsf_file_response.html#f_set_no_cache">set_no_cache</A>
+        <B>local</B>
+            h: <B>like</B> <A HREF="../src/wsf_file_response.html#f_header">header</A>
+        <B>do</B>
+            h := <A HREF="../src/wsf_file_response.html#f_header">header</A>;
+            h.<A HREF="../src/http_header_modifier.html#f_put_expires">put_expires</A> (0);
+            h.<A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> ("max-age=0");
+            h.<A HREF="../src/http_header_modifier.html#f_put_cache_control">put_cache_control</A> ("no-cache, must-revalidate");
+            h.<A HREF="../src/http_header_modifier.html#f_put_pragma_no_cache">put_pragma_no_cache</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_status_code"><A HREF="../src/wsf_file_response.html#f_status_code">status_code</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A> <B>assign</B> <A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A></A>
+
+    <A NAME="f_header"><A HREF="../src/wsf_file_response.html#f_header">header</A>: <A HREF="../src/http_header.html">HTTP_HEADER</A></A>
+
+    <A NAME="f_content_length"><A HREF="../src/wsf_file_response.html#f_content_length">content_length</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content-Length of the response</FONT>
+
+    <A NAME="f_content_type"><A HREF="../src/wsf_file_response.html#f_content_type">content_type</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content-Type of the response</FONT>
+
+    <A NAME="f_file_path"><A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>: <A HREF="../elks/path.html">PATH</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> File path</FONT>
+
+    <A NAME="f_file_name"><A HREF="../src/wsf_file_response.html#f_file_name">file_name</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>obsolete</B> "Use `file_path.name' for unicode support [2017-05-31]"
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>.<A HREF="../elks/path.html#f_utf_8_name">utf_8_name</A>
+        <B>end</B></A>
+
+    <A NAME="f_file_exists"><A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> File exists?</FONT>
+
+    <A NAME="f_file_size"><A HREF="../src/wsf_file_response.html#f_file_size">file_size</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Size of file </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_file_path">file_path</A><FONT COLOR="red">`</FONT>
+
+    <A NAME="f_head"><A HREF="../src/wsf_file_response.html#f_head">head</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Eventual head and bottom part</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> before and after the file content.</FONT>
+
+    <A NAME="f_bottom"><A HREF="../src/wsf_file_response.html#f_bottom">bottom</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Eventual head and bottom part</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> before and after the file content.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Settings</FONT>
+
+    <A NAME="f_answer_head_request_method"><A HREF="../src/wsf_file_response.html#f_answer_head_request_method">answer_head_request_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A> <B>assign</B> <A HREF="../src/wsf_file_response.html#f_set_answer_head_request_method">set_answer_head_request_method</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> For HEAD request method, only http header should be sent</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_status_code"><A HREF="../src/wsf_file_response.html#f_set_status_code">set_status_code</A> (c: <B>like</B> <A HREF="../src/wsf_file_response.html#f_status_code">status_code</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_status_code">status_code</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>c</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            valid_status_code: c &gt; 0
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_status_code">status_code</A> := c
+        <B>ensure</B>
+            status_code_set: <A HREF="../src/wsf_file_response.html#f_status_code">status_code</A> = c
+        <B>end</B></A>
+
+    <A NAME="f_set_answer_head_request_method"><A HREF="../src/wsf_file_response.html#f_set_answer_head_request_method">set_answer_head_request_method</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set answer_head_request_method' to </FONT><I>b</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_answer_head_request_method">answer_head_request_method</A> := b
+        <B>end</B></A>
+
+    <A NAME="f_set_head"><A HREF="../src/wsf_file_response.html#f_set_head">set_head</A> (s: <B>like</B> <A HREF="../src/wsf_file_response.html#f_head">head</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_head">head</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>s</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> it also change the </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_content_length">content_length</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and associated value in </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_header">header</A><FONT COLOR="red">`</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_head">head</A> := s
+            <A HREF="../src/wsf_file_response.html#f_update_content_length">update_content_length</A>
+        <B>end</B></A>
+
+    <A NAME="f_set_bottom"><A HREF="../src/wsf_file_response.html#f_set_bottom">set_bottom</A> (s: <B>like</B> <A HREF="../src/wsf_file_response.html#f_bottom">bottom</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_bottom">bottom</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>s</I><FONT COLOR="red">	</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> it also change the </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_content_length">content_length</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and associated value in </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_header">header</A><FONT COLOR="red">`</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_file_response.html#f_bottom">bottom</A> := s
+            <A HREF="../src/wsf_file_response.html#f_update_content_length">update_content_length</A>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>}{<A HREF="../src/wsf_response.html">WSF_RESPONSE</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output</FONT>
+
+    <A NAME="f_send_to"><A HREF="../src/wsf_file_response.html#f_send_to">send_to</A> (res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send Current message to </FONT><I>res</I>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This feature should be called via </FONT><I>{WSF_RESPONSE}.send (obj)</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> where </FONT><I>obj</I><FONT COLOR="red"> is the current object</FONT>
+        <B>local</B>
+            s: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            res.<A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (<A HREF="../src/wsf_file_response.html#f_status_code">status_code</A>)
+            <B>if</B> <A HREF="../src/wsf_file_response.html#f_status_code">status_code</A> = {<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_not_found">not_found</A> <B>then</B>
+            <B>else</B>
+                res.<A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (<A HREF="../src/wsf_file_response.html#f_header">header</A>.<A HREF="../src/http_header.html#f_string">string</A>)
+                s := <A HREF="../src/wsf_file_response.html#f_head">head</A>
+                <B>if</B> s /= <B>Void</B> <B>then</B>
+                    res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s)
+                <B>end</B>
+                <B>if</B> <B>not</B> <A HREF="../src/wsf_file_response.html#f_answer_head_request_method">answer_head_request_method</A> <B>then</B>
+                    <A HREF="../src/wsf_file_response.html#f_send_file_content_to">send_file_content_to</A> (<A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>, res)
+                <B>end</B>
+                s := <A HREF="../src/wsf_file_response.html#f_bottom">bottom</A>
+                <B>if</B> s /= <B>Void</B> <B>then</B>
+                    res.<A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation: file system helper</FONT>
+
+    <A NAME="f_get_file_exists"><A HREF="../src/wsf_file_response.html#f_get_file_exists">get_file_exists</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Get </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A><FONT COLOR="red">`</FONT>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (<A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>)
+            <A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A> := f.<A HREF="../elks/file.html#f_exists">exists</A>
+        <B>end</B></A>
+
+    <A NAME="f_get_file_size"><A HREF="../src/wsf_file_response.html#f_get_file_size">get_file_size</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Get </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_file_size">file_size</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> from file named </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_file_path">file_path</A><FONT COLOR="red">`</FONT>
+        <B>require</B>
+            file_exists: <A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (<A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>)
+            <A HREF="../src/wsf_file_response.html#f_file_size">file_size</A> := f.<A HREF="../elks/file.html#f_count">count</A>
+        <B>end</B></A>
+
+    <A NAME="f_file_last_modified"><A HREF="../src/wsf_file_response.html#f_file_last_modified">file_last_modified</A>: <B>detachable</B> DATE_TIME
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Get </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_file_size">file_size</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> from file named </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_file_path">file_path</A><FONT COLOR="red">`</FONT>
+        <B>require</B>
+            file_exists: <A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (<A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>)
+            <B>create</B> <B>Result</B>.make_from_epoch (f.<A HREF="../elks/file.html#f_date">date</A>)
+        <B>end</B></A>
+
+    <A NAME="f_file_extension"><A HREF="../src/wsf_file_response.html#f_file_extension">file_extension</A> (fn: <A HREF="../elks/path.html">PATH</A>): <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Extension of file </FONT><I>fn</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> fn.<A HREF="../elks/path.html#f_extension">extension</A> <B>as</B> ext <B>then</B>
+                <B>Result</B> := ext.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+            <B>else</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content-type related</FONT>
+
+    <A NAME="f_get_content_type"><A HREF="../src/wsf_file_response.html#f_get_content_type">get_content_type</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Content type associated with </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_file_response.html#f_file_path">file_path</A><FONT COLOR="red">`</FONT>
+        <B>local</B>
+            m_map: <A HREF="../src/http_file_extension_mime_mapping.html">HTTP_FILE_EXTENSION_MIME_MAPPING</A>
+            m: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>create</B> m_map.<A HREF="../src/http_file_extension_mime_mapping.html#f_make_default">make_default</A>
+            m := m_map.<A HREF="../src/http_file_extension_mime_mapping.html#f_mime_type">mime_type</A> (<A HREF="../src/wsf_file_response.html#f_file_extension">file_extension</A> (<A HREF="../src/wsf_file_response.html#f_file_path">file_path</A>).<A HREF="../elks/string_32.html#f_as_lower">as_lower</A>)
+            <B>if</B> m = <B>Void</B> <B>then</B>
+                m := {<A HREF="../src/http_mime_types.html">HTTP_MIME_TYPES</A>}.<A HREF="../src/http_mime_types.html#f_application_octet_stream">application_octet_stream</A>
+            <B>end</B>
+            <A HREF="../src/wsf_file_response.html#f_content_type">content_type</A> := m
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation: output</FONT>
+
+    <A NAME="f_send_file_content_to"><A HREF="../src/wsf_file_response.html#f_send_file_content_to">send_file_content_to</A> (fn: <A HREF="../elks/path.html">PATH</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Send the content of file </FONT><I>fn</I>
+        <B>require</B>
+            string_not_empty: <B>not</B> fn.<A HREF="../elks/path.html#f_is_empty">is_empty</A>
+            is_readable: (<B>create</B> {<A HREF="../elks/raw_file.html">RAW_FILE</A>}.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (fn) <B>end</B>).<A HREF="../elks/file.html#f_is_readable">is_readable</A>
+            file_exists: <A HREF="../src/wsf_file_response.html#f_file_exists">file_exists</A>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (fn)
+            <B>check</B>
+                f.<A HREF="../elks/file.html#f_is_readable">is_readable</A>
+            <B>end</B>;
+            res.<A HREF="../src/wsf_response.html#f_put_file_content">put_file_content</A> (f, 0, f.<A HREF="../elks/file.html#f_count">count</A>)
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_file_response.html">WSF_FILE_RESPONSE</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_file_response_chart.html">Chart</A></TD><TD><A HREF="wsf_file_response_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

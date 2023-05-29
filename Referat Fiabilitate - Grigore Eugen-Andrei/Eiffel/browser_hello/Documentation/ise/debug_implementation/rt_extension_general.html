@@ -1,0 +1,176 @@
+<HTML><HEAD>
+<meta name="description" content="Common routine for RT_EXTENSION classes"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="library" content="EiffelBase: Library of reusable components for Eiffel."/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>rt_extension_general Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../class_list.html">Classes</A></TD><TD><A HREF="../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="rt_extension_general_chart.html">Chart</A></TD><TD><A HREF="rt_extension_general_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Common routine for RT_EXTENSION classes"
+    status: "See notice at end of class."
+    legal: "See notice at end of class."
+    date: "$Date: 2020-05-19 14:29:33 +0000 (Tue, 19 May 2020) $"
+    revision: "$Revision: 104259 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../../ise/debug_implementation/rt_extension_general.html">RT_EXTENSION_GENERAL</A>
+
+<B>inherit</B>
+    <A HREF="../../ise/debug_implementation/rt_extension_common.html">RT_EXTENSION_COMMON</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> RT extension identifiers (check eif_debug.h uses the same values)</FONT>
+
+    <A NAME="f_op_enter_feature"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_op_enter_feature">Op_enter_feature</A>: <A HREF="../../elks/integer_32.html">INTEGER_32</A> = 10</A>
+
+    <A NAME="f_op_leave_feature"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_op_leave_feature">Op_leave_feature</A>: <A HREF="../../elks/integer_32.html">INTEGER_32</A> = 11</A>
+
+    <A NAME="f_op_rescue_feature"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_op_rescue_feature">Op_rescue_feature</A>: <A HREF="../../elks/integer_32.html">INTEGER_32</A> = 12</A>
+
+    <A NAME="f_op_rt_hook"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_op_rt_hook">Op_rt_hook</A>: <A HREF="../../elks/integer_32.html">INTEGER_32</A> = 13</A>
+
+    <A NAME="f_op_rt_assign_attrib"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_op_rt_assign_attrib">Op_rt_assign_attrib</A>: <A HREF="../../elks/integer_32.html">INTEGER_32</A> = 14</A>
+
+    <A NAME="f_op_rt_assign_local"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_op_rt_assign_local">Op_rt_assign_local</A>: <A HREF="../../elks/integer_32.html">INTEGER_32</A> = 15</A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Debugger helper</FONT>
+
+    <A NAME="f_debugger_type_string"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_debugger_type_string">debugger_type_string</A> (a_obj: <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>): <B>detachable</B> <A HREF="../../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return the evaluation of </FONT><I>a.generating_type.out</I>
+        <B>do</B>
+            <B>if</B> a_obj /= <B>Void</B> <B>then</B>
+                <B>Result</B> := a_obj.<A HREF="../../elks/any.html#f_generating_type">generating_type</A>.<A HREF="../../elks/type.html#f_out">out</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Evaluation helper</FONT>
+
+    <A NAME="f_tilda_equal_evaluation"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_tilda_equal_evaluation">tilda_equal_evaluation</A> (a, b: <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>): <A HREF="../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return the evaluation of </FONT><I>a ~ b</I>
+        <B>do</B>
+            <B>Result</B> := a ~ b
+        <B>end</B></A>
+
+    <A NAME="f_is_equal_evaluation"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_is_equal_evaluation">is_equal_evaluation</A> (a, b: <A HREF="../../elks/any.html">ANY</A>): <A HREF="../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return the evaluation of </FONT><I>a.is_equal (b)</I><FONT COLOR="red">	</FONT>
+        <B>require</B>
+            a_b_attached: a /= <B>Void</B> <B>and</B> b /= <B>Void</B>
+        <B>do</B>
+            <B>Result</B> := a.<A HREF="../../elks/any.html#f_is_equal">is_equal</A> (b)
+        <B>end</B></A>
+
+    <A NAME="f_equal_sign_evaluation"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_equal_sign_evaluation">equal_sign_evaluation</A> (a, b: <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>): <A HREF="../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return the evaluation of </FONT><I>a = b</I>
+        <B>do</B>
+            <B>Result</B> := a = b
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Object storage Access</FONT>
+
+    <A NAME="f_saved_object_to"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_saved_object_to">saved_object_to</A> (r: <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>; fn: <A HREF="../../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Save object </FONT><I>r</I><FONT COLOR="red"> into file </FONT><I>fn</I>
+        <B>require</B>
+            fn_attached: fn /= <B>Void</B>
+        <B>local</B>
+            file: <A HREF="../../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>create</B> file.<A HREF="../../elks/file.html#f_make_with_name">make_with_name</A> (fn)
+            <B>if</B> r /= <B>Void</B> <B>and then</B> (<B>not</B> file.<A HREF="../../elks/file.html#f_exists">exists</A> <B>or else</B> file.<A HREF="../../elks/file.html#f_is_writable">is_writable</A>) <B>then</B>
+                file.<A HREF="../../elks/file.html#f_create_read_write">create_read_write</A>;
+                file.<A HREF="../../elks/file.html#f_independent_store">independent_store</A> (r);
+                file.<A HREF="../../elks/file.html#f_close">close</A>
+                <B>Result</B> := r
+            <B>else</B>
+                <B>Result</B> := <B>Void</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_object_loaded_from"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_object_loaded_from">object_loaded_from</A> (r: <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>; fn: <A HREF="../../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Loaded object from file </FONT><I>fn</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if </FONT><I>r</I><FONT COLOR="red"> is Void return a new object</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> else load into </FONT><I>r</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If failure then results Void object.</FONT>
+        <B>require</B>
+            fn_attached: fn /= <B>Void</B>
+        <B>local</B>
+            o: <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>
+            file: <A HREF="../../elks/raw_file.html">RAW_FILE</A>
+            retried: <A HREF="../../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>if</B> <B>not</B> retried <B>then</B>
+                <B>create</B> file.<A HREF="../../elks/file.html#f_make_with_name">make_with_name</A> (fn)
+                <B>if</B> file.<A HREF="../../elks/file.html#f_exists">exists</A> <B>and then</B> file.<A HREF="../../elks/file.html#f_is_readable">is_readable</A> <B>then</B>
+                    file.<A HREF="../../elks/file.html#f_open_read">open_read</A>
+                    o := file.<A HREF="../../elks/file.html#f_retrieved">retrieved</A>;
+                    file.<A HREF="../../elks/file.html#f_close">close</A>
+                    <B>if</B> <B>attached</B> {<A HREF="../../elks/any.html">ANY</A>} r <B>as</B> o1 <B>then</B>
+                        <B>if</B> <B>attached</B> {<A HREF="../../elks/any.html">ANY</A>} o <B>as</B> o2 <B>and then</B> o1.<A HREF="../../elks/any.html#f_same_type">same_type</A> (o2) <B>then</B>
+                            o1.<A HREF="../../elks/any.html#f_standard_copy">standard_copy</A> (o2)
+                            <B>Result</B> := o1
+                        <B>end</B>
+                    <B>else</B>
+                        <B>Result</B> := o
+                    <B>end</B>
+                <B>else</B>
+                    <B>Result</B> := <B>Void</B>
+                <B>end</B>
+            <B>else</B>
+                <B>Result</B> := r
+            <B>end</B>
+        <B>rescue</B>
+            retried := <B>True</B>
+            <B>retry</B>
+        <B>end</B></A>
+
+    <A NAME="f_object_runtime_info"><A HREF="../../ise/debug_implementation/rt_extension_general.html#f_object_runtime_info">object_runtime_info</A> (r: <B>detachable</B> <A HREF="../../elks/any.html">ANY</A>): <A HREF="../../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Representation of the internal information for object </FONT><I>r</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            int: <A HREF="../../elks/internal.html">INTERNAL</A>
+        <B>do</B>
+            <B>if</B> r /= <B>Void</B> <B>then</B>
+                <B>create</B> <B>Result</B>.<A HREF="../../elks/readable_string_32.html#f_make">make</A> (0);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> ("class_name=".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> (r.<A HREF="../../elks/any.html#f_generator">generator</A>.<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> (";".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> ("type_name=".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> (r.<A HREF="../../elks/any.html#f_generating_type">generating_type</A>.<A HREF="../../elks/type.html#f_name_32">name_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> (";".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                <B>create</B> int;
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> ("dynamic_type=".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append_integer">append_integer</A> (int.<A HREF="../../elks/internal.html#f_dynamic_type">dynamic_type</A> (r));
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> (";".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> ("field_count=".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append_integer">append_integer</A> (int.<A HREF="../../elks/internal.html#f_field_count">field_count</A> (r));
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> (";".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> ("deep_physical_size=".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append_natural_64">append_natural_64</A> (int.<A HREF="../../elks/internal.html#f_deep_physical_size_64">deep_physical_size_64</A> (r));
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> (";".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append">append</A> ("physical_size=".<A HREF="../../elks/readable_string_general.html#f_as_string_32">as_string_32</A>);
+                <B>Result</B>.<A HREF="../../elks/string_32.html#f_append_natural_64">append_natural_64</A> (int.<A HREF="../../elks/internal.html#f_physical_size_64">physical_size_64</A> (r))
+            <B>else</B>
+                <B>create</B> <B>Result</B>.<A HREF="../../elks/readable_string_general.html#f_make_empty">make_empty</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>note</B>
+    library: "EiffelBase: Library of reusable components for Eiffel."
+    copyright: "Copyright (c) 1984-2020, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../../ise/debug_implementation/rt_extension_general.html">RT_EXTENSION_GENERAL</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../class_list.html">Classes</A></TD><TD><A HREF="../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="rt_extension_general_chart.html">Chart</A></TD><TD><A HREF="rt_extension_general_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

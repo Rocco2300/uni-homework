@@ -1,0 +1,5 @@
+test cases total: 500
+failures: 10
+unique failures: 5
+bad response: 0
+invalid test cases: 49

@@ -1,0 +1,139 @@
+<HTML><HEAD>
+<meta name="description" content="Summary description for WSF_STARTS_WITH_MAPPING_I."/>
+<meta name="author" content=""/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_starts_with_mapping_i Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_starts_with_mapping_i_chart.html">Chart</A></TD><TD><A HREF="wsf_starts_with_mapping_i_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Summary description for WSF_STARTS_WITH_MAPPING_I."
+    author: ""
+    date: "$Date: 2015-05-12 17:24:02 +0000 (Tue, 12 May 2015) $"
+    revision: "$Revision: 97282 $"
+
+<B>deferred</B> <B>class</B> 
+    <A HREF="../router/wsf_starts_with_mapping_i.html">WSF_STARTS_WITH_MAPPING_I</A>
+
+<B>inherit</B>
+    <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+
+    <A HREF="../router/wsf_self_documented_router_mapping.html">WSF_SELF_DOCUMENTED_ROUTER_MAPPING</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../router/wsf_starts_with_mapping_i.html#f_make">make</A> (a_uri: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; h: <B>like</B> <A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_starts_with_mapping_i.html#f_set_handler">set_handler</A> (h)
+            <A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A> := a_uri
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_associated_resource"><A HREF="../router/wsf_starts_with_mapping_i.html#f_associated_resource">associated_resource</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>
+        <B>end</B></A>
+
+    <A NAME="f_uri"><A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Change</FONT>
+
+    <A NAME="f_set_handler"><A HREF="../router/wsf_starts_with_mapping_i.html#f_set_handler">set_handler</A> (h: <B>like</B> <A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router_mapping.html#f_handler">handler</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>h</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            h_attached: h /= <B>Void</B>
+        <B>deferred</B>
+        <B>ensure</B>
+            h_aliased: <A HREF="../router/wsf_router_mapping.html#f_handler">handler</A> = h
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Documentation</FONT>
+
+    <A NAME="f_description"><A HREF="../router/wsf_starts_with_mapping_i.html#f_description">Description</A>: <A HREF="../elks/string_32.html">STRING_32</A> = "Starts-With-URI"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Short description of associated mapping</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status</FONT>
+
+    <A NAME="f_is_mapping"><A HREF="../router/wsf_starts_with_mapping_i.html#f_is_mapping">is_mapping</A> (a_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Does </FONT><I>Current</I><FONT COLOR="red"> accept path </FONT><I>a_path</I><FONT COLOR="red"> and request </FONT><I>req</I><FONT COLOR="red"> when using </FONT><I>a_router</I><FONT COLOR="red">?</FONT>
+        <B>local</B>
+            s: <B>like</B> <A HREF="../router/wsf_starts_with_mapping_i.html#f_based_uri">based_uri</A>
+        <B>do</B>
+            s := <A HREF="../router/wsf_starts_with_mapping_i.html#f_based_uri">based_uri</A> (<A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>, a_router)
+            <B>Result</B> := a_path.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> (s)
+        <B>end</B></A>
+
+    <A NAME="f_try"><A HREF="../router/wsf_starts_with_mapping_i.html#f_try">try</A> (a_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>; sess: <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>; a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Try using </FONT><I>Current</I><FONT COLOR="red"> mapping and if it matches path </FONT><I>a_path</I><FONT COLOR="red"> and request </FONT><I>req</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> execute associated handler and set this handler in session </FONT><I>sess</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            s: <B>like</B> <A HREF="../router/wsf_starts_with_mapping_i.html#f_based_uri">based_uri</A>
+        <B>do</B>
+            s := <A HREF="../router/wsf_starts_with_mapping_i.html#f_based_uri">based_uri</A> (<A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>, a_router)
+            <B>if</B> a_path.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> (s) <B>then</B>
+                sess.<A HREF="../router/wsf_router_session.html#f_set_dispatched_handler">set_dispatched_handler</A> (<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>);
+                a_router.<A HREF="../router/wsf_router.html#f_execute_before">execute_before</A> (<B>Current</B>)
+                <A HREF="../router/wsf_starts_with_mapping_i.html#f_execute_handler">execute_handler</A> (<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>, s, req, res);
+                a_router.<A HREF="../router/wsf_router.html#f_execute_after">execute_after</A> (<B>Current</B>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_execute_handler"><A HREF="../router/wsf_starts_with_mapping_i.html#f_execute_handler">execute_handler</A> (h: <B>like</B> <A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>; a_start_path: <B>like</B> <A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>; req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execute handler </FONT><I>h</I><FONT COLOR="red"> with </FONT><I>req</I><FONT COLOR="red"> and </FONT><I>res</I><FONT COLOR="red"> for Current mapping.</FONT>
+        <B>require</B>
+            h_attached: h /= <B>Void</B>
+            a_start_path_attached: a_start_path /= <B>Void</B>
+            req_attached: req /= <B>Void</B>
+            res_attached: res /= <B>Void</B>
+            path_start_with_a_start_path: req.<A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A>.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> (a_start_path)
+        <B>deferred</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_based_uri"><A HREF="../router/wsf_starts_with_mapping_i.html#f_based_uri">based_uri</A> (a_uri: <B>like</B> <A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>; a_router: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>): <B>like</B> <A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><I>a_uri</I><FONT COLOR="red"> prefixed by the </FONT><I>WSF_ROUTER.base_url</I><FONT COLOR="red"> if any</FONT>
+        <B>require</B>
+            a_uri_attached: a_uri /= <B>Void</B>
+            a_router_attached: a_router /= <B>Void</B>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> a_router.<A HREF="../router/wsf_router.html#f_base_url">base_url</A> <B>as</B> l_base_url <B>then</B>
+                <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (l_base_url);
+                s.<A HREF="../elks/string_8.html#f_append_string">append_string</A> (a_uri)
+                <B>Result</B> := s
+            <B>else</B>
+                <B>Result</B> := a_uri
+            <B>end</B>
+        <B>ensure</B>
+            based_uri_attached: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>invariant</B>
+    uri_attached: <A HREF="../router/wsf_starts_with_mapping_i.html#f_uri">uri</A> /= <B>Void</B>
+
+<B>note</B>
+    copyright: "2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_starts_with_mapping_i.html">WSF_STARTS_WITH_MAPPING_I</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_starts_with_mapping_i_chart.html">Chart</A></TD><TD><A HREF="wsf_starts_with_mapping_i_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

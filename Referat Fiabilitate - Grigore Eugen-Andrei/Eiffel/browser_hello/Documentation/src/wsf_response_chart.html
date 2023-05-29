@@ -1,0 +1,74 @@
+<HTML><HEAD>
+<meta name="description" content="Main interface to send message back to the client  You can send part by part, i.e: - set the status code, see: set_status_code (a_code) - put the header's text, see: put_header_text (a_text) - put string for the body, see: put_string (s), put_character (c) - using put_error will eventually send error message directly to the underlying connector's log   (i.e for apache, it will go to the error log) - And you can also send the message as chunked, see put_chunk (..) for more details - Or you can send a WSF_RESPONSE_MESSAGE in once, see `send (mesg)'"/>
+<meta name="eis" content="name=Hypertext Transfer Protocol -- HTTP/1.1 , protocol=URI, src=http://www.w3.org/Protocols/rfc2616/rfc2616.html"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2016, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_response Chart</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_response_links.html">Relations</A></TD><TD><A HREF="wsf_response.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../src/wsf_response_chart.html">WSF_RESPONSE</A>
+
+<B>General</B>
+    cluster: <A HREF="../src/index.html">src</A>
+    description: 
+        "Main interface to send message back to the client
+        
+        You can send part by part, i.e:
+        - set the status code, see: set_status_code (a_code)
+        - put the header's text, see: put_header_text (a_text)
+        - put string for the body, see: put_string (s), put_character (c)
+        - using put_error will eventually send error message directly to the underlying connector's log
+          (i.e for apache, it will go to the error log)
+        - And you can also send the message as %"chunked%", see put_chunk (..) for more details
+        - Or you can send a WSF_RESPONSE_MESSAGE in once, see send (mesg)"
+    create: <A HREF="../src/wsf_response.html#f_make_from_wgi">make_from_wgi</A>, <A HREF="../src/wsf_response.html#f_make_from_wsf">make_from_wsf</A>
+
+<B>Ancestors</B>
+    <A HREF="../elks/any_chart.html">ANY</A>
+
+<B>Queries</B>
+    <A HREF="../src/wsf_response.html#f_header">header</A>: <A HREF="../src/http_header_modifier_chart.html">HTTP_HEADER_MODIFIER</A>
+    <A HREF="../src/wsf_response.html#f_header_committed">header_committed</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_response.html#f_message_committed">message_committed</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_response.html#f_message_writable">message_writable</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_response.html#f_status_code">status_code</A>: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>
+    <A HREF="../src/wsf_response.html#f_status_committed">status_committed</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_response.html#f_status_is_set">status_is_set</A>: <A HREF="../elks/boolean_chart.html">BOOLEAN</A>
+    <A HREF="../src/wsf_response.html#f_status_reason_phrase">status_reason_phrase</A>: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>
+    <A HREF="../src/wsf_response.html#f_transfered_content_length">transfered_content_length</A>: <A HREF="../elks/natural_64_chart.html">NATURAL_64</A>
+
+<B>Commands</B>
+    <A HREF="../src/wsf_response.html#f_add_cookie">add_cookie</A> (a_cookie: <A HREF="../src/wsf_cookie_chart.html">WSF_COOKIE</A>)
+    <A HREF="../src/wsf_response.html#f_add_header">add_header</A> (a_status_code: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; a_headers: <B>detachable</B> <A HREF="../elks/array_chart.html">ARRAY</A> [<A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]])
+    <A HREF="../src/wsf_response.html#f_add_header_line">add_header_line</A> (h: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_add_header_lines">add_header_lines</A> (a_lines: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>])
+    <A HREF="../src/wsf_response.html#f_add_header_text">add_header_text</A> (a_text: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_flush">flush</A>
+    <A HREF="../src/wsf_response.html#f_put_character">put_character</A> (c: <A HREF="../elks/character_8_chart.html">CHARACTER_8</A>)
+    <A HREF="../src/wsf_response.html#f_put_chunk">put_chunk</A> (a_content: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_ext: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_put_chunk_end">put_chunk_end</A>
+    <A HREF="../src/wsf_response.html#f_put_custom_chunk_end">put_custom_chunk_end</A> (a_ext, a_trailer: <B>detachable</B> <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_put_error">put_error</A> (a_message: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_put_file_content">put_file_content</A> (f: <A HREF="../elks/file_chart.html">FILE</A>; a_offset, a_count: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/wsf_response.html#f_put_header">put_header</A> (a_status_code: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; a_headers: <B>detachable</B> <A HREF="../elks/array_chart.html">ARRAY</A> [<A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>]])
+    <A HREF="../src/wsf_response.html#f_put_header_line">put_header_line</A> (h: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_put_header_lines">put_header_lines</A> (a_lines: <A HREF="../elks/iterable_chart.html">ITERABLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>])
+    <A HREF="../src/wsf_response.html#f_put_header_text">put_header_text</A> (a_text: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_put_string">put_string</A> (s: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_put_substring">put_substring</A> (s: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_begin_index, a_end_index: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/wsf_response.html#f_redirect_now">redirect_now</A> (a_url: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_redirect_now_custom">redirect_now_custom</A> (a_url: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>; a_status_code: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; a_header: <B>detachable</B> <A HREF="../src/http_header_chart.html">HTTP_HEADER</A>; a_content: <B>detachable</B> <A HREF="../elks/tuple_chart.html">TUPLE</A> [<A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>])
+    <A HREF="../src/wsf_response.html#f_redirect_now_with_content">redirect_now_with_content</A> (a_url, a_content, a_content_type: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+    <A HREF="../src/wsf_response.html#f_send">send</A> (a_message: <A HREF="../src/wsf_response_message_chart.html">WSF_RESPONSE_MESSAGE</A>)
+    <A HREF="../src/wsf_response.html#f_set_status_code">set_status_code</A> (a_code: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>)
+    <A HREF="../src/wsf_response.html#f_set_status_code_with_reason_phrase">set_status_code_with_reason_phrase</A> (a_code: <A HREF="../elks/integer_32_chart.html">INTEGER_32</A>; a_reason_phrase: <A HREF="../elks/readable_string_8_chart.html">READABLE_STRING_8</A>)
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD>Chart</TD><TD><A HREF="wsf_response_links.html">Relations</A></TD><TD><A HREF="wsf_response.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

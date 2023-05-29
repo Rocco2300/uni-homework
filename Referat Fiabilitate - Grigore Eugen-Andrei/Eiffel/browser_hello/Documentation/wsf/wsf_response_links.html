@@ -1,0 +1,73 @@
+<HTML><HEAD>
+<meta name="description" content="Main interface to send message back to the client  You can send part by part, i.e: - set the status code, see: set_status_code (a_code) - put the header's text, see: put_header_text (a_text) - put string for the body, see: put_string (s), put_character (c) - using put_error will eventually send error message directly to the underlying connector's log   (i.e for apache, it will go to the error log) - And you can also send the message as chunked, see put_chunk (..) for more details - Or you can send a WSF_RESPONSE_MESSAGE in once, see `send (mesg)'"/>
+<meta name="eis" content="name=Hypertext Transfer Protocol -- HTTP/1.1 , protocol=URI, src=http://www.w3.org/Protocols/rfc2616/rfc2616.html"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2016, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_response Relations</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_response_chart.html">Chart</A></TD><TD>Relations</TD><TD><A HREF="wsf_response.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../src/wsf_response_links.html">WSF_RESPONSE</A>
+
+<B>Ancestors</B>
+    <A HREF="../elks/any_links.html">ANY</A>
+
+<B>Descendants</B>
+    <A HREF="../src/wsf_head_response_wrapper_links.html">WSF_HEAD_RESPONSE_WRAPPER</A>
+
+<B>Clients</B>
+    <A HREF="../router/wsf_cors_filter_links.html">WSF_CORS_FILTER</A>
+    <A HREF="../src/wsf_default_response_links.html">WSF_DEFAULT_RESPONSE</A>
+    <A HREF="../src/wsf_default_router_response_links.html">WSF_DEFAULT_ROUTER_RESPONSE</A>
+    <A HREF="../src/wsf_execution_links.html">WSF_EXECUTION</A>*
+    <A HREF="../src/wsf_file_response_links.html">WSF_FILE_RESPONSE</A>
+    <A HREF="../router/wsf_file_system_handler_links.html">WSF_FILE_SYSTEM_HANDLER</A>
+    <A HREF="../router/wsf_logging_filter_links.html">WSF_LOGGING_FILTER</A>
+    <A HREF="../router/wsf_maintenance_filter_links.html">WSF_MAINTENANCE_FILTER</A>
+    <A HREF="../src/wsf_method_not_allowed_response_links.html">WSF_METHOD_NOT_ALLOWED_RESPONSE</A>
+    <A HREF="../src/wsf_not_found_response_links.html">WSF_NOT_FOUND_RESPONSE</A>
+    <A HREF="../src/wsf_precondition_failed_message_links.html">WSF_PRECONDITION_FAILED_MESSAGE</A>
+    <A HREF="../src/wsf_response_links.html">WSF_RESPONSE</A>
+    <A HREF="../src/wsf_response_header_links.html">WSF_RESPONSE_HEADER</A>
+    <A HREF="../src/wsf_response_message_links.html">WSF_RESPONSE_MESSAGE</A>*
+    <A HREF="../router/wsf_routed_execution_links.html">WSF_ROUTED_EXECUTION</A>*
+    <A HREF="../router/wsf_router_self_documentation_handler_links.html">WSF_ROUTER_SELF_DOCUMENTATION_HANDLER</A>
+    <A HREF="../router/wsf_router_self_documentation_message_links.html">WSF_ROUTER_SELF_DOCUMENTATION_MESSAGE</A>
+    <A HREF="../router/wsf_routing_handler_links.html">WSF_ROUTING_HANDLER</A>*
+    <A HREF="../src/wsf_trace_response_links.html">WSF_TRACE_RESPONSE</A>
+    <A HREF="../src/wsf_wgi_delayed_header_response_links.html">WSF_WGI_DELAYED_HEADER_RESPONSE</A>
+
+<B>Suppliers</B>
+    <A HREF="../elks/arrayed_list_links.html">ARRAYED_LIST</A> [G]
+    <A HREF="../elks/arrayed_list_iteration_cursor_links.html">ARRAYED_LIST_ITERATION_CURSOR</A> [G]
+    <A HREF="../elks/boolean_links.html">BOOLEAN</A>
+    <A HREF="../elks/character_32_links.html">CHARACTER_32</A>
+    <A HREF="../elks/character_8_links.html">CHARACTER_8</A>
+    <A HREF="../elks/file_links.html">FILE</A>*
+    <A HREF="../src/http_constants_links.html">HTTP_CONSTANTS</A>
+    <A HREF="../src/http_header_links.html">HTTP_HEADER</A>
+    <A HREF="../src/http_status_code_links.html">HTTP_STATUS_CODE</A>
+    <A HREF="../elks/integer_32_links.html">INTEGER_32</A>
+    <A HREF="../elks/iterable_links.html">ITERABLE</A>* [G]
+    <A HREF="../elks/iteration_cursor_links.html">ITERATION_CURSOR</A>* [G]
+    <A HREF="../elks/natural_64_links.html">NATURAL_64</A>
+    <A HREF="../elks/readable_string_8_links.html">READABLE_STRING_8</A>*
+    <A HREF="../elks/readable_string_general_links.html">READABLE_STRING_GENERAL</A>*
+    <A HREF="../elks/string_8_links.html">STRING_8</A>
+    WGI_FILTER_RESPONSE
+    WGI_RESPONSE*
+    <A HREF="../src/wsf_cookie_links.html">WSF_COOKIE</A>
+    <A HREF="../src/wsf_header_links.html">WSF_HEADER</A>
+    <A HREF="../src/wsf_response_links.html">WSF_RESPONSE</A>
+    <A HREF="../src/wsf_response_header_links.html">WSF_RESPONSE_HEADER</A>
+    <A HREF="../src/wsf_response_message_links.html">WSF_RESPONSE_MESSAGE</A>*
+    <A HREF="../src/wsf_wgi_delayed_header_response_links.html">WSF_WGI_DELAYED_HEADER_RESPONSE</A>
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_response_chart.html">Chart</A></TD><TD>Relations</TD><TD><A HREF="wsf_response.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

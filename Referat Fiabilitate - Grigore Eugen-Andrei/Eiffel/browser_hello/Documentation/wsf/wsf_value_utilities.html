@@ -1,0 +1,176 @@
+<HTML><HEAD>
+<meta name="description" content="Utility routines to handle parameters and convert them as string, list or table values."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_value_utilities Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_value_utilities_chart.html">Chart</A></TD><TD><A HREF="wsf_value_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Utility routines to handle parameters and convert them as string, list or table values.
+    ]"
+    date: "$Date: 2015-11-05 20:52:56 +0000 (Thu, 05 Nov 2015) $"
+    revision: "$Revision: 98081 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_value_utilities.html">WSF_VALUE_UTILITIES</A>
+
+<B>inherit</B>
+    <A HREF="../elks/any.html">ANY</A>
+
+    <A HREF="../src/shared_wsf_percent_encoder.html">SHARED_WSF_PERCENT_ENCODER</A>
+        <B>rename</B>
+            <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Percent_encoder</A> <B>as</B> <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Url_encoder</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Smart parameter identification</FONT>
+
+    <A NAME="f_add_utf_8_string_value_to_table"><A HREF="../src/wsf_value_utilities.html#f_add_utf_8_string_value_to_table">add_utf_8_string_value_to_table</A> (a_utf_8_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_utf_8_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_table: <A HREF="../elks/hash_table.html">HASH_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add a utf-8 string value </FONT><I>a_utf_8_value</I><FONT COLOR="red"> associated with name </FONT><I>a_utf_8_name</I><FONT COLOR="red"> to </FONT><I>a_table</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            utf: <A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>
+            n, v: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+        <B>do</B>
+            n := utf.<A HREF="../elks/utf_converter.html#f_utf_8_string_8_to_string_32">utf_8_string_8_to_string_32</A> (a_utf_8_name)
+            v := utf.<A HREF="../elks/utf_converter.html#f_utf_8_string_8_to_string_32">utf_8_string_8_to_string_32</A> (a_utf_8_value)
+            <A HREF="../src/wsf_value_utilities.html#f_add_value_to_table">add_value_to_table</A> (n, <A HREF="../src/wsf_value_utilities.html#f_new_string_value">new_string_value</A> (n, v), a_table)
+        <B>end</B></A>
+
+    <A NAME="f_add_percent_encoded_string_value_to_table"><A HREF="../src/wsf_value_utilities.html#f_add_percent_encoded_string_value_to_table">add_percent_encoded_string_value_to_table</A> (a_encoded_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_encoded_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_table: <A HREF="../elks/hash_table.html">HASH_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add a percent-encoded string value </FONT><I>a_encoded_value</I><FONT COLOR="red"> associated with name </FONT><I>a_encoded_name</I><FONT COLOR="red"> to </FONT><I>a_table</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            v: <A HREF="../src/wsf_string.html">WSF_STRING</A>
+        <B>do</B>
+            v := <A HREF="../src/wsf_value_utilities.html#f_new_string_value_with_percent_encoded_values">new_string_value_with_percent_encoded_values</A> (a_encoded_name, a_encoded_value)
+            <A HREF="../src/wsf_value_utilities.html#f_add_value_to_table">add_value_to_table</A> (v.<A HREF="../src/wsf_string.html#f_name">name</A>, v, a_table)
+        <B>end</B></A>
+
+    <A NAME="f_add_value_to_table"><A HREF="../src/wsf_value_utilities.html#f_add_value_to_table">add_value_to_table</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_value: <A HREF="../src/wsf_value.html">WSF_VALUE</A>; a_table: <A HREF="../elks/hash_table.html">HASH_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add value </FONT><I>a_value</I><FONT COLOR="red"> associated with unicode name </FONT><I>a_name</I><FONT COLOR="red"> to </FONT><I>a_table</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            l_decoded_name: <A HREF="../elks/string_32.html">STRING_32</A>
+            l_encoded_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            v: <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            n, k, r, vn: <A HREF="../elks/string_32.html">STRING_32</A>
+            p, q: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            tb, ptb: <B>detachable</B> <A HREF="../src/wsf_table.html">WSF_TABLE</A>
+        <B>do</B>
+            l_decoded_name := a_name.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+            l_encoded_name := a_value.<A HREF="../src/wsf_value.html#f_url_encoded_name">url_encoded_name</A>
+            p := l_decoded_name.<A HREF="../elks/readable_string_32.html#f_index_of">index_of</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} '[', 1)
+            n := l_decoded_name
+            <B>if</B> p &gt; 0 <B>then</B>
+                q := l_decoded_name.<A HREF="../elks/readable_string_32.html#f_index_of">index_of</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} ']', p + 1)
+                <B>if</B> q &gt; p <B>then</B>
+                    n := l_decoded_name.<A HREF="../elks/string_32.html#f_substring">substring</A> (1, p - 1)
+                    r := l_decoded_name.<A HREF="../elks/string_32.html#f_substring">substring</A> (q + 1, l_decoded_name.<A HREF="../elks/readable_string_32.html#f_count">count</A>);
+                    r.<A HREF="../elks/string_32.html#f_left_adjust">left_adjust</A>;
+                    r.<A HREF="../elks/string_32.html#f_right_adjust">right_adjust</A>
+                    <B>create</B> tb.<A HREF="../src/wsf_table.html#f_make">make</A> (n)
+                    <B>if</B> <B>attached</B> {<A HREF="../src/wsf_table.html">WSF_TABLE</A>} a_table.<A HREF="../elks/hash_table.html#f_item">item</A> (tb.<A HREF="../src/wsf_table.html#f_name">name</A>) <B>as</B> l_existing_table <B>then</B>
+                        tb := l_existing_table
+                    <B>end</B>
+                    k := l_decoded_name.<A HREF="../elks/string_32.html#f_substring">substring</A> (p + 1, q - 1);
+                    k.<A HREF="../elks/string_32.html#f_left_adjust">left_adjust</A>;
+                    k.<A HREF="../elks/string_32.html#f_right_adjust">right_adjust</A>
+                    <B>if</B> k.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                        k.<A HREF="../elks/string_32.html#f_append_integer">append_integer</A> (tb.<A HREF="../src/wsf_table.html#f_count">count</A> + 1)
+                    <B>end</B>
+                    v := tb
+                    <B>create</B> vn.<A HREF="../elks/readable_string_32.html#f_make_from_string">make_from_string</A> (n);
+                    vn.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} '[');
+                    vn.<A HREF="../elks/string_32.html#f_append">append</A> (k);
+                    vn.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} ']')
+                    <B>from</B>
+                    <B>until</B>
+                        r.<A HREF="../elks/finite.html#f_is_empty">is_empty</A>
+                    <B>loop</B>
+                        ptb := tb
+                        p := r.<A HREF="../elks/readable_string_32.html#f_index_of">index_of</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} '[', 1)
+                        <B>if</B> p &gt; 0 <B>then</B>
+                            q := r.<A HREF="../elks/readable_string_32.html#f_index_of">index_of</A> ({<A HREF="../elks/character_32.html">CHARACTER_32</A>} ']', p + 1)
+                            <B>if</B> q &gt; p <B>then</B>
+                                <B>if</B> <B>attached</B> {<A HREF="../src/wsf_table.html">WSF_TABLE</A>} ptb.<A HREF="../src/wsf_table.html#f_value">value</A> (k) <B>as</B> l_tb_value <B>then</B>
+                                    tb := l_tb_value
+                                <B>else</B>
+                                    <B>create</B> tb.<A HREF="../src/wsf_table.html#f_make">make</A> (n);
+                                    ptb.<A HREF="../src/wsf_table.html#f_add_value">add_value</A> (tb, k)
+                                <B>end</B>
+                                k := r.<A HREF="../elks/string_32.html#f_substring">substring</A> (p + 1, q - 1)
+                                r := r.<A HREF="../elks/string_32.html#f_substring">substring</A> (q + 1, r.<A HREF="../elks/readable_string_32.html#f_count">count</A>);
+                                r.<A HREF="../elks/string_32.html#f_left_adjust">left_adjust</A>;
+                                r.<A HREF="../elks/string_32.html#f_right_adjust">right_adjust</A>
+                                <B>if</B> k.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                                    k.<A HREF="../elks/string_32.html#f_append_integer">append_integer</A> (tb.<A HREF="../src/wsf_table.html#f_count">count</A> + 1)
+                                <B>end</B>;
+                                vn.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('['.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                                vn.<A HREF="../elks/string_32.html#f_append">append</A> (k);
+                                vn.<A HREF="../elks/string_32.html#f_append_character">append_character</A> (']'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+                            <B>end</B>
+                        <B>else</B>
+                            r.<A HREF="../elks/string_32.html#f_wipe_out">wipe_out</A>
+                        <B>end</B>
+                    <B>end</B>;
+                    a_value.<A HREF="../src/wsf_value.html#f_change_name">change_name</A> (vn);
+                    tb.<A HREF="../src/wsf_table.html#f_add_value">add_value</A> (a_value, k)
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> v = <B>Void</B> <B>then</B>
+                a_value.<A HREF="../src/wsf_value.html#f_change_name">change_name</A> (l_decoded_name)
+                v := a_value
+            <B>end</B>
+            <B>if</B> <B>attached</B> a_table.<A HREF="../elks/hash_table.html#f_item">item</A> (n) <B>as</B> l_existing_value <B>then</B>
+                <B>if</B> tb /= <B>Void</B> <B>then</B>
+                <B>elseif</B> <B>attached</B> {<A HREF="../src/wsf_multiple_string.html">WSF_MULTIPLE_STRING</A>} l_existing_value <B>as</B> l_multi <B>then</B>
+                    l_multi.<A HREF="../src/wsf_multiple_string.html#f_add_value">add_value</A> (v)
+                <B>elseif</B> <B>attached</B> {<A HREF="../src/wsf_table.html">WSF_TABLE</A>} l_existing_value <B>as</B> l_table <B>then</B>
+                <B>else</B>
+                    a_table.<A HREF="../elks/hash_table.html#f_force">force</A> (<B>create</B> {<A HREF="../src/wsf_multiple_string.html">WSF_MULTIPLE_STRING</A>}.<A HREF="../src/wsf_multiple_string.html#f_make_with_array">make_with_array</A> (&lt;&lt;l_existing_value, v&gt;&gt;) <B>end</B>, v.<A HREF="../src/wsf_value.html#f_name">name</A>)
+                    <B>check</B>
+                        replaced: a_table.<A HREF="../elks/hash_table.html#f_found">found</A> <B>and then</B> a_table.<A HREF="../elks/hash_table.html#f_found_item">found_item</A> ~ l_existing_value
+                    <B>end</B>
+                <B>end</B>
+            <B>else</B>
+                a_table.<A HREF="../elks/hash_table.html#f_force">force</A> (v, n)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Factory</FONT>
+
+    <A NAME="f_new_string_value"><A HREF="../src/wsf_value_utilities.html#f_new_string_value">new_string_value</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_value: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../src/wsf_string.html">WSF_STRING</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> New WSF_STRING value built from unicode </FONT><I>a_name</I><FONT COLOR="red"> and </FONT><I>a_value</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../src/wsf_string.html#f_make">make</A> (a_name, a_value)
+        <B>end</B></A>
+
+    <A NAME="f_new_string_value_with_percent_encoded_values"><A HREF="../src/wsf_value_utilities.html#f_new_string_value_with_percent_encoded_values">new_string_value_with_percent_encoded_values</A> (a_encoded_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_encoded_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../src/wsf_string.html">WSF_STRING</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> New WSF_STRING value built from utf8+percent encoded </FONT><I>a_encoded_name</I><FONT COLOR="red"> and </FONT><I>a_encoded_value</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../src/wsf_string.html#f_make_with_percent_encoded_values">make_with_percent_encoded_values</A> (a_encoded_name, a_encoded_value)
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2015, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_value_utilities.html">WSF_VALUE_UTILITIES</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_value_utilities_chart.html">Chart</A></TD><TD><A HREF="wsf_value_utilities_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

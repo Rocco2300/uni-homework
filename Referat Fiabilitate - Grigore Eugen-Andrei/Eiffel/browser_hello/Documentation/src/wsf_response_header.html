@@ -1,0 +1,80 @@
+<HTML><HEAD>
+<meta name="description" content="Interface to build the http header associated with WSF_RESPONSE."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2014, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_response_header Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_response_header_chart.html">Chart</A></TD><TD><A HREF="wsf_response_header_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        Interface to build the http header associated with WSF_RESPONSE.
+    ]"
+    date: "$Date: 2014-05-14 14:52:42 +0000 (Wed, 14 May 2014) $"
+    revision: "$Revision: 95057 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_response_header.html">WSF_RESPONSE_HEADER</A>
+
+<B>inherit</B>
+    <A HREF="../src/http_header_modifier.html">HTTP_HEADER_MODIFIER</A>
+
+    <A HREF="../src/wsf_response_exporter.html">WSF_RESPONSE_EXPORTER</A>
+
+<B>create</B> 
+    <A HREF="../src/wsf_response_header.html#f_make_with_response">make_with_response</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_with_response"><A HREF="../src/wsf_response_header.html#f_make_with_response">make_with_response</A> (res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_response_header.html#f_response">response</A> := res
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_response"><A HREF="../src/wsf_response_header.html#f_response">response</A>: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_new_cursor"><A HREF="../src/wsf_response_header.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/indexable_iteration_cursor.html">INDEXABLE_ITERATION_CURSOR</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fresh cursor associated with current structure.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_response_header.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_internal_header">internal_header</A>.<A HREF="../src/http_header.html#f_new_cursor">new_cursor</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Header change: core</FONT>
+
+    <A NAME="f_add_header"><A HREF="../src/wsf_response_header.html#f_add_header">add_header</A> (h: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>h</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if it already exists, there will be multiple header with same name</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> which can also be valid</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_response_header.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_add_header_line">add_header_line</A> (h)
+        <B>end</B></A>
+
+    <A NAME="f_put_header"><A HREF="../src/wsf_response_header.html#f_put_header">put_header</A> (h: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Add header </FONT><I>h</I><FONT COLOR="red"> or replace existing header of same header name</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_response_header.html#f_response">response</A>.<A HREF="../src/wsf_response.html#f_put_header_line">put_header_line</A> (h)
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2014, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_response_header.html">WSF_RESPONSE_HEADER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_response_header_chart.html">Chart</A></TD><TD><A HREF="wsf_response_header_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

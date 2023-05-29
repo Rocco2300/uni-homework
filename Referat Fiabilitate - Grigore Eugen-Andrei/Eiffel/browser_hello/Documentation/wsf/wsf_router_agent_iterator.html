@@ -1,0 +1,85 @@
+<HTML><HEAD>
+<meta name="description" content="Summary description for {WSF_ROUTER_AGENT_ITERATOR}."/>
+<meta name="author" content=""/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_router_agent_iterator Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_agent_iterator_chart.html">Chart</A></TD><TD><A HREF="wsf_router_agent_iterator_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "Summary description for {<A HREF="../router/wsf_router_agent_iterator.html">WSF_ROUTER_AGENT_ITERATOR</A>}."
+    author: ""
+    date: "$Date: 2013-05-20 13:34:55 +0000 (Mon, 20 May 2013) $"
+    revision: "$Revision: 92549 $"
+
+<B>class</B> 
+    <A HREF="../router/wsf_router_agent_iterator.html">WSF_ROUTER_AGENT_ITERATOR</A>
+
+<B>inherit</B>
+    <A HREF="../router/wsf_router_iterator.html">WSF_ROUTER_ITERATOR</A>
+        <B>redefine</B>
+            <A HREF="../router/wsf_router_agent_iterator.html#f_default_create">default_create</A>,
+            <A HREF="../router/wsf_router_agent_iterator.html#f_process_router">process_router</A>,
+            <A HREF="../router/wsf_router_agent_iterator.html#f_process_item">process_item</A>,
+            <A HREF="../router/wsf_router_agent_iterator.html#f_process_mapping">process_mapping</A>,
+            <A HREF="../router/wsf_router_agent_iterator.html#f_process_handler">process_handler</A>
+        <B>end</B>
+
+<B>create</B> 
+    <A HREF="../router/wsf_router_agent_iterator.html#f_default_create">default_create</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_default_create"><A HREF="../router/wsf_router_agent_iterator.html#f_default_create">default_create</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Process instances of classes with no creation clause.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> (Default: do nothing.)</FONT>
+        <B>do</B>
+            <B>Precursor</B>
+            <B>create</B> <A HREF="../router/wsf_router_agent_iterator.html#f_on_router_actions">on_router_actions</A>
+            <B>create</B> <A HREF="../router/wsf_router_agent_iterator.html#f_on_item_actions">on_item_actions</A>
+            <B>create</B> <A HREF="../router/wsf_router_agent_iterator.html#f_on_mapping_actions">on_mapping_actions</A>
+            <B>create</B> <A HREF="../router/wsf_router_agent_iterator.html#f_on_handler_actions">on_handler_actions</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Actions</FONT>
+
+    <A NAME="f_on_router_actions"><A HREF="../router/wsf_router_agent_iterator.html#f_on_router_actions">on_router_actions</A>: <A HREF="../ise/action_sequence.html">ACTION_SEQUENCE</A> [<A HREF="../router/wsf_router.html">WSF_ROUTER</A>]</A>
+
+    <A NAME="f_on_item_actions"><A HREF="../router/wsf_router_agent_iterator.html#f_on_item_actions">on_item_actions</A>: <A HREF="../ise/action_sequence.html">ACTION_SEQUENCE</A> [<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>]</A>
+
+    <A NAME="f_on_mapping_actions"><A HREF="../router/wsf_router_agent_iterator.html#f_on_mapping_actions">on_mapping_actions</A>: <A HREF="../ise/action_sequence.html">ACTION_SEQUENCE</A> [<A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>]</A>
+
+    <A NAME="f_on_handler_actions"><A HREF="../router/wsf_router_agent_iterator.html#f_on_handler_actions">on_handler_actions</A>: <A HREF="../ise/action_sequence.html">ACTION_SEQUENCE</A> [<A HREF="../router/wsf_handler.html">WSF_HANDLER</A>]</A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Visitor</FONT>
+
+    <A NAME="f_process_router"><A HREF="../router/wsf_router_agent_iterator.html#f_process_router">process_router</A> (r: <A HREF="../router/wsf_router.html">WSF_ROUTER</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_router_agent_iterator.html#f_on_router_actions">on_router_actions</A>.<A HREF="../ise/action_sequence.html#f_call">call</A> ([r])
+            <B>Precursor</B> (r)
+        <B>end</B></A>
+
+    <A NAME="f_process_item"><A HREF="../router/wsf_router_agent_iterator.html#f_process_item">process_item</A> (i: <A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_router_agent_iterator.html#f_on_item_actions">on_item_actions</A>.<A HREF="../ise/action_sequence.html#f_call">call</A> ([i])
+            <B>Precursor</B> (i)
+        <B>end</B></A>
+
+    <A NAME="f_process_mapping"><A HREF="../router/wsf_router_agent_iterator.html#f_process_mapping">process_mapping</A> (m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_router_agent_iterator.html#f_on_mapping_actions">on_mapping_actions</A>.<A HREF="../ise/action_sequence.html#f_call">call</A> ([m])
+            <B>Precursor</B> (m)
+        <B>end</B></A>
+
+    <A NAME="f_process_handler"><A HREF="../router/wsf_router_agent_iterator.html#f_process_handler">process_handler</A> (h: <A HREF="../router/wsf_handler.html">WSF_HANDLER</A>)
+        <B>do</B>
+            <A HREF="../router/wsf_router_agent_iterator.html#f_on_handler_actions">on_handler_actions</A>.<A HREF="../ise/action_sequence.html#f_call">call</A> ([h])
+            <B>Precursor</B> (h)
+        <B>end</B></A>
+    
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_router_agent_iterator.html">WSF_ROUTER_AGENT_ITERATOR</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_agent_iterator_chart.html">Chart</A></TD><TD><A HREF="wsf_router_agent_iterator_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

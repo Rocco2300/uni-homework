@@ -1,0 +1,628 @@
+<HTML><HEAD>
+<meta name="description" content="TTTURL dispatching of request TTT TTTMap a route to an handler according to the request method and path "/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_router Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_chart.html">Chart</A></TD><TD><A HREF="wsf_router_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        			URL dispatching of request
+        			
+        			Map a route to an handler according to the request method and path
+        
+    ]"
+    date: "$Date: 2020-05-13 15:24:51 +0000 (Wed, 13 May 2020) $"
+    revision: "$Revision: 104193 $"
+
+<B>class</B> 
+    <A HREF="../router/wsf_router.html">WSF_ROUTER</A>
+
+<B>inherit</B>
+    <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>]
+
+    <A HREF="../src/wsf_request_exporter.html">WSF_REQUEST_EXPORTER</A>
+
+<B>create</B> 
+    <A HREF="../router/wsf_router.html#f_make">make</A>,
+    <A HREF="../router/wsf_router.html#f_make_with_base_url">make_with_base_url</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make"><A HREF="../router/wsf_router.html#f_make">make</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Create the router with a capacity of </FONT><I>n</I><FONT COLOR="red"> mappings.</FONT>
+        <B>require</B>
+            valid_number_of_items: n &gt;= 0
+        <B>do</B>
+            <A HREF="../router/wsf_router.html#f_initialize">initialize</A> (n)
+        <B>ensure</B>
+            no_handler_set: <A HREF="../router/wsf_router.html#f_count">count</A> = 0
+        <B>end</B></A>
+
+    <A NAME="f_make_with_base_url"><A HREF="../router/wsf_router.html#f_make_with_base_url">make_with_base_url</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>; a_base_url: <B>like</B> <A HREF="../router/wsf_router.html#f_base_url">base_url</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Make router allocated for at least </FONT><I>n</I><FONT COLOR="red"> maps,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and use </FONT><I>a_base_url</I><FONT COLOR="red"> as </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router.html#f_base_url">base_url</A><FONT COLOR="red">`</FONT>
+        <B>require</B>
+            valid_number_of_items: n &gt;= 0
+            a_valid_base_url: (a_base_url /= <B>Void</B> <B>and then</B> a_base_url.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>) <B>implies</B> (a_base_url.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> ("/") <B>and</B> <B>not</B> a_base_url.<A HREF="../elks/readable_string_8.html#f_ends_with">ends_with</A> ("/"))
+        <B>do</B>
+            <A HREF="../router/wsf_router.html#f_make">make</A> (n)
+            <B>check</B>
+                no_handler_set: <A HREF="../router/wsf_router.html#f_count">count</A> = 0
+            <B>end</B>
+            <A HREF="../router/wsf_router.html#f_set_base_url">set_base_url</A> (a_base_url)
+        <B>end</B></A>
+
+    <A NAME="f_initialize"><A HREF="../router/wsf_router.html#f_initialize">initialize</A> (n: <A HREF="../elks/integer_32.html">INTEGER_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize router.</FONT>
+        <B>require</B>
+            valid_number_of_items: n &gt;= 0
+        <B>do</B>
+            <B>create</B> <A HREF="../router/wsf_router.html#f_mappings">mappings</A>.<A HREF="../elks/arrayed_list.html#f_make">make</A> (n)
+            <B>create</B> <A HREF="../router/wsf_router.html#f_pre_execution_actions">pre_execution_actions</A>
+        <B>ensure</B>
+            no_handler_set: <A HREF="../router/wsf_router.html#f_count">count</A> = 0
+        <B>end</B></A>
+
+    <A NAME="f_mappings"><A HREF="../router/wsf_router.html#f_mappings">mappings</A>: <A HREF="../elks/arrayed_list.html">ARRAYED_LIST</A> [<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Existing mappings</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Mapping</FONT>
+
+    <A NAME="f_map"><A HREF="../router/wsf_router.html#f_map">map</A> (a_mapping: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Map </FONT><I>a_mapping</I><FONT COLOR="red">,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if </FONT><I>rqst_methods</I><FONT COLOR="red"> is set, accept only request method in </FONT><I>rqst_methods</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if </FONT><I>rqst_method</I><FONT COLOR="red"> is Void, accept any request methods.</FONT>
+        <B>require</B>
+            a_mapping_attached: a_mapping /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_router.html#f_extend">extend</A> (<B>create</B> {<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>}.<A HREF="../router/wsf_router_item.html#f_make">make</A> (a_mapping, rqst_methods) <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_map_with_request_methods"><A HREF="../router/wsf_router.html#f_map_with_request_methods">map_with_request_methods</A> (a_mapping: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>)
+        <B>obsolete</B> "Use directly `map' [2017-05-31]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Map </FONT><I>a_mapping</I><FONT COLOR="red"> for request methods </FONT><I>rqst_methods</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            a_mapping_attached: a_mapping /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_router.html#f_map">map</A> (a_mapping, rqst_methods)
+        <B>end</B></A>
+
+    <A NAME="f_import"><A HREF="../router/wsf_router.html#f_import">import</A> (a_mapping_items: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Import mapping items from </FONT><I>a_mapping_items</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> note: this </FONT><I>a_mapping_items</I><FONT COLOR="red"> could be an instance of WSF_ROUTER.</FONT>
+        <B>do</B>
+            <B>across</B>
+                a_mapping_items <B>as</B> ic
+            <B>loop</B>
+                <A HREF="../router/wsf_router.html#f_extend">extend</A> (ic.<A HREF="../elks/iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../router/wsf_router.html">WSF_ROUTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Mapping</FONT>
+
+    <A NAME="f_extend"><A HREF="../router/wsf_router.html#f_extend">extend</A> (a_item: <A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Extend </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router.html#f_mappings">mappings</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> with </FONT><I>a_item</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            l_mapping: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+        <B>do</B>
+            l_mapping := a_item.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>
+            <B>debug</B> ("router")
+                <B>if</B> <A HREF="../router/wsf_router.html#f_has_item_associated_with_resource">has_item_associated_with_resource</A> (l_mapping.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>, a_item.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>) <B>then</B>
+                    <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/plain_text_file.html#f_put_string_32">put_string_32</A> ({<A HREF="../elks/string_32.html">STRING_32</A>} "Mapping: " + l_mapping.<A HREF="../router/wsf_router_mapping.html#f_debug_output">debug_output</A>.<A HREF="../elks/readable_string_general.html#f_to_string_32">to_string_32</A> + {<A HREF="../elks/string_32.html">STRING_32</A>} ": conflict with existing mapping")
+                    <B>if</B> <B>attached</B> <A HREF="../router/wsf_router.html#f_item_associated_with_resource">item_associated_with_resource</A> (l_mapping.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>, a_item.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>) <B>as</B> l_conflicted <B>then</B>
+                        <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/plain_text_file.html#f_put_string_32">put_string_32</A> ({<A HREF="../elks/string_32.html">STRING_32</A>} ": " + l_conflicted.<A HREF="../router/wsf_router_item.html#f_debug_output">debug_output</A>.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+                    <B>end</B>;
+                    <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> ("%N")
+                <B>end</B>
+            <B>end</B>;
+            <A HREF="../router/wsf_router.html#f_mappings">mappings</A>.<A HREF="../elks/arrayed_list.html#f_extend">extend</A> (a_item);
+            l_mapping.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A>.<A HREF="../router/wsf_handler.html#f_on_mapped">on_mapped</A> (l_mapping, a_item.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Mapping handler</FONT>
+
+    <A NAME="f_handle"><A HREF="../router/wsf_router.html#f_handle">handle</A> (a_resource: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; f: <A HREF="../router/wsf_router_mapping_factory.html">WSF_ROUTER_MAPPING_FACTORY</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Map the mapping created by factory </FONT><I>f</I><FONT COLOR="red"> for resource </FONT><I>a_resource</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if </FONT><I>rqst_methods</I><FONT COLOR="red"> is set, accept only request method in </FONT><I>rqst_methods</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if </FONT><I>rqst_method</I><FONT COLOR="red"> is Void, accept any request methods.</FONT>
+        <B>require</B>
+            a_resource_attached: a_resource /= <B>Void</B>
+            f_attached: f /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_router.html#f_map">map</A> (f.<A HREF="../router/wsf_router_mapping_factory.html#f_new_mapping">new_mapping</A> (a_resource), rqst_methods)
+        <B>end</B></A>
+
+    <A NAME="f_handle_with_request_methods"><A HREF="../router/wsf_router.html#f_handle_with_request_methods">handle_with_request_methods</A> (a_resource: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; f: <A HREF="../router/wsf_router_mapping_factory.html">WSF_ROUTER_MAPPING_FACTORY</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>)
+        <B>obsolete</B> "Use directly `handle' [2017-05-31]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Map the mapping created by factory </FONT><I>f</I><FONT COLOR="red"> for resource </FONT><I>a_resource</I><FONT COLOR="red">	</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and only for request methods </FONT><I>rqst_methods</I>
+        <B>require</B>
+            a_resource_attached: a_resource /= <B>Void</B>
+            f_attached: f /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_router.html#f_handle">handle</A> (a_resource, f, rqst_methods)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Basic operations</FONT>
+
+    <A NAME="f_dispatch"><A HREF="../router/wsf_router.html#f_dispatch">dispatch</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>; sess: <B>detachable</B> <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Dispatch request </FONT><I>req</I><FONT COLOR="red"> among  the </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router.html#f_mappings">mappings</A><FONT COLOR="red">`</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><I>sess</I><FONT COLOR="red"> if the request were dispatched and </FONT><I>sess</I><FONT COLOR="red"> attached.</FONT>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+            res_attached: res /= <B>Void</B>
+        <B>local</B>
+            l_sess: <B>detachable</B> <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>
+        <B>do</B>
+            l_sess := sess
+            <B>if</B> l_sess = <B>Void</B> <B>then</B>
+                <B>create</B> l_sess
+            <B>end</B>
+            <A HREF="../router/wsf_router.html#f_router_dispatch">router_dispatch</A> (req, res, l_sess)
+        <B>end</B></A>
+
+    <A NAME="f_dispatch_and_return_handler"><A HREF="../router/wsf_router.html#f_dispatch_and_return_handler">dispatch_and_return_handler</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>): <B>detachable</B> <A HREF="../router/wsf_handler.html">WSF_HANDLER</A>
+        <B>obsolete</B> "Use `dispatch' [2017-05-31]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Dispatch request </FONT><I>req</I><FONT COLOR="red"> among the </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router.html#f_mappings">mappings</A><FONT COLOR="red">`</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> And return the associated handler if mapping found and handler executed.</FONT>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+            res_attached: res /= <B>Void</B>
+        <B>local</B>
+            sess: <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>
+        <B>do</B>
+            <B>create</B> sess
+            <A HREF="../router/wsf_router.html#f_router_dispatch">router_dispatch</A> (req, res, sess)
+            <B>Result</B> := sess.<A HREF="../router/wsf_router_session.html#f_dispatched_handler">dispatched_handler</A>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Dispatch helper</FONT>
+
+    <A NAME="f_path_to_dispatch"><A HREF="../router/wsf_router.html#f_path_to_dispatch">path_to_dispatch</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>): <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Path used by the router, to apply url dispatching of request </FONT><I>req</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This can be redefined in descendant, to apply various url mapping, or aliasing</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> if needed, or for other purpose.</FONT>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+        <B>do</B>
+            <B>Result</B> := req.<A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A>
+        <B>ensure</B>
+            path_from_request_attached: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Dispatch implementation</FONT>
+
+    <A NAME="f_router_dispatch"><A HREF="../router/wsf_router.html#f_router_dispatch">router_dispatch</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>; sess: <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>)
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+            res_attached: res /= <B>Void</B>
+            sess_attached: sess /= <B>Void</B>
+            sess_not_dispatched: <B>not</B> sess.<A HREF="../router/wsf_router_session.html#f_dispatched">dispatched</A>
+        <B>local</B>
+            l_req_method: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            head_res: <A HREF="../src/wsf_head_response_wrapper.html">WSF_HEAD_RESPONSE_WRAPPER</A>
+        <B>do</B>
+            l_req_method := <A HREF="../router/wsf_router.html#f_request_method">request_method</A> (req)
+            <A HREF="../router/wsf_router.html#f_router_dispatch_for_request_method">router_dispatch_for_request_method</A> (req, res, sess, l_req_method)
+            <B>if</B> <B>not</B> sess.<A HREF="../router/wsf_router_session.html#f_dispatched">dispatched</A> <B>and</B> l_req_method = {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_head">method_head</A> <B>then</B>
+                <B>create</B> head_res.<A HREF="../src/wsf_head_response_wrapper.html#f_make_from_response">make_from_response</A> (res);
+                req.<A HREF="../src/wsf_request.html#f_set_request_method">set_request_method</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_get">method_get</A>)
+                <A HREF="../router/wsf_router.html#f_router_dispatch_for_request_method">router_dispatch_for_request_method</A> (req, head_res, sess, {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_get">method_get</A>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_router_dispatch_for_request_method"><A HREF="../router/wsf_router.html#f_router_dispatch_for_request_method">router_dispatch_for_request_method</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>; res: <A HREF="../src/wsf_response.html">WSF_RESPONSE</A>; sess: <A HREF="../router/wsf_router_session.html">WSF_ROUTER_SESSION</A>; a_request_method: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Dispatch request </FONT><I>req</I><FONT COLOR="red"> among the </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router.html#f_mappings">mappings</A><FONT COLOR="red">`</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> And return the associated handler if mapping found and handler executed.</FONT>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+            res_attached: res /= <B>Void</B>
+            sess_attached: sess /= <B>Void</B>
+            sess_not_dispatched: <B>not</B> sess.<A HREF="../router/wsf_router_session.html#f_dispatched">dispatched</A>
+            a_request_method_attached: a_request_method /= <B>Void</B>
+        <B>local</B>
+            m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+            p: <B>like</B> <A HREF="../router/wsf_router.html#f_path_to_dispatch">path_to_dispatch</A>
+        <B>do</B>
+            p := <A HREF="../router/wsf_router.html#f_path_to_dispatch">path_to_dispatch</A> (req)
+            <B>across</B>
+                <A HREF="../router/wsf_router.html#f_mappings">mappings</A> <B>as</B> c
+            <B>until</B>
+                sess.<A HREF="../router/wsf_router_session.html#f_dispatched">dispatched</A>
+            <B>loop</B>
+                <B>if</B> <B>attached</B> c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A> <B>as</B> l_info <B>then</B>
+                    <B>if</B> <A HREF="../router/wsf_router.html#f_is_matching_request_methods">is_matching_request_methods</A> (a_request_method, l_info.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>) <B>then</B>
+                        m := l_info.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>;
+                        m.<A HREF="../router/wsf_router_mapping.html#f_try">try</A> (p, req, res, sess, <B>Current</B>)
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_has_item_associated_with_resource"><A HREF="../router/wsf_router.html#f_has_item_associated_with_resource">has_item_associated_with_resource</A> (a_resource: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is there a handler for </FONT><I>a_resource</I><FONT COLOR="red"> (taking into account </FONT><I>rqst_methods</I><FONT COLOR="red">)?</FONT>
+        <B>require</B>
+            a_resource_attached: a_resource /= <B>Void</B>
+        <B>local</B>
+            m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+            ok: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>across</B>
+                <A HREF="../router/wsf_router.html#f_mappings">mappings</A> <B>as</B> c
+            <B>loop</B>
+                m := c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>
+                ok := <B>True</B>
+                <B>if</B> rqst_methods /= <B>Void</B> <B>then</B>
+                    <B>if</B> <B>attached</B> c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A> <B>as</B> l_item_rqst_methods <B>then</B>
+                        ok := <B>across</B>
+                            rqst_methods <B>as</B> mtd
+                        <B>some</B>
+                            <A HREF="../router/wsf_router.html#f_is_matching_request_methods">is_matching_request_methods</A> (mtd.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, l_item_rqst_methods)
+                        <B>end</B>
+                    <B>else</B>
+                        ok := <B>True</B>
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> ok <B>then</B>
+                    <B>if</B> <B>attached</B> {<A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>} m.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A> <B>as</B> l_routing <B>then</B>
+                        <B>Result</B> := l_routing.<A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_has_item_associated_with_resource">has_item_associated_with_resource</A> (a_resource, rqst_methods)
+                    <B>elseif</B> m.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (a_resource) <B>then</B>
+                        <B>Result</B> := <B>True</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_item_associated_with_resource"><A HREF="../router/wsf_router.html#f_item_associated_with_resource">item_associated_with_resource</A> (a_resource: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <B>detachable</B> <A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> First handler for </FONT><I>a_resource</I><FONT COLOR="red">, taking into account </FONT><I>rqst_methods</I>
+        <B>require</B>
+            a_resource_attached: a_resource /= <B>Void</B>
+        <B>local</B>
+            m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+            ok: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>across</B>
+                <A HREF="../router/wsf_router.html#f_mappings">mappings</A> <B>as</B> c
+            <B>until</B>
+                <B>Result</B> /= <B>Void</B>
+            <B>loop</B>
+                m := c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>
+                ok := <B>True</B>
+                <B>if</B> rqst_methods /= <B>Void</B> <B>then</B>
+                    <B>if</B> <B>attached</B> c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A> <B>as</B> l_item_rqst_methods <B>then</B>
+                        ok := <B>across</B>
+                            rqst_methods <B>as</B> mtd
+                        <B>some</B>
+                            <A HREF="../router/wsf_router.html#f_is_matching_request_methods">is_matching_request_methods</A> (mtd.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, l_item_rqst_methods)
+                        <B>end</B>
+                    <B>else</B>
+                        ok := <B>True</B>
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> ok <B>then</B>
+                    <B>if</B> <B>attached</B> {<A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>} m.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A> <B>as</B> l_routing <B>then</B>
+                        <B>Result</B> := l_routing.<A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_item_associated_with_resource">item_associated_with_resource</A> (a_resource, rqst_methods)
+                    <B>elseif</B> m.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (a_resource) <B>then</B>
+                        <B>Result</B> := c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_items_associated_with_resource"><A HREF="../router/wsf_router.html#f_items_associated_with_resource">items_associated_with_resource</A> (a_resource: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../elks/list.html">LIST</A> [<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> All handlers for </FONT><I>a_resource</I><FONT COLOR="red">, taking into account </FONT><I>rqst_methods</I>
+        <B>require</B>
+            a_resource_attached: a_resource /= <B>Void</B>
+        <B>local</B>
+            m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+            ok: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>create</B> {<A HREF="../elks/arrayed_list.html">ARRAYED_LIST</A> [<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>]} <B>Result</B>.<A HREF="../elks/arrayed_list.html#f_make">make</A> (1)
+            <B>across</B>
+                <A HREF="../router/wsf_router.html#f_mappings">mappings</A> <B>as</B> c
+            <B>loop</B>
+                m := c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>
+                ok := <B>True</B>
+                <B>if</B> rqst_methods /= <B>Void</B> <B>then</B>
+                    <B>if</B> <B>attached</B> c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A> <B>as</B> l_item_rqst_methods <B>then</B>
+                        ok := <B>across</B>
+                            rqst_methods <B>as</B> mtd
+                        <B>some</B>
+                            <A HREF="../router/wsf_router.html#f_is_matching_request_methods">is_matching_request_methods</A> (mtd.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, l_item_rqst_methods)
+                        <B>end</B>
+                    <B>else</B>
+                        ok := <B>True</B>
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> ok <B>then</B>
+                    <B>if</B> <B>attached</B> {<A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>} m.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A> <B>as</B> l_routing <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/chain.html#f_append">append</A> (l_routing.<A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_items_associated_with_resource">items_associated_with_resource</A> (a_resource, rqst_methods))
+                    <B>elseif</B> m.<A HREF="../router/wsf_router_mapping.html#f_associated_resource">associated_resource</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (a_resource) <B>then</B>
+                        <B>Result</B>.<A HREF="../elks/sequence.html#f_force">force</A> (c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>)
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_allowed_methods_for_request"><A HREF="../router/wsf_router.html#f_allowed_methods_for_request">allowed_methods_for_request</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>): <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Allowed methods for </FONT><I>req</I>
+        <B>require</B>
+            req_attched: req /= <B>Void</B>
+        <B>local</B>
+            m: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+            l_rqsmethods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+            p: <B>like</B> <A HREF="../router/wsf_router.html#f_path_to_dispatch">path_to_dispatch</A>
+        <B>do</B>
+            <B>create</B> <B>Result</B>
+            p := <A HREF="../router/wsf_router.html#f_path_to_dispatch">path_to_dispatch</A> (req)
+            <B>across</B>
+                <A HREF="../router/wsf_router.html#f_mappings">mappings</A> <B>as</B> c
+            <B>loop</B>
+                m := c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>
+                <B>if</B> <B>attached</B> {<A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>} m.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A> <B>as</B> l_routing <B>then</B>
+                    l_rqsmethods := l_routing.<A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_allowed_methods_for_request">allowed_methods_for_request</A> (req)
+                <B>elseif</B> m.<A HREF="../router/wsf_router_mapping.html#f_is_mapping">is_mapping</A> (p, req, <B>Current</B>) <B>then</B>
+                    l_rqsmethods := c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A>
+                <B>else</B>
+                    l_rqsmethods := <B>Void</B>
+                <B>end</B>
+                <B>if</B> l_rqsmethods /= <B>Void</B> <B>then</B>
+                    <B>Result</B> := <B>Result</B> + l_rqsmethods
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_all_allowed_methods"><A HREF="../router/wsf_router.html#f_all_allowed_methods">all_allowed_methods</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Methods allowed for ALL requests handled by </FONT><I>Current</I>
+        <B>local</B>
+            l_mapping: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>
+        <B>do</B>
+            <B>create</B> <B>Result</B>
+            <B>across</B>
+                <A HREF="../router/wsf_router.html#f_mappings">mappings</A> <B>as</B> c
+            <B>loop</B>
+                <B>if</B> <B>attached</B> c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_request_methods">request_methods</A> <B>as</B> m <B>then</B>
+                    <B>Result</B> := <B>Result</B> + m
+                <B>end</B>
+                l_mapping := c.<A HREF="../elks/general_special_iteration_cursor.html#f_item">item</A>.<A HREF="../router/wsf_router_item.html#f_mapping">mapping</A>
+                <B>if</B> <B>attached</B> {<A HREF="../router/wsf_routing_handler.html">WSF_ROUTING_HANDLER</A>} l_mapping.<A HREF="../router/wsf_router_mapping.html#f_handler">handler</A> <B>as</B> l_routing <B>then</B>
+                    <B>Result</B> := <B>Result</B> + l_routing.<A HREF="../router/wsf_routing_handler.html#f_router">router</A>.<A HREF="../router/wsf_router.html#f_all_allowed_methods">all_allowed_methods</A>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Hook</FONT>
+
+    <A NAME="f_execute_before"><A HREF="../router/wsf_router.html#f_execute_before">execute_before</A> (a_mapping: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execute before the handler associated with </FONT><I>a_mapping</I><FONT COLOR="red"> is executed.</FONT>
+        <B>require</B>
+            a_mapping_attached: a_mapping /= <B>Void</B>
+        <B>do</B>
+            <A HREF="../router/wsf_router.html#f_pre_execution_actions">pre_execution_actions</A>.<A HREF="../ise/action_sequence.html#f_call">call</A> ([a_mapping])
+        <B>end</B></A>
+
+    <A NAME="f_execute_after"><A HREF="../router/wsf_router.html#f_execute_after">execute_after</A> (a_mapping: <A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execute after the handler associated with </FONT><I>a_mapping</I><FONT COLOR="red"> is executed.</FONT>
+        <B>require</B>
+            a_mapping_attached: a_mapping /= <B>Void</B>
+        <B>do</B>
+        <B>end</B></A>
+
+    <A NAME="f_pre_execution_actions"><A HREF="../router/wsf_router.html#f_pre_execution_actions">pre_execution_actions</A>: <A HREF="../ise/action_sequence.html">ACTION_SEQUENCE</A> [<A HREF="../router/wsf_router_mapping.html">WSF_ROUTER_MAPPING</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Action triggered before a route is execute</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Base url</FONT>
+
+    <A NAME="f_count"><A HREF="../router/wsf_router.html#f_count">count</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Number of mappings registered</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_router.html#f_mappings">mappings</A>.<A HREF="../elks/arrayed_list.html#f_count">count</A>
+        <B>end</B></A>
+
+    <A NAME="f_base_url"><A HREF="../router/wsf_router.html#f_base_url">base_url</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Common start of any route url</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_base_url"><A HREF="../router/wsf_router.html#f_set_base_url">set_base_url</A> (a_base_url: <B>like</B> <A HREF="../router/wsf_router.html#f_base_url">base_url</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../router/wsf_router.html#f_base_url">base_url</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_base_url</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> make sure no map is already added (i.e: count = 0)</FONT>
+        <B>require</B>
+            a_valid_base_url: (a_base_url /= <B>Void</B> <B>and then</B> a_base_url.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>) <B>implies</B> (a_base_url.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> ("/") <B>and</B> <B>not</B> a_base_url.<A HREF="../elks/readable_string_8.html#f_ends_with">ends_with</A> ("/"))
+            no_handler_set: <A HREF="../router/wsf_router.html#f_count">count</A> = 0
+        <B>do</B>
+            <B>if</B> a_base_url = <B>Void</B> <B>or else</B> a_base_url.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                <A HREF="../router/wsf_router.html#f_base_url">base_url</A> := <B>Void</B>
+            <B>else</B>
+                <A HREF="../router/wsf_router.html#f_base_url">base_url</A> := a_base_url
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Traversing</FONT>
+
+    <A NAME="f_new_cursor"><A HREF="../router/wsf_router.html#f_new_cursor">new_cursor</A>: <A HREF="../elks/iteration_cursor.html">ITERATION_CURSOR</A> [<A HREF="../router/wsf_router_item.html">WSF_ROUTER_ITEM</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Fresh cursor associated with current structure</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../router/wsf_router.html#f_mappings">mappings</A>.<A HREF="../elks/arrayed_list.html#f_new_cursor">new_cursor</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request methods helper</FONT>
+
+    <A NAME="f_methods_head"><A HREF="../router/wsf_router.html#f_methods_head">Methods_head</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_head">enable_head</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_head_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_options"><A HREF="../router/wsf_router.html#f_methods_options">Methods_options</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_options">enable_options</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_options_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_get"><A HREF="../router/wsf_router.html#f_methods_get">Methods_get</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_get">enable_get</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_get_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_post"><A HREF="../router/wsf_router.html#f_methods_post">Methods_post</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_post">enable_post</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_post_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_put"><A HREF="../router/wsf_router.html#f_methods_put">Methods_put</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_put">enable_put</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_put_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_delete"><A HREF="../router/wsf_router.html#f_methods_delete">Methods_delete</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_delete">enable_delete</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_delete_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_head_get_post"><A HREF="../router/wsf_router.html#f_methods_head_get_post">Methods_head_get_post</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_make">make</A> (3);
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_head">enable_head</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_get">enable_get</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_post">enable_post</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_head_get_post_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_get_put_delete"><A HREF="../router/wsf_router.html#f_methods_get_put_delete">Methods_get_put_delete</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_make">make</A> (3);
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_get">enable_get</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_put">enable_put</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_delete">enable_delete</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_get_put_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_head_get"><A HREF="../router/wsf_router.html#f_methods_head_get">Methods_head_get</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_make">make</A> (2);
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_head">enable_head</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_get">enable_get</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_head_get_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_get_post"><A HREF="../router/wsf_router.html#f_methods_get_post">Methods_get_post</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_make">make</A> (2);
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_get">enable_get</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_post">enable_post</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_get_post_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_methods_put_post"><A HREF="../router/wsf_router.html#f_methods_put_post">Methods_put_post</A>: <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>
+        <B>once</B> ("THREAD")
+            <B>create</B> <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_make">make</A> (2);
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_put">enable_put</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_enable_post">enable_post</A>;
+            <B>Result</B>.<A HREF="../router/wsf_request_methods.html#f_lock">lock</A>
+        <B>ensure</B>
+            methods_put_post_not_void: <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: Implementation</FONT>
+
+    <A NAME="f_request_method"><A HREF="../router/wsf_router.html#f_request_method">request_method</A> (req: <A HREF="../src/wsf_request.html">WSF_REQUEST</A>): <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request method from </FONT><I>req</I><FONT COLOR="red"> to be used in the router implementation</FONT>
+        <B>require</B>
+            req_attached: req /= <B>Void</B>
+        <B>local</B>
+            m: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            m := req.<A HREF="../src/wsf_request.html#f_request_method">request_method</A>
+            <B>if</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_get">method_get</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_get">method_get</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_post">method_post</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_post">method_post</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_head">method_head</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_head">method_head</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_trace">method_trace</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_trace">method_trace</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_options">method_options</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_options">method_options</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_put">method_put</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_put">method_put</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_delete">method_delete</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_delete">method_delete</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_connect">method_connect</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_connect">method_connect</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_patch">method_patch</A>) <B>then</B>
+                <B>Result</B> := {<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_patch">method_patch</A>
+            <B>else</B>
+                <B>Result</B> := m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_is_matching_request_methods"><A HREF="../router/wsf_router.html#f_is_matching_request_methods">is_matching_request_methods</A> (a_request_method: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_rqst_methods: <B>detachable</B> <A HREF="../router/wsf_request_methods.html">WSF_REQUEST_METHODS</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><I>a_request_method</I><FONT COLOR="red"> is matching </FONT><I>a_rqst_methods</I><FONT COLOR="red"> contents</FONT>
+        <B>require</B>
+            a_request_method_attached: a_request_method /= <B>Void</B>
+        <B>do</B>
+            <B>if</B> a_rqst_methods /= <B>Void</B> <B>and then</B> <B>not</B> a_rqst_methods.<A HREF="../router/wsf_request_methods.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>Result</B> := a_rqst_methods.<A HREF="../router/wsf_request_methods.html#f_has">has</A> (a_request_method)
+            <B>else</B>
+                <B>Result</B> := <B>True</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>invariant</B>
+    mappings_attached: <A HREF="../router/wsf_router.html#f_mappings">mappings</A> /= <B>Void</B>
+    pre_execution_actions_attached: <A HREF="../router/wsf_router.html#f_pre_execution_actions">pre_execution_actions</A> /= <B>Void</B>
+
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../router/wsf_router.html">WSF_ROUTER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_router_chart.html">Chart</A></TD><TD><A HREF="wsf_router_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

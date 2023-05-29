@@ -1,0 +1,2112 @@
+<HTML><HEAD>
+<meta name="description" content="TTTServer request context of the httpd request  TTTIt includes CGI interface and a few extra values that are usually valuable TTTT meta_variable (a_name: READABLE_STRING_GENERAL): detachable WSF_STRING TTTT meta_string_variable (a_name: READABLE_STRING_GENERAL): detachable READABLE_STRING_32  TTTIn addition it provides  TTTTquery_parameter (a_name: READABLE_STRING_GENERAL): detachable WSF_VALUE TTTTform_parameter (a_name: READABLE_STRING_GENERAL): detachable WSF_VALUE TTTTcookie (a_name: READABLE_STRING_GENERAL): detachable WSF_VALUE TTTT...  TTTAnd also has TTTTexecution_variable (a_name: READABLE_STRING_GENERAL): detachable ANY TTTTT--| to keep value attached to the request  TTTAbout https support: `is_https' indicates if the request is made through an https connection or not. "/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_request Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_request_chart.html">Chart</A></TD><TD><A HREF="wsf_request_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        			Server request context of the httpd request
+        
+        			It includes CGI interface and a few extra values that are usually valuable
+        				 meta_variable (a_name: READABLE_STRING_GENERAL): detachable WSF_STRING
+        				 meta_string_variable (a_name: READABLE_STRING_GENERAL): detachable READABLE_STRING_32
+        
+        			In addition it provides
+        
+        				query_parameter (a_name: READABLE_STRING_GENERAL): detachable WSF_VALUE
+        				form_parameter (a_name: READABLE_STRING_GENERAL): detachable WSF_VALUE
+        				cookie (a_name: READABLE_STRING_GENERAL): detachable WSF_VALUE
+        				...
+        
+        			And also has
+        				execution_variable (a_name: READABLE_STRING_GENERAL): detachable ANY
+        					--| to keep value attached to the request
+        
+        			About https support: `<A HREF="../src/wsf_request.html#f_is_https">is_https</A>` indicates if the request is made through an https connection or not.
+        
+    ]"
+    date: "$Date: 2021-10-07 09:54:22 +0000 (Thu, 07 Oct 2021) $"
+    revision: "$Revision: 105833 $"
+
+<B>class</B> 
+    <A HREF="../src/wsf_request.html">WSF_REQUEST</A>
+
+<B>inherit</B>
+    <A HREF="../elks/debug_output.html">DEBUG_OUTPUT</A>
+
+    <A HREF="../ise/shared_execution_environment.html">SHARED_EXECUTION_ENVIRONMENT</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+    <A HREF="../src/shared_wsf_percent_encoder.html">SHARED_WSF_PERCENT_ENCODER</A>
+        <B>rename</B>
+            <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Percent_encoder</A> <B>as</B> <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Url_encoder</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+    <A HREF="../src/wsf_value_utilities.html">WSF_VALUE_UTILITIES</A>
+        <B>export</B>
+            {NONE} <B>all</B>
+        <B>end</B>
+
+<B>create</B> {<A HREF="../src/wsf_execution.html">WSF_EXECUTION</A>, WGI_EXPORTER}
+    <A HREF="../src/wsf_request.html#f_make_from_wgi">make_from_wgi</A>
+
+<B>convert</B>
+    <A HREF="../src/wsf_request.html#f_make_from_wgi">make_from_wgi</A> ({WGI_REQUEST})
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_make_from_wgi"><A HREF="../src/wsf_request.html#f_make_from_wgi">make_from_wgi</A> (r: WGI_REQUEST)
+        <B>local</B>
+            tb: <B>like</B> <A HREF="../src/wsf_request.html#f_meta_variables_table">meta_variables_table</A>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A> := r
+            <B>if</B> <B>attached</B> r.meta_variables <B>as</B> l_vars <B>then</B>
+                <B>create</B> tb.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (l_vars.<A HREF="../elks/hash_table.html#f_count">count</A>)
+                <B>across</B>
+                    l_vars <B>as</B> c
+                <B>loop</B>
+                    <B>if</B> <B>attached</B> {<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>} c.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A> <B>as</B> s8 <B>then</B>
+                        tb.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/wsf_value_utilities.html#f_new_string_value">new_string_value</A> (s8, c.<A HREF="../elks/hash_table_iteration_cursor.html#f_item">item</A>), c.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>)
+                    <B>else</B>
+                        tb.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/wsf_value_utilities.html#f_new_string_value">new_string_value</A> (<A HREF="../src/wsf_request.html#f_url_encoded_string">url_encoded_string</A> (c.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>), c.<A HREF="../elks/hash_table_iteration_cursor.html#f_item">item</A>), c.<A HREF="../elks/hash_table_iteration_cursor.html#f_key">key</A>)
+                    <B>end</B>
+                <B>end</B>
+            <B>else</B>
+                <B>create</B> tb.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+            <B>end</B>
+            <A HREF="../src/wsf_request.html#f_meta_variables_table">meta_variables_table</A> := tb
+            <B>create</B> <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.make
+            <B>create</B> <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+            <A HREF="../src/wsf_request.html#f_set_raw_input_data_recorded">set_raw_input_data_recorded</A> (<B>False</B>)
+            <B>create</B> <A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+            <A HREF="../src/wsf_request.html#f_initialize">initialize</A>
+            <A HREF="../src/wsf_request.html#f_analyze">analyze</A>
+        <B>ensure</B>
+            wgi_request_set: <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A> = r
+            request_method_set: <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_same_string">same_string</A> (r.request_method)
+        <B>end</B></A>
+
+    <A NAME="f_initialize"><A HREF="../src/wsf_request.html#f_initialize">initialize</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Specific initialization</FONT>
+        <B>local</B>
+            s8: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            req: WGI_REQUEST
+            utf: <A HREF="../elks/utf_converter.html">UTF_CONVERTER</A>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_init_mime_handlers">init_mime_handlers</A>
+            req := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_content_length">content_length</A> <B>as</B> s <B>and then</B> s.<A HREF="../elks/readable_string_general.html#f_is_natural_64">is_natural_64</A> <B>then</B>
+                <A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A> := s.<A HREF="../elks/readable_string_general.html#f_to_natural_64">to_natural_64</A>
+            <B>else</B>
+                <A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A> := 0
+            <B>end</B>
+            s8 := req.content_type
+            <B>if</B> s8 /= <B>Void</B> <B>then</B>
+                <B>create</B> <A HREF="../src/wsf_request.html#f_content_type">content_type</A>.<A HREF="../src/http_media_type.html#f_make_from_string">make_from_string</A> (s8)
+            <B>else</B>
+                <A HREF="../src/wsf_request.html#f_content_type">content_type</A> := <B>Void</B>
+            <B>end</B>
+            <A HREF="../src/wsf_request.html#f_request_method">request_method</A> := req.request_method
+            <A HREF="../src/wsf_request.html#f_path_info">path_info</A> := utf.<A HREF="../elks/utf_converter.html#f_utf_8_string_8_to_string_32">utf_8_string_8_to_string_32</A> (req.path_info)
+            <B>if</B> <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> ({<A HREF="../src/wsf_meta_names.html">WSF_META_NAMES</A>}.request_time) = <B>Void</B> <B>then</B>
+                <A HREF="../src/wsf_request.html#f_set_meta_string_variable">set_meta_string_variable</A> ({<A HREF="../src/wsf_meta_names.html">WSF_META_NAMES</A>}.request_time, <A HREF="../src/wsf_request.html#f_date_time_utilities">Date_time_utilities</A>.<A HREF="../src/http_date_time_utilities.html#f_unix_time_stamp">unix_time_stamp</A> (<B>Void</B>).<A HREF="../elks/integer_64_ref.html#f_out">out</A>.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+            <B>end</B>
+            <A HREF="../src/wsf_request.html#f_is_https">is_https</A> := <B>False</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_meta_string_variable">meta_string_variable</A> ("HTTPS") <B>as</B> l_https <B>and then</B> <B>not</B> l_https.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                <A HREF="../src/wsf_request.html#f_is_https">is_https</A> := l_https.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("on") <B>or else</B> l_https.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("yes") <B>or else</B> l_https.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("true") <B>or else</B> l_https.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal_general</A> ("1")
+            <B>else</B>
+                <B>check</B>
+                    is_not_https: <A HREF="../src/wsf_request.html#f_is_https">is_https</A> = <B>False</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_request_exporter.html">WSF_REQUEST_EXPORTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Restricted Access		</FONT>
+
+    <A NAME="f_wgi_request"><A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>: WGI_REQUEST</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated WGI request</FONT>
+
+    <A NAME="f_cgi_variables"><A HREF="../src/wsf_request.html#f_cgi_variables">cgi_variables</A>: WGI_REQUEST_CGI_VARIABLES
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Object containing the CGI variables</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.cgi_variables
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Destroy</FONT>
+
+    <A NAME="f_destroy"><A HREF="../src/wsf_request.html#f_destroy">destroy</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Destroy the object when request is completed</FONT>
+        <B>do</B>
+            <B>across</B>
+                <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A> <B>as</B> c
+            <B>loop</B>
+                <A HREF="../src/wsf_request.html#f_delete_uploaded_file">delete_uploaded_file</A> (c.<A HREF="../elks/hash_table_iteration_cursor.html#f_item">item</A>)
+            <B>end</B>
+            <A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A> := 0;
+            <A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>.<A HREF="../elks/hash_table.html#f_wipe_out">wipe_out</A>
+            <A HREF="../src/wsf_request.html#f_internal_cookies_table">internal_cookies_table</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_internal_query_parameters_table">internal_query_parameters_table</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_internal_server_url">internal_server_url</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_internal_url_base">internal_url_base</A> := <B>Void</B>;
+            <A HREF="../src/wsf_request.html#f_form_parameters_table">form_parameters_table</A>.<A HREF="../elks/hash_table.html#f_wipe_out">wipe_out</A>
+            <A HREF="../src/wsf_request.html#f_mime_handlers">mime_handlers</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_path_info">path_info</A> := <A HREF="../src/wsf_request.html#f_empty_string_32">Empty_string_32</A>
+            <A HREF="../src/wsf_request.html#f_internal_percent_encoded_path_info">internal_percent_encoded_path_info</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_path_parameters_source">path_parameters_source</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_path_parameters_table">path_parameters_table</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_raw_input_data">raw_input_data</A> := <B>Void</B>
+            <A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A> := <B>False</B>
+            <A HREF="../src/wsf_request.html#f_request_method">request_method</A> := <A HREF="../src/wsf_request.html#f_empty_string_8">Empty_string_8</A>
+            <A HREF="../src/wsf_request.html#f_set_uploaded_file_path">set_uploaded_file_path</A> (<B>Void</B>)
+            <A HREF="../src/wsf_request.html#f_is_https">is_https</A> := <B>False</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_is_https"><A HREF="../src/wsf_request.html#f_is_https">is_https</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is https connection?</FONT>
+
+    <A NAME="f_debug_output"><A HREF="../src/wsf_request.html#f_debug_output">debug_output</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> String that should be displayed in debugger to represent </FONT><I>Current</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (<A HREF="../src/wsf_request.html#f_request_method">request_method</A> + " " + <A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>)
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Setting</FONT>
+
+    <A NAME="f_raw_input_data_recorded"><A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A>: <A HREF="../elks/boolean.html">BOOLEAN</A> <B>assign</B> <A HREF="../src/wsf_request.html#f_set_raw_input_data_recorded">set_raw_input_data_recorded</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Record RAW Input datas into </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_raw_input_data">raw_input_data</A><FONT COLOR="red">`</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> otherwise just forget about it</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Default: False</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Raw input data</FONT>
+
+    <A NAME="f_raw_input_data"><A HREF="../src/wsf_request.html#f_raw_input_data">raw_input_data</A>: <B>detachable</B> <A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Raw input data is </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> is True</FONT>
+
+    <A NAME="f_set_raw_input_data"><A HREF="../src/wsf_request.html#f_set_raw_input_data">set_raw_input_data</A> (d: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A>} d <B>as</B> imm <B>then</B>
+                <A HREF="../src/wsf_request.html#f_raw_input_data">raw_input_data</A> := <B>create</B> {<B>attached</B> <A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A>}.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (d)
+            <B>else</B>
+                <B>create</B> <A HREF="../src/wsf_request.html#f_raw_input_data">raw_input_data</A>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (d)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Raw header data</FONT>
+
+    <A NAME="f_raw_header_data"><A HREF="../src/wsf_request.html#f_raw_header_data">raw_header_data</A>: <B>like</B> <A HREF="../src/wsf_request.html#f_meta_string_variable">meta_string_variable</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Raw header data if available.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_meta_string_variable">meta_string_variable</A> ("RAW_HEADER_DATA")
+        <B>ensure</B>
+            is_valid_as_string_8: <B>Result</B> /= <B>Void</B> <B>implies</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_is_valid_as_string_8">is_valid_as_string_8</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Error handling</FONT>
+
+    <A NAME="f_has_error"><A HREF="../src/wsf_request.html#f_has_error">has_error</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.has_error
+        <B>end</B></A>
+
+    <A NAME="f_error_handler"><A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>: ERROR_HANDLER</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Error handler</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> By default initialized to new handler</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: Input</FONT>
+
+    <A NAME="f_input"><A HREF="../src/wsf_request.html#f_input">input</A>: WGI_INPUT_STREAM
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Server input channel</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.input
+        <B>end</B></A>
+
+    <A NAME="f_is_chunked_input"><A HREF="../src/wsf_request.html#f_is_chunked_input">is_chunked_input</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is request using chunked transfer-encoding?</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If True, the Content-Length has no meaning</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.is_chunked_input
+        <B>end</B></A>
+
+    <A NAME="f_read_input_data_into"><A HREF="../src/wsf_request.html#f_read_input_data_into">read_input_data_into</A> (buf: <A HREF="../elks/string_8.html">STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> retrieve the content from the </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_input">input</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> stream into </FONT><I>s</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> warning: if the input data has already been retrieved</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">          you might not get anything</FONT>
+        <B>local</B>
+            l_input: WGI_INPUT_STREAM
+            n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            buf_initial_size: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A> <B>and then</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_raw_input_data">raw_input_data</A> <B>as</B> d <B>then</B>
+                buf.<A HREF="../elks/string_8.html#f_append">append</A> (d)
+            <B>else</B>
+                buf_initial_size := buf.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                l_input := <A HREF="../src/wsf_request.html#f_input">input</A>
+                <B>if</B> <A HREF="../src/wsf_request.html#f_is_chunked_input">is_chunked_input</A> <B>then</B>
+                    <B>from</B>
+                        n := 8192
+                    <B>until</B>
+                        n = 0 <B>or</B> l_input.end_of_input
+                    <B>loop</B>
+                        l_input.append_to_string (buf, n)
+                        <B>if</B> l_input.last_appended_count &lt; n <B>then</B>
+                            n := 0
+                        <B>end</B>
+                    <B>end</B>
+                <B>else</B>
+                    n := <A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A>.<A HREF="../elks/natural_64.html#f_as_integer_32">as_integer_32</A>
+                    <B>if</B> n &gt; 0 <B>then</B>
+                        l_input.append_to_string (buf, n)
+                        n := l_input.last_appended_count
+                        <B>check</B>
+                            n = <A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A>.<A HREF="../elks/natural_64.html#f_as_integer_32">as_integer_32</A>
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> <A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A> <B>then</B>
+                    <A HREF="../src/wsf_request.html#f_set_raw_input_data">set_raw_input_data</A> (buf.<A HREF="../elks/string_8.html#f_substring">substring</A> (buf_initial_size + 1, buf.<A HREF="../elks/readable_string_8.html#f_count">count</A>))
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_read_input_data_into_file"><A HREF="../src/wsf_request.html#f_read_input_data_into_file">read_input_data_into_file</A> (a_medium: <A HREF="../elks/io_medium.html">IO_MEDIUM</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> retrieve the content from the </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_input">input</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> stream into </FONT><I>s</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> warning: if the input data has already been retrieved</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">          you might not get anything</FONT>
+        <B>require</B>
+            a_medium_is_open_write: a_medium.<A HREF="../elks/io_medium.html#f_is_open_write">is_open_write</A>
+        <B>local</B>
+            s: <A HREF="../elks/string_8.html">STRING_8</A>
+            l_input: WGI_INPUT_STREAM
+            l_raw_data: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A>
+            l_length, l_total, nb, l_step: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A> <B>and then</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_raw_input_data">raw_input_data</A> <B>as</B> d <B>then</B>
+                a_medium.<A HREF="../elks/io_medium.html#f_put_string">put_string</A> (d)
+            <B>else</B>
+                <B>if</B> <A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A> <B>then</B>
+                    <B>create</B> l_raw_data.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+                <B>end</B>
+                l_input := <A HREF="../src/wsf_request.html#f_input">input</A>
+                l_length := <A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A>.<A HREF="../elks/natural_64.html#f_as_integer_32">as_integer_32</A>
+                <B>from</B>
+                    l_total := 0
+                    l_step := 8192
+                    <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make">make</A> (l_step)
+                <B>until</B>
+                    l_step = 0 <B>or</B> l_input.end_of_input
+                <B>loop</B>
+                    <B>if</B> l_total + l_step &gt; l_length <B>then</B>
+                        l_step := l_length - l_total
+                    <B>end</B>;
+                    l_input.append_to_string (s, l_step)
+                    nb := l_input.last_appended_count
+                    l_total := l_total + nb;
+                    a_medium.<A HREF="../elks/io_medium.html#f_put_string">put_string</A> (s)
+                    <B>if</B> l_raw_data /= <B>Void</B> <B>then</B>
+                        l_raw_data.<A HREF="../elks/string_8.html#f_append">append</A> (s)
+                    <B>end</B>;
+                    s.<A HREF="../elks/string_8.html#f_wipe_out">wipe_out</A>
+                    <B>if</B> nb &lt; l_step <B>then</B>
+                        l_step := 0
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/file.html">FILE</A>} a_medium <B>as</B> f <B>then</B>
+                    f.<A HREF="../elks/file.html#f_flush">flush</A>
+                <B>end</B>
+                <B>if</B> l_raw_data /= <B>Void</B> <B>then</B>
+                    <A HREF="../src/wsf_request.html#f_set_raw_input_data">set_raw_input_data</A> (l_raw_data)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Helper</FONT>
+
+    <A NAME="f_is_request_method"><A HREF="../src/wsf_request.html#f_is_request_method">is_request_method</A> (m: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>m</I><FONT COLOR="red"> the Current request_method?</FONT>
+        <B>do</B>
+            <B>Result</B> := m.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/wsf_request.html#f_request_method">request_method</A>)
+        <B>end</B></A>
+
+    <A NAME="f_is_put_request_method"><A HREF="../src/wsf_request.html#f_is_put_request_method">is_put_request_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current a PUT request method?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_put">method_put</A>)
+        <B>end</B></A>
+
+    <A NAME="f_is_post_request_method"><A HREF="../src/wsf_request.html#f_is_post_request_method">is_post_request_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current a POST request method?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_post">method_post</A>)
+        <B>end</B></A>
+
+    <A NAME="f_is_delete_request_method"><A HREF="../src/wsf_request.html#f_is_delete_request_method">is_delete_request_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current a DELETE request method?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_delete">method_delete</A>)
+        <B>end</B></A>
+
+    <A NAME="f_is_get_request_method"><A HREF="../src/wsf_request.html#f_is_get_request_method">is_get_request_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current a GET request method?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_get">method_get</A>)
+        <B>end</B></A>
+
+    <A NAME="f_is_get_head_request_method"><A HREF="../src/wsf_request.html#f_is_get_head_request_method">is_get_head_request_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current a GET or a HEAD request method?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_get">method_get</A>) <B>or</B> <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_head">method_head</A>)
+        <B>end</B></A>
+
+    <A NAME="f_is_put_post_request_method"><A HREF="../src/wsf_request.html#f_is_put_post_request_method">is_put_post_request_method</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is Current a PUT or a POST request method?</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_put">method_put</A>) <B>or</B> <A HREF="../src/wsf_request.html#f_request_method">request_method</A>.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ({<A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>}.<A HREF="../src/http_request_methods.html#f_method_post">method_post</A>)
+        <B>end</B></A>
+
+    <A NAME="f_is_content_type_accepted"><A HREF="../src/wsf_request.html#f_is_content_type_accepted">is_content_type_accepted</A> (a_content_type: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Does client accepts content_type for the response?</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> (<B>create</B> {SERVER_MEDIA_TYPE_NEGOTIATION}.make (a_content_type.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>) <B>end</B>).preference (&lt;&lt;a_content_type.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>&gt;&gt;, <A HREF="../src/wsf_request.html#f_http_accept">http_accept</A>) <B>as</B> l_variants <B>then</B>
+                <B>Result</B> := l_variants.is_acceptable
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Eiffel WGI access</FONT>
+
+    <A NAME="f_wgi_version"><A HREF="../src/wsf_request.html#f_wgi_version">wgi_version</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Eiffel WGI version</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.wgi_version
+        <B>end</B></A>
+
+    <A NAME="f_wgi_implementation"><A HREF="../src/wsf_request.html#f_wgi_implementation">wgi_implementation</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Information about Eiffel WGI implementation</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.wgi_implementation
+        <B>end</B></A>
+
+    <A NAME="f_wgi_connector"><A HREF="../src/wsf_request.html#f_wgi_connector">wgi_connector</A>: <B>detachable</B> <B>separate</B> WGI_CONNECTOR
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Associated Eiffel WGI connector</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.wgi_connector
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_request_exporter.html">WSF_REQUEST_EXPORTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Override value</FONT>
+
+    <A NAME="f_set_request_method"><A HREF="../src/wsf_request.html#f_set_request_method">set_request_method</A> (a_request_method: <B>like</B> <A HREF="../src/wsf_request.html#f_request_method">request_method</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_request_method">request_method</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>a_request_method</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> note: this is mainly to have smart handling of HEAD request</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_request_method">request_method</A> := a_request_method
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: global variable</FONT>
+
+    <A NAME="f_items_table"><A HREF="../src/wsf_request.html#f_items_table">items_table</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Table containing all the various variables</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Warning: this is computed each time, if you change the content of other containers</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> this won't update this Result's content, unless you query it again</FONT>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (20)
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_path_parameters">path_parameters</A> <B>as</B> l_path_parameters <B>then</B>
+                <B>across</B>
+                    l_path_parameters <B>as</B> c
+                <B>loop</B>
+                    <B>Result</B>.<A HREF="../elks/hash_table.html#f_force">force</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../src/wsf_value.html#f_name">name</A>)
+                <B>end</B>
+            <B>end</B>
+            <B>across</B>
+                <A HREF="../src/wsf_request.html#f_query_parameters">query_parameters</A> <B>as</B> c
+            <B>loop</B>
+                <B>Result</B>.<A HREF="../elks/hash_table.html#f_force">force</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../src/wsf_value.html#f_name">name</A>)
+            <B>end</B>
+            <B>across</B>
+                <A HREF="../src/wsf_request.html#f_form_parameters">form_parameters</A> <B>as</B> c
+            <B>loop</B>
+                <B>Result</B>.<A HREF="../elks/hash_table.html#f_force">force</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../src/wsf_value.html#f_name">name</A>)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: global variables</FONT>
+
+    <A NAME="f_items"><A HREF="../src/wsf_request.html#f_items">items</A>: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_items_table">items_table</A>
+        <B>end</B></A>
+
+    <A NAME="f_item"><A HREF="../src/wsf_request.html#f_item">item</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Variable named </FONT><I>a_name</I><FONT COLOR="red"> from any of the variables container</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and following a specific order: form_, query_ and path_ parameters</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_form_parameter">form_parameter</A> (a_name)
+            <B>if</B> <B>Result</B> = <B>Void</B> <B>then</B>
+                <B>Result</B> := <A HREF="../src/wsf_request.html#f_query_parameter">query_parameter</A> (a_name)
+                <B>if</B> <B>Result</B> = <B>Void</B> <B>then</B>
+                    <B>Result</B> := <A HREF="../src/wsf_request.html#f_path_parameter">path_parameter</A> (a_name)
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_string_item"><A HREF="../src/wsf_request.html#f_string_item">string_item</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} <A HREF="../src/wsf_request.html#f_item">item</A> (a_name) <B>as</B> val <B>then</B>
+                <B>Result</B> := val.<A HREF="../src/wsf_string.html#f_value">value</A>
+            <B>else</B>
+                <B>check</B>
+                    is_string_value: <B>False</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_string_array_item"><A HREF="../src/wsf_request.html#f_string_array_item">string_array_item</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Array of string values for path parameter </FONT><I>a_name</I><FONT COLOR="red"> if relevant.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../src/wsf_table.html">WSF_TABLE</A>} <A HREF="../src/wsf_request.html#f_item">item</A> (a_name) <B>as</B> tb <B>then</B>
+                <B>Result</B> := tb.<A HREF="../src/wsf_table.html#f_as_array_of_string">as_array_of_string</A>
+            <B>else</B>
+                <B>Result</B> := <A HREF="../src/wsf_request.html#f_string_array_item_for">string_array_item_for</A> (a_name, <B>agent</B> <A HREF="../src/wsf_request.html#f_item">item</A>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_string_array_item_for"><A HREF="../src/wsf_request.html#f_string_array_item_for">string_array_item_for</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_item_fct: <A HREF="../elks/function.html">FUNCTION</A> [<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>, <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>]): <B>detachable</B> <A HREF="../elks/array.html">ARRAY</A> [<A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Array of string values for query parameter </FONT><I>a_name</I><FONT COLOR="red"> if relevant.</FONT>
+        <B>local</B>
+            i: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            s: <A HREF="../elks/string_32.html">STRING_32</A>
+        <B>do</B>
+            <B>from</B>
+                i := 1
+                n := 1
+                <B>create</B> <B>Result</B>.<A HREF="../elks/array.html#f_make_filled">make_filled</A> ("".<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>, 1, 5)
+            <B>until</B>
+                i = 0
+            <B>loop</B>
+                <B>create</B> s.<A HREF="../elks/string_32.html#f_make_from_string_general">make_from_string_general</A> (a_name);
+                s.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('['.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                s.<A HREF="../elks/string_32.html#f_append_integer">append_integer</A> (i);
+                s.<A HREF="../elks/string_32.html#f_append_character">append_character</A> (']'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+                <B>if</B> <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} a_item_fct.<A HREF="../elks/function.html#f_item">item</A> ([s]) <B>as</B> v <B>then</B>
+                    <B>Result</B>.<A HREF="../elks/array.html#f_force">force</A> (v.<A HREF="../src/wsf_string.html#f_value">value</A>, n)
+                    n := n + 1
+                    i := i + 1
+                <B>else</B>
+                    i := 0
+                <B>end</B>
+            <B>end</B>;
+            <B>Result</B>.<A HREF="../elks/array.html#f_keep_head">keep_head</A> (n - 1)
+        <B>end</B></A>
+
+    <A NAME="f_table_item"><A HREF="../src/wsf_request.html#f_table_item">table_item</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; f: <B>detachable</B> <A HREF="../elks/function.html">FUNCTION</A> [<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>, <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>]): <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return value associated with table for flat name </FONT><I>a_name</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Use function </FONT><I>f</I><FONT COLOR="red"> to get the item, this could be agent of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_form_parameter">form_parameter</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> or </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_query_parameter">query_parameter</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, ...</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">     By default, this uses </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_items">items</A><FONT COLOR="red">`</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> For instance "foo</FONT><FONT COLOR="red">[bar]</FONT><FONT COLOR="red">" will return item "bar" from table item "foo" if it exists.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note: we could add this flexible behavior directly to </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_query_parameter">query_parameter</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> and related ..</FONT>
+        <B>local</B>
+            p, q: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            n, k: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+            v: <B>like</B> <A HREF="../src/wsf_request.html#f_table_item">table_item</A>
+            val: <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            done: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>do</B>
+            <B>if</B> f /= <B>Void</B> <B>then</B>
+                <B>Result</B> := f.<A HREF="../elks/function.html#f_item">item</A> ([a_name])
+            <B>else</B>
+                <B>Result</B> := <A HREF="../src/wsf_request.html#f_item">item</A> (a_name)
+            <B>end</B>
+            <B>if</B> <B>Result</B> = <B>Void</B> <B>then</B>
+                p := a_name.<A HREF="../elks/readable_string_general.html#f_index_of_code">index_of_code</A> (91, 1)
+                <B>if</B> p &gt; 0 <B>then</B>
+                    q := a_name.<A HREF="../elks/readable_string_general.html#f_index_of_code">index_of_code</A> (93, p + 1)
+                    <B>if</B> q &gt; p <B>then</B>
+                        n := a_name.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (1, p - 1)
+                        k := a_name.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (p + 1, q - 1)
+                        <B>from</B>
+                            <B>if</B> f /= <B>Void</B> <B>then</B>
+                                val := f.<A HREF="../elks/function.html#f_item">item</A> ([n])
+                            <B>else</B>
+                                val := <A HREF="../src/wsf_request.html#f_item">item</A> (n)
+                            <B>end</B>
+                        <B>until</B>
+                            <B>Result</B> /= <B>Void</B> <B>or</B> q &gt; a_name.<A HREF="../elks/readable_string_general.html#f_count">count</A> <B>or</B> done
+                        <B>loop</B>
+                            <B>if</B> <B>attached</B> {<A HREF="../src/wsf_table.html">WSF_TABLE</A>} val <B>as</B> tb <B>then</B>
+                                <B>if</B> k.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                                    v := val
+                                <B>else</B>
+                                    v := tb.<A HREF="../src/wsf_table.html#f_value">value</A> (k)
+                                <B>end</B>
+                                <B>if</B> q = a_name.<A HREF="../elks/readable_string_general.html#f_count">count</A> <B>then</B>
+                                    <B>Result</B> := v
+                                    done := <B>True</B>
+                                <B>elseif</B> <B>attached</B> {<A HREF="../src/wsf_table.html">WSF_TABLE</A>} v <B>as</B> v_table <B>then</B>
+                                    p := q + 1
+                                    <B>if</B> a_name [p] = '['.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                                        q := a_name.<A HREF="../elks/readable_string_general.html#f_index_of_code">index_of_code</A> (93, p + 1)
+                                        <B>if</B> q &gt; p <B>then</B>
+                                            k := a_name.<A HREF="../elks/readable_string_general.html#f_substring">substring</A> (p + 1, q - 1)
+                                            v := v_table.<A HREF="../src/wsf_table.html#f_value">value</A> (k)
+                                            <B>if</B> q = a_name.<A HREF="../elks/readable_string_general.html#f_count">count</A> <B>then</B>
+                                                <B>Result</B> := v
+                                                done := <B>True</B>
+                                            <B>else</B>
+                                                val := v
+                                                done := v = <B>Void</B>
+                                            <B>end</B>
+                                        <B>else</B>
+                                            done := <B>True</B>
+                                        <B>end</B>
+                                    <B>else</B>
+                                        done := <B>True</B>
+                                    <B>end</B>
+                                <B>else</B>
+                                    done := <B>True</B>
+                                <B>end</B>
+                            <B>else</B>
+                                done := <B>True</B>
+                            <B>end</B>
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Helpers: global variables</FONT>
+
+    <A NAME="f_items_as_string_items"><A HREF="../src/wsf_request.html#f_items_as_string_items">items_as_string_items</A>: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>; value: <B>detachable</B> <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>]]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_items">items</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> as strings items</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> i.e: flatten any table or related into multiple string items</FONT>
+        <B>local</B>
+            res: <A HREF="../elks/arrayed_list.html">ARRAYED_LIST</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>; value: <B>detachable</B> <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>]]
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_items_table">items_table</A> <B>as</B> tb <B>then</B>
+                <B>create</B> res.<A HREF="../elks/arrayed_list.html#f_make">make</A> (tb.<A HREF="../elks/hash_table.html#f_count">count</A>)
+                <B>across</B>
+                    tb <B>as</B> c
+                <B>loop</B>
+                    <A HREF="../src/wsf_request.html#f_append_value_as_string_items_to">append_value_as_string_items_to</A> (c.<A HREF="../elks/hash_table_iteration_cursor.html#f_item">item</A>, res)
+                <B>end</B>
+            <B>else</B>
+                <B>create</B> res.<A HREF="../elks/arrayed_list.html#f_make">make</A> (0)
+            <B>end</B>
+            <B>Result</B> := res
+        <B>end</B></A>
+
+    <A NAME="f_append_value_as_string_items_to"><A HREF="../src/wsf_request.html#f_append_value_as_string_items_to">append_value_as_string_items_to</A> (v: <A HREF="../src/wsf_value.html">WSF_VALUE</A>; a_target: <A HREF="../elks/list.html">LIST</A> [<A HREF="../elks/tuple.html">TUPLE</A> [name: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>; value: <B>detachable</B> <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>]])
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Append value </FONT><I>v</I><FONT COLOR="red"> to </FONT><I>a_target</I><FONT COLOR="red"> as multiple string items</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} v <B>as</B> s <B>then</B>
+                a_target.<A HREF="../elks/sequence.html#f_force">force</A> ([s.<A HREF="../src/wsf_string.html#f_name">name</A>, s.<A HREF="../src/wsf_string.html#f_value">value</A>])
+            <B>elseif</B> <B>attached</B> {<A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]} v <B>as</B> lst <B>then</B>
+                <B>across</B>
+                    lst <B>as</B> c
+                <B>loop</B>
+                    <A HREF="../src/wsf_request.html#f_append_value_as_string_items_to">append_value_as_string_items_to</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, a_target)
+                <B>end</B>
+            <B>else</B>
+                a_target.<A HREF="../elks/sequence.html#f_force">force</A> ([v.<A HREF="../src/wsf_value.html#f_name">name</A>, v.<A HREF="../src/wsf_value.html#f_string_representation">string_representation</A>])
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution variables</FONT>
+
+    <A NAME="f_execution_variables"><A HREF="../src/wsf_request.html#f_execution_variables">execution_variables</A>: <A HREF="../elks/table_iterable.html">TABLE_ITERABLE</A> [<B>detachable</B> <A HREF="../elks/any.html">ANY</A>, <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution variables values.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>
+        <B>end</B></A>
+
+    <A NAME="f_has_execution_variable"><A HREF="../src/wsf_request.html#f_has_execution_variable">has_execution_variable</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has execution variable related to </FONT><I>a_name</I><FONT COLOR="red">?</FONT>
+        <B>require</B>
+            a_name_valid: a_name /= <B>Void</B> <B>and then</B> <B>not</B> a_name.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>.<A HREF="../elks/hash_table.html#f_has">has</A> (a_name)
+        <B>end</B></A>
+
+    <A NAME="f_execution_variable"><A HREF="../src/wsf_request.html#f_execution_variable">execution_variable</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/any.html">ANY</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution variable related to </FONT><I>a_name</I>
+        <B>require</B>
+            a_name_valid: a_name /= <B>Void</B> <B>and then</B> <B>not</B> a_name.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+        <B>end</B></A>
+
+    <A NAME="f_set_execution_variable"><A HREF="../src/wsf_request.html#f_set_execution_variable">set_execution_variable</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_value: <B>detachable</B> <A HREF="../elks/any.html">ANY</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>.<A HREF="../elks/hash_table.html#f_force">force</A> (a_value, a_name)
+        <B>ensure</B>
+            param_set: <A HREF="../src/wsf_request.html#f_execution_variable">execution_variable</A> (a_name) = a_value
+        <B>end</B></A>
+
+    <A NAME="f_unset_execution_variable"><A HREF="../src/wsf_request.html#f_unset_execution_variable">unset_execution_variable</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>.<A HREF="../elks/hash_table.html#f_remove">remove</A> (a_name)
+        <B>ensure</B>
+            param_unset: <A HREF="../src/wsf_request.html#f_execution_variable">execution_variable</A> (a_name) = <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution variables: implementation</FONT>
+
+    <A NAME="f_execution_variables_table"><A HREF="../src/wsf_request.html#f_execution_variables_table">execution_variables_table</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<B>detachable</B> <A HREF="../elks/any.html">ANY</A>]</A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: CGI Meta variables</FONT>
+
+    <A NAME="f_meta_variable"><A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../src/wsf_string.html">WSF_STRING</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> CGI Meta variable related to </FONT><I>a_name</I>
+        <B>require</B>
+            a_name_valid: a_name /= <B>Void</B> <B>and then</B> <B>not</B> a_name.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_meta_variables_table">meta_variables_table</A>.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+        <B>end</B></A>
+
+    <A NAME="f_meta_string_variable"><A HREF="../src/wsf_request.html#f_meta_string_variable">meta_string_variable</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> CGI meta variable related to </FONT><I>a_name</I>
+        <B>require</B>
+            a_name_valid: a_name /= <B>Void</B> <B>and then</B> <B>not</B> a_name.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> (a_name) <B>as</B> val <B>then</B>
+                <B>Result</B> := val.<A HREF="../src/wsf_string.html#f_value">value</A>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_meta_variables"><A HREF="../src/wsf_request.html#f_meta_variables">meta_variables</A>: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_string.html">WSF_STRING</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> CGI meta variables values</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_meta_variables_table">meta_variables_table</A>
+        <B>end</B></A>
+
+    <A NAME="f_meta_string_variable_or_default"><A HREF="../src/wsf_request.html#f_meta_string_variable_or_default">meta_string_variable_or_default</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; a_default: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>; use_default_when_empty: <A HREF="../elks/boolean.html">BOOLEAN</A>): <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Value for meta parameter </FONT><I>a_name</I>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If not found, return </FONT><I>a_default</I>
+        <B>require</B>
+            a_name_not_empty: a_name /= <B>Void</B> <B>and then</B> <B>not</B> a_name.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> (a_name) <B>as</B> val <B>then</B>
+                <B>Result</B> := val.<A HREF="../src/wsf_string.html#f_value">value</A>
+                <B>if</B> use_default_when_empty <B>and then</B> <B>Result</B>.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                    <B>Result</B> := a_default
+                <B>end</B>
+            <B>else</B>
+                <B>Result</B> := a_default
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_meta_string_variable"><A HREF="../src/wsf_request.html#f_set_meta_string_variable">set_meta_string_variable</A> (a_name: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>; a_value: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set meta variable </FONT><I>a_name</I><FONT COLOR="red"> and </FONT><I>a_value</I>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_meta_variables_table">meta_variables_table</A>.<A HREF="../elks/hash_table.html#f_force">force</A> (<A HREF="../src/wsf_value_utilities.html#f_new_string_value">new_string_value</A> (a_name, a_value), a_name)
+        <B>ensure</B>
+            param_set: <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> (a_name) <B>as</B> val <B>and then</B> a_value.<A HREF="../elks/readable_string_general.html#f_same_string">same_string_general</A> (val.<A HREF="../src/wsf_string.html#f_url_encoded_value">url_encoded_value</A>)
+        <B>end</B></A>
+
+    <A NAME="f_unset_meta_variable"><A HREF="../src/wsf_request.html#f_unset_meta_variable">unset_meta_variable</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>)
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_meta_variables_table">meta_variables_table</A>.<A HREF="../elks/hash_table.html#f_remove">remove</A> (a_name)
+        <B>ensure</B>
+            param_unset: <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> (a_name) = <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: CGI meta parameters</FONT>
+
+    <A NAME="f_meta_variables_table"><A HREF="../src/wsf_request.html#f_meta_variables_table">meta_variables_table</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_string.html">WSF_STRING</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> CGI Environment parameters</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: CGI meta parameters - 1.1</FONT>
+
+    <A NAME="f_auth_type"><A HREF="../src/wsf_request.html#f_auth_type">auth_type</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This variable is specific to requests made via the "http"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> scheme.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If the Script-URI required access authentication for external</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> access, then the server MUST set the value of this variable</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> from the 'auth-scheme' token in the wgi_request's "Authorization"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> header field. Otherwise it is set to NULL.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  AUTH_TYPE   = "" | auth-scheme</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  auth-scheme = "Basic" | "Digest" | token</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> HTTP access authentication schemes are described in section 11</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> of the HTTP/1.1 specification </FONT><FONT COLOR="red">[8]</FONT><FONT COLOR="red">. The auth-scheme is not</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> case-sensitive.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts if the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> wgi_request header included an "Authorization" field that was</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> authenticated.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.auth_type
+        <B>end</B></A>
+
+    <A NAME="f_content_length"><A HREF="../src/wsf_request.html#f_content_length">content_length</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This metavariable is set to the size of the message-body</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> entity attached to the wgi_request, if any, in decimal number of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> octets. If no data are attached, then this metavariable is</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> either NULL or not defined. The syntax is the same as for the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> HTTP "Content-Length" header field (section 14.14, HTTP/1.1</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> specification </FONT><FONT COLOR="red">[8]</FONT><FONT COLOR="red">).</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  CONTENT_LENGTH = "" | 1*digit</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts if the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> wgi_request was accompanied by a message-body entity.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.content_length
+        <B>end</B></A>
+
+    <A NAME="f_content_length_value"><A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Integer value related to `content_length"</FONT>
+
+    <A NAME="f_content_type"><A HREF="../src/wsf_request.html#f_content_type">content_type</A>: <B>detachable</B> <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If the wgi_request includes a message-body, CONTENT_TYPE is set to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the Internet Media Type </FONT><FONT COLOR="red">[9]</FONT><FONT COLOR="red"> of the attached entity if the type</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> was provided via a "Content-type" field in the wgi_request header,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> or if the server can determine it in the absence of a supplied</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> "Content-type" field. The syntax is the same as for the HTTP</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> "Content-Type" header field.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  CONTENT_TYPE = "" | media-type</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  media-type   = type "/" subtype *( ";" parameter)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  type         = token</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  subtype      = token</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  parameter    = attribute "=" value</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  attribute    = token</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  value        = token | quoted-string</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The type, subtype, and parameter attribute names are not</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> case-sensitive. Parameter values MAY be case sensitive. Media</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> types and their use in HTTP are described in section 3.7 of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the HTTP/1.1 specification </FONT><FONT COLOR="red">[8]</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Example:</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  application/x-www-form-urlencoded</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> There is no default value for this variable. If and only if it</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> is unset, then the script MAY attempt to determine the media</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> type from the data received. If the type remains unknown, then</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the script MAY choose to either assume a content-type of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> application/octet-stream or reject the wgi_request with a 415</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ("Unsupported Media Type") error. See section 7.2.1.3 for more</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> information about returning error status values.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts if a</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> "Content-Type" field was present in the original wgi_request</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> header. If the server receives a wgi_request with an attached</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> entity but no "Content-Type" header field, it MAY attempt to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> determine the correct datatype, or it MAY omit this</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> metavariable when communicating the wgi_request information to the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> script.</FONT>
+
+    <A NAME="f_gateway_interface"><A HREF="../src/wsf_request.html#f_gateway_interface">gateway_interface</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This metavariable is set to the dialect of CGI being used by</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the server to communicate with the script. Syntax:</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  GATEWAY_INTERFACE = "CGI" "/" major "." minor</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  major             = 1*digit</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  minor             = 1*digit</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note that the major and minor numbers are treated as separate</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> integers and hence each may be more than a single digit. Thus</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> CGI/2.4 is a lower version than CGI/2.13 which in turn is</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> lower than CGI/12.3. Leading zeros in either the major or the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> minor number MUST be ignored by scripts and SHOULD NOT be</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> generated by servers.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This document defines the 1.1 version of the CGI interface</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ("CGI/1.1").</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The version of the CGI specification to which this server</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> complies.  Syntax:</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  GATEWAY_INTERFACE =  "CGI" "/" 1*digit "." 1*digit</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note that the major and minor numbers are treated as separate</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> integers and that each may be incremented higher than a single</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> digit.  Thus CGI/2.4 is a lower version than CGI/2.13 which in</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> turn is lower than CGI/12.3. Leading zeros must be ignored by</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> scripts and should never be generated by servers.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.gateway_interface
+        <B>end</B></A>
+
+    <A NAME="f_percent_encoded_path_info"><A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Percent encoded PATH_INFO value from CGI.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> See </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_path_info">path_info</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> for the related percent decoded value.</FONT>
+        <B>local</B>
+            l_result: <B>like</B> <A HREF="../src/wsf_request.html#f_internal_percent_encoded_path_info">internal_percent_encoded_path_info</A>
+            r: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            pi: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            i, m, n, spos: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            l_result := <A HREF="../src/wsf_request.html#f_internal_percent_encoded_path_info">internal_percent_encoded_path_info</A>
+            <B>if</B> l_result = <B>Void</B> <B>then</B>
+                pi := <A HREF="../src/wsf_request.html#f_path_info">path_info</A>
+                <B>if</B> pi.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                    l_result := ""
+                <B>elseif</B> pi.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 1 <B>and then</B> pi [1] = '/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    l_result := "/"
+                <B>else</B>
+                    r := <A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>
+                    i := r.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('?', 1)
+                    <B>if</B> i &gt; 0 <B>then</B>
+                        l_result := r.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, i - 1)
+                    <B>else</B>
+                        l_result := r.<A HREF="../elks/readable_string_8.html#f_string">string</A>
+                    <B>end</B>
+                    i := 0
+                    <B>if</B> pi.<A HREF="../elks/readable_string_32.html#f_is_valid_as_string_8">is_valid_as_string_8</A> <B>then</B>
+                        i := l_result.<A HREF="../elks/readable_string_8.html#f_substring_index">substring_index</A> (pi.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>, 1)
+                        <B>if</B> i &gt; 0 <B>then</B>
+                            l_result := l_result.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, l_result.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                        <B>end</B>
+                    <B>end</B>
+                    <B>if</B> i = 0 <B>and</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_script_name">script_name</A> <B>as</B> s <B>then</B>
+                        <B>if</B> l_result.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> (s) <B>then</B>
+                            l_result := l_result.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (s.<A HREF="../elks/readable_string_8.html#f_count">count</A> + 1, l_result.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                        <B>else</B>
+                            <B>from</B>
+                                i := 1
+                                m := l_result.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                                n := s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                            <B>until</B>
+                                i &gt; m <B>or</B> i &gt; n <B>or</B> l_result [i] /= s [i]
+                            <B>loop</B>
+                                <B>if</B> l_result [i] = '/' <B>then</B>
+                                    spos := i
+                                <B>end</B>
+                                i := i + 1
+                            <B>end</B>
+                            <B>if</B> i &gt; 1 <B>then</B>
+                                <B>if</B> l_result [i - 1] = '/' <B>then</B>
+                                    i := i - 1
+                                <B>elseif</B> spos &gt; 0 <B>then</B>
+                                    i := spos
+                                <B>end</B>
+                                l_result := l_result.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (i, m)
+                            <B>end</B>
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+                <A HREF="../src/wsf_request.html#f_internal_percent_encoded_path_info">internal_percent_encoded_path_info</A> := l_result
+            <B>end</B>
+            <B>Result</B> := l_result
+        <B>end</B></A>
+
+    <A NAME="f_utf_8_path_info"><A HREF="../src/wsf_request.html#f_utf_8_path_info">utf_8_path_info</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> UTF-8 encoded value for PATH_INFO.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> See </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_path_info">path_info</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> for extended description.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.path_info
+        <B>end</B></A>
+
+    <A NAME="f_path_info"><A HREF="../src/wsf_request.html#f_path_info">path_info</A>: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The PATH_INFO metavariable specifies a path to be interpreted</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> by the CGI script. It identifies the resource or sub-resource</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> to be returned by the CGI script, and it is derived from the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> portion of the URI path following the script name but</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> preceding any query data.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Unlike a URI path, the PATH_INFO is not URL-encoded, and cannot</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> contain path-segment parameters.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The syntax and semantics are similar to a decoded HTTP URL 'path' token</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> (defined in RFC 2396 </FONT><FONT COLOR="red">[4]</FONT><FONT COLOR="red">), with the exception that a PATH_INFO of "/"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> represents a single void path segment.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  PATH_INFO = "" | ( "/" path )</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  path      = segment *( "/" segment )</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  segment   = *pchar</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  pchar     = &lt;any CHAR except "/"&gt;</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The PATH_INFO string is the trailing part of the &lt;path&gt;</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> component of the Script-URI (see section 3.2) that follows the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> SCRIPT_NAME portion of the path.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MAY impose their own restrictions and limitations on</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> what values they will accept for PATH_INFO, and MAY reject or</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> edit any values they consider objectionable before passing</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> them to the script.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST make this URI component available to CGI scripts.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The PATH_INFO value is case-sensitive, and the server MUST</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> preserve the case of the PATH_INFO element of the URI when</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> making it available to scripts.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Note: this is the unicode version of PATH_INFO, for utf-8 version</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> please use </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_utf_8_path_info">utf_8_path_info</A><FONT COLOR="red">`</FONT><FONT COLOR="red">, which is the real CGI value of PATH_INFO.</FONT>
+
+    <A NAME="f_path_translated"><A HREF="../src/wsf_request.html#f_path_translated">path_translated</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> PATH_TRANSLATED is derived by taking any path-info component</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> of the wgi_request URI (see section 6.1.6), decoding it (see</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> section 3.1), parsing it as a URI in its own right, and</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> performing any virtual-to-physical translation appropriate to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> map it onto the server's document repository structure. If the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> wgi_request URI includes no path-info component, the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> PATH_TRANSLATED metavariable SHOULD NOT be defined.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  PATH_TRANSLATED = *CHAR</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> For a wgi_request such as the following:</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  </FONT><FONT COLOR="red">http://somehost.com/cgi-bin/somescript/this%2eis%2epath%2einfo</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the PATH_INFO component would be decoded, and the result</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> parsed as though it were a wgi_request for the following:</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  </FONT><FONT COLOR="red">http://somehost.com/this.is.the.path.info</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This would then be translated to a location in the server's</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> document repository, perhaps a filesystem path something like</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> this:</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  /usr/local/www/htdocs/this.is.the.path.info</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The result of the translation is the value of PATH_TRANSLATED.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The value of PATH_TRANSLATED may or may not map to a valid</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> repository location. Servers MUST preserve the case of the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> path-info segment if and only if the underlying repository</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> supports case-sensitive names. If the repository is only</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> case-aware, case-preserving, or case-blind with regard to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> document names, servers are not required to preserve the case</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> of the original segment through the translation.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The translation algorithm the server uses to derive</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> PATH_TRANSLATED is implementation defined; CGI scripts which</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> use this variable may suffer limited portability.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers SHOULD provide this metavariable to scripts if and</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> only if the wgi_request URI includes a path-info component.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> note: it is UTF_8 encoded.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.path_translated
+        <B>end</B></A>
+
+    <A NAME="f_query_string"><A HREF="../src/wsf_request.html#f_query_string">query_string</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> A URL-encoded string; the &lt;query&gt; part of the Script-URI. (See</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> section 3.2.)</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  QUERY_STRING = query-string</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  query-string = *uric</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The URL syntax for a query string is described in section 3 of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> RFC 2396 </FONT><FONT COLOR="red">[4]</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST supply this value to scripts. The QUERY_STRING</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> value is case-sensitive. If the Script-URI does not include a</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> query component, the QUERY_STRING metavariable MUST be defined</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> as an empty string ("").</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.query_string
+        <B>end</B></A>
+
+    <A NAME="f_remote_addr"><A HREF="../src/wsf_request.html#f_remote_addr">remote_addr</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The IP address of the client sending the wgi_request to the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> server. This is not necessarily that of the user agent (such</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> as if the wgi_request came through a proxy).</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  REMOTE_ADDR  = hostnumber</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  hostnumber   = ipv4-address | ipv6-address</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The definitions of ipv4-address and ipv6-address are provided</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> in Appendix B of RFC 2373 </FONT><FONT COLOR="red">[13]</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST supply this value to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.remote_addr
+        <B>end</B></A>
+
+    <A NAME="f_remote_host"><A HREF="../src/wsf_request.html#f_remote_host">remote_host</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The fully qualified domain name of the client sending the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> wgi_request to the server, if available, otherwise NULL. (See</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> section 6.1.9.) Fully qualified domain names take the form as</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> described in section 3.5 of RFC 1034 </FONT><FONT COLOR="red">[10]</FONT><FONT COLOR="red"> and section 2.1 of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> RFC 1123 </FONT><FONT COLOR="red">[5]</FONT><FONT COLOR="red">. Domain names are not case sensitive.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers SHOULD provide this information to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.remote_host
+        <B>end</B></A>
+
+    <A NAME="f_remote_ident"><A HREF="../src/wsf_request.html#f_remote_ident">remote_ident</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The identity information reported about the connection by a</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> RFC 1413 </FONT><FONT COLOR="red">[11]</FONT><FONT COLOR="red"> wgi_request to the remote agent, if available.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MAY choose not to support this feature, or not to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> wgi_request the data for efficiency reasons.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  REMOTE_IDENT = *CHAR</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The data returned may be used for authentication purposes, but</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the level of trust reposed in them should be minimal.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MAY supply this information to scripts if the RFC1413</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> </FONT><FONT COLOR="red">[11]</FONT><FONT COLOR="red"> lookup is performed.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.remote_ident
+        <B>end</B></A>
+
+    <A NAME="f_remote_user"><A HREF="../src/wsf_request.html#f_remote_user">remote_user</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If the wgi_request required authentication using the "Basic"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> mechanism (i.e., the AUTH_TYPE metavariable is set to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> "Basic"), then the value of the REMOTE_USER metavariable is</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> set to the user-ID supplied. In all other cases the value of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> this metavariable is undefined.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  REMOTE_USER = *OCTET</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This variable is specific to requests made via the HTTP</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> protocol.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers SHOULD provide this metavariable to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.remote_user
+        <B>end</B></A>
+
+    <A NAME="f_request_method"><A HREF="../src/wsf_request.html#f_request_method">request_method</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The REQUEST_METHOD metavariable is set to the method with</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> which the wgi_request was made, as described in section 5.1.1 of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the HTTP/1.0 specification </FONT><FONT COLOR="red">[3]</FONT><FONT COLOR="red"> and section 5.1.1 of the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> HTTP/1.1 specification </FONT><FONT COLOR="red">[8]</FONT><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  REQUEST_METHOD   = http-method</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  http-method      = "GET" | "HEAD" | "POST" | "PUT" | "DELETE"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                     | "OPTIONS" | "TRACE" | extension-method</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  extension-method = token</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The method is case sensitive. CGI/1.1 servers MAY choose to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> process some methods directly rather than passing them to</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> scripts.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This variable is specific to requests made with HTTP.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts.</FONT>
+
+    <A NAME="f_script_name"><A HREF="../src/wsf_request.html#f_script_name">script_name</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The SCRIPT_NAME metavariable is set to a URL path that could</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> identify the CGI script (rather than the script's output). The</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> syntax and semantics are identical to a decoded HTTP URL</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 'path' token (see RFC 2396 </FONT><FONT COLOR="red">[4]</FONT><FONT COLOR="red">).</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  SCRIPT_NAME = "" | ( "/" [ path ] )</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The SCRIPT_NAME string is some leading part of the &lt;path&gt;</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> component of the Script-URI derived in some implementation</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> defined manner. No PATH_INFO or QUERY_STRING segments (see</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> sections 6.1.6 and 6.1.8) are included in the SCRIPT_NAME</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> value.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.script_name
+        <B>end</B></A>
+
+    <A NAME="f_server_name"><A HREF="../src/wsf_request.html#f_server_name">server_name</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The SERVER_NAME metavariable is set to the name of the server,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> as derived from the &lt;host&gt; part of the Script-URI (see section</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 3.2).</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  SERVER_NAME = hostname | hostnumber</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.server_name
+        <B>end</B></A>
+
+    <A NAME="f_server_port"><A HREF="../src/wsf_request.html#f_server_port">server_port</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The SERVER_PORT metavariable is set to the port on which the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> wgi_request was received, as used in the &lt;port&gt; part of the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Script-URI.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  SERVER_PORT = 1*digit</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> If the &lt;port&gt; portion of the script-URI is blank, the actual</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> port number upon which the wgi_request was received MUST be</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> supplied.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.server_port
+        <B>end</B></A>
+
+    <A NAME="f_server_protocol"><A HREF="../src/wsf_request.html#f_server_protocol">server_protocol</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The SERVER_PROTOCOL metavariable is set to the name and</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> revision of the information protocol with which the wgi_request</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> arrived. This is not necessarily the same as the protocol</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> version used by the server in its response to the client.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  SERVER_PROTOCOL   = HTTP-Version | extension-version</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">                      | extension-token</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  HTTP-Version      = "HTTP" "/" 1*digit "." 1*digit</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  extension-version = protocol "/" 1*digit "." 1*digit</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  protocol          = 1*( alpha | digit | "+" | "-" | "." )</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  extension-token   = token</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 'protocol' is a version of the &lt;scheme&gt; part of the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Script-URI, but is not identical to it. For example, the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> scheme of a wgi_request may be "https" while the protocol remains</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> "http". The protocol is not case sensitive, but by convention,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> 'protocol' is in upper case.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> A well-known extension token value is "INCLUDED", which</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> signals that the current document is being included as part of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> a composite document, rather than being the direct target of</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> the client wgi_request.</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.server_protocol
+        <B>end</B></A>
+
+    <A NAME="f_server_software"><A HREF="../src/wsf_request.html#f_server_software">server_software</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The SERVER_SOFTWARE metavariable is set to the name and</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> version of the information server software answering the</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> wgi_request (and running the gateway).</FONT>
+            <FONT COLOR="red">--</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  SERVER_SOFTWARE = 1*product</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  product         = token [ "/" product-version ]</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  product-version = token</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Servers MUST provide this metavariable to scripts.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.server_software
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> HTTP_*</FONT>
+
+    <A NAME="f_http_accept"><A HREF="../src/wsf_request.html#f_http_accept">http_accept</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the Accept: header from the current wgi_request, if there is one.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Example: 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_accept
+        <B>end</B></A>
+
+    <A NAME="f_http_accept_charset"><A HREF="../src/wsf_request.html#f_http_accept_charset">http_accept_charset</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the Accept-Charset: header from the current wgi_request, if there is one.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Example: 'iso-8859-1,*,utf-8'.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_accept_charset
+        <B>end</B></A>
+
+    <A NAME="f_http_accept_encoding"><A HREF="../src/wsf_request.html#f_http_accept_encoding">http_accept_encoding</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the Accept-Encoding: header from the current wgi_request, if there is one.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Example: 'gzip'.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_accept_encoding
+        <B>end</B></A>
+
+    <A NAME="f_http_accept_language"><A HREF="../src/wsf_request.html#f_http_accept_language">http_accept_language</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the Accept-Language: header from the current wgi_request, if there is one.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Example: 'en'.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_accept_language
+        <B>end</B></A>
+
+    <A NAME="f_http_connection"><A HREF="../src/wsf_request.html#f_http_connection">http_connection</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the Connection: header from the current wgi_request, if there is one.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Example: 'keep-alive'.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_connection
+        <B>end</B></A>
+
+    <A NAME="f_is_keep_alive_http_connection"><A HREF="../src/wsf_request.html#f_is_keep_alive_http_connection">is_keep_alive_http_connection</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is a keep-alive connection?</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_http_connection">http_connection</A> <B>as</B> conn <B>then</B>
+                <B>Result</B> := conn.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> ("keep-alive")
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_http_expect"><A HREF="../src/wsf_request.html#f_http_expect">http_expect</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The Expect request-header field is used to indicate that particular server behaviors are required by the client.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Example: '100-continue'.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_expect
+        <B>end</B></A>
+
+    <A NAME="f_http_host"><A HREF="../src/wsf_request.html#f_http_host">http_host</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the Host: header from the current wgi_request, if there is one.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_host
+        <B>end</B></A>
+
+    <A NAME="f_http_referer"><A HREF="../src/wsf_request.html#f_http_referer">http_referer</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The address of the page (if any) which referred the user agent to the current page.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This is set by the user agent.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Not all user agents will set this, and some provide the ability to modify HTTP_REFERER as a feature.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> In short, it cannot really be trusted.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_referer
+        <B>end</B></A>
+
+    <A NAME="f_http_user_agent"><A HREF="../src/wsf_request.html#f_http_user_agent">http_user_agent</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the User-Agent: header from the current wgi_request, if there is one.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This is a string denoting the user agent being which is accessing the page.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> A typical example is: Mozilla/4.5 </FONT><FONT COLOR="red">[en]</FONT><FONT COLOR="red"> (X11; U; Linux 2.2.9 i586).</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Among other things, you can use this value to tailor your page's</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> output to the capabilities of the user agent.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_user_agent
+        <B>end</B></A>
+
+    <A NAME="f_http_authorization"><A HREF="../src/wsf_request.html#f_http_authorization">http_authorization</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Contents of the Authorization: header from the current wgi_request, if there is one.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_authorization
+        <B>end</B></A>
+
+    <A NAME="f_http_transfer_encoding"><A HREF="../src/wsf_request.html#f_http_transfer_encoding">http_transfer_encoding</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Transfer-Encoding</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> for instance chunked</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_transfer_encoding
+        <B>end</B></A>
+
+    <A NAME="f_http_access_control_request_headers"><A HREF="../src/wsf_request.html#f_http_access_control_request_headers">http_access_control_request_headers</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Indicates which headers will be used in the actual request</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> as part of the preflight request</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_access_control_request_headers
+        <B>end</B></A>
+
+    <A NAME="f_http_if_match"><A HREF="../src/wsf_request.html#f_http_if_match">http_if_match</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Existence check on resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_if_match
+        <B>end</B></A>
+
+    <A NAME="f_http_if_modified_since"><A HREF="../src/wsf_request.html#f_http_if_modified_since">http_if_modified_since</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Modification check on resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_if_modified_since
+        <B>end</B></A>
+
+    <A NAME="f_http_if_none_match"><A HREF="../src/wsf_request.html#f_http_if_none_match">http_if_none_match</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Existence check on resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_if_none_match
+        <B>end</B></A>
+
+    <A NAME="f_http_if_range"><A HREF="../src/wsf_request.html#f_http_if_range">http_if_range</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Range check on resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_if_range
+        <B>end</B></A>
+
+    <A NAME="f_http_if_unmodified_since"><A HREF="../src/wsf_request.html#f_http_if_unmodified_since">http_if_unmodified_since</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Modification check on resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_if_unmodified_since
+        <B>end</B></A>
+
+    <A NAME="f_http_last_modified"><A HREF="../src/wsf_request.html#f_http_last_modified">http_last_modified</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Modification time of resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_last_modified
+        <B>end</B></A>
+
+    <A NAME="f_http_range"><A HREF="../src/wsf_request.html#f_http_range">http_range</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Requested byte-range of resource</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_range
+        <B>end</B></A>
+
+    <A NAME="f_http_content_range"><A HREF="../src/wsf_request.html#f_http_content_range">http_content_range</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Partial range of selected representation enclosed in message payload</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_content_range
+        <B>end</B></A>
+
+    <A NAME="f_http_content_encoding"><A HREF="../src/wsf_request.html#f_http_content_encoding">http_content_encoding</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Encoding (usually compression) of message payload</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.http_content_encoding
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Extra CGI environment variables</FONT>
+
+    <A NAME="f_request_uri"><A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The URI which was given in order to access this page; for instance, '/index.html'.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.request_uri
+        <B>end</B></A>
+
+    <A NAME="f_orig_path_info"><A HREF="../src/wsf_request.html#f_orig_path_info">orig_path_info</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Original version of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_path_info">path_info</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> before processed by Current environment</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.orig_path_info
+        <B>end</B></A>
+
+    <A NAME="f_request_time"><A HREF="../src/wsf_request.html#f_request_time">request_time</A>: <B>detachable</B> DATE_TIME
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request time (UTC)</FONT>
+        <B>local</B>
+            i: <B>like</B> <A HREF="../src/wsf_request.html#f_request_time_stamp">request_time_stamp</A>
+        <B>do</B>
+            i := <A HREF="../src/wsf_request.html#f_request_time_stamp">request_time_stamp</A>
+            <B>if</B> i &gt; 0 <B>then</B>
+                <B>Result</B> := <A HREF="../src/wsf_request.html#f_date_time_utilities">Date_time_utilities</A>.<A HREF="../src/http_date_time_utilities.html#f_unix_time_stamp_to_date_time">unix_time_stamp_to_date_time</A> (i)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_request_time_stamp"><A HREF="../src/wsf_request.html#f_request_time_stamp">request_time_stamp</A>: <A HREF="../elks/integer_64.html">INTEGER_64</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Request time stamp (UTC)	 (unix time stamp)</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> ({<A HREF="../src/wsf_meta_names.html">WSF_META_NAMES</A>}.request_time) <B>as</B> t <B>and then</B> t.<A HREF="../src/wsf_string.html#f_value">value</A>.<A HREF="../elks/readable_string_general.html#f_is_integer_64">is_integer_64</A> <B>then</B>
+                <B>Result</B> := t.<A HREF="../src/wsf_string.html#f_value">value</A>.<A HREF="../elks/readable_string_general.html#f_to_integer_64">to_integer_64</A>
+            <B>end</B>
+        <B>ensure</B>
+            <B>Result</B> = 0 <B>implies</B> <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> ({<A HREF="../src/wsf_meta_names.html">WSF_META_NAMES</A>}.request_time) = <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cookies</FONT>
+
+    <A NAME="f_cookies"><A HREF="../src/wsf_request.html#f_cookies">cookies</A>: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> All cookies.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_cookies_table">cookies_table</A>
+        <B>end</B></A>
+
+    <A NAME="f_cookie"><A HREF="../src/wsf_request.html#f_cookie">cookie</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Field for name </FONT><I>a_name</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_cookies_table">cookies_table</A>.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cookies</FONT>
+
+    <A NAME="f_cookies_table"><A HREF="../src/wsf_request.html#f_cookies_table">cookies_table</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Expanded cookies variable</FONT>
+        <B>local</B>
+            i, j, p, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_cookies: <B>like</B> <A HREF="../src/wsf_request.html#f_internal_cookies_table">internal_cookies_table</A>
+            s32: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>
+            k, v, s: <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            l_cookies := <A HREF="../src/wsf_request.html#f_internal_cookies_table">internal_cookies_table</A>
+            <B>if</B> l_cookies = <B>Void</B> <B>then</B>
+                <B>create</B> l_cookies.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+                <B>if</B> <B>attached</B> {<A HREF="../src/wsf_string.html">WSF_STRING</A>} <A HREF="../src/wsf_request.html#f_meta_variable">meta_variable</A> ({<A HREF="../src/wsf_meta_names.html">WSF_META_NAMES</A>}.http_cookie) <B>as</B> val <B>then</B>
+                    s32 := val.<A HREF="../src/wsf_string.html#f_value">value</A>
+                    <B>if</B> s32.<A HREF="../elks/readable_string_32.html#f_is_valid_as_string_8">is_valid_as_string_8</A> <B>then</B>
+                        s := s32.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                        <B>from</B>
+                            n := s.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                            p := 1
+                            i := 1
+                        <B>until</B>
+                            p &lt; 1
+                        <B>loop</B>
+                            i := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('=', p)
+                            <B>if</B> i = 0 <B>then</B>
+                                i := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> (';', p)
+                                <B>if</B> i = 0 <B>then</B>
+                                    k := s.<A HREF="../elks/string_8.html#f_substring">substring</A> (p, n)
+                                    p := 0
+                                <B>else</B>
+                                    k := s.<A HREF="../elks/string_8.html#f_substring">substring</A> (p, i - 1)
+                                    p := i + 1
+                                <B>end</B>
+                                <B>create</B> v.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+                            <B>else</B>
+                                j := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> (';', i)
+                                <B>if</B> j = 0 <B>then</B>
+                                    j := n + 1
+                                    k := s.<A HREF="../elks/string_8.html#f_substring">substring</A> (p, i - 1)
+                                    v := s.<A HREF="../elks/string_8.html#f_substring">substring</A> (i + 1, n)
+                                    p := 0
+                                <B>else</B>
+                                    k := s.<A HREF="../elks/string_8.html#f_substring">substring</A> (p, i - 1)
+                                    v := s.<A HREF="../elks/string_8.html#f_substring">substring</A> (i + 1, j - 1)
+                                    p := j + 1
+                                    <B>if</B> p &gt; n <B>then</B>
+                                        p := 0
+                                    <B>end</B>
+                                <B>end</B>
+                            <B>end</B>;
+                            k.<A HREF="../elks/string_8.html#f_left_adjust">left_adjust</A>;
+                            k.<A HREF="../elks/string_8.html#f_right_adjust">right_adjust</A>
+                            <B>if</B> <B>not</B> k.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                                <A HREF="../src/wsf_value_utilities.html#f_add_percent_encoded_string_value_to_table">add_percent_encoded_string_value_to_table</A> (k, v, l_cookies)
+                            <B>end</B>
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+                <A HREF="../src/wsf_request.html#f_internal_cookies_table">internal_cookies_table</A> := l_cookies
+            <B>end</B>
+            <B>Result</B> := l_cookies
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Path parameters</FONT>
+
+    <A NAME="f_path_parameters"><A HREF="../src/wsf_request.html#f_path_parameters">path_parameters</A>: <B>detachable</B> <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> All path parameters.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_path_parameters_table">path_parameters_table</A>
+        <B>end</B></A>
+
+    <A NAME="f_path_parameter"><A HREF="../src/wsf_request.html#f_path_parameter">path_parameter</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Path Parameter for name </FONT><I>a_name</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_path_parameters_table">path_parameters_table</A> <B>as</B> tb <B>then</B>
+                <B>Result</B> := tb.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Query parameters: implementation</FONT>
+
+    <A NAME="f_path_parameters_table"><A HREF="../src/wsf_request.html#f_path_parameters_table">path_parameters_table</A>: <B>detachable</B> <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Parameters computed from </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_path_parameters_source">path_parameters_source</A><FONT COLOR="red">`</FONT>
+    
+<B>feature</B> {<A HREF="../src/wsf_request_path_parameters_source.html">WSF_REQUEST_PATH_PARAMETERS_SOURCE</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Path parameters: Element change</FONT>
+
+    <A NAME="f_path_parameters_source"><A HREF="../src/wsf_request.html#f_path_parameters_source">path_parameters_source</A>: <B>detachable</B> <A HREF="../src/wsf_request_path_parameters_source.html">WSF_REQUEST_PATH_PARAMETERS_SOURCE</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Source of urlencoded path_parameters, or saved computed path parameters as WSF_VALUE.</FONT>
+
+    <A NAME="f_set_path_parameters_source"><A HREF="../src/wsf_request.html#f_set_path_parameters_source">set_path_parameters_source</A> (src: <B>like</B> <A HREF="../src/wsf_request.html#f_path_parameters_source">path_parameters_source</A>)
+        <B>local</B>
+            l_table: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_request.html#f_path_parameters_table">path_parameters_table</A>
+            lst: <B>detachable</B> <A HREF="../elks/table_iterable.html">TABLE_ITERABLE</A> [<A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>, <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>]
+            l_count: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_path_parameters_source">path_parameters_source</A> := src
+            <B>if</B> src = <B>Void</B> <B>then</B>
+                l_table := <B>Void</B>
+            <B>else</B>
+                l_count := src.<A HREF="../src/wsf_request_path_parameters_source.html#f_path_parameters_count">path_parameters_count</A>
+                <B>if</B> l_count = 0 <B>then</B>
+                    l_table := <B>Void</B>
+                <B>else</B>
+                    <B>create</B> l_table.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (l_count)
+                    <B>if</B> <B>attached</B> src.<A HREF="../src/wsf_request_path_parameters_source.html#f_path_parameters">path_parameters</A> <B>as</B> tb <B>then</B>
+                        <B>across</B>
+                            tb <B>as</B> c
+                        <B>loop</B>
+                            l_table.<A HREF="../elks/hash_table.html#f_force">force</A> (c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>.<A HREF="../src/wsf_value.html#f_name">name</A>)
+                        <B>end</B>
+                    <B>else</B>
+                        lst := src.<A HREF="../src/wsf_request_path_parameters_source.html#f_urlencoded_path_parameters">urlencoded_path_parameters</A>
+                        <B>across</B>
+                            lst <B>as</B> c
+                        <B>loop</B>
+                            <A HREF="../src/wsf_value_utilities.html#f_add_percent_encoded_string_value_to_table">add_percent_encoded_string_value_to_table</A> (c.<A HREF="../elks/table_iteration_cursor.html#f_key">key</A>, c.<A HREF="../elks/iteration_cursor.html#f_item">item</A>, l_table)
+                        <B>end</B>;
+                        src.<A HREF="../src/wsf_request_path_parameters_source.html#f_update_path_parameters">update_path_parameters</A> (l_table)
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+            <A HREF="../src/wsf_request.html#f_path_parameters_table">path_parameters_table</A> := l_table
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Query parameters</FONT>
+
+    <A NAME="f_query_parameters"><A HREF="../src/wsf_request.html#f_query_parameters">query_parameters</A>: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> All query parameters</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_query_parameters_table">query_parameters_table</A>
+        <B>end</B></A>
+
+    <A NAME="f_query_parameter"><A HREF="../src/wsf_request.html#f_query_parameter">query_parameter</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Query parameter for name </FONT><I>a_name</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_query_parameters_table">query_parameters_table</A>.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Query parameters: implementation</FONT>
+
+    <A NAME="f_query_parameters_table"><A HREF="../src/wsf_request.html#f_query_parameters_table">query_parameters_table</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Parameters extracted from QUERY_STRING</FONT>
+        <B>local</B>
+            vars: <B>like</B> <A HREF="../src/wsf_request.html#f_internal_query_parameters_table">internal_query_parameters_table</A>
+            p, e: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            rq_uri: <B>like</B> <A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>
+            s: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            vars := <A HREF="../src/wsf_request.html#f_internal_query_parameters_table">internal_query_parameters_table</A>
+            <B>if</B> vars = <B>Void</B> <B>then</B>
+                s := <A HREF="../src/wsf_request.html#f_query_string">query_string</A>
+                <B>if</B> s = <B>Void</B> <B>then</B>
+                    rq_uri := <A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>
+                    p := rq_uri.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('?', 1)
+                    <B>if</B> p &gt; 0 <B>then</B>
+                        e := rq_uri.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('#', p + 1)
+                        <B>if</B> e = 0 <B>then</B>
+                            e := rq_uri.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                        <B>else</B>
+                            e := e - 1
+                        <B>end</B>
+                        s := rq_uri.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p + 1, e)
+                    <B>end</B>
+                <B>end</B>
+                vars := <A HREF="../src/wsf_request.html#f_urlencoded_parameters">urlencoded_parameters</A> (s)
+                <A HREF="../src/wsf_request.html#f_internal_query_parameters_table">internal_query_parameters_table</A> := vars
+            <B>end</B>
+            <B>Result</B> := vars
+        <B>end</B></A>
+
+    <A NAME="f_urlencoded_parameters"><A HREF="../src/wsf_request.html#f_urlencoded_parameters">urlencoded_parameters</A> (a_content: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Import </FONT><I>a_content</I>
+        <B>local</B>
+            n, p, i, j: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            s: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            l_name, l_value: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            <B>if</B> a_content = <B>Void</B> <B>then</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+            <B>else</B>
+                n := a_content.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                <B>if</B> n = 0 <B>then</B>
+                    <B>create</B> <B>Result</B>.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+                <B>else</B>
+                    <B>create</B> <B>Result</B>.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (3)
+                    <B>from</B>
+                        p := 1
+                    <B>until</B>
+                        p = 0
+                    <B>loop</B>
+                        i := a_content.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('&#38;', p)
+                        <B>if</B> i = 0 <B>then</B>
+                            s := a_content.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p, n)
+                            p := 0
+                        <B>else</B>
+                            s := a_content.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (p, i - 1)
+                            p := i + 1
+                        <B>end</B>
+                        <B>if</B> <B>not</B> s.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                            j := s.<A HREF="../elks/readable_string_8.html#f_index_of">index_of</A> ('=', 1)
+                            <B>if</B> j &gt; 0 <B>then</B>
+                                l_name := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, j - 1)
+                                l_value := s.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (j + 1, s.<A HREF="../elks/readable_string_8.html#f_count">count</A>)
+                            <B>else</B>
+                                l_name := s
+                                l_value := <A HREF="../src/wsf_request.html#f_empty_string_8">Empty_string_8</A>
+                            <B>end</B>
+                            <A HREF="../src/wsf_value_utilities.html#f_add_percent_encoded_string_value_to_table">add_percent_encoded_string_value_to_table</A> (l_name, l_value, <B>Result</B>)
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+        <B>ensure</B>
+            result_with_object_comparison: <B>Result</B>.<A HREF="../elks/container.html#f_object_comparison">object_comparison</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Form fields and related</FONT>
+
+    <A NAME="f_form_parameters"><A HREF="../src/wsf_request.html#f_form_parameters">form_parameters</A>: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_form_parameters_table">form_parameters_table</A>
+        <B>end</B></A>
+
+    <A NAME="f_form_parameter"><A HREF="../src/wsf_request.html#f_form_parameter">form_parameter</A> (a_name: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <B>detachable</B> <A HREF="../src/wsf_value.html">WSF_VALUE</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Field for name </FONT><I>a_name</I><FONT COLOR="red">.</FONT>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_form_parameters_table">form_parameters_table</A>.<A HREF="../elks/hash_table.html#f_item">item</A> (a_name)
+        <B>end</B></A>
+
+    <A NAME="f_has_uploaded_file"><A HREF="../src/wsf_request.html#f_has_uploaded_file">has_uploaded_file</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has any uploaded file?</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_get_form_parameters">get_form_parameters</A>
+            <B>Result</B> := <B>not</B> <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>.<A HREF="../elks/finite.html#f_is_empty">is_empty</A>
+        <B>end</B></A>
+
+    <A NAME="f_uploaded_files"><A HREF="../src/wsf_request.html#f_uploaded_files">uploaded_files</A>: <A HREF="../elks/iterable.html">ITERABLE</A> [<A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> uploaded files values</FONT>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_get_form_parameters">get_form_parameters</A>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access: MIME handler</FONT>
+
+    <A NAME="f_has_mime_handler"><A HREF="../src/wsf_request.html#f_has_mime_handler">has_mime_handler</A> (a_content_type: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Has a MIME handler registered for </FONT><I>a_content_type</I><FONT COLOR="red">?</FONT>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_mime_handlers">mime_handlers</A> <B>as</B> hdls <B>then</B>
+                <B>from</B>
+                    hdls.<A HREF="../elks/arrayed_list.html#f_start">start</A>
+                <B>until</B>
+                    hdls.<A HREF="../elks/list.html#f_after">after</A> <B>or</B> <B>Result</B>
+                <B>loop</B>
+                    <B>Result</B> := hdls.<A HREF="../elks/linear.html#f_item_for_iteration">item_for_iteration</A>.<A HREF="../src/wsf_mime_handler.html#f_valid_content_type">valid_content_type</A> (a_content_type);
+                    hdls.<A HREF="../elks/arrayed_list.html#f_forth">forth</A>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_register_mime_handler"><A HREF="../src/wsf_request.html#f_register_mime_handler">register_mime_handler</A> (a_handler: <A HREF="../src/wsf_mime_handler.html">WSF_MIME_HANDLER</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Register </FONT><I>a_handler</I><FONT COLOR="red"> for </FONT><I>a_content_type</I>
+        <B>local</B>
+            hdls: <B>like</B> <A HREF="../src/wsf_request.html#f_mime_handlers">mime_handlers</A>
+        <B>do</B>
+            hdls := <A HREF="../src/wsf_request.html#f_mime_handlers">mime_handlers</A>
+            <B>if</B> hdls = <B>Void</B> <B>then</B>
+                <B>create</B> hdls.<A HREF="../elks/arrayed_list.html#f_make">make</A> (3);
+                hdls.<A HREF="../elks/container.html#f_compare_objects">compare_objects</A>
+                <A HREF="../src/wsf_request.html#f_mime_handlers">mime_handlers</A> := hdls
+            <B>end</B>;
+            hdls.<A HREF="../elks/arrayed_list.html#f_force">force</A> (a_handler)
+        <B>end</B></A>
+
+    <A NAME="f_mime_handler"><A HREF="../src/wsf_request.html#f_mime_handler">mime_handler</A> (a_content_type: <A HREF="../src/http_content_type.html">HTTP_CONTENT_TYPE</A>): <B>detachable</B> <A HREF="../src/wsf_mime_handler.html">WSF_MIME_HANDLER</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Mime handler associated with </FONT><I>a_content_type</I>
+        <B>do</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_mime_handlers">mime_handlers</A> <B>as</B> hdls <B>then</B>
+                <B>from</B>
+                    hdls.<A HREF="../elks/arrayed_list.html#f_start">start</A>
+                <B>until</B>
+                    hdls.<A HREF="../elks/list.html#f_after">after</A> <B>or</B> <B>Result</B> /= <B>Void</B>
+                <B>loop</B>
+                    <B>Result</B> := hdls.<A HREF="../elks/linear.html#f_item_for_iteration">item_for_iteration</A>
+                    <B>if</B> <B>not</B> <B>Result</B>.<A HREF="../src/wsf_mime_handler.html#f_valid_content_type">valid_content_type</A> (a_content_type) <B>then</B>
+                        <B>Result</B> := <B>Void</B>
+                    <B>end</B>;
+                    hdls.<A HREF="../elks/arrayed_list.html#f_forth">forth</A>
+                <B>end</B>
+            <B>end</B>
+        <B>ensure</B>
+            has_mime_handler_implies_attached: <A HREF="../src/wsf_request.html#f_has_mime_handler">has_mime_handler</A> (a_content_type) <B>implies</B> <B>Result</B> /= <B>Void</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation: MIME handler</FONT>
+
+    <A NAME="f_init_mime_handlers"><A HREF="../src/wsf_request.html#f_init_mime_handlers">init_mime_handlers</A>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_register_mime_handler">register_mime_handler</A> (<B>create</B> {<A HREF="../src/wsf_multipart_form_data_handler.html">WSF_MULTIPART_FORM_DATA_HANDLER</A>}.<A HREF="../src/wsf_multipart_form_data_handler.html#f_make">make</A> <B>end</B>)
+            <A HREF="../src/wsf_request.html#f_register_mime_handler">register_mime_handler</A> (<B>create</B> {<A HREF="../src/wsf_application_x_www_form_urlencoded_handler.html">WSF_APPLICATION_X_WWW_FORM_URLENCODED_HANDLER</A>} <B>end</B>)
+        <B>end</B></A>
+
+    <A NAME="f_mime_handlers"><A HREF="../src/wsf_request.html#f_mime_handlers">mime_handlers</A>: <B>detachable</B> <A HREF="../elks/arrayed_list.html">ARRAYED_LIST</A> [<A HREF="../src/wsf_mime_handler.html">WSF_MIME_HANDLER</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Table of mime handles</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Form fields and related</FONT>
+
+    <A NAME="f_uploaded_files_table"><A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A>]</A>
+
+    <A NAME="f_get_form_parameters"><A HREF="../src/wsf_request.html#f_get_form_parameters">get_form_parameters</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Variables sent by POST, ... request</FONT>
+        <B>local</B>
+            vars: <B>like</B> <A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A>
+            l_raw_data_cell: <B>detachable</B> <A HREF="../elks/cell.html">CELL</A> [<B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A>]
+            l_type: <B>like</B> <A HREF="../src/wsf_request.html#f_content_type">content_type</A>
+        <B>do</B>
+            vars := <A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A>
+            <B>if</B> vars = <B>Void</B> <B>then</B>
+                <B>if</B> <B>not</B> <A HREF="../src/wsf_request.html#f_is_chunked_input">is_chunked_input</A> <B>and</B> <A HREF="../src/wsf_request.html#f_content_length_value">content_length_value</A> = 0 <B>then</B>
+                    <B>create</B> vars.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+                <B>else</B>
+                    <B>if</B> <A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A> <B>then</B>
+                        <B>create</B> l_raw_data_cell.<A HREF="../elks/cell.html#f_put">put</A> (<B>Void</B>)
+                    <B>end</B>
+                    <B>create</B> vars.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (5)
+                    l_type := <A HREF="../src/wsf_request.html#f_content_type">content_type</A>
+                    <B>if</B> l_type /= <B>Void</B> <B>and then</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_mime_handler">mime_handler</A> (l_type) <B>as</B> hdl <B>then</B>
+                        hdl.<A HREF="../src/wsf_mime_handler.html#f_handle">handle</A> (l_type, <B>Current</B>, vars, l_raw_data_cell)
+                    <B>end</B>
+                    <B>if</B> l_raw_data_cell /= <B>Void</B> <B>and then</B> <B>attached</B> l_raw_data_cell.<A HREF="../elks/cell.html#f_item">item</A> <B>as</B> l_raw_data <B>then</B>
+                        <A HREF="../src/wsf_request.html#f_set_raw_input_data">set_raw_input_data</A> (l_raw_data)
+                    <B>end</B>
+                <B>end</B>
+                <A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A> := vars
+            <B>end</B>
+        <B>ensure</B>
+            <A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A> /= <B>Void</B>
+        <B>end</B></A>
+
+    <A NAME="f_form_parameters_table"><A HREF="../src/wsf_request.html#f_form_parameters_table">form_parameters_table</A>: <A HREF="../elks/string_table.html">STRING_TABLE</A> [<A HREF="../src/wsf_value.html">WSF_VALUE</A>]
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Variables sent by POST request</FONT>
+        <B>local</B>
+            vars: <B>like</B> <A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_get_form_parameters">get_form_parameters</A>
+            vars := <A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A>
+            <B>if</B> vars = <B>Void</B> <B>then</B>
+                <B>check</B>
+                    form_parameters_already_retrieved: <B>False</B>
+                <B>end</B>
+                <B>create</B> vars.<A HREF="../elks/hash_table.html#f_make_equal">make_equal</A> (0)
+            <B>end</B>
+            <B>Result</B> := vars
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Uploaded File Handling</FONT>
+
+    <A NAME="f_is_uploaded_file"><A HREF="../src/wsf_request.html#f_is_uploaded_file">is_uploaded_file</A> (a_filename: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is </FONT><I>a_filename</I><FONT COLOR="red"> a file uploaded via HTTP Form</FONT>
+        <B>local</B>
+            l_files: <B>like</B> <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>
+        <B>do</B>
+            l_files := <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>
+            <B>if</B> <B>not</B> l_files.<A HREF="../elks/finite.html#f_is_empty">is_empty</A> <B>then</B>
+                <B>from</B>
+                    l_files.<A HREF="../elks/hash_table.html#f_start">start</A>
+                <B>until</B>
+                    l_files.<A HREF="../elks/hash_table.html#f_after">after</A> <B>or</B> <B>Result</B>
+                <B>loop</B>
+                    <B>if</B> <B>attached</B> l_files.<A HREF="../elks/hash_table.html#f_item_for_iteration">item_for_iteration</A>.<A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A> <B>as</B> l_tmp_path <B>and then</B> a_filename.<A HREF="../elks/readable_string_general.html#f_same_string">same_string</A> (l_tmp_path.<A HREF="../elks/path.html#f_name">name</A>) <B>then</B>
+                        <B>Result</B> := <B>True</B>
+                    <B>end</B>;
+                    l_files.<A HREF="../elks/hash_table.html#f_forth">forth</A>
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> URL Utility</FONT>
+
+    <A NAME="f_server_url"><A HREF="../src/wsf_request.html#f_server_url">server_url</A>: <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Server url, as </FONT><FONT COLOR="red">http://example.com:8080</FONT>
+        <B>local</B>
+            s: <B>like</B> <A HREF="../src/wsf_request.html#f_internal_server_url">internal_server_url</A>
+            p: <B>like</B> <A HREF="../src/wsf_request.html#f_server_port">server_port</A>
+        <B>do</B>
+            s := <A HREF="../src/wsf_request.html#f_internal_server_url">internal_server_url</A>
+            <B>if</B> s = <B>Void</B> <B>then</B>
+                <B>if</B> <A HREF="../src/wsf_request.html#f_is_https">is_https</A> <B>then</B>
+                    <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> ("https://")
+                <B>else</B>
+                    <B>create</B> s.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> ("http://")
+                <B>end</B>;
+                s.<A HREF="../elks/string_8.html#f_append">append</A> (<A HREF="../src/wsf_request.html#f_server_name">server_name</A>)
+                p := <A HREF="../src/wsf_request.html#f_server_port">server_port</A>
+                <B>if</B> p &gt; 0 <B>then</B>
+                    <B>if</B> <A HREF="../src/wsf_request.html#f_is_https">is_https</A> <B>and</B> p = 443 <B>then</B>
+                    <B>elseif</B> <B>not</B> <A HREF="../src/wsf_request.html#f_is_https">is_https</A> <B>and</B> p = 80 <B>then</B>
+                    <B>else</B>
+                        s.<A HREF="../elks/string_8.html#f_append_character">append_character</A> (':');
+                        s.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> (p)
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+            <B>Result</B> := s
+        <B>end</B></A>
+
+    <A NAME="f_absolute_script_url"><A HREF="../src/wsf_request.html#f_absolute_script_url">absolute_script_url</A> (a_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Absolute Url for the script if any, extended by </FONT><I>a_path</I>
+        <B>do</B>
+            <B>Result</B> := <A HREF="../src/wsf_request.html#f_script_url">script_url</A> (a_path);
+            <B>Result</B>.<A HREF="../elks/string_8.html#f_prepend">prepend</A> (<A HREF="../src/wsf_request.html#f_server_url">server_url</A>)
+        <B>end</B></A>
+
+    <A NAME="f_script_url"><A HREF="../src/wsf_request.html#f_script_url">script_url</A> (a_path: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Url relative to script name if any, extended by </FONT><I>a_path</I>
+        <B>local</B>
+            l_base_url: <B>like</B> <A HREF="../src/wsf_request.html#f_internal_url_base">internal_url_base</A>
+            i, m, n, spos: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+            l_rq_uri: <B>like</B> <A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>
+        <B>do</B>
+            l_base_url := <A HREF="../src/wsf_request.html#f_internal_url_base">internal_url_base</A>
+            <B>if</B> l_base_url = <B>Void</B> <B>then</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_script_name">script_name</A> <B>as</B> l_script_name <B>then</B>
+                    l_rq_uri := <A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>
+                    <B>if</B> l_rq_uri.<A HREF="../elks/readable_string_8.html#f_starts_with">starts_with</A> (l_script_name) <B>then</B>
+                        l_base_url := l_script_name
+                    <B>else</B>
+                        <B>from</B>
+                            i := 1
+                            m := l_rq_uri.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                            n := l_script_name.<A HREF="../elks/readable_string_8.html#f_count">count</A>
+                        <B>until</B>
+                            i &gt; m <B>or</B> i &gt; n <B>or</B> l_rq_uri [i] /= l_script_name [i]
+                        <B>loop</B>
+                            <B>if</B> l_rq_uri [i] = '/' <B>then</B>
+                                spos := i
+                            <B>end</B>
+                            i := i + 1
+                        <B>end</B>
+                        <B>if</B> i &gt; 1 <B>then</B>
+                            <B>if</B> l_rq_uri [i - 1] = '/' <B>then</B>
+                                i := i - 1
+                            <B>elseif</B> spos &gt; 0 <B>then</B>
+                                i := spos
+                            <B>end</B>
+                            spos := l_rq_uri.<A HREF="../elks/readable_string_8.html#f_substring_index">substring_index</A> (<A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A>, i)
+                            <B>if</B> spos &gt; 0 <B>then</B>
+                                l_base_url := l_rq_uri.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, spos - 1)
+                            <B>else</B>
+                                l_base_url := l_rq_uri.<A HREF="../elks/readable_string_8.html#f_substring">substring</A> (1, i - 1)
+                            <B>end</B>
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+                <B>if</B> l_base_url = <B>Void</B> <B>then</B>
+                    <B>create</B> {<A HREF="../elks/string_8.html">STRING_8</A>} l_base_url.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+                <B>end</B>
+                <A HREF="../src/wsf_request.html#f_internal_url_base">internal_url_base</A> := l_base_url
+            <B>end</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> (l_base_url);
+            <B>Result</B>.<A HREF="../elks/string_8.html#f_append">append</A> (a_path)
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation: URL Utility</FONT>
+
+    <A NAME="f_internal_server_url"><A HREF="../src/wsf_request.html#f_internal_server_url">internal_server_url</A>: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_request.html#f_server_url">server_url</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Server url</FONT>
+
+    <A NAME="f_internal_url_base"><A HREF="../src/wsf_request.html#f_internal_url_base">internal_url_base</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> URL base of potential script</FONT>
+
+    <A NAME="f_internal_percent_encoded_path_info"><A HREF="../src/wsf_request.html#f_internal_percent_encoded_path_info">internal_percent_encoded_path_info</A>: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Cache value of </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_percent_encoded_path_info">percent_encoded_path_info</A><FONT COLOR="red">`</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Element change</FONT>
+
+    <A NAME="f_set_raw_input_data_recorded"><A HREF="../src/wsf_request.html#f_set_raw_input_data_recorded">set_raw_input_data_recorded</A> (b: <A HREF="../elks/boolean.html">BOOLEAN</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>b</I>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_raw_input_data_recorded">raw_input_data_recorded</A> := b
+        <B>end</B></A>
+
+    <A NAME="f_set_error_handler"><A HREF="../src/wsf_request.html#f_set_error_handler">set_error_handler</A> (ehdl: <B>like</B> <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_error_handler">error_handler</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>ehdl</I>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A> := ehdl
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_mime_handler.html">WSF_MIME_HANDLER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Temporary File handling</FONT>
+
+    <A NAME="f_delete_uploaded_file"><A HREF="../src/wsf_request.html#f_delete_uploaded_file">delete_uploaded_file</A> (uf: <A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Delete file </FONT><I>a_filename</I>
+        <B>require</B>
+            uf_valid: uf /= <B>Void</B>
+        <B>local</B>
+            f: <A HREF="../elks/raw_file.html">RAW_FILE</A>
+        <B>do</B>
+            <B>if</B> <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>.<A HREF="../elks/hash_table.html#f_has_item">has_item</A> (uf) <B>then</B>
+                <B>if</B> <B>attached</B> uf.<A HREF="../src/wsf_uploaded_file.html#f_tmp_path">tmp_path</A> <B>as</B> fn <B>then</B>
+                    <B>create</B> f.<A HREF="../elks/file.html#f_make_with_path">make_with_path</A> (fn)
+                    <B>if</B> f.<A HREF="../elks/file.html#f_exists">exists</A> <B>and then</B> f.<A HREF="../elks/file.html#f_is_writable">is_writable</A> <B>then</B>
+                        f.<A HREF="../elks/file.html#f_delete">delete</A>
+                    <B>else</B>
+                        <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "Can not delete uploaded file", {<A HREF="../elks/string_32.html">STRING_32</A>} "Can not delete file %"" + fn.<A HREF="../elks/path.html#f_name">name</A> + {<A HREF="../elks/string_32.html">STRING_32</A>} "%"")
+                    <B>end</B>
+                <B>else</B>
+                    <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "Can not delete uploaded file", {<A HREF="../elks/string_32.html">STRING_32</A>} "Can not delete uploaded file %"" + uf.<A HREF="../src/wsf_uploaded_file.html#f_name">name</A> + {<A HREF="../elks/string_32.html">STRING_32</A>} "%" Tmp File not found")
+                <B>end</B>
+            <B>else</B>
+                <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "Not an uploaded file", {<A HREF="../elks/string_32.html">STRING_32</A>} "This file %"" + uf.<A HREF="../src/wsf_uploaded_file.html#f_name">name</A> + {<A HREF="../elks/string_32.html">STRING_32</A>} "%" is not an uploaded file.")
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_save_uploaded_file"><A HREF="../src/wsf_request.html#f_save_uploaded_file">save_uploaded_file</A> (a_up_file: <A HREF="../src/wsf_uploaded_file.html">WSF_UPLOADED_FILE</A>; a_content: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Save uploaded file content </FONT><I>a_content</I><FONT COLOR="red"> into </FONT><I>a_filename</I><FONT COLOR="red">.</FONT>
+        <B>local</B>
+            dn: <A HREF="../elks/path.html">PATH</A>
+            d: <A HREF="../elks/directory.html">DIRECTORY</A>
+            rescued: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            temp_fac: <A HREF="../src/wsf_file_utilities.html">WSF_FILE_UTILITIES</A> [<A HREF="../elks/raw_file.html">RAW_FILE</A>]
+            l_prefix: <A HREF="../elks/string_8.html">STRING_8</A>
+            dt: DATE_TIME
+        <B>do</B>
+            <B>if</B> <B>not</B> rescued <B>then</B>
+                <B>if</B> <B>attached</B> <A HREF="../src/wsf_request.html#f_uploaded_file_path">uploaded_file_path</A> <B>as</B> p <B>then</B>
+                    dn := p
+                <B>else</B>
+                    dn := <A HREF="../ise/shared_execution_environment.html#f_execution_environment">Execution_environment</A>.<A HREF="../elks/execution_environment.html#f_current_working_path">current_working_path</A>
+                <B>end</B>
+                <B>create</B> d.<A HREF="../elks/directory.html#f_make_with_path">make_with_path</A> (dn)
+                <B>if</B> d.<A HREF="../elks/directory.html#f_exists">exists</A> <B>and then</B> d.<A HREF="../elks/directory.html#f_is_writable">is_writable</A> <B>then</B>
+                    <B>create</B> temp_fac
+                    <B>create</B> l_prefix.<A HREF="../elks/readable_string_8.html#f_make_from_string">make_from_string</A> ("tmp_uploaded_")
+                    <B>create</B> dt.make_now_utc;
+                    l_prefix.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> (dt.date.ordered_compact_date);
+                    l_prefix.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('_');
+                    l_prefix.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> (dt.time.compact_time);
+                    l_prefix.<A HREF="../elks/string_8.html#f_append_character">append_character</A> ('.');
+                    l_prefix.<A HREF="../elks/string_8.html#f_append_integer">append_integer</A> ((dt.time.fractional_second * 1000000000.<A HREF="../elks/integer_32.html#f_to_double">to_double</A>).<A HREF="../elks/real_64.html#f_truncated_to_integer">truncated_to_integer</A>)
+                    <B>if</B> <B>attached</B> temp_fac.<A HREF="../src/wsf_file_utilities.html#f_new_temporary_file">new_temporary_file</A> (d, l_prefix, a_up_file.<A HREF="../src/wsf_uploaded_file.html#f_filename">filename</A>) <B>as</B> f <B>then</B>
+                        a_up_file.<A HREF="../src/wsf_uploaded_file.html#f_set_tmp_path">set_tmp_path</A> (f.<A HREF="../elks/file.html#f_path">path</A>)
+                        <B>if</B> <B>attached</B> f.<A HREF="../elks/file.html#f_path">path</A>.<A HREF="../elks/path.html#f_entry">entry</A> <B>as</B> e <B>then</B>
+                            a_up_file.<A HREF="../src/wsf_uploaded_file.html#f_set_tmp_basename">set_tmp_basename</A> (e.<A HREF="../elks/path.html#f_name">name</A>)
+                        <B>else</B>
+                            a_up_file.<A HREF="../src/wsf_uploaded_file.html#f_set_tmp_basename">set_tmp_basename</A> (f.<A HREF="../elks/file.html#f_path">path</A>.<A HREF="../elks/path.html#f_name">name</A>)
+                        <B>end</B>
+                        <B>check</B>
+                            f.<A HREF="../elks/file.html#f_is_open_write">is_open_write</A>
+                        <B>end</B>;
+                        f.<A HREF="../elks/file.html#f_put_string">put_string</A> (a_content);
+                        f.<A HREF="../elks/file.html#f_close">close</A>
+                    <B>else</B>
+                        a_up_file.<A HREF="../src/wsf_uploaded_file.html#f_set_error">set_error</A> (-1)
+                    <B>end</B>
+                <B>else</B>
+                    <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_custom_error (0, "Directory not writable", {<A HREF="../elks/string_32.html">STRING_32</A>} "Can not create file in directory %"" + dn.<A HREF="../elks/path.html#f_name">name</A> + {<A HREF="../elks/string_32.html">STRING_32</A>} "%"")
+                <B>end</B>;
+                <A HREF="../src/wsf_request.html#f_uploaded_files_table">uploaded_files_table</A>.<A HREF="../elks/hash_table.html#f_force">force</A> (a_up_file, a_up_file.<A HREF="../src/wsf_uploaded_file.html#f_name">name</A>)
+            <B>else</B>
+                a_up_file.<A HREF="../src/wsf_uploaded_file.html#f_set_error">set_error</A> (-1)
+            <B>end</B>
+        <B>rescue</B>
+            rescued := <B>True</B>
+            <B>retry</B>
+        <B>end</B></A>
+    
+<B>feature</B> {<A HREF="../src/wsf_request_exporter.html">WSF_REQUEST_EXPORTER</A>} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Settings</FONT>
+
+    <A NAME="f_uploaded_file_path"><A HREF="../src/wsf_request.html#f_uploaded_file_path">uploaded_file_path</A>: <B>detachable</B> <A HREF="../elks/path.html">PATH</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Optional folder path used to store uploaded files</FONT>
+
+    <A NAME="f_set_uploaded_file_path"><A HREF="../src/wsf_request.html#f_set_uploaded_file_path">set_uploaded_file_path</A> (p: <B>like</B> <A HREF="../src/wsf_request.html#f_uploaded_file_path">uploaded_file_path</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_uploaded_file_path">uploaded_file_path</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>p</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            path_exists: p /= <B>Void</B> <B>end</B> <B>implies</B> (<B>create</B> {<A HREF="../elks/directory.html">DIRECTORY</A>}.<A HREF="../elks/directory.html#f_make_with_path">make_with_path</A> (p) <B>end</B>).<A HREF="../elks/directory.html#f_exists">exists</A>
+        <B>do</B>
+            <A HREF="../src/wsf_request.html#f_uploaded_file_path">uploaded_file_path</A> := p
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Internal value</FONT>
+
+    <A NAME="f_internal_query_parameters_table"><A HREF="../src/wsf_request.html#f_internal_query_parameters_table">internal_query_parameters_table</A>: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_request.html#f_query_parameters_table">query_parameters_table</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> cached value for </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_query_parameters">query_parameters</A><FONT COLOR="red">`</FONT>
+
+    <A NAME="f_internal_form_data_parameters_table"><A HREF="../src/wsf_request.html#f_internal_form_data_parameters_table">internal_form_data_parameters_table</A>: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_request.html#f_form_parameters_table">form_parameters_table</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> cached value for </FONT><I>form_fields</I>
+
+    <A NAME="f_internal_cookies_table"><A HREF="../src/wsf_request.html#f_internal_cookies_table">internal_cookies_table</A>: <B>detachable</B> <B>like</B> <A HREF="../src/wsf_request.html#f_cookies_table">cookies_table</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> cached value for </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_request.html#f_cookies">cookies</A><FONT COLOR="red">`</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_report_bad_request_error"><A HREF="../src/wsf_request.html#f_report_bad_request_error">report_bad_request_error</A> (a_message: <B>detachable</B> <A HREF="../elks/string_8.html">STRING_8</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Report error</FONT>
+        <B>local</B>
+            e: <A HREF="../src/wsf_error.html">WSF_ERROR</A>
+        <B>do</B>
+            <B>create</B> e.<A HREF="../src/wsf_error.html#f_make">make</A> ({<A HREF="../src/http_status_code.html">HTTP_STATUS_CODE</A>}.<A HREF="../src/http_status_code.html#f_bad_request">bad_request</A>)
+            <B>if</B> a_message /= <B>Void</B> <B>then</B>
+                e.<A HREF="../src/wsf_error.html#f_set_message">set_message</A> (a_message.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>)
+            <B>end</B>;
+            <A HREF="../src/wsf_request.html#f_error_handler">error_handler</A>.add_error (e)
+        <B>end</B></A>
+
+    <A NAME="f_analyze"><A HREF="../src/wsf_request.html#f_analyze">analyze</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Extract relevant meta parameters</FONT>
+        <B>local</B>
+            s: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+        <B>do</B>
+            s := <A HREF="../src/wsf_request.html#f_request_uri">request_uri</A>
+            <B>if</B> s.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                <A HREF="../src/wsf_request.html#f_report_bad_request_error">report_bad_request_error</A> ("Missing URI")
+            <B>end</B>
+            <B>if</B> <B>not</B> <A HREF="../src/wsf_request.html#f_has_error">has_error</A> <B>then</B>
+                s := <A HREF="../src/wsf_request.html#f_request_method">request_method</A>
+                <B>if</B> s.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                    <A HREF="../src/wsf_request.html#f_report_bad_request_error">report_bad_request_error</A> ("Missing request method")
+                <B>end</B>
+            <B>end</B>
+            <B>if</B> <B>not</B> <A HREF="../src/wsf_request.html#f_has_error">has_error</A> <B>then</B>
+                s := <A HREF="../src/wsf_request.html#f_http_host">http_host</A>
+                <B>if</B> s = <B>Void</B> <B>or else</B> s.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                    <A HREF="../src/wsf_request.html#f_report_bad_request_error">report_bad_request_error</A> ("Missing host header")
+                <B>end</B>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation: utilities</FONT>
+
+    <A NAME="f_single_slash_starting_string"><A HREF="../src/wsf_request.html#f_single_slash_starting_string">single_slash_starting_string</A> (s: <A HREF="../elks/readable_string_32.html">READABLE_STRING_32</A>): <A HREF="../elks/string_32.html">STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return the string </FONT><I>s</I><FONT COLOR="red"> (or twin) with one and only one starting slash</FONT>
+        <B>local</B>
+            i, n: <A HREF="../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            n := s.<A HREF="../elks/readable_string_32.html#f_count">count</A>
+            <B>if</B> n &gt; 1 <B>then</B>
+                <B>if</B> s [1] /= '/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make">make</A> (1 + n);
+                    <B>Result</B>.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                    <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> (s)
+                <B>elseif</B> s [2] = '/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    <B>from</B>
+                        i := 3
+                    <B>until</B>
+                        i &gt; n
+                    <B>loop</B>
+                        <B>if</B> s [i] /= '/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                            n := 0
+                        <B>else</B>
+                            i := i + 1
+                        <B>end</B>
+                    <B>end</B>
+                    n := s.<A HREF="../elks/readable_string_32.html#f_count">count</A>
+                    <B>check</B>
+                        i &gt;= 2 <B>and</B> i &lt;= n
+                    <B>end</B>
+                    <B>Result</B> := s.<A HREF="../elks/readable_string_32.html#f_substring">substring</A> (i - 1, s.<A HREF="../elks/readable_string_32.html#f_count">count</A>).<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+                <B>else</B>
+                    <B>Result</B> := s.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+                <B>end</B>
+            <B>elseif</B> n = 1 <B>then</B>
+                <B>if</B> s [1] = '/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>then</B>
+                    <B>Result</B> := s.<A HREF="../elks/readable_string_general.html#f_as_string_32">as_string_32</A>
+                <B>else</B>
+                    <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make">make</A> (2);
+                    <B>Result</B>.<A HREF="../elks/string_32.html#f_append_character">append_character</A> ('/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>);
+                    <B>Result</B>.<A HREF="../elks/string_32.html#f_append">append</A> (s)
+                <B>end</B>
+            <B>else</B>
+                <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make_filled">make_filled</A> ('/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>, 1)
+            <B>end</B>
+        <B>ensure</B>
+            one_starting_slash: <B>Result</B> [1] = '/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A> <B>and</B> (<B>Result</B>.<A HREF="../elks/readable_string_32.html#f_count">count</A> = 1 <B>or else</B> <B>Result</B> [2] /= '/'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>)
+        <B>end</B></A>
+
+    <A NAME="f_empty_string_32"><A HREF="../src/wsf_request.html#f_empty_string_32">Empty_string_32</A>: <A HREF="../elks/immutable_string_32.html">IMMUTABLE_STRING_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Reusable empty string</FONT>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+        <B>end</B></A>
+
+    <A NAME="f_empty_string_8"><A HREF="../src/wsf_request.html#f_empty_string_8">Empty_string_8</A>: <A HREF="../elks/immutable_string_8.html">IMMUTABLE_STRING_8</A>
+        <B>once</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_general.html#f_make_empty">make_empty</A>
+        <B>end</B></A>
+
+    <A NAME="f_url_encoded_string"><A HREF="../src/wsf_request.html#f_url_encoded_string">url_encoded_string</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/string_8.html">STRING_8</A>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_8.html#f_make">make</A> (s.<A HREF="../elks/readable_string_general.html#f_count">count</A>);
+            <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Url_encoder</A>.append_percent_encoded_string_to (s, <B>Result</B>)
+        <B>end</B></A>
+
+    <A NAME="f_url_decoded_string"><A HREF="../src/wsf_request.html#f_url_decoded_string">url_decoded_string</A> (s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>): <A HREF="../elks/string_32.html">STRING_32</A>
+        <B>do</B>
+            <B>create</B> <B>Result</B>.<A HREF="../elks/readable_string_32.html#f_make">make</A> (s.<A HREF="../elks/readable_string_general.html#f_count">count</A>);
+            <A HREF="../src/shared_wsf_percent_encoder.html#f_percent_encoder">Url_encoder</A>.append_percent_decoded_string_to (s, <B>Result</B>)
+        <B>end</B></A>
+
+    <A NAME="f_date_time_utilities"><A HREF="../src/wsf_request.html#f_date_time_utilities">Date_time_utilities</A>: <A HREF="../src/http_date_time_utilities.html">HTTP_DATE_TIME_UTILITIES</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Utilities classes related to date and time.</FONT>
+        <B>once</B>
+            <B>create</B> <B>Result</B>
+        <B>end</B></A>
+    
+<B>invariant</B>
+    empty_string_32_unchanged: <A HREF="../src/wsf_request.html#f_empty_string_32">Empty_string_32</A>.<A HREF="../elks/immutable_string_32.html#f_is_empty">is_empty</A>
+    empty_string_8_unchanged: <A HREF="../src/wsf_request.html#f_empty_string_8">Empty_string_8</A>.<A HREF="../elks/immutable_string_8.html#f_is_empty">is_empty</A>
+    <A HREF="../src/wsf_request.html#f_wgi_request">wgi_request</A>.content_type /= <B>Void</B> <B>implies</B> <A HREF="../src/wsf_request.html#f_content_type">content_type</A> /= <B>Void</B>
+
+<B>note</B>
+    copyright: "2011-2020, Jocelyn Fiat, Javier Velilla, Olivier Ligot, Colin Adams, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/wsf_request.html">WSF_REQUEST</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_request_chart.html">Chart</A></TD><TD><A HREF="wsf_request_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

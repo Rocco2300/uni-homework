@@ -1,0 +1,185 @@
+<HTML><HEAD>
+<meta name="description" content="Sequences of 8-bit characters, accessible through integer indices in a contiguous range."/>
+<meta name="library" content="Free implementation of ELKS library"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="Copyright (c) 1984-2021, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>string_8 Relations</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="string_8_chart.html">Chart</A></TD><TD>Relations</TD><TD><A HREF="string_8.html">Text</A></TD></TR></TABLE><B>class</B>
+    <A HREF="../elks/string_8_links.html">STRING_8</A>
+
+<B>Ancestors</B>
+    <A HREF="../elks/dynamic_table_links.html">DYNAMIC_TABLE</A>* [G, H]
+    <A HREF="../elks/indexable_links.html">INDEXABLE</A>* [G, H -&gt; <A HREF="../elks/integer_32_links.html">INTEGER_32</A>]
+    <A HREF="../elks/mismatch_corrector_links.html">MISMATCH_CORRECTOR</A>
+    <A HREF="../elks/readable_string_8_links.html">READABLE_STRING_8</A>*
+    <A HREF="../elks/resizable_links.html">RESIZABLE</A>* [G]
+    <A HREF="../elks/string_general_links.html">STRING_GENERAL</A>*
+    <A HREF="../elks/to_special_links.html">TO_SPECIAL</A> [T]
+
+<B>Clients</B>
+    <A HREF="../elks/abstract_special_links.html">ABSTRACT_SPECIAL</A>*
+    <A HREF="../ise/action_sequence_links.html">ACTION_SEQUENCE</A> [EVENT_DATA -&gt; <B>detachable</B> <A HREF="../elks/tuple_links.html">TUPLE</A> <B>create</B> <A HREF="../elks/any.html#f_default_create">default_create</A> <B>end</B>]
+    <A HREF="../elks/any_links.html">ANY</A>
+    <A HREF="../elks/arguments_links.html">ARGUMENTS</A>
+    <A HREF="../elks/character_32_ref_links.html">CHARACTER_32_REF</A>
+    <A HREF="../elks/character_8_ref_links.html">CHARACTER_8_REF</A>
+    <A HREF="../elks/encoding/implementation/windows/code_pages_links.html">CODE_PAGES</A>
+    <A HREF="../elks/com_failure_links.html">COM_FAILURE</A>
+    CONCURRENT_POOL [G -&gt; CONCURRENT_POOL_ITEM]
+    <A HREF="../elks/console_links.html">CONSOLE</A>
+    <A HREF="../elks/c_string_links.html">C_STRING</A>
+    DATE_TIME_CODE
+    DATE_TIME_CODE_STRING
+    <A HREF="../elks/directory_links.html">DIRECTORY</A>
+    <A HREF="../elks/encoding/encoding_helper_links.html">ENCODING_HELPER</A>
+    <A HREF="../elks/encoding/implementation/windows/encoding_imp_links.html">ENCODING_IMP</A>
+    ERROR_GROUP
+    ERROR_HANDLER
+    <A HREF="../elks/exception_links.html">EXCEPTION</A>
+    <A HREF="../elks/execution_environment_links.html">EXECUTION_ENVIRONMENT</A>
+    FCGI_I*
+    <A HREF="../elks/file_links.html">FILE</A>*
+    FIND_SEPARATOR_FACILITY
+    FITNESS_AND_QUALITY
+    <A HREF="../elks/format_double_links.html">FORMAT_DOUBLE</A>
+    <A HREF="../elks/format_integer_links.html">FORMAT_INTEGER</A>
+    <A HREF="../elks/hexadecimal_string_to_integer_converter_links.html">HEXADECIMAL_STRING_TO_INTEGER_CONVERTER</A>
+    HTML_ENCODER
+    HTTPD_CONNECTION_HANDLER
+    HTTPD_DEBUG_FACILITIES*
+    HTTPD_LOGGER_CONSTANTS*
+    HTTPD_REQUEST_HANDLER*
+    HTTPD_REQUEST_HANDLER_I*
+    HTTPD_SERVER_I*
+    <A HREF="../src/http_cookie_links.html">HTTP_COOKIE</A>
+    <A HREF="../src/http_date_links.html">HTTP_DATE</A>
+    <A HREF="../src/http_header_links.html">HTTP_HEADER</A>
+    <A HREF="../src/http_header_modifier_links.html">HTTP_HEADER_MODIFIER</A>*
+    HTTP_HEADER_UTILITIES*
+    <A HREF="../src/http_media_type_links.html">HTTP_MEDIA_TYPE</A>
+    <A HREF="../src/http_parameter_table_links.html">HTTP_PARAMETER_TABLE</A>
+    HTTP_STREAM_SOCKET
+    INET4_ADDRESS
+    INET6_ADDRESS
+    INET_ADDRESS*
+    INET_ADDRESS_FACTORY
+    INET_ADDRESS_IMPL_V4
+    INET_ADDRESS_IMPL_V6
+    <A HREF="../elks/integer_16_ref_links.html">INTEGER_16_REF</A>
+    <A HREF="../elks/integer_32_ref_links.html">INTEGER_32_REF</A>
+    <A HREF="../elks/integer_64_ref_links.html">INTEGER_64_REF</A>
+    <A HREF="../elks/integer_8_ref_links.html">INTEGER_8_REF</A>
+    INTERVAL [G -&gt; ABSOLUTE]
+    <A HREF="../ise/ise_exception_manager_links.html">ISE_EXCEPTION_MANAGER</A>
+    <A HREF="../elks/mismatch_information_links.html">MISMATCH_INFORMATION</A>
+    <A HREF="../elks/native_string_links.html">NATIVE_STRING</A>
+    <A HREF="../elks/natural_16_ref_links.html">NATURAL_16_REF</A>
+    <A HREF="../elks/natural_32_ref_links.html">NATURAL_32_REF</A>
+    <A HREF="../elks/natural_64_ref_links.html">NATURAL_64_REF</A>
+    <A HREF="../elks/natural_8_ref_links.html">NATURAL_8_REF</A>
+    NETWORK_STREAM_SOCKET
+    <A HREF="../elks/path_links.html">PATH</A>
+    PERCENT_ENCODER
+    <A HREF="../elks/plain_text_file_links.html">PLAIN_TEXT_FILE</A>
+    <A HREF="../elks/raw_file_links.html">RAW_FILE</A>
+    <A HREF="../elks/readable_string_8_links.html">READABLE_STRING_8</A>*
+    <A HREF="../elks/readable_string_general_links.html">READABLE_STRING_GENERAL</A>*
+    <A HREF="../elks/reflected_object_links.html">REFLECTED_OBJECT</A>*
+    <A HREF="../elks/reflector_links.html">REFLECTOR</A>
+    <A HREF="../elks/reflector_helper_links.html">REFLECTOR_HELPER</A>
+    <A HREF="../ise/debug_implementation/rt_dbg_attribute_record_links.html">RT_DBG_ATTRIBUTE_RECORD</A> [G -&gt; <B>detachable</B> <A HREF="../elks/any_links.html">ANY</A>]
+    <A HREF="../ise/debug_implementation/rt_dbg_call_record_links.html">RT_DBG_CALL_RECORD</A>
+    <A HREF="../ise/debug_implementation/rt_dbg_execution_recorder_links.html">RT_DBG_EXECUTION_RECORDER</A>
+    <A HREF="../ise/debug_implementation/rt_dbg_field_record_links.html">RT_DBG_FIELD_RECORD</A> [G -&gt; <B>detachable</B> <A HREF="../elks/any_links.html">ANY</A>]
+    <A HREF="../ise/debug_implementation/rt_dbg_internal_links.html">RT_DBG_INTERNAL</A>*
+    <A HREF="../ise/debug_implementation/rt_dbg_local_record_links.html">RT_DBG_LOCAL_RECORD</A> [G -&gt; <B>detachable</B> <A HREF="../elks/any_links.html">ANY</A>]
+    <A HREF="../ise/debug_implementation/rt_dbg_value_record_links.html">RT_DBG_VALUE_RECORD</A>*
+    <A HREF="../ise/debug_implementation/rt_extension_links.html">RT_EXTENSION</A>
+    <A HREF="../ise/debug_implementation/rt_extension_general_links.html">RT_EXTENSION_GENERAL</A>*
+    SOCKET*
+    SOCKET_RESOURCES
+    <A HREF="../elks/special_links.html">SPECIAL</A> [T]
+    <A HREF="../elks/string_8_links.html">STRING_8</A>
+    <A HREF="../elks/string_to_integer_convertor_links.html">STRING_TO_INTEGER_CONVERTOR</A>
+    <A HREF="../elks/string_to_numeric_convertor_links.html">STRING_TO_NUMERIC_CONVERTOR</A>*
+    <A HREF="../elks/string_to_real_convertor_links.html">STRING_TO_REAL_CONVERTOR</A>
+    <A HREF="../elks/encoding/implementation/windows/system_encodings_imp_links.html">SYSTEM_ENCODINGS_IMP</A>
+    <A HREF="../elks/tuple_links.html">TUPLE</A>
+    <A HREF="../elks/type_links.html">TYPE</A> [G]
+    <A HREF="../elks/encoding/unicode_conversion_links.html">UNICODE_CONVERSION</A>
+    <A HREF="../elks/utf_converter_links.html">UTF_CONVERTER</A>
+    WGI_CGI_OUTPUT_STREAM
+    WGI_CHUNKED_INPUT_STREAM
+    WGI_HTTPD_REQUEST_HANDLER [G -&gt; WGI_EXECUTION <B>create</B> make <B>end</B>]
+    WGI_INPUT_STREAM*
+    WGI_LIBFCGI_INPUT_STREAM
+    WGI_LIBFCGI_OUTPUT_STREAM
+    WGI_OUTPUT_STREAM*
+    WGI_REQUEST_FROM_TABLE
+    WGI_RESCUE_EXECUTION
+    WGI_STANDALONE_CONNECTOR [G -&gt; WGI_EXECUTION <B>create</B> make <B>end</B>]
+    WGI_STANDALONE_ERROR_STREAM
+    WGI_STANDALONE_INPUT_STREAM
+    WGI_STANDALONE_OUTPUT_STREAM
+    WGI_STANDALONE_RESPONSE_STREAM
+    <A HREF="../src/wsf_default_router_response_links.html">WSF_DEFAULT_ROUTER_RESPONSE</A>
+    <A HREF="../src/wsf_file_response_links.html">WSF_FILE_RESPONSE</A>
+    <A HREF="../router/wsf_file_system_handler_links.html">WSF_FILE_SYSTEM_HANDLER</A>
+    <A HREF="../src/wsf_file_utilities_links.html">WSF_FILE_UTILITIES</A> [G -&gt; <A HREF="../elks/file_links.html">FILE</A> <B>create</B> <A HREF="../elks/file.html#f_make_with_path">make_with_path</A> <B>end</B>]
+    <A HREF="../router/wsf_logging_filter_links.html">WSF_LOGGING_FILTER</A>
+    <A HREF="../router/wsf_maintenance_filter_links.html">WSF_MAINTENANCE_FILTER</A>
+    <A HREF="../src/wsf_method_not_allowed_response_links.html">WSF_METHOD_NOT_ALLOWED_RESPONSE</A>
+    <A HREF="../src/wsf_mime_handler_helper_links.html">WSF_MIME_HANDLER_HELPER</A>*
+    <A HREF="../src/wsf_multipart_form_data_handler_links.html">WSF_MULTIPART_FORM_DATA_HANDLER</A>
+    <A HREF="../src/wsf_multiple_string_links.html">WSF_MULTIPLE_STRING</A>
+    <A HREF="../src/wsf_not_found_response_links.html">WSF_NOT_FOUND_RESPONSE</A>
+    <A HREF="../src/wsf_precondition_failed_message_links.html">WSF_PRECONDITION_FAILED_MESSAGE</A>
+    <A HREF="../src/wsf_request_links.html">WSF_REQUEST</A>
+    <A HREF="../src/wsf_response_links.html">WSF_RESPONSE</A>
+    <A HREF="../router/wsf_router_item_links.html">WSF_ROUTER_ITEM</A>
+    <A HREF="../router/wsf_router_mapping_documentation_links.html">WSF_ROUTER_MAPPING_DOCUMENTATION</A>
+    <A HREF="../router/wsf_router_self_documentation_message_links.html">WSF_ROUTER_SELF_DOCUMENTATION_MESSAGE</A>
+    <A HREF="../src/wsf_service_launcher_options_from_ini_links.html">WSF_SERVICE_LAUNCHER_OPTIONS_FROM_INI</A>
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher_links.html">WSF_STANDALONE_SERVICE_LAUNCHER</A> [G -&gt; <A HREF="../src/wsf_execution_links.html">WSF_EXECUTION</A> <B>create</B> <A HREF="../src/wsf_execution.html#f_make">make</A> <B>end</B>]
+    <A HREF="../router/wsf_starts_with_mapping_i_links.html">WSF_STARTS_WITH_MAPPING_I</A>*
+    <A HREF="../src/wsf_table_links.html">WSF_TABLE</A>
+    <A HREF="../src/wsf_trace_response_links.html">WSF_TRACE_RESPONSE</A>
+    <A HREF="../src/wsf_uploaded_file_links.html">WSF_UPLOADED_FILE</A>
+    <A HREF="../src/wsf_value_links.html">WSF_VALUE</A>*
+
+<B>Suppliers</B>
+    <A HREF="../elks/arrayed_list_links.html">ARRAYED_LIST</A> [G]
+    <A HREF="../elks/boolean_links.html">BOOLEAN</A>
+    <A HREF="../elks/character_8_links.html">CHARACTER_8</A>
+    <A HREF="../elks/c_string_links.html">C_STRING</A>
+    <A HREF="../elks/integer_16_links.html">INTEGER_16</A>
+    <A HREF="../elks/integer_32_links.html">INTEGER_32</A>
+    <A HREF="../elks/integer_64_links.html">INTEGER_64</A>
+    <A HREF="../elks/integer_8_links.html">INTEGER_8</A>
+    <A HREF="../elks/natural_16_links.html">NATURAL_16</A>
+    <A HREF="../elks/natural_32_links.html">NATURAL_32</A>
+    <A HREF="../elks/natural_64_links.html">NATURAL_64</A>
+    <A HREF="../elks/natural_8_links.html">NATURAL_8</A>
+    <A HREF="../elks/platform_links.html">PLATFORM</A>
+    <A HREF="../elks/pointer_links.html">POINTER</A>
+    <A HREF="../elks/readable_string_8_links.html">READABLE_STRING_8</A>*
+    <A HREF="../elks/readable_string_general_links.html">READABLE_STRING_GENERAL</A>*
+    <A HREF="../elks/real_32_links.html">REAL_32</A>
+    <A HREF="../elks/real_64_links.html">REAL_64</A>
+    <A HREF="../elks/special_links.html">SPECIAL</A> [T]
+    <A HREF="../elks/string_8_links.html">STRING_8</A>
+    <A HREF="../elks/string_8_searcher_links.html">STRING_8_SEARCHER</A>
+    <A HREF="../elks/system_string_links.html">SYSTEM_STRING</A>
+    <A HREF="../elks/system_string_factory_links.html">SYSTEM_STRING_FACTORY</A>
+
+<TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="string_8_chart.html">Chart</A></TD><TD>Relations</TD><TD><A HREF="string_8.html">Text</A></TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>

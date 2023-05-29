@@ -1,0 +1,305 @@
+<HTML><HEAD>
+<meta name="description" content="TTTComponent to launch the service using the default connector  TTTTEiffelWeb httpd for this class  TTTThe httpd default connector support options: TTTTverbose: to display verbose output TTTTport: numeric such as 8099 (or equivalent string as 8099) TTTTbase: base_url (very specific to standalone server) TTTT TTTTmax_concurrent_connections: set to 1, for single threaded behavior TTTTmax_tcp_clients: max number of open tcp connection TTTT TTTTsocket_timeout_ns: connection timeout in nanoseconds TTTTsocket_recv_timeout_ns: read data timeout in nanoseconds  TTTTkeep_alive_timeout_ns: amount of nanoseconds the server will wait for subsequent TTTTTTTTTrequests on a persistent connection, TTTTmax_keep_alive_requests: number of requests allowed on a persistent connection,  TTTTssl_enabled: set to True for https support. TTTTssl_ca_crt: path to the certificat crt file (relevant when ssl_enabled is True) TTTTssl_ca_key: path to the certificat key file (relevant when ssl_enabled is True)   TTTcheck WSF_SERVICE_LAUNCHER for more documentation"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2017, Jocelyn Fiat, Javier Velilla, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>wsf_standalone_service_launcher Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_standalone_service_launcher_chart.html">Chart</A></TD><TD><A HREF="wsf_standalone_service_launcher_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        			Component to launch the service using the default connector
+        
+        				EiffelWeb httpd for this class
+        
+        			The httpd default connector support options:
+        				verbose: to display verbose output
+        				port: numeric such as 8099 (or equivalent string as "8099")
+        				base: base_url (very specific to standalone server)
+        				
+        				max_concurrent_connections: set to 1, for single threaded behavior
+        				max_tcp_clients: max number of open tcp connection
+        				
+        				socket_timeout_ns: connection timeout in nanoseconds
+        				socket_recv_timeout_ns: read data timeout in nanoseconds
+        
+        				keep_alive_timeout_ns: amount of nanoseconds the server will wait for subsequent
+        									requests on a persistent connection,
+        				max_keep_alive_requests: number of requests allowed on a persistent connection,
+        
+        				ssl_enabled: set to True for https support.
+        				ssl_ca_crt: path to the certificat crt file (relevant when ssl_enabled is True)
+        				ssl_ca_key: path to the certificat key file (relevant when ssl_enabled is True)
+        
+        
+        			check WSF_SERVICE_LAUNCHER for more documentation
+    ]"
+    date: "$Date: 2022-04-01 16:56:35 +0000 (Fri, 01 Apr 2022) $"
+    revision: "$Revision: 106220 $"
+
+<B>class</B> 
+    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html">WSF_STANDALONE_SERVICE_LAUNCHER</A> [G -&gt; <A HREF="../src/wsf_execution.html">WSF_EXECUTION</A> <B>create</B> <A HREF="../src/wsf_execution.html#f_make">make</A> <B>end</B>]
+
+<B>inherit</B>
+    <A HREF="../src/wsf_service_launcher.html">WSF_SERVICE_LAUNCHER</A> [G]
+        <B>redefine</B>
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_launchable">launchable</A>
+        <B>end</B>
+
+    WGI_STANDALONE_HTTPD_LOGGER_CONSTANTS
+
+    <A HREF="../src/wsf_timeout_utilities.html">WSF_TIMEOUT_UTILITIES</A>
+
+<B>create</B> 
+    <A HREF="../src/wsf_service_launcher.html#f_make">make</A>,
+    <A HREF="../src/wsf_service_launcher.html#f_make_and_launch">make_and_launch</A>
+
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialization</FONT>
+
+    <A NAME="f_initialize"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_initialize">initialize</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Initialize Current using </FONT><FONT COLOR="red">`</FONT><A HREF="../src/wsf_service_launcher.html#f_options">options</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> if attached</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> and build the connector</FONT>
+        <B>local</B>
+            conn: <B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>
+            s: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>
+        <B>do</B>
+            <B>create</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_launched_actions">on_launched_actions</A>
+            <B>create</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_stopped_actions">on_stopped_actions</A>
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A> := {WGI_STANDALONE_CONSTANTS}.default_http_server_port
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A> := {WGI_STANDALONE_CONSTANTS}.default_max_concurrent_connections
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_tcp_clients">max_tcp_clients</A> := {WGI_STANDALONE_CONSTANTS}.default_max_tcp_clients
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_timeout_ns">socket_timeout_ns</A> := <A HREF="../src/wsf_timeout_utilities.html#f_seconds_to_nanoseconds">seconds_to_nanoseconds</A> ({WGI_STANDALONE_CONSTANTS}.default_socket_timeout)
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_recv_timeout_ns">socket_recv_timeout_ns</A> := <A HREF="../src/wsf_timeout_utilities.html#f_seconds_to_nanoseconds">seconds_to_nanoseconds</A> ({WGI_STANDALONE_CONSTANTS}.default_socket_recv_timeout)
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_keep_alive_timeout_ns">keep_alive_timeout_ns</A> := <A HREF="../src/wsf_timeout_utilities.html#f_seconds_to_nanoseconds">seconds_to_nanoseconds</A> ({WGI_STANDALONE_CONSTANTS}.default_keep_alive_timeout)
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_keep_alive_requests">max_keep_alive_requests</A> := {WGI_STANDALONE_CONSTANTS}.default_max_keep_alive_requests
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose">verbose</A> := <B>False</B>
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := Notice_level
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_base_url">base_url</A> := <B>Void</B>
+            <B>if</B> <B>attached</B> <A HREF="../src/wsf_service_launcher.html#f_options">options</A> <B>as</B> opts <B>then</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>} opts.<A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> ("server_name") <B>as</B> l_server_name <B>then</B>
+                    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_server_name">server_name</A> := l_server_name.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                <B>end</B>
+                <B>if</B> <B>attached</B> {<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>} opts.<A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> ("base") <B>as</B> l_base_str <B>and then</B> l_base_str.<A HREF="../elks/readable_string_general.html#f_is_valid_as_string_8">is_valid_as_string_8</A> <B>then</B>
+                    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_base_url">base_url</A> := l_base_str.<A HREF="../elks/readable_string_general.html#f_to_string_8">to_string_8</A>
+                <B>end</B>
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose">verbose</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_boolean_value">option_boolean_value</A> ("verbose", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose">verbose</A>)
+                <B>if</B> opts.<A HREF="../src/wsf_service_launcher_options.html#f_has_integer_option">has_integer_option</A> ("verbose_level") <B>then</B>
+                    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> ("verbose_level", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A>)
+                <B>elseif</B> <B>attached</B> {<A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>} opts.<A HREF="../src/wsf_service_launcher_options.html#f_option">option</A> ("verbose_level") <B>as</B> s_verbose_level <B>then</B>
+                    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := 0
+                    <B>across</B>
+                        s_verbose_level.<A HREF="../elks/readable_string_general.html#f_split">split</A> ('+'.<A HREF="../elks/character_8.html#f_to_character_32">to_character_32</A>) <B>as</B> ic
+                    <B>loop</B>
+                        s := ic.<A HREF="../elks/iteration_cursor.html#f_item">item</A>
+                        <B>if</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("alert") <B>then</B>
+                            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> | Alert_level
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("critical") <B>then</B>
+                            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> | Critical_level
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("error") <B>then</B>
+                            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> | Error_level
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("warning") <B>then</B>
+                            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> | Warning_level
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("notice") <B>then</B>
+                            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> | Notice_level
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("information") <B>then</B>
+                            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> | Information_level
+                        <B>elseif</B> s.<A HREF="../elks/readable_string_general.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> ("debug") <B>then</B>
+                            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A> | Debug_level
+                        <B>end</B>
+                    <B>end</B>
+                <B>end</B>
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> ("port", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A>)
+                <B>if</B> opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_boolean_value">option_boolean_value</A> ("force_single_threaded", <B>False</B>) <B>then</B>
+                    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_set_max_concurrent_connections">set_max_concurrent_connections</A> (1)
+                <B>end</B>
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> ("max_concurrent_connections", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A>)
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_tcp_clients">max_tcp_clients</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> ("max_tcp_clients", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_tcp_clients">max_tcp_clients</A>)
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_timeout_ns">socket_timeout_ns</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_timeout_ns_value">option_timeout_ns_value</A> ("socket_timeout", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_timeout_ns">socket_timeout_ns</A>)
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_recv_timeout_ns">socket_recv_timeout_ns</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_timeout_ns_value">option_timeout_ns_value</A> ("socket_recv_timeout", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_recv_timeout_ns">socket_recv_timeout_ns</A>)
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_keep_alive_timeout_ns">keep_alive_timeout_ns</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_timeout_ns_value">option_timeout_ns_value</A> ("keep_alive_timeout", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_keep_alive_timeout_ns">keep_alive_timeout_ns</A>)
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_keep_alive_requests">max_keep_alive_requests</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> ("max_keep_alive_requests", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_keep_alive_requests">max_keep_alive_requests</A>)
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_bind_attempts">max_bind_attempts</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> ("max_bind_attempts", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_bind_attempts">max_bind_attempts</A>)
+                <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_reuse_address_allowed">is_reuse_address_allowed</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_boolean_value">option_boolean_value</A> ("allow_reuse_address", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_reuse_address_allowed">is_reuse_address_allowed</A>)
+                <B>if</B> opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_boolean_value">option_boolean_value</A> ("is_secure", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_secure">is_secure</A>) <B>and then</B> <B>attached</B> opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_string_32_value">option_string_32_value</A> ("secure_protocol", "tls_1_2") <B>as</B> l_secure_prot <B>then</B>
+                    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_secure_settings">secure_settings</A> := [l_secure_prot, opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_string_32_value">option_string_32_value</A> ("secure_certificate", <B>Void</B>), opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_string_32_value">option_string_32_value</A> ("secure_certificate_key", <B>Void</B>)]
+                <B>elseif</B> opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_boolean_value">option_boolean_value</A> ("ssl_enabled", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_secure">is_secure</A>) <B>and then</B> <B>attached</B> opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_string_32_value">option_string_32_value</A> ("ssl_protocol", "tls_1_2") <B>as</B> ssl_prot <B>then</B>
+                    <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_secure_settings">secure_settings</A> := [ssl_prot, opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_string_32_value">option_string_32_value</A> ("ssl_ca_crt", <B>Void</B>), opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_string_32_value">option_string_32_value</A> ("ssl_ca_key", <B>Void</B>)]
+                <B>end</B>
+                <B>if</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_secure">is_secure</A> <B>then</B>
+                    <B>if</B> opts.<A HREF="../src/wsf_service_launcher_options.html#f_has_integer_option">has_integer_option</A> ("secure_port") <B>then</B>
+                        <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A> := opts.<A HREF="../src/wsf_service_launcher_options.html#f_option_integer_value">option_integer_value</A> ("secure_port", <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A>)
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+            <B>create</B> conn.make
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A> := conn;
+            conn.on_launched_actions.<A HREF="../ise/interactive_list.html#f_extend">extend</A> (<B>agent</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_launched">on_launched</A>);
+            conn.set_base (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_base_url">base_url</A>)
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_update_configuration">update_configuration</A> (conn.configuration)
+        <B>end</B></A>
+
+    <A NAME="f_force_single_threaded"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_force_single_threaded">force_single_threaded</A>
+        <B>obsolete</B> "Use set_max_concurrent_connections (1) [2017-05-31]"
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_single_threaded">single_threaded</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to True.</FONT>
+        <B>do</B>
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_set_max_concurrent_connections">set_max_concurrent_connections</A> (1)
+        <B>ensure</B>
+            single_threaded: <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_single_threaded">single_threaded</A>
+        <B>end</B></A>
+
+    <A NAME="f_set_max_concurrent_connections"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_set_max_concurrent_connections">set_max_concurrent_connections</A> (v: <B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A>)
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set </FONT><FONT COLOR="red">`</FONT><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A><FONT COLOR="red">`</FONT><FONT COLOR="red"> to </FONT><I>v</I><FONT COLOR="red">.</FONT>
+        <B>require</B>
+            v_positive_or_zero: v &gt;= 0
+        <B>do</B>
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A> := v
+        <B>ensure</B>
+            max_concurrent_connections_set: <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A> = v
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Execution</FONT>
+
+    <A NAME="f_update_configuration"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_update_configuration">update_configuration</A> (cfg: <B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>.configuration)
+        <B>do</B>
+            cfg.set_is_verbose (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose">verbose</A>);
+            cfg.set_verbose_level (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A>);
+            cfg.set_secure_settings (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_secure_settings">secure_settings</A>);
+            cfg.set_http_server_name (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_server_name">server_name</A>)
+            cfg.http_server_port := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A>
+            cfg.max_bind_attempts := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_bind_attempts">max_bind_attempts</A>
+            cfg.is_reuse_address_allowed := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_reuse_address_allowed">is_reuse_address_allowed</A>;
+            cfg.set_max_concurrent_connections (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A>);
+            cfg.set_max_tcp_clients (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_tcp_clients">max_tcp_clients</A>);
+            cfg.set_socket_timeout_ns (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_timeout_ns">socket_timeout_ns</A>);
+            cfg.set_socket_recv_timeout_ns (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_recv_timeout_ns">socket_recv_timeout_ns</A>);
+            cfg.set_keep_alive_timeout_ns (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_keep_alive_timeout_ns">keep_alive_timeout_ns</A>);
+            cfg.set_max_keep_alive_requests (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_keep_alive_requests">max_keep_alive_requests</A>)
+        <B>end</B></A>
+
+    <A NAME="f_launch"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_launch">launch</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Launch default service</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> using associated settings/configuration.</FONT>
+        <B>local</B>
+            conn: <B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>
+        <B>do</B>
+            conn := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>;
+            conn.set_base (<A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_base_url">base_url</A>)
+            <B>debug</B> ("ew_standalone")
+                <B>if</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose">verbose</A> <B>then</B>
+                    <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> ("Launching standalone web server on port " + <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A>.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+                    <B>if</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_secure">is_secure</A> <B>then</B>
+                        <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> ("%N https://")
+                    <B>else</B>
+                        <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> ("%N http://")
+                    <B>end</B>
+                    <B>if</B> <B>attached</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_server_name">server_name</A> <B>as</B> l_name <B>then</B>
+                        <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> (l_name)
+                    <B>else</B>
+                        <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> ("localhost")
+                    <B>end</B>;
+                    <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> (":" + <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A>.<A HREF="../elks/integer_32_ref.html#f_out">out</A>)
+                    <B>if</B> <B>attached</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_base_url">base_url</A> <B>as</B> b <B>and then</B> <B>not</B> b.<A HREF="../elks/readable_string_general.html#f_is_empty">is_empty</A> <B>then</B>
+                        <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> (b + "%N")
+                    <B>else</B>
+                        <A HREF="../elks/any.html#f_io">Io</A>.<A HREF="../elks/std_files.html#f_error">Error</A>.<A HREF="../elks/file.html#f_put_string">put_string</A> ("/%N")
+                    <B>end</B>
+                <B>end</B>
+            <B>end</B>
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_update_configuration">update_configuration</A> (conn.configuration);
+            conn.launch
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Callback</FONT>
+
+    <A NAME="f_on_launched_actions"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_launched_actions">on_launched_actions</A>: <A HREF="../ise/action_sequence.html">ACTION_SEQUENCE</A> [<B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Actions triggered when launched</FONT>
+
+    <A NAME="f_on_stopped_actions"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_stopped_actions">on_stopped_actions</A>: <A HREF="../ise/action_sequence.html">ACTION_SEQUENCE</A> [<B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Actions triggered when stopped</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_on_launched"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_launched">on_launched</A> (conn: <B>like</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>)
+        <B>do</B>
+            <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_on_launched_actions">on_launched_actions</A>.<A HREF="../ise/action_sequence.html#f_call">call</A> ([conn])
+        <B>end</B></A>
+
+    <A NAME="f_port_number"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+
+    <A NAME="f_server_name"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_server_name">server_name</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+
+    <A NAME="f_base_url"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_base_url">base_url</A>: <B>detachable</B> <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A></A>
+
+    <A NAME="f_verbose"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose">verbose</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+
+    <A NAME="f_verbose_level"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_verbose_level">verbose_level</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Help defining the verbosity.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The higher, the more output.</FONT>
+
+    <A NAME="f_max_concurrent_connections"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A> <B>assign</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_set_max_concurrent_connections">set_max_concurrent_connections</A></A>
+
+    <A NAME="f_single_threaded"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_single_threaded">single_threaded</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+        <B>obsolete</B> "Use max_concurrent_connections &lt;= 1 [2017-05-31]"
+        <B>do</B>
+            <B>Result</B> := <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_concurrent_connections">max_concurrent_connections</A> &lt;= 1
+        <B>end</B></A>
+
+    <A NAME="f_max_tcp_clients"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_tcp_clients">max_tcp_clients</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+
+    <A NAME="f_socket_timeout_ns"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_timeout_ns">socket_timeout_ns</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A></A>
+
+    <A NAME="f_socket_recv_timeout_ns"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_socket_recv_timeout_ns">socket_recv_timeout_ns</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A></A>
+
+    <A NAME="f_keep_alive_timeout_ns"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_keep_alive_timeout_ns">keep_alive_timeout_ns</A>: <A HREF="../elks/natural_64.html">NATURAL_64</A></A>
+
+    <A NAME="f_max_keep_alive_requests"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_keep_alive_requests">max_keep_alive_requests</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+
+    <A NAME="f_max_bind_attempts"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_max_bind_attempts">max_bind_attempts</A>: <A HREF="../elks/integer_32.html">INTEGER_32</A></A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> In seconds</FONT>
+
+    <A NAME="f_is_reuse_address_allowed"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_reuse_address_allowed">is_reuse_address_allowed</A>: <A HREF="../elks/boolean.html">BOOLEAN</A></A>
+
+    <A NAME="f_is_secure_connection_supported"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_secure_connection_supported">is_secure_connection_supported</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is SSL supported in current compiled system?</FONT>
+        <B>do</B>
+            <B>Result</B> := {WGI_STANDALONE_CONSTANTS}.is_secure_connection_supported
+        <B>end</B></A>
+
+    <A NAME="f_is_secure"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_is_secure">is_secure</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is secure server? i.e using SSL?</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>attached</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_secure_settings">secure_settings</A> <B>as</B> l_secure_settings <B>and then</B> <B>attached</B> l_secure_settings.protocol <B>as</B> prot <B>and then</B> <B>not</B> prot.<A HREF="../elks/readable_string_general.html#f_is_whitespace">is_whitespace</A>
+        <B>end</B></A>
+
+    <A NAME="f_secure_settings"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_secure_settings">secure_settings</A>: <B>detachable</B> <A HREF="../elks/tuple.html">TUPLE</A> [protocol: <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; ca_crt: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>; ca_key: <B>detachable</B> <A HREF="../elks/readable_string_general.html">READABLE_STRING_GENERAL</A>]</A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Status report</FONT>
+
+    <A NAME="f_connector"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_connector">connector</A>: WGI_STANDALONE_CONNECTOR [G]</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Default connector</FONT>
+
+    <A NAME="f_launchable"><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_launchable">launchable</A>: <A HREF="../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is default service launchable?</FONT>
+        <B>do</B>
+            <B>Result</B> := <B>Precursor</B> <B>and</B> <A HREF="../wsf_standalone/wsf_standalone_service_launcher.html#f_port_number">port_number</A> &gt;= 0
+        <B>end</B></A>
+    
+<B>note</B>
+    copyright: "2011-2017, Jocelyn Fiat, Javier Velilla, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../wsf_standalone/wsf_standalone_service_launcher.html">WSF_STANDALONE_SERVICE_LAUNCHER</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="wsf_standalone_service_launcher_chart.html">Chart</A></TD><TD><A HREF="wsf_standalone_service_launcher_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

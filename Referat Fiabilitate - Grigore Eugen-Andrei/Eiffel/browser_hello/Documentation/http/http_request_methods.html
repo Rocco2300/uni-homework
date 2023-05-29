@@ -1,0 +1,123 @@
+<HTML><HEAD>
+<meta name="description" content="T TTTSafe method: HEAD, GET, TRACE, OPTIONS TTTTIntended only for information retrieval, should not change state of server  T TTTSee http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods"/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="copyright" content="2011-2012, Jocelyn Fiat, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>http_request_methods Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_request_methods_chart.html">Chart</A></TD><TD><A HREF="http_request_methods_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "[
+        	
+        			Safe method: HEAD, GET, TRACE, OPTIONS
+        				Intended only for information retrieval, should not change state of server
+        
+        	
+        			See <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods">http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods</a>
+    ]"
+    date: "$Date: 2013-05-20 13:34:55 +0000 (Mon, 20 May 2013) $"
+    revision: "$Revision: 92549 $"
+
+<B>class</B> 
+    <A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A>
+
+<B>create</B> 
+    <A HREF="../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Query</FONT>
+
+    <A NAME="f_method"><A HREF="../src/http_request_methods.html#f_method">method</A> (m: <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>): <A HREF="../elks/readable_string_8.html">READABLE_STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return the associated constant object if any</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> otherwise the uppercased version of </FONT><I>m</I>
+        <B>do</B>
+            <B>if</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>
+            <B>elseif</B> m.<A HREF="../elks/readable_string_8.html#f_is_case_insensitive_equal">is_case_insensitive_equal</A> (<A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>) <B>then</B>
+                <B>Result</B> := <A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>
+            <B>else</B>
+                <B>Result</B> := m.<A HREF="../elks/readable_string_general.html#f_as_upper">as_upper</A>
+            <B>end</B>
+        <B>end</B></A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Safe Methods</FONT>
+
+    <A NAME="f_method_head"><A HREF="../src/http_request_methods.html#f_method_head">Method_head</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "HEAD"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Asks for the response identical to the one that would correspond</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> to a GET request, but without the response body.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This is useful for retrieving meta-information written in response headers,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> without having to transport the entire content.</FONT>
+
+    <A NAME="f_method_get"><A HREF="../src/http_request_methods.html#f_method_get">Method_get</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "GET"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Requests a representation of the specified resource.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Requests using GET (and a few other HTTP methods)</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  "SHOULD NOT have the significance of taking an action other than retrieval"</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The W3C has published guidance principles on this distinction, saying,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> "Web application design should be informed by the above principles,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red">  but also by the relevant limitations."</FONT>
+
+    <A NAME="f_method_trace"><A HREF="../src/http_request_methods.html#f_method_trace">Method_trace</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "TRACE"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Echoes back the received request, so that a client can see what</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> (if any) changes or additions have been made by intermediate servers.</FONT>
+
+    <A NAME="f_method_options"><A HREF="../src/http_request_methods.html#f_method_options">Method_options</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "OPTIONS"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Returns the HTTP methods that the server supports for specified URL.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This can be used to check the functionality of a web server by requesting '*'</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> instead of a specific resource.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Methods intented for actions</FONT>
+
+    <A NAME="f_method_post"><A HREF="../src/http_request_methods.html#f_method_post">Method_post</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "POST"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Submits data to be processed (e.g., from an HTML form) to the identified resource.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The data is included in the body of the request.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> This may result in the creation of a new resource or the updates of existing</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> resources or both.	</FONT>
+
+    <A NAME="f_method_put"><A HREF="../src/http_request_methods.html#f_method_put">Method_put</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "PUT"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Uploads a representation of the specified resource.</FONT>
+
+    <A NAME="f_method_delete"><A HREF="../src/http_request_methods.html#f_method_delete">Method_delete</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "DELETE"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Deletes the specified resource.</FONT>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Other Methods</FONT>
+
+    <A NAME="f_method_connect"><A HREF="../src/http_request_methods.html#f_method_connect">Method_connect</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "CONNECT"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Converts the request connection to a transparent TCP/IP tunnel,</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> usually to facilitate SSL-encrypted communication (HTTPS) through</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> an unencrypted HTTP proxy.</FONT>
+
+    <A NAME="f_method_patch"><A HREF="../src/http_request_methods.html#f_method_patch">Method_patch</A>: <A HREF="../elks/string_8.html">STRING_8</A> = "PATCH"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Is used to apply partial modifications to a resource</FONT>
+    
+<B>note</B>
+    copyright: "2011-2012, Jocelyn Fiat, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../src/http_request_methods.html">HTTP_REQUEST_METHODS</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../class_list.html">Classes</A></TD><TD><A HREF="../cluster_list.html">Clusters</A></TD><TD><A HREF="../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="http_request_methods_chart.html">Chart</A></TD><TD><A HREF="http_request_methods_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+

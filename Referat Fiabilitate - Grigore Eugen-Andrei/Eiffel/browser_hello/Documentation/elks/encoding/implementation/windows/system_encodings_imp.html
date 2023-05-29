@@ -1,0 +1,216 @@
+<HTML><HEAD>
+<meta name="description" content="System encodings, windows implementation"/>
+<meta name="legal" content="See notice at end of class."/>
+<meta name="keywords" content="Eiffel class"/>
+<meta name="library" content="Encoding: Library of reusable components for Eiffel."/>
+<meta name="copyright" content="Copyright (c) 1984-2020, Eiffel Software and others"/>
+<meta name="license" content="Eiffel Forum License v2 (see http://www.eiffel.com/licensing/forum.txt)"/>
+<meta name="source" content="Eiffel Software 5949 Hollister Ave., Goleta, CA 93117 USA Telephone 805-685-1006, Fax 805-685-6869 Website http://www.eiffel.com Customer support http://support.eiffel.com"/>
+<meta name="keywords" content="Eiffel class"/>
+<TITLE>system_encodings_imp Text</TITLE></HEAD>
+<BODY BGCOLOR="white">
+<P ALIGN="CENTER">Automatic generation produced by ISE Eiffel</P>
+<PRE><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../../class_list.html">Classes</A></TD><TD><A HREF="../../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="system_encodings_imp_chart.html">Chart</A></TD><TD><A HREF="system_encodings_imp_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE><B>note</B>
+    description: "System encodings, windows implementation"
+    legal: "See notice at end of class."
+    status: "See notice at end of class."
+    date: "$Date: 2020-05-19 14:18:09 +0000 (Tue, 19 May 2020) $"
+    revision: "$Revision: 104255 $"
+
+<B>class</B> 
+    <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html">SYSTEM_ENCODINGS_IMP</A>
+
+<B>inherit</B>
+    <A HREF="../../../../elks/encoding/implementation/system_encodings_i.html">SYSTEM_ENCODINGS_I</A>
+
+<B>create</B> 
+    <A HREF="../../../../elks/any.html#f_default_create">default_create</A>
+
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Access</FONT>
+
+    <A NAME="f_system_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_system_code_page">system_code_page</A>: <A HREF="../../../../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> System code page</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Take oem as default</FONT>
+        <B>local</B>
+            l_result: <A HREF="../../../../elks/string_32.html">STRING_32</A>
+        <B>do</B>
+            l_result := <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_extract_locale_string">extract_locale_string</A> (<A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_system_locale">system_locale</A>, <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultansicodepage">Locale_idefaultansicodepage</A>, <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultansicodepage_maxlen">Locale_idefaultansicodepage_maxlen</A>)
+            <B>check</B>
+                valid_string_8: l_result.<A HREF="../../../../elks/readable_string_32.html#f_is_valid_as_string_8">is_valid_as_string_8</A>
+            <B>end</B>
+            <B>create</B> <B>Result</B>.<A HREF="../../../../elks/readable_string_8.html#f_make">make</A> (l_result.<A HREF="../../../../elks/readable_string_32.html#f_count">count</A>);
+            <B>Result</B>.<A HREF="../../../../elks/string_8.html#f_append_string_general">append_string_general</A> (l_result)
+        <B>end</B></A>
+
+    <A NAME="f_console_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_console_code_page">console_code_page</A>: <A HREF="../../../../elks/string_8.html">STRING_8</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Console code page</FONT>
+        <B>local</B>
+            code_page: <B>like</B> <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_console_input_code_page">console_input_code_page</A>
+        <B>do</B>
+            code_page := <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_console_output_code_page">console_output_code_page</A>
+            <B>if</B> code_page = 0 <B>then</B>
+                code_page := <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_console_input_code_page">console_input_code_page</A>
+                <B>if</B> code_page = 0 <B>then</B>
+                    code_page := <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_oem_code_page">oem_code_page</A>
+                <B>end</B>
+            <B>end</B>
+            <B>create</B> <B>Result</B>.<A HREF="../../../../elks/readable_string_8.html#f_make">make</A> (5);
+            <B>Result</B>.<A HREF="../../../../elks/string_8.html#f_append_natural_32">append_natural_32</A> (code_page)
+        <B>end</B></A>
+
+    <A NAME="f_iso_8859_1_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_iso_8859_1_code_page">Iso_8859_1_code_page</A>: <A HREF="../../../../elks/string_8.html">STRING_8</A> = "28591"</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> ISO-8859-1 encoding.</FONT>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> NLS LC CTYPE CONSTANTS</FONT>
+
+    <A NAME="f_locale_idefaultcodepage"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultcodepage">Locale_idefaultcodepage</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A> = 11</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> default oem code page</FONT>
+
+    <A NAME="f_locale_idefaultcodepage_maxlen"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultcodepage_maxlen">Locale_idefaultcodepage_maxlen</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A> = 6</A>
+
+    <A NAME="f_locale_idefaultansicodepage"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultansicodepage">Locale_idefaultansicodepage</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A> = 4100</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> default ansi code page</FONT>
+
+    <A NAME="f_locale_idefaultansicodepage_maxlen"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultansicodepage_maxlen">Locale_idefaultansicodepage_maxlen</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A> = 6</A>
+
+    <A NAME="f_locale_idefaultmaccodepage"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultmaccodepage">Locale_idefaultmaccodepage</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A> = 4113</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> default mac code page</FONT>
+
+    <A NAME="f_locale_idefaultmaccodepage_maxlen"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultmaccodepage_maxlen">Locale_idefaultmaccodepage_maxlen</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A> = 6</A>
+    
+<B>feature</B> <FONT COLOR="red">--</FONT><FONT COLOR="red"> Code pages</FONT>
+
+    <A NAME="f_console_input_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_console_input_code_page">console_input_code_page</A>: <A HREF="../../../../elks/natural_32.html">NATURAL_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Input code page of the console.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return (EIF_NATURAL_32) GetConsoleCP ();"
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_console_output_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_console_output_code_page">console_output_code_page</A>: <A HREF="../../../../elks/natural_32.html">NATURAL_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Output code page of the console.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return (EIF_NATURAL_32) GetConsoleOutputCP ();"
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_console_input_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_set_console_input_code_page">set_console_input_code_page</A> (cp: <A HREF="../../../../elks/natural_32.html">NATURAL_32</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set input code page of the console to </FONT><I>cp</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return True on success and False on error.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Use </FONT><I>get_last_error</I><FONT COLOR="red"> to get extended error information.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return EIF_TEST (SetConsoleCP ((UINT) $cp));"
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_set_console_output_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_set_console_output_code_page">set_console_output_code_page</A> (cp: <A HREF="../../../../elks/natural_32.html">NATURAL_32</A>): <A HREF="../../../../elks/boolean.html">BOOLEAN</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Set output code page of the console to </FONT><I>cp</I><FONT COLOR="red">.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Return True on success and False on error.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Use </FONT><I>get_last_error</I><FONT COLOR="red"> to get extended error information.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return EIF_TEST (SetConsoleOutputCP ((UINT) $cp));"
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_oem_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_oem_code_page">oem_code_page</A>: <A HREF="../../../../elks/natural_32.html">NATURAL_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The current OEM code page identifier for the operating system.</FONT>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The OEM code page is used for conversion from MS-DOS-based, text-mode applications.</FONT>
+        <B>external</B>
+            "C inline use &lt;Winnls.h&gt;"
+        <B>alias</B>
+            "return (EIF_NATURAL_32) GetOEMCP ();"
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+
+    <A NAME="f_ansi_code_page"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_ansi_code_page">ansi_code_page</A>: <A HREF="../../../../elks/natural_32.html">NATURAL_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> The current Windows ANSI code page (ACP) identifier for the operating system.</FONT>
+        <B>external</B>
+            "C inline use &lt;Winnls.h&gt;"
+        <B>alias</B>
+            "return (EIF_NATURAL_32) GetACP ();"
+        <B>ensure</B>
+            is_class: <B>class</B>
+        <B>end</B></A>
+    
+<B>feature</B> {NONE} <FONT COLOR="red">--</FONT><FONT COLOR="red"> Implementation</FONT>
+
+    <A NAME="f_extract_locale_string"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_extract_locale_string">extract_locale_string</A> (lcid: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; lc_ctype: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; bufferlen: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>): <A HREF="../../../../elks/string_32.html">STRING_32</A>
+        <B>local</B>
+            l_pointer: <A HREF="../../../../elks/managed_pointer.html">MANAGED_POINTER</A>
+            l_int: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+        <B>do</B>
+            <B>create</B> l_pointer.<A HREF="../../../../elks/managed_pointer.html#f_make">make</A> (<A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_tchar_length">c_tchar_length</A> * bufferlen)
+            l_int := <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_extract_locale_string">c_extract_locale_string</A> (lcid, lc_ctype, l_pointer.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, l_pointer.<A HREF="../../../../elks/managed_pointer.html#f_count">count</A>)
+            <B>Result</B> := {<A HREF="../../../../elks/encoding/encoding_helper.html">ENCODING_HELPER</A>}.<A HREF="../../../../elks/encoding/encoding_helper.html#f_pointer_to_wide_string">pointer_to_wide_string</A> (l_pointer.<A HREF="../../../../elks/managed_pointer.html#f_item">item</A>, l_int * <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_tchar_length">c_tchar_length</A>)
+            <B>if</B> <B>Result</B> [<B>Result</B>.<A HREF="../../../../elks/readable_string_32.html#f_count">count</A>].<A HREF="../../../../elks/character_32.html#f_code">code</A> = 0 <B>then</B>
+                <B>Result</B>.<A HREF="../../../../elks/string_32.html#f_remove">remove</A> (<B>Result</B>.<A HREF="../../../../elks/readable_string_32.html#f_count">count</A>)
+            <B>end</B>
+        <B>end</B></A>
+
+    <A NAME="f_c_extract_locale_string"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_extract_locale_string">c_extract_locale_string</A> (lcid: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; lc_ctype: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>; a_pointer: <A HREF="../../../../elks/pointer.html">POINTER</A>; a_len: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>): <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return GetLocaleInfo((LCID) $lcid, (LCTYPE) $lc_ctype, $a_pointer, (int) $a_len);"
+        <B>end</B></A>
+
+    <A NAME="f_c_tchar_length"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_tchar_length">c_tchar_length</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Lenth of TCHAR.</FONT>
+        <B>external</B>
+            "C inline use &lt;windows.h&gt;"
+        <B>alias</B>
+            "return sizeof(TCHAR);"
+        <B>end</B></A>
+
+    <A NAME="f_system_locale"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_system_locale">system_locale</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Encapsulation of GetSystemDefaultLCID</FONT>
+        <B>external</B>
+            "C (): LCID | &lt;windows.h&gt;"
+        <B>alias</B>
+            "GetSystemDefaultLCID"
+        <B>end</B></A>
+
+    <A NAME="f_user_locale"><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_user_locale">user_locale</A>: <A HREF="../../../../elks/integer_32.html">INTEGER_32</A>
+            <FONT COLOR="red">--</FONT><FONT COLOR="red"> Encapsulation of GetUserDefaultLCID</FONT>
+        <B>external</B>
+            "C (): LCID| &lt;windows.h&gt;"
+        <B>alias</B>
+            "GetUserDefaultLCID"
+        <B>end</B></A>
+    
+<B>invariant</B>
+    correct_locale_idefaultcodepage_maxlen: <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_extract_locale_string">c_extract_locale_string</A> (<A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_system_locale">system_locale</A>, <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultcodepage">Locale_idefaultcodepage</A>, <A HREF="../../../../elks/any.html#f_default_pointer">default_pointer</A>, 0) &lt;= <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultcodepage_maxlen">Locale_idefaultcodepage_maxlen</A>
+    correct_locale_idefaultansicodepage_maxlen: <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_extract_locale_string">c_extract_locale_string</A> (<A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_system_locale">system_locale</A>, <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultansicodepage">Locale_idefaultansicodepage</A>, <A HREF="../../../../elks/any.html#f_default_pointer">default_pointer</A>, 0) &lt;= <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultansicodepage_maxlen">Locale_idefaultansicodepage_maxlen</A>
+    correct_locale_idefaultmaccodepage_maxlen: <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_c_extract_locale_string">c_extract_locale_string</A> (<A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_system_locale">system_locale</A>, <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultmaccodepage">Locale_idefaultmaccodepage</A>, <A HREF="../../../../elks/any.html#f_default_pointer">default_pointer</A>, 0) &lt;= <A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html#f_locale_idefaultmaccodepage_maxlen">Locale_idefaultmaccodepage_maxlen</A>
+
+<B>note</B>
+    library: "Encoding: Library of reusable components for Eiffel."
+    copyright: "Copyright (c) 1984-2020, Eiffel Software and others"
+    license: "Eiffel Forum License v2 (see <a href="http://www.eiffel.com/licensing/forum.txt">http://www.eiffel.com/licensing/forum.txt</a>)"
+    source: "[
+        Eiffel Software
+        5949 Hollister Ave., Goleta, CA 93117 USA
+        Telephone 805-685-1006, Fax 805-685-6869
+        Website <a href="http://www.eiffel.com">http://www.eiffel.com</a>
+        Customer support <a href="http://support.eiffel.com">http://support.eiffel.com</a>
+    ]"
+
+<B>end</B> <FONT COLOR="red">--</FONT> <FONT COLOR="red">class </FONT><A HREF="../../../../elks/encoding/implementation/windows/system_encodings_imp.html">SYSTEM_ENCODINGS_IMP</A><TABLE BORDER="1" ALIGN="CENTER"><TR><TD><A HREF="../../../../class_list.html">Classes</A></TD><TD><A HREF="../../../../cluster_list.html">Clusters</A></TD><TD><A HREF="../../../../cluster_hierarchy.html">Cluster hierarchy</A></TD><TD><A HREF="system_encodings_imp_chart.html">Chart</A></TD><TD><A HREF="system_encodings_imp_links.html">Relations</A></TD><TD>Text</TD></TR></TABLE></PRE>
+<P ALIGN="CENTER"> &#045;&#045; Generated by ISE Eiffel &#045;&#045 </P>
+<P ALIGN="CENTER">For more details: <A HREF="http://www.eiffel.com">www.eiffel.com</A></P>
+</BODY>
+</HTML>
+
