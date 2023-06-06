@@ -1,0 +1,4 @@
+bid_id,auction_id,user_id,offering
+2,3,3,1200
+3,2,1,500
+4,5,1,520
