@@ -18,8 +18,8 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
     implements DatePickerDialog.OnDateSetListener {
-    private ArrayList<String> items;
-    private ArrayAdapter<String> itemsAdapter;
+    private ArrayList<List> items;
+    private ListAdapter itemsAdapter;
     private ListView lvItems;
 
     @Override
@@ -28,9 +28,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         lvItems = (ListView) findViewById(R.id.lvItems);
-        items = new ArrayList<String>();
-        itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        items = new ArrayList<List>();
+        itemsAdapter = new ListAdapter(this, R.layout.date_row, items);
         lvItems.setAdapter(itemsAdapter);
+
         setupListViewListener();
     }
 
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
-                items.remove(pos);
-                itemsAdapter.notifyDataSetChanged();
+                List list = items.get(pos);
+                itemsAdapter.remove(list);
                 return true;
             }
         });
@@ -58,6 +59,6 @@ public class MainActivity extends AppCompatActivity
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
-        itemsAdapter.add(selectedDate);
+        itemsAdapter.add(new List(selectedDate, null));
     }
 }
