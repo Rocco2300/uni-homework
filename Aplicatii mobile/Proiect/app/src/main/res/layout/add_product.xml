@@ -5,22 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ListView
-        android:id="@+id/lvLists"
+    <EditText
+        android:id="@+id/etProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnAddList" />
+        android:hint="Product name" />
 
-    <Button
-        android:id="@+id/btnAddList"
-        android:text="Add List"
+    <EditText
+        android:id="@+id/etProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="onAddList" />
+        android:layout_below="@+id/etProductName"
+        android:hint="Price"
+        android:inputType="numberDecimal" />
 
 </RelativeLayout>
