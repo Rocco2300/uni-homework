@@ -5,9 +5,11 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class List implements Parcelable {
+public class List implements Parcelable, Serializable {
     private String date;
     private float total;
     private ArrayList<Product> products;
@@ -15,18 +17,10 @@ public class List implements Parcelable {
     public List(String date, ArrayList<Product> products) {
         this.date = date;
         this.products = products;
-
-        total = 0.0f;
-        if (products == null) {
-            return;
-        }
-
-        for (int i = 0; i < products.size(); i++) {
-            total += this.products.get(i).getPrice();
-        }
+        this.total = 0.0f;
     }
 
-    protected List(Parcel in) {
+    public List(Parcel in) {
         date = in.readString();
         total = in.readFloat();
         products = in.readArrayList(null);
@@ -55,6 +49,8 @@ public class List implements Parcelable {
     public ArrayList<Product> getProducts() {
         return this.products;
     }
+
+    public void setTotal(float total) { this.total = total; }
 
     @Override
     public int describeContents() {

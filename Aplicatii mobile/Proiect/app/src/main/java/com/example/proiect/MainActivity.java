@@ -1,14 +1,22 @@
 package com.example.proiect;
 
 import android.app.DatePickerDialog;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,11 +31,22 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Global.setContextWrapper(this);
+        Global.deserialize();
+
         lvLists = findViewById(R.id.lvLists);
         listsAdapter = new ListAdapter(this, R.layout.date_row, Global.lists);
         lvLists.setAdapter(listsAdapter);
 
         setupListViewListener();
+        listsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        listsAdapter.notifyDataSetChanged();
     }
 
     private void setupListViewListener() {
@@ -44,6 +63,7 @@ public class MainActivity extends AppCompatActivity
             public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
                 List list = Global.lists.get(pos);
                 listsAdapter.remove(list);
+                Global.serialize();
                 return true;
             }
         });
@@ -63,5 +83,6 @@ public class MainActivity extends AppCompatActivity
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
 
         listsAdapter.add(new List(selectedDate, new ArrayList<Product>()));
+        Global.serialize();
     }
 }

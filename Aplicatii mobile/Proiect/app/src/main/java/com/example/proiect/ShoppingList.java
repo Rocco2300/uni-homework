@@ -3,12 +3,14 @@ package com.example.proiect;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,22 +20,21 @@ import java.util.ArrayList;
 public class ShoppingList extends AppCompatActivity {
     private ProductAdapter productsAdapter;
     private ListView lvProducts;
+    private TextView tvListTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopping_list);
 
-        Intent intent = getIntent();
-        int position = intent.getIntExtra("listId", 0);
-        Bundle bundle = intent.getBundleExtra("bundle");
-
-        lvProducts = (ListView) findViewById(R.id.lvProducts);
+        lvProducts = findViewById(R.id.lvProducts);
+        tvListTotal = findViewById(R.id.tvListTotal);
         productsAdapter = new ProductAdapter(this, R.layout.date_row,
                 Global.lists.get(Global.currentList).getProducts());
         lvProducts.setAdapter(productsAdapter);
 
         setupListViewListener();
+        Global.updateTotal(tvListTotal);
     }
 
     private void setupListViewListener() {
@@ -43,6 +44,9 @@ public class ShoppingList extends AppCompatActivity {
                 List list = Global.lists.get(Global.currentList);
                 Product product = list.getProducts().get(pos);
                 productsAdapter.remove(product);
+
+                Global.updateTotal(tvListTotal);
+                Global.serialize();
                 return true;
             }
         });
@@ -62,10 +66,15 @@ public class ShoppingList extends AppCompatActivity {
                         String name = etProductName.getText().toString();
                         String price = etProductPrice.getText().toString();
                         productsAdapter.add(new Product(name, Float.parseFloat(price)));
+
+                        Global.updateTotal(tvListTotal);
+                        Global.serialize();
                     }
                 })
                 .setNegativeButton("Cancel", null)
                 .create();
         dialog.show();
     }
+
+
 }

@@ -5,7 +5,9 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Product implements Parcelable {
+import java.io.Serializable;
+
+public class Product implements Parcelable, Serializable {
     private String name;
     private float price;
 
@@ -14,7 +16,7 @@ public class Product implements Parcelable {
         this.price = price;
     }
 
-    protected Product(Parcel in) {
+    public Product(Parcel in) {
         name = in.readString();
         price = in.readFloat();
     }
