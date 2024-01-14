@@ -31,6 +31,7 @@ public class Alert extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 game.randomizeGuess();
+                game.clearTextField();
                 Alert.this.dispose();
             }
         });
@@ -49,6 +50,7 @@ public class Alert extends JFrame {
         this.add(exitButton);
         this.add(continueButton);
 
+        this.setLocationRelativeTo(game);
         this.setSize(300, 192);
         this.setLayout(null);
     }

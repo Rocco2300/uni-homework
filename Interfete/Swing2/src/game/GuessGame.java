@@ -37,8 +37,6 @@ public class GuessGame extends JFrame {
                     status = GameStatus.LOST;
                 }
 
-                System.out.println(currentGuess);
-
                 Alert alert = new Alert(GuessGame.this);
                 alert.setVisible(true);
             }
@@ -60,5 +58,9 @@ public class GuessGame extends JFrame {
         // Generate a number between 1 and 6
         Random rand = new Random();
         currentGuess = rand.nextInt(6) + 1;
+    }
+
+    public void clearTextField() {
+        guessField.setText("");
     }
 }
