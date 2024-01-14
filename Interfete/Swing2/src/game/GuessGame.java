@@ -14,6 +14,7 @@ public class GuessGame extends JFrame {
     private GameStatus status;
 
     public GuessGame() {
+        this.setTitle("Guess Game");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         randomizeGuess();
