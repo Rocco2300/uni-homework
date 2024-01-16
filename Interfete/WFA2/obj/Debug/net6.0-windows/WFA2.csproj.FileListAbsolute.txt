@@ -1,0 +1,17 @@
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\bin\Debug\net6.0-windows\WFA2.exe
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\bin\Debug\net6.0-windows\WFA2.deps.json
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\bin\Debug\net6.0-windows\WFA2.runtimeconfig.json
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\bin\Debug\net6.0-windows\WFA2.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\bin\Debug\net6.0-windows\WFA2.pdb
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.csproj.GenerateResource.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.AssemblyInfoInputs.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.AssemblyInfo.cs
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.csproj.CoreCompileInputs.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\refint\WFA2.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.pdb
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.genruntimeconfig.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\ref\WFA2.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.GuessGame.resources
+C:\Users\grigo\Teme Facultate\Interfete\WFA2\obj\Debug\net6.0-windows\WFA2.Alert.resources

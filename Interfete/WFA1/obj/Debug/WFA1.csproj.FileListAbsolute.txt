@@ -1,0 +1,10 @@
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\bin\Debug\WFA1.exe.config
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\bin\Debug\WFA1.exe
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\bin\Debug\WFA1.pdb
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\obj\Debug\WFA1.csproj.AssemblyReference.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\obj\Debug\WFA1.Form1.resources
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\obj\Debug\WFA1.Properties.Resources.resources
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\obj\Debug\WFA1.csproj.GenerateResource.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\obj\Debug\WFA1.csproj.CoreCompileInputs.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\obj\Debug\WFA1.exe
+C:\Users\grigo\Teme Facultate\Interfete\WFA1\obj\Debug\WFA1.pdb
