@@ -1,0 +1,16 @@
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\bin\Debug\net6.0-windows\WFA3.exe
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\bin\Debug\net6.0-windows\WFA3.deps.json
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\bin\Debug\net6.0-windows\WFA3.runtimeconfig.json
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\bin\Debug\net6.0-windows\WFA3.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\bin\Debug\net6.0-windows\WFA3.pdb
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.Calculator.resources
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.csproj.GenerateResource.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.AssemblyInfoInputs.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.AssemblyInfo.cs
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.csproj.CoreCompileInputs.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\refint\WFA3.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.pdb
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\WFA3.genruntimeconfig.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA3\obj\Debug\net6.0-windows\ref\WFA3.dll
