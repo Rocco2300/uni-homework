@@ -1,0 +1,16 @@
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\bin\Debug\net6.0-windows\WFA4.exe
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\bin\Debug\net6.0-windows\WFA4.deps.json
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\bin\Debug\net6.0-windows\WFA4.runtimeconfig.json
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\bin\Debug\net6.0-windows\WFA4.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\bin\Debug\net6.0-windows\WFA4.pdb
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.TicTacToe.resources
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.csproj.GenerateResource.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.AssemblyInfoInputs.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.AssemblyInfo.cs
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.csproj.CoreCompileInputs.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\refint\WFA4.dll
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.pdb
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\WFA4.genruntimeconfig.cache
+C:\Users\grigo\Teme Facultate\Interfete\WFA4\obj\Debug\net6.0-windows\ref\WFA4.dll
